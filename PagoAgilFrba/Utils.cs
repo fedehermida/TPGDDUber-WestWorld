@@ -25,6 +25,16 @@ namespace PagoAgilFrba
             items.ForEach(item => combo.Items.Add(item));
         }
 
+
+        public void llenar(CheckedListBox list, List<KeyValuePair<int, string>> items)
+        {
+            list.Items.Clear();
+            list.DisplayMember = "Value";
+            list.ValueMember = "Key";
+
+            items.ForEach(item => combo.Items.Add(item));
+        }
+
         static public List<KeyValuePair<int, string>> GetEmpresas()
         {
             List<KeyValuePair<int, string>> empresas = new List<KeyValuePair<int, string>>();
@@ -83,6 +93,27 @@ namespace PagoAgilFrba
             reader.Close();
             sqlCon.Close();
             return formasDePago;
+        }
+
+        static public List<KeyValuePair<int,String>> getFuncionalidades()
+        {
+            List<KeyValuePair<int, string>> funcionalidades = new List<KeyValuePair<int, string>>();
+            SqlCommand com = new SqlCommand("WEST_WORLD.GetFuncionalidades", sqlCon);
+            com.CommandType = CommandType.StoredProcedure;
+
+            if (sqlCon.State == ConnectionState.Closed)
+                sqlCon.Open();
+
+            SqlDataReader reader = com.ExecuteReader();
+
+            while (reader.Read())
+            {
+                funcionalidades.Add(new KeyValuePair<int, string>(Int32.Parse(reader["idFuncionalidad"].ToString()), reader["nombre"].ToString()));
+            }
+            reader.Close();
+            sqlCon.Close();
+            return formasDePago;
+
         }
 
         public void validarYAgregarParam(SqlCommand sqlCmd, string variable, TextBox text)
