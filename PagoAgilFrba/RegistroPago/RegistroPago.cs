@@ -69,6 +69,8 @@ namespace PagoAgilFrba.RegistroPago
 
                 sqlDa.Fill(dtbl);
                 facturasDataGridL.DataSource = dtbl;
+                limpiarTablaFacturasACobrar();
+                importeCobroTextBox.Text = "";
 
                 sqlCon.Close();
             }
@@ -174,12 +176,15 @@ namespace PagoAgilFrba.RegistroPago
 
         private void limpiarFiltrosBtn_Click(object sender, EventArgs e)
         {
-            empresaFilterComboBox.Text = numFactFilterTextBoxL.Text = clienteTextBox.Text = idClienteTextBox.Text = "";
+            empresaFilterComboBox.Text = numFactFilterTextBoxL.Text = clienteTextBox.Text = idClienteTextBox.Text = clienteTxt.Text = "";
+            
+            facturasDataGridL.DataSource = new DataTable();
+            limpiarTablaFacturasACobrar();
         }
 
         private void limpiarCobroBtn_Click(object sender, EventArgs e)
         {
-            sucursalTextBox.Text = importeCobroTextBox.Text = formaPagoComboBox.Text = clienteTxt.Text = "";
+            importeCobroTextBox.Text = formaPagoComboBox.Text = clienteTxt.Text = "";
         }
 
         private void agregarABtn_Click(object sender, EventArgs e)

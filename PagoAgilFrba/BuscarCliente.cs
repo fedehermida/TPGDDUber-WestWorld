@@ -82,6 +82,7 @@ namespace PagoAgilFrba
 
         private void cancelarBtn_Click(object sender, EventArgs e)
         {
+            idClienteTextBox.Text = clienteTextBox.Text = "";
             this.Close();
         }
 

@@ -6,7 +6,7 @@ CREATE PROCEDURE WEST_WORLD.FacturaViewOrSearch
 
 AS	
 	IF @ESTADO = 'Sin Pago'
-		SELECT numeroFactura as 'Num Fact', empresa as Empresa, fechaAlta as 'Fecha Alta', FechaVencimiento as 'Fecha Venc', total as 'Total' 
+		SELECT numeroFactura as 'Num Fact', cliente as Cliente, empresa as Empresa, fechaAlta as 'Fecha Alta', FechaVencimiento as 'Fecha Venc', total as 'Total' 
 		FROM WEST_WORLD.Factura f JOIN WEST_WORLD.Empresa e ON (f.empresa = e.idEmpresa)
 			WHERE (@NUMEROFACTURA IS NULL OR (numeroFactura = @NUMEROFACTURA))
 				AND (@IDEMPRESA IS NULL OR (empresa = @IDEMPRESA))

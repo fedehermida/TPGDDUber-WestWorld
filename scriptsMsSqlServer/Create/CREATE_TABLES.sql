@@ -36,7 +36,7 @@ CREATE TABLE "WEST_WORLD"."Factura"  (
 GO
 CREATE TABLE "WEST_WORLD"."Item"( 
 	"idItem"       	bigint IDENTITY(1,1) NOT NULL,
-	"numeroFactura"	bigint,
+	"numeroFactura"	bigint NOT NULL,
 	"monto"         numeric(15,2) NOT NULL,
 	"cantidad"     	smallint NOT NULL,
 	"importe"		numeric(15,2) NOT NULL,
