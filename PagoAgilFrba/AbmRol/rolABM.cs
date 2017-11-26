@@ -16,7 +16,7 @@ namespace PagoAgilFrba.AbmRol
 
         static SqlConnection sqlCon = new SqlConnection(@Properties.Settings.Default.SQLSERVER2012);
         private Utils utils = new Utils();
-        private List<KeyValuePair<int,String>> funcionalidades = new List<KeyValuePair<int,String>>();
+        private List<KeyValuePair<int, string>> funcionalidades = new List<KeyValuePair<int, string>>();
 
         public rolABM()
         {
@@ -62,15 +62,15 @@ namespace PagoAgilFrba.AbmRol
 
                         sqlCmd.ExecuteNonQuery();
                         MessageBox.Show("Rol Creado");
-                        foreach (KeyValuePair<int, String> keyvalue in funcionalidades)
+                        foreach (KeyValuePair<int, string> keyvalue in funcionalidades)
                         {
                             SqlCommand sqlCmd1 = new SqlCommand("GD2C2017.WEST_WORLD.AgregarFuncionalidad", sqlCon);
                             sqlCmd1.CommandType = CommandType.StoredProcedure;
 
 
 
-                            utils.validarYAgregarParam(sqlCmd1, "@IdRol", returnParameter);
-                            utils.validarYAgregarParam(sqlCmd1, "@IdFuncionalidad", keyvalue.Key);
+                            //utils.validarYAgregarParam(sqlCmd1, "@IdRol", returnParameter);
+                            //utils.validarYAgregarParam(sqlCmd1, "@IdFuncionalidad", keyvalue.Key);
 
                             sqlCmd.ExecuteNonQuery();
                         }
@@ -154,9 +154,10 @@ namespace PagoAgilFrba.AbmRol
                         if (!String.IsNullOrWhiteSpace(textBox3.Text))
                         {
                             utils.validarYAgregarParam(sqlCmd, "@nombre", textBox3);
-                        }else
+                        }
+                        else
                         {
-                            sqlCmd.Parameters.AddWithValue("@nombre",DBNull.Value);
+                            sqlCmd.Parameters.AddWithValue("@nombre", DBNull.Value);
                         }
                         var returnParameter = sqlCmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
@@ -164,7 +165,7 @@ namespace PagoAgilFrba.AbmRol
 
                         sqlCmd.ExecuteNonQuery();
                         MessageBox.Show("Rol Creado");
-                   
+                    }
                 }
             }
             catch (Exception ex)

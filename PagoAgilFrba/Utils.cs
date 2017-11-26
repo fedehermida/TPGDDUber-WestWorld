@@ -95,7 +95,7 @@ namespace PagoAgilFrba
             return formasDePago;
         }
 
-        static public List<KeyValuePair<int,String>> getFuncionalidades()
+        static public List<KeyValuePair<int,string>> GetFuncionalidades()
         {
             List<KeyValuePair<int, string>> funcionalidades = new List<KeyValuePair<int, string>>();
             SqlCommand com = new SqlCommand("WEST_WORLD.GetFuncionalidades", sqlCon);

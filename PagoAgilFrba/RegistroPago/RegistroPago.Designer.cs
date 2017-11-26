@@ -458,8 +458,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView facturasDataGridL;
         private System.Windows.Forms.GroupBox cobrarGroupBox;
         private System.Windows.Forms.ComboBox formaPagoComboBox;

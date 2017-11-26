@@ -27,7 +27,7 @@ namespace PagoAgilFrba.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ABM-PC\\SQLSERVER2012;Initial Catalog=GD2C2017;Persist Security Info=T" +
-            "rue;User ID=sa;Password=gestiondedatos")]
+            "rue;User ID=gd;Password=gd2017")]
         public string SQLSERVER2012 {
             get {
                 return ((string)(this["SQLSERVER2012"]));
