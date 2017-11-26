@@ -51,7 +51,6 @@ BEGIN
 	SELECT DISTINCT Empresa_Cuit, Empresa_Nombre, Empresa_Direccion, Empresa_Rubro, 1
 	FROM gd_esquema.Maestra
 
-
 	--Migrar Sucursal
 	INSERT INTO WEST_WORLD.Sucursal
 	SELECT DISTINCT Sucursal_Nombre, Sucursal_Dirección, Sucursal_Codigo_Postal, 1, NULL
@@ -129,8 +128,8 @@ BEGIN
 	
 	--Migrar Item
 	INSERT INTO WEST_WORLD.Item(numeroFactura, monto, cantidad, importe)
-	SELECT DISTINCT Nro_Factura, ROUND(ItemFactura_Monto/ItemFactura_Cantidad, 2), ItemFactura_Cantidad, ItemFactura_Monto
+	SELECT DISTINCT Nro_Factura, ROUND(ROUND(ItemFactura_Monto,2)/ROUND(ItemFactura_Cantidad, 2),2), ItemFactura_Cantidad, ItemFactura_Monto
 	from gd_esquema.Maestra
 	order by Nro_Factura
-
+	
 END

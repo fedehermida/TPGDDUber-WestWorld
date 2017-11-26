@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.Listado = new System.Windows.Forms.TabPage();
+            this.facturaTabControl = new System.Windows.Forms.TabControl();
+            this.ListadoTab = new System.Windows.Forms.TabPage();
             this.limpiarBtnL = new System.Windows.Forms.Button();
             this.facturasLabel = new System.Windows.Forms.Label();
             this.eliminarBtnL = new System.Windows.Forms.Button();
@@ -44,26 +44,26 @@
             this.empresaFilterComboBox = new System.Windows.Forms.ComboBox();
             this.searchBtnL = new System.Windows.Forms.Button();
             this.empresaFilterLabel = new System.Windows.Forms.Label();
-            this.ABM = new System.Windows.Forms.TabPage();
+            this.ActualizarTab = new System.Windows.Forms.TabPage();
             this.clienteGroupBox2 = new System.Windows.Forms.GroupBox();
             this.idClienteTextBox2 = new System.Windows.Forms.TextBox();
             this.seleccionarBtn2 = new System.Windows.Forms.Button();
             this.clienteTextBox2 = new System.Windows.Forms.TextBox();
             this.limpiarBtn = new System.Windows.Forms.Button();
             this.itemsGroupBox = new System.Windows.Forms.GroupBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.itemGroupBox = new System.Windows.Forms.GroupBox();
             this.limpiarItemBtn = new System.Windows.Forms.Button();
             this.montoTextBox = new System.Windows.Forms.TextBox();
             this.agregarItemBtn = new System.Windows.Forms.Button();
             this.cantTextBox = new System.Windows.Forms.TextBox();
             this.cantidadLabel = new System.Windows.Forms.Label();
-            this.cantidadextBox = new System.Windows.Forms.Label();
+            this.montoLabel = new System.Windows.Forms.Label();
             this.eliminarItemBtn = new System.Windows.Forms.Button();
             this.numFactLabel2 = new System.Windows.Forms.Label();
             this.itemsFacturaLabel = new System.Windows.Forms.Label();
-            this.actualizarBtn = new System.Windows.Forms.Button();
+            this.actualizarItemsBtn = new System.Windows.Forms.Button();
             this.itemsDataGrid = new System.Windows.Forms.DataGridView();
-            this.guardarFactButton = new System.Windows.Forms.Button();
+            this.actualizarFactButton = new System.Windows.Forms.Button();
             this.totalTextBox = new System.Windows.Forms.TextBox();
             this.totalLabel = new System.Windows.Forms.Label();
             this.fechaVencLabel = new System.Windows.Forms.Label();
@@ -74,43 +74,80 @@
             this.empresaComboBox = new System.Windows.Forms.ComboBox();
             this.numFactTextBox = new System.Windows.Forms.TextBox();
             this.empresaLabel = new System.Windows.Forms.Label();
-            this.tabControl1.SuspendLayout();
-            this.Listado.SuspendLayout();
+            this.nuevaFacturaTab = new System.Windows.Forms.TabPage();
+            this.clienteGroupBox2NF = new System.Windows.Forms.GroupBox();
+            this.idClienteTextBox2NF = new System.Windows.Forms.TextBox();
+            this.seleccionarBtn2NF = new System.Windows.Forms.Button();
+            this.clienteTextBox2NF = new System.Windows.Forms.TextBox();
+            this.LimpiarNF = new System.Windows.Forms.Button();
+            this.itemsGroupBoxNF = new System.Windows.Forms.GroupBox();
+            this.itemGroupBoxNF = new System.Windows.Forms.GroupBox();
+            this.limpiarItemBtnNF = new System.Windows.Forms.Button();
+            this.montoTextBoxNF = new System.Windows.Forms.TextBox();
+            this.agregarItemBtnNF = new System.Windows.Forms.Button();
+            this.cantTextBoxNF = new System.Windows.Forms.TextBox();
+            this.cantidadLabelNF = new System.Windows.Forms.Label();
+            this.montoLabelNF = new System.Windows.Forms.Label();
+            this.eliminarItemBtnNF = new System.Windows.Forms.Button();
+            this.numFactLabel2NF = new System.Windows.Forms.Label();
+            this.itemsFacturaLabelNF = new System.Windows.Forms.Label();
+            this.itemsDataGridNF = new System.Windows.Forms.DataGridView();
+            this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.guardarFactButtonNF = new System.Windows.Forms.Button();
+            this.totalTextBoxNF = new System.Windows.Forms.TextBox();
+            this.totalLabelNF = new System.Windows.Forms.Label();
+            this.fechaVencLabelNF = new System.Windows.Forms.Label();
+            this.fechaVencDT_NF = new System.Windows.Forms.DateTimePicker();
+            this.fechaAltaFactLabelNF = new System.Windows.Forms.Label();
+            this.fechaAltaFactDT_NF = new System.Windows.Forms.DateTimePicker();
+            this.numFactLabelNF = new System.Windows.Forms.Label();
+            this.empresaComboBoxNF = new System.Windows.Forms.ComboBox();
+            this.numFactTextBoxNF = new System.Windows.Forms.TextBox();
+            this.empresaLabelNF = new System.Windows.Forms.Label();
+            this.facturaTabControl.SuspendLayout();
+            this.ListadoTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.facturasDataGridL)).BeginInit();
             this.filtrarGroupBox.SuspendLayout();
             this.clienteGroupBox.SuspendLayout();
-            this.ABM.SuspendLayout();
+            this.ActualizarTab.SuspendLayout();
             this.clienteGroupBox2.SuspendLayout();
             this.itemsGroupBox.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.itemGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemsDataGrid)).BeginInit();
+            this.nuevaFacturaTab.SuspendLayout();
+            this.clienteGroupBox2NF.SuspendLayout();
+            this.itemsGroupBoxNF.SuspendLayout();
+            this.itemGroupBoxNF.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.itemsDataGridNF)).BeginInit();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // facturaTabControl
             // 
-            this.tabControl1.Controls.Add(this.Listado);
-            this.tabControl1.Controls.Add(this.ABM);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(769, 481);
-            this.tabControl1.TabIndex = 0;
+            this.facturaTabControl.Controls.Add(this.ListadoTab);
+            this.facturaTabControl.Controls.Add(this.ActualizarTab);
+            this.facturaTabControl.Controls.Add(this.nuevaFacturaTab);
+            this.facturaTabControl.Location = new System.Drawing.Point(12, 12);
+            this.facturaTabControl.Name = "facturaTabControl";
+            this.facturaTabControl.SelectedIndex = 0;
+            this.facturaTabControl.Size = new System.Drawing.Size(769, 481);
+            this.facturaTabControl.TabIndex = 0;
             // 
-            // Listado
+            // ListadoTab
             // 
-            this.Listado.Controls.Add(this.limpiarBtnL);
-            this.Listado.Controls.Add(this.facturasLabel);
-            this.Listado.Controls.Add(this.eliminarBtnL);
-            this.Listado.Controls.Add(this.facturasDataGridL);
-            this.Listado.Controls.Add(this.filtrarGroupBox);
-            this.Listado.Location = new System.Drawing.Point(4, 22);
-            this.Listado.Name = "Listado";
-            this.Listado.Padding = new System.Windows.Forms.Padding(3);
-            this.Listado.Size = new System.Drawing.Size(761, 455);
-            this.Listado.TabIndex = 0;
-            this.Listado.Text = "Listado";
-            this.Listado.UseVisualStyleBackColor = true;
-            this.Listado.Click += new System.EventHandler(this.Listado_Click);
+            this.ListadoTab.Controls.Add(this.limpiarBtnL);
+            this.ListadoTab.Controls.Add(this.facturasLabel);
+            this.ListadoTab.Controls.Add(this.eliminarBtnL);
+            this.ListadoTab.Controls.Add(this.facturasDataGridL);
+            this.ListadoTab.Controls.Add(this.filtrarGroupBox);
+            this.ListadoTab.Location = new System.Drawing.Point(4, 22);
+            this.ListadoTab.Name = "ListadoTab";
+            this.ListadoTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ListadoTab.Size = new System.Drawing.Size(761, 455);
+            this.ListadoTab.TabIndex = 0;
+            this.ListadoTab.Text = "Listado";
+            this.ListadoTab.UseVisualStyleBackColor = true;
             // 
             // limpiarBtnL
             // 
@@ -154,7 +191,6 @@
             this.facturasDataGridL.ReadOnly = true;
             this.facturasDataGridL.Size = new System.Drawing.Size(721, 205);
             this.facturasDataGridL.TabIndex = 2;
-            this.facturasDataGridL.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.facturasDataGrid_CellContentClick);
             this.facturasDataGridL.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.facturasDataGridL_MouseDoubleClick);
             // 
             // filtrarGroupBox
@@ -253,30 +289,29 @@
             this.empresaFilterLabel.TabIndex = 20;
             this.empresaFilterLabel.Text = "Empresa";
             // 
-            // ABM
+            // ActualizarTab
             // 
-            this.ABM.Controls.Add(this.clienteGroupBox2);
-            this.ABM.Controls.Add(this.limpiarBtn);
-            this.ABM.Controls.Add(this.itemsGroupBox);
-            this.ABM.Controls.Add(this.guardarFactButton);
-            this.ABM.Controls.Add(this.totalTextBox);
-            this.ABM.Controls.Add(this.totalLabel);
-            this.ABM.Controls.Add(this.fechaVencLabel);
-            this.ABM.Controls.Add(this.fechaVencDT);
-            this.ABM.Controls.Add(this.fechaAltaFactLabel);
-            this.ABM.Controls.Add(this.fechaAltaFactDT);
-            this.ABM.Controls.Add(this.numFactLabel);
-            this.ABM.Controls.Add(this.empresaComboBox);
-            this.ABM.Controls.Add(this.numFactTextBox);
-            this.ABM.Controls.Add(this.empresaLabel);
-            this.ABM.Location = new System.Drawing.Point(4, 22);
-            this.ABM.Name = "ABM";
-            this.ABM.Padding = new System.Windows.Forms.Padding(3);
-            this.ABM.Size = new System.Drawing.Size(761, 455);
-            this.ABM.TabIndex = 1;
-            this.ABM.Text = "ABM";
-            this.ABM.UseVisualStyleBackColor = true;
-            this.ABM.Click += new System.EventHandler(this.ABM_Click);
+            this.ActualizarTab.Controls.Add(this.clienteGroupBox2);
+            this.ActualizarTab.Controls.Add(this.limpiarBtn);
+            this.ActualizarTab.Controls.Add(this.itemsGroupBox);
+            this.ActualizarTab.Controls.Add(this.actualizarFactButton);
+            this.ActualizarTab.Controls.Add(this.totalTextBox);
+            this.ActualizarTab.Controls.Add(this.totalLabel);
+            this.ActualizarTab.Controls.Add(this.fechaVencLabel);
+            this.ActualizarTab.Controls.Add(this.fechaVencDT);
+            this.ActualizarTab.Controls.Add(this.fechaAltaFactLabel);
+            this.ActualizarTab.Controls.Add(this.fechaAltaFactDT);
+            this.ActualizarTab.Controls.Add(this.numFactLabel);
+            this.ActualizarTab.Controls.Add(this.empresaComboBox);
+            this.ActualizarTab.Controls.Add(this.numFactTextBox);
+            this.ActualizarTab.Controls.Add(this.empresaLabel);
+            this.ActualizarTab.Location = new System.Drawing.Point(4, 22);
+            this.ActualizarTab.Name = "ActualizarTab";
+            this.ActualizarTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ActualizarTab.Size = new System.Drawing.Size(761, 455);
+            this.ActualizarTab.TabIndex = 1;
+            this.ActualizarTab.Text = "Actualizar";
+            this.ActualizarTab.UseVisualStyleBackColor = true;
             // 
             // clienteGroupBox2
             // 
@@ -306,7 +341,7 @@
             this.seleccionarBtn2.TabIndex = 24;
             this.seleccionarBtn2.Text = "Seleccionar";
             this.seleccionarBtn2.UseVisualStyleBackColor = true;
-            this.seleccionarBtn2.Click += new System.EventHandler(this.seleccionarClienteBtn_Click_2);
+            this.seleccionarBtn2.Click += new System.EventHandler(this.seleccionarClienteBtn_Click_Actualizar);
             // 
             // clienteTextBox2
             // 
@@ -328,11 +363,11 @@
             // 
             // itemsGroupBox
             // 
-            this.itemsGroupBox.Controls.Add(this.groupBox1);
+            this.itemsGroupBox.Controls.Add(this.itemGroupBox);
             this.itemsGroupBox.Controls.Add(this.eliminarItemBtn);
             this.itemsGroupBox.Controls.Add(this.numFactLabel2);
             this.itemsGroupBox.Controls.Add(this.itemsFacturaLabel);
-            this.itemsGroupBox.Controls.Add(this.actualizarBtn);
+            this.itemsGroupBox.Controls.Add(this.actualizarItemsBtn);
             this.itemsGroupBox.Controls.Add(this.itemsDataGrid);
             this.itemsGroupBox.Location = new System.Drawing.Point(44, 194);
             this.itemsGroupBox.Name = "itemsGroupBox";
@@ -341,20 +376,20 @@
             this.itemsGroupBox.TabStop = false;
             this.itemsGroupBox.Text = "Items";
             // 
-            // groupBox1
+            // itemGroupBox
             // 
-            this.groupBox1.Controls.Add(this.limpiarItemBtn);
-            this.groupBox1.Controls.Add(this.montoTextBox);
-            this.groupBox1.Controls.Add(this.agregarItemBtn);
-            this.groupBox1.Controls.Add(this.cantTextBox);
-            this.groupBox1.Controls.Add(this.cantidadLabel);
-            this.groupBox1.Controls.Add(this.cantidadextBox);
-            this.groupBox1.Location = new System.Drawing.Point(31, 36);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(250, 140);
-            this.groupBox1.TabIndex = 25;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Item";
+            this.itemGroupBox.Controls.Add(this.limpiarItemBtn);
+            this.itemGroupBox.Controls.Add(this.montoTextBox);
+            this.itemGroupBox.Controls.Add(this.agregarItemBtn);
+            this.itemGroupBox.Controls.Add(this.cantTextBox);
+            this.itemGroupBox.Controls.Add(this.cantidadLabel);
+            this.itemGroupBox.Controls.Add(this.montoLabel);
+            this.itemGroupBox.Location = new System.Drawing.Point(31, 36);
+            this.itemGroupBox.Name = "itemGroupBox";
+            this.itemGroupBox.Size = new System.Drawing.Size(250, 140);
+            this.itemGroupBox.TabIndex = 25;
+            this.itemGroupBox.TabStop = false;
+            this.itemGroupBox.Text = "Item";
             // 
             // limpiarItemBtn
             // 
@@ -399,14 +434,14 @@
             this.cantidadLabel.TabIndex = 16;
             this.cantidadLabel.Text = "Cantidad";
             // 
-            // cantidadextBox
+            // montoLabel
             // 
-            this.cantidadextBox.AutoSize = true;
-            this.cantidadextBox.Location = new System.Drawing.Point(56, 31);
-            this.cantidadextBox.Name = "cantidadextBox";
-            this.cantidadextBox.Size = new System.Drawing.Size(37, 13);
-            this.cantidadextBox.TabIndex = 15;
-            this.cantidadextBox.Text = "Monto";
+            this.montoLabel.AutoSize = true;
+            this.montoLabel.Location = new System.Drawing.Point(56, 31);
+            this.montoLabel.Name = "montoLabel";
+            this.montoLabel.Size = new System.Drawing.Size(37, 13);
+            this.montoLabel.TabIndex = 15;
+            this.montoLabel.Text = "Monto";
             // 
             // eliminarItemBtn
             // 
@@ -435,15 +470,15 @@
             this.itemsFacturaLabel.TabIndex = 22;
             this.itemsFacturaLabel.Text = "Items de Factura:";
             // 
-            // actualizarBtn
+            // actualizarItemsBtn
             // 
-            this.actualizarBtn.Location = new System.Drawing.Point(326, 177);
-            this.actualizarBtn.Name = "actualizarBtn";
-            this.actualizarBtn.Size = new System.Drawing.Size(100, 23);
-            this.actualizarBtn.TabIndex = 21;
-            this.actualizarBtn.Text = "Actualizar Tabla";
-            this.actualizarBtn.UseVisualStyleBackColor = true;
-            this.actualizarBtn.Click += new System.EventHandler(this.actualizarTablaItemsBtn_Click);
+            this.actualizarItemsBtn.Location = new System.Drawing.Point(326, 177);
+            this.actualizarItemsBtn.Name = "actualizarItemsBtn";
+            this.actualizarItemsBtn.Size = new System.Drawing.Size(100, 23);
+            this.actualizarItemsBtn.TabIndex = 21;
+            this.actualizarItemsBtn.Text = "Actualizar Tabla";
+            this.actualizarItemsBtn.UseVisualStyleBackColor = true;
+            this.actualizarItemsBtn.Click += new System.EventHandler(this.actualizarTablaItemsBtn_Click);
             // 
             // itemsDataGrid
             // 
@@ -453,26 +488,25 @@
             this.itemsDataGrid.Name = "itemsDataGrid";
             this.itemsDataGrid.Size = new System.Drawing.Size(346, 140);
             this.itemsDataGrid.TabIndex = 18;
-            this.itemsDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.itemsDataGrid_CellContentClick);
             this.itemsDataGrid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.itemsDataGrid_MouseDoubleClick_1);
             // 
-            // guardarFactButton
+            // actualizarFactButton
             // 
-            this.guardarFactButton.Location = new System.Drawing.Point(310, 147);
-            this.guardarFactButton.Name = "guardarFactButton";
-            this.guardarFactButton.Size = new System.Drawing.Size(121, 37);
-            this.guardarFactButton.TabIndex = 33;
-            this.guardarFactButton.Text = "Guardar Factura";
-            this.guardarFactButton.UseVisualStyleBackColor = true;
-            this.guardarFactButton.Click += new System.EventHandler(this.guardarFactButton_Click_1);
+            this.actualizarFactButton.Location = new System.Drawing.Point(310, 147);
+            this.actualizarFactButton.Name = "actualizarFactButton";
+            this.actualizarFactButton.Size = new System.Drawing.Size(121, 37);
+            this.actualizarFactButton.TabIndex = 33;
+            this.actualizarFactButton.Text = "Actualizar Factura";
+            this.actualizarFactButton.UseVisualStyleBackColor = true;
+            this.actualizarFactButton.Click += new System.EventHandler(this.actualizar_Click);
             // 
             // totalTextBox
             // 
+            this.totalTextBox.Enabled = false;
             this.totalTextBox.Location = new System.Drawing.Point(600, 168);
             this.totalTextBox.Name = "totalTextBox";
             this.totalTextBox.Size = new System.Drawing.Size(103, 20);
             this.totalTextBox.TabIndex = 32;
-            this.totalTextBox.TextChanged += new System.EventHandler(this.totalTextBox_TextChanged);
             // 
             // totalLabel
             // 
@@ -496,7 +530,7 @@
             // 
             this.fechaVencDT.Location = new System.Drawing.Point(521, 76);
             this.fechaVencDT.Name = "fechaVencDT";
-            this.fechaVencDT.Size = new System.Drawing.Size(200, 20);
+            this.fechaVencDT.Size = new System.Drawing.Size(213, 20);
             this.fechaVencDT.TabIndex = 29;
             this.fechaVencDT.ValueChanged += new System.EventHandler(this.fechaVencDT_ValueChanged);
             // 
@@ -514,7 +548,7 @@
             this.fechaAltaFactDT.Enabled = false;
             this.fechaAltaFactDT.Location = new System.Drawing.Point(521, 31);
             this.fechaAltaFactDT.Name = "fechaAltaFactDT";
-            this.fechaAltaFactDT.Size = new System.Drawing.Size(200, 20);
+            this.fechaAltaFactDT.Size = new System.Drawing.Size(213, 20);
             this.fechaAltaFactDT.TabIndex = 27;
             // 
             // numFactLabel
@@ -550,54 +584,365 @@
             this.empresaLabel.TabIndex = 23;
             this.empresaLabel.Text = "Empresa";
             // 
+            // nuevaFacturaTab
+            // 
+            this.nuevaFacturaTab.Controls.Add(this.clienteGroupBox2NF);
+            this.nuevaFacturaTab.Controls.Add(this.LimpiarNF);
+            this.nuevaFacturaTab.Controls.Add(this.itemsGroupBoxNF);
+            this.nuevaFacturaTab.Controls.Add(this.guardarFactButtonNF);
+            this.nuevaFacturaTab.Controls.Add(this.totalTextBoxNF);
+            this.nuevaFacturaTab.Controls.Add(this.totalLabelNF);
+            this.nuevaFacturaTab.Controls.Add(this.fechaVencLabelNF);
+            this.nuevaFacturaTab.Controls.Add(this.fechaVencDT_NF);
+            this.nuevaFacturaTab.Controls.Add(this.fechaAltaFactLabelNF);
+            this.nuevaFacturaTab.Controls.Add(this.fechaAltaFactDT_NF);
+            this.nuevaFacturaTab.Controls.Add(this.numFactLabelNF);
+            this.nuevaFacturaTab.Controls.Add(this.empresaComboBoxNF);
+            this.nuevaFacturaTab.Controls.Add(this.numFactTextBoxNF);
+            this.nuevaFacturaTab.Controls.Add(this.empresaLabelNF);
+            this.nuevaFacturaTab.Location = new System.Drawing.Point(4, 22);
+            this.nuevaFacturaTab.Name = "nuevaFacturaTab";
+            this.nuevaFacturaTab.Padding = new System.Windows.Forms.Padding(3);
+            this.nuevaFacturaTab.Size = new System.Drawing.Size(761, 455);
+            this.nuevaFacturaTab.TabIndex = 2;
+            this.nuevaFacturaTab.Text = "Nueva Factura";
+            this.nuevaFacturaTab.UseVisualStyleBackColor = true;
+            // 
+            // clienteGroupBox2NF
+            // 
+            this.clienteGroupBox2NF.Controls.Add(this.idClienteTextBox2NF);
+            this.clienteGroupBox2NF.Controls.Add(this.seleccionarBtn2NF);
+            this.clienteGroupBox2NF.Controls.Add(this.clienteTextBox2NF);
+            this.clienteGroupBox2NF.Location = new System.Drawing.Point(43, 77);
+            this.clienteGroupBox2NF.Name = "clienteGroupBox2NF";
+            this.clienteGroupBox2NF.Size = new System.Drawing.Size(291, 54);
+            this.clienteGroupBox2NF.TabIndex = 51;
+            this.clienteGroupBox2NF.TabStop = false;
+            this.clienteGroupBox2NF.Text = "Cliente";
+            // 
+            // idClienteTextBox2NF
+            // 
+            this.idClienteTextBox2NF.Enabled = false;
+            this.idClienteTextBox2NF.Location = new System.Drawing.Point(6, 18);
+            this.idClienteTextBox2NF.Name = "idClienteTextBox2NF";
+            this.idClienteTextBox2NF.Size = new System.Drawing.Size(37, 20);
+            this.idClienteTextBox2NF.TabIndex = 27;
+            // 
+            // seleccionarBtn2NF
+            // 
+            this.seleccionarBtn2NF.Location = new System.Drawing.Point(204, 18);
+            this.seleccionarBtn2NF.Name = "seleccionarBtn2NF";
+            this.seleccionarBtn2NF.Size = new System.Drawing.Size(76, 20);
+            this.seleccionarBtn2NF.TabIndex = 24;
+            this.seleccionarBtn2NF.Text = "Seleccionar";
+            this.seleccionarBtn2NF.UseVisualStyleBackColor = true;
+            this.seleccionarBtn2NF.Click += new System.EventHandler(this.seleccionarClienteBtn_Click_NF);
+            // 
+            // clienteTextBox2NF
+            // 
+            this.clienteTextBox2NF.Enabled = false;
+            this.clienteTextBox2NF.Location = new System.Drawing.Point(45, 18);
+            this.clienteTextBox2NF.Name = "clienteTextBox2NF";
+            this.clienteTextBox2NF.Size = new System.Drawing.Size(158, 20);
+            this.clienteTextBox2NF.TabIndex = 23;
+            // 
+            // LimpiarNF
+            // 
+            this.LimpiarNF.Location = new System.Drawing.Point(328, 405);
+            this.LimpiarNF.Name = "LimpiarNF";
+            this.LimpiarNF.Size = new System.Drawing.Size(83, 29);
+            this.LimpiarNF.TabIndex = 50;
+            this.LimpiarNF.Text = "Limpiar todo";
+            this.LimpiarNF.UseVisualStyleBackColor = true;
+            this.LimpiarNF.Click += new System.EventHandler(this.LimpiarNF_Click);
+            // 
+            // itemsGroupBoxNF
+            // 
+            this.itemsGroupBoxNF.Controls.Add(this.itemGroupBoxNF);
+            this.itemsGroupBoxNF.Controls.Add(this.eliminarItemBtnNF);
+            this.itemsGroupBoxNF.Controls.Add(this.numFactLabel2NF);
+            this.itemsGroupBoxNF.Controls.Add(this.itemsFacturaLabelNF);
+            this.itemsGroupBoxNF.Controls.Add(this.itemsDataGridNF);
+            this.itemsGroupBoxNF.Location = new System.Drawing.Point(42, 184);
+            this.itemsGroupBoxNF.Name = "itemsGroupBoxNF";
+            this.itemsGroupBoxNF.Size = new System.Drawing.Size(676, 206);
+            this.itemsGroupBoxNF.TabIndex = 49;
+            this.itemsGroupBoxNF.TabStop = false;
+            this.itemsGroupBoxNF.Text = "Items";
+            // 
+            // itemGroupBoxNF
+            // 
+            this.itemGroupBoxNF.Controls.Add(this.limpiarItemBtnNF);
+            this.itemGroupBoxNF.Controls.Add(this.montoTextBoxNF);
+            this.itemGroupBoxNF.Controls.Add(this.agregarItemBtnNF);
+            this.itemGroupBoxNF.Controls.Add(this.cantTextBoxNF);
+            this.itemGroupBoxNF.Controls.Add(this.cantidadLabelNF);
+            this.itemGroupBoxNF.Controls.Add(this.montoLabelNF);
+            this.itemGroupBoxNF.Location = new System.Drawing.Point(31, 36);
+            this.itemGroupBoxNF.Name = "itemGroupBoxNF";
+            this.itemGroupBoxNF.Size = new System.Drawing.Size(250, 140);
+            this.itemGroupBoxNF.TabIndex = 25;
+            this.itemGroupBoxNF.TabStop = false;
+            this.itemGroupBoxNF.Text = "Item";
+            // 
+            // limpiarItemBtnNF
+            // 
+            this.limpiarItemBtnNF.Location = new System.Drawing.Point(0, 117);
+            this.limpiarItemBtnNF.Name = "limpiarItemBtnNF";
+            this.limpiarItemBtnNF.Size = new System.Drawing.Size(75, 23);
+            this.limpiarItemBtnNF.TabIndex = 18;
+            this.limpiarItemBtnNF.Text = "Limpiar";
+            this.limpiarItemBtnNF.UseVisualStyleBackColor = true;
+            this.limpiarItemBtnNF.Click += new System.EventHandler(this.limpiarItemBtnNF_Click);
+            // 
+            // montoTextBoxNF
+            // 
+            this.montoTextBoxNF.Location = new System.Drawing.Point(99, 28);
+            this.montoTextBoxNF.Name = "montoTextBoxNF";
+            this.montoTextBoxNF.Size = new System.Drawing.Size(100, 20);
+            this.montoTextBoxNF.TabIndex = 14;
+            // 
+            // agregarItemBtnNF
+            // 
+            this.agregarItemBtnNF.Location = new System.Drawing.Point(99, 80);
+            this.agregarItemBtnNF.Name = "agregarItemBtnNF";
+            this.agregarItemBtnNF.Size = new System.Drawing.Size(100, 23);
+            this.agregarItemBtnNF.TabIndex = 17;
+            this.agregarItemBtnNF.Text = "Agregar Item";
+            this.agregarItemBtnNF.UseVisualStyleBackColor = true;
+            this.agregarItemBtnNF.Click += new System.EventHandler(this.agregarItemBtnNF_Click);
+            // 
+            // cantTextBoxNF
+            // 
+            this.cantTextBoxNF.Location = new System.Drawing.Point(99, 54);
+            this.cantTextBoxNF.Name = "cantTextBoxNF";
+            this.cantTextBoxNF.Size = new System.Drawing.Size(100, 20);
+            this.cantTextBoxNF.TabIndex = 13;
+            // 
+            // cantidadLabelNF
+            // 
+            this.cantidadLabelNF.AutoSize = true;
+            this.cantidadLabelNF.Location = new System.Drawing.Point(44, 57);
+            this.cantidadLabelNF.Name = "cantidadLabelNF";
+            this.cantidadLabelNF.Size = new System.Drawing.Size(49, 13);
+            this.cantidadLabelNF.TabIndex = 16;
+            this.cantidadLabelNF.Text = "Cantidad";
+            // 
+            // montoLabelNF
+            // 
+            this.montoLabelNF.AutoSize = true;
+            this.montoLabelNF.Location = new System.Drawing.Point(56, 31);
+            this.montoLabelNF.Name = "montoLabelNF";
+            this.montoLabelNF.Size = new System.Drawing.Size(37, 13);
+            this.montoLabelNF.TabIndex = 15;
+            this.montoLabelNF.Text = "Monto";
+            // 
+            // eliminarItemBtnNF
+            // 
+            this.eliminarItemBtnNF.Location = new System.Drawing.Point(568, 177);
+            this.eliminarItemBtnNF.Name = "eliminarItemBtnNF";
+            this.eliminarItemBtnNF.Size = new System.Drawing.Size(75, 23);
+            this.eliminarItemBtnNF.TabIndex = 24;
+            this.eliminarItemBtnNF.Text = "Eliminar";
+            this.eliminarItemBtnNF.UseVisualStyleBackColor = true;
+            this.eliminarItemBtnNF.Click += new System.EventHandler(this.eliminarItemBtnNF_Click);
+            // 
+            // numFactLabel2NF
+            // 
+            this.numFactLabel2NF.AutoSize = true;
+            this.numFactLabel2NF.Location = new System.Drawing.Point(426, 16);
+            this.numFactLabel2NF.Name = "numFactLabel2NF";
+            this.numFactLabel2NF.Size = new System.Drawing.Size(0, 13);
+            this.numFactLabel2NF.TabIndex = 23;
+            // 
+            // itemsFacturaLabelNF
+            // 
+            this.itemsFacturaLabelNF.AutoSize = true;
+            this.itemsFacturaLabelNF.Location = new System.Drawing.Point(310, 16);
+            this.itemsFacturaLabelNF.Name = "itemsFacturaLabelNF";
+            this.itemsFacturaLabelNF.Size = new System.Drawing.Size(89, 13);
+            this.itemsFacturaLabelNF.TabIndex = 22;
+            this.itemsFacturaLabelNF.Text = "Items de Factura:";
+            // 
+            // itemsDataGridNF
+            // 
+            this.itemsDataGridNF.AllowUserToAddRows = false;
+            this.itemsDataGridNF.AllowUserToDeleteRows = false;
+            this.itemsDataGridNF.AllowUserToResizeRows = false;
+            this.itemsDataGridNF.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.itemsDataGridNF.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Monto,
+            this.Cantidad,
+            this.Importe});
+            this.itemsDataGridNF.Location = new System.Drawing.Point(313, 36);
+            this.itemsDataGridNF.Name = "itemsDataGridNF";
+            this.itemsDataGridNF.Size = new System.Drawing.Size(346, 140);
+            this.itemsDataGridNF.TabIndex = 18;
+            // 
+            // Monto
+            // 
+            this.Monto.HeaderText = "Monto";
+            this.Monto.Name = "Monto";
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            // 
+            // Importe
+            // 
+            this.Importe.HeaderText = "Importe";
+            this.Importe.Name = "Importe";
+            // 
+            // guardarFactButtonNF
+            // 
+            this.guardarFactButtonNF.Location = new System.Drawing.Point(308, 137);
+            this.guardarFactButtonNF.Name = "guardarFactButtonNF";
+            this.guardarFactButtonNF.Size = new System.Drawing.Size(121, 37);
+            this.guardarFactButtonNF.TabIndex = 48;
+            this.guardarFactButtonNF.Text = "Guardar Factura";
+            this.guardarFactButtonNF.UseVisualStyleBackColor = true;
+            this.guardarFactButtonNF.Click += new System.EventHandler(this.guardar_Click);
+            // 
+            // totalTextBoxNF
+            // 
+            this.totalTextBoxNF.Enabled = false;
+            this.totalTextBoxNF.Location = new System.Drawing.Point(598, 158);
+            this.totalTextBoxNF.Name = "totalTextBoxNF";
+            this.totalTextBoxNF.Size = new System.Drawing.Size(103, 20);
+            this.totalTextBoxNF.TabIndex = 47;
+            // 
+            // totalLabelNF
+            // 
+            this.totalLabelNF.AutoSize = true;
+            this.totalLabelNF.Location = new System.Drawing.Point(545, 161);
+            this.totalLabelNF.Name = "totalLabelNF";
+            this.totalLabelNF.Size = new System.Drawing.Size(31, 13);
+            this.totalLabelNF.TabIndex = 46;
+            this.totalLabelNF.Text = "Total";
+            // 
+            // fechaVencLabelNF
+            // 
+            this.fechaVencLabelNF.AutoSize = true;
+            this.fechaVencLabelNF.Location = new System.Drawing.Point(391, 66);
+            this.fechaVencLabelNF.Name = "fechaVencLabelNF";
+            this.fechaVencLabelNF.Size = new System.Drawing.Size(113, 13);
+            this.fechaVencLabelNF.TabIndex = 45;
+            this.fechaVencLabelNF.Text = "Fecha de Vencimiento";
+            // 
+            // fechaVencDT_NF
+            // 
+            this.fechaVencDT_NF.Location = new System.Drawing.Point(519, 66);
+            this.fechaVencDT_NF.Name = "fechaVencDT_NF";
+            this.fechaVencDT_NF.Size = new System.Drawing.Size(200, 20);
+            this.fechaVencDT_NF.TabIndex = 44;
+            // 
+            // fechaAltaFactLabelNF
+            // 
+            this.fechaAltaFactLabelNF.AutoSize = true;
+            this.fechaAltaFactLabelNF.Location = new System.Drawing.Point(407, 21);
+            this.fechaAltaFactLabelNF.Name = "fechaAltaFactLabelNF";
+            this.fechaAltaFactLabelNF.Size = new System.Drawing.Size(97, 13);
+            this.fechaAltaFactLabelNF.TabIndex = 43;
+            this.fechaAltaFactLabelNF.Text = "Fecha Alta Factura";
+            // 
+            // fechaAltaFactDT_NF
+            // 
+            this.fechaAltaFactDT_NF.Enabled = false;
+            this.fechaAltaFactDT_NF.Location = new System.Drawing.Point(519, 21);
+            this.fechaAltaFactDT_NF.Name = "fechaAltaFactDT_NF";
+            this.fechaAltaFactDT_NF.Size = new System.Drawing.Size(200, 20);
+            this.fechaAltaFactDT_NF.TabIndex = 42;
+            // 
+            // numFactLabelNF
+            // 
+            this.numFactLabelNF.AutoSize = true;
+            this.numFactLabelNF.Location = new System.Drawing.Point(61, 24);
+            this.numFactLabelNF.Name = "numFactLabelNF";
+            this.numFactLabelNF.Size = new System.Drawing.Size(98, 13);
+            this.numFactLabelNF.TabIndex = 41;
+            this.numFactLabelNF.Text = "Número de Factura";
+            // 
+            // empresaComboBoxNF
+            // 
+            this.empresaComboBoxNF.FormattingEnabled = true;
+            this.empresaComboBoxNF.Location = new System.Drawing.Point(173, 50);
+            this.empresaComboBoxNF.Name = "empresaComboBoxNF";
+            this.empresaComboBoxNF.Size = new System.Drawing.Size(121, 21);
+            this.empresaComboBoxNF.TabIndex = 40;
+            // 
+            // numFactTextBoxNF
+            // 
+            this.numFactTextBoxNF.Location = new System.Drawing.Point(173, 24);
+            this.numFactTextBoxNF.Name = "numFactTextBoxNF";
+            this.numFactTextBoxNF.Size = new System.Drawing.Size(121, 20);
+            this.numFactTextBoxNF.TabIndex = 39;
+            // 
+            // empresaLabelNF
+            // 
+            this.empresaLabelNF.AutoSize = true;
+            this.empresaLabelNF.Location = new System.Drawing.Point(100, 50);
+            this.empresaLabelNF.Name = "empresaLabelNF";
+            this.empresaLabelNF.Size = new System.Drawing.Size(48, 13);
+            this.empresaLabelNF.TabIndex = 38;
+            this.empresaLabelNF.Text = "Empresa";
+            // 
             // facturaABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(796, 505);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.facturaTabControl);
             this.Name = "facturaABM";
             this.Text = "ABM  Factura";
-            this.Load += new System.EventHandler(this.facturaABM_Load_1);
-            this.tabControl1.ResumeLayout(false);
-            this.Listado.ResumeLayout(false);
-            this.Listado.PerformLayout();
+            this.facturaTabControl.ResumeLayout(false);
+            this.ListadoTab.ResumeLayout(false);
+            this.ListadoTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.facturasDataGridL)).EndInit();
             this.filtrarGroupBox.ResumeLayout(false);
             this.filtrarGroupBox.PerformLayout();
             this.clienteGroupBox.ResumeLayout(false);
             this.clienteGroupBox.PerformLayout();
-            this.ABM.ResumeLayout(false);
-            this.ABM.PerformLayout();
+            this.ActualizarTab.ResumeLayout(false);
+            this.ActualizarTab.PerformLayout();
             this.clienteGroupBox2.ResumeLayout(false);
             this.clienteGroupBox2.PerformLayout();
             this.itemsGroupBox.ResumeLayout(false);
             this.itemsGroupBox.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.itemGroupBox.ResumeLayout(false);
+            this.itemGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemsDataGrid)).EndInit();
+            this.nuevaFacturaTab.ResumeLayout(false);
+            this.nuevaFacturaTab.PerformLayout();
+            this.clienteGroupBox2NF.ResumeLayout(false);
+            this.clienteGroupBox2NF.PerformLayout();
+            this.itemsGroupBoxNF.ResumeLayout(false);
+            this.itemsGroupBoxNF.PerformLayout();
+            this.itemGroupBoxNF.ResumeLayout(false);
+            this.itemGroupBoxNF.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.itemsDataGridNF)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage Listado;
+        private System.Windows.Forms.TabControl facturaTabControl;
+        private System.Windows.Forms.TabPage ListadoTab;
         private System.Windows.Forms.DataGridView facturasDataGridL;
-        private System.Windows.Forms.TabPage ABM;
+        private System.Windows.Forms.TabPage ActualizarTab;
         private System.Windows.Forms.Button limpiarBtn;
         private System.Windows.Forms.GroupBox itemsGroupBox;
         private System.Windows.Forms.Label numFactLabel2;
         private System.Windows.Forms.Label itemsFacturaLabel;
-        private System.Windows.Forms.Button actualizarBtn;
+        private System.Windows.Forms.Button actualizarItemsBtn;
         private System.Windows.Forms.DataGridView itemsDataGrid;
         private System.Windows.Forms.TextBox montoTextBox;
         private System.Windows.Forms.Button agregarItemBtn;
         private System.Windows.Forms.TextBox cantTextBox;
         private System.Windows.Forms.Label cantidadLabel;
-        private System.Windows.Forms.Label cantidadextBox;
-        private System.Windows.Forms.Button guardarFactButton;
+        private System.Windows.Forms.Label montoLabel;
+        private System.Windows.Forms.Button actualizarFactButton;
         private System.Windows.Forms.TextBox totalTextBox;
         private System.Windows.Forms.Label totalLabel;
         private System.Windows.Forms.Label fechaVencLabel;
@@ -612,7 +957,7 @@
         private System.Windows.Forms.Button eliminarBtnL;
         private System.Windows.Forms.Button eliminarItemBtn;
         private System.Windows.Forms.Label facturasLabel;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox itemGroupBox;
         private System.Windows.Forms.Button limpiarItemBtn;
         private System.Windows.Forms.GroupBox filtrarGroupBox;
         private System.Windows.Forms.Label numFactLabelL;
@@ -628,6 +973,38 @@
         private System.Windows.Forms.TextBox idClienteTextBox2;
         private System.Windows.Forms.Button seleccionarBtn2;
         private System.Windows.Forms.TextBox clienteTextBox2;
+        private System.Windows.Forms.TabPage nuevaFacturaTab;
+        private System.Windows.Forms.GroupBox clienteGroupBox2NF;
+        private System.Windows.Forms.TextBox idClienteTextBox2NF;
+        private System.Windows.Forms.Button seleccionarBtn2NF;
+        private System.Windows.Forms.TextBox clienteTextBox2NF;
+        private System.Windows.Forms.Button LimpiarNF;
+        private System.Windows.Forms.GroupBox itemsGroupBoxNF;
+        private System.Windows.Forms.GroupBox itemGroupBoxNF;
+        private System.Windows.Forms.Button limpiarItemBtnNF;
+        private System.Windows.Forms.TextBox montoTextBoxNF;
+        private System.Windows.Forms.Button agregarItemBtnNF;
+        private System.Windows.Forms.TextBox cantTextBoxNF;
+        private System.Windows.Forms.Label cantidadLabelNF;
+        private System.Windows.Forms.Label montoLabelNF;
+        private System.Windows.Forms.Button eliminarItemBtnNF;
+        private System.Windows.Forms.Label numFactLabel2NF;
+        private System.Windows.Forms.Label itemsFacturaLabelNF;
+        private System.Windows.Forms.DataGridView itemsDataGridNF;
+        private System.Windows.Forms.Button guardarFactButtonNF;
+        private System.Windows.Forms.TextBox totalTextBoxNF;
+        private System.Windows.Forms.Label totalLabelNF;
+        private System.Windows.Forms.Label fechaVencLabelNF;
+        private System.Windows.Forms.DateTimePicker fechaVencDT_NF;
+        private System.Windows.Forms.Label fechaAltaFactLabelNF;
+        private System.Windows.Forms.DateTimePicker fechaAltaFactDT_NF;
+        private System.Windows.Forms.Label numFactLabelNF;
+        private System.Windows.Forms.ComboBox empresaComboBoxNF;
+        private System.Windows.Forms.TextBox numFactTextBoxNF;
+        private System.Windows.Forms.Label empresaLabelNF;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
 
 
     }

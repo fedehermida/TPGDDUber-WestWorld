@@ -162,7 +162,7 @@
             // 
             this.fechaNacimientoTime.Location = new System.Drawing.Point(453, 140);
             this.fechaNacimientoTime.Name = "fechaNacimientoTime";
-            this.fechaNacimientoTime.Size = new System.Drawing.Size(200, 20);
+            this.fechaNacimientoTime.Size = new System.Drawing.Size(211, 20);
             this.fechaNacimientoTime.TabIndex = 16;
             // 
             // guardarBtn

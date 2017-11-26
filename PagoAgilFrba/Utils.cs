@@ -32,7 +32,7 @@ namespace PagoAgilFrba
             list.DisplayMember = "Value";
             list.ValueMember = "Key";
 
-            items.ForEach(item => combo.Items.Add(item));
+            items.ForEach(item => list.Items.Add(item));
         }
 
         static public List<KeyValuePair<int, string>> GetEmpresas()
@@ -112,7 +112,7 @@ namespace PagoAgilFrba
             }
             reader.Close();
             sqlCon.Close();
-            return formasDePago;
+            return funcionalidades;
 
         }
 
@@ -124,8 +124,14 @@ namespace PagoAgilFrba
 
         public void validarConvYAgregarParam(SqlCommand sqlCmd, string variable, TextBox text)
         {
+            validarMontoOCant(convertirAValor(text), text);
+            sqlCmd.Parameters.AddWithValue(variable, convertirAValor(text));
+        }
+
+        public void validarMontoOCant(decimal valor, TextBox text)
+        {
             if ((string.IsNullOrWhiteSpace(text.Text.Trim()))) throw new Exception("Todos los campos correspondientes son obligatorios");
-            else sqlCmd.Parameters.AddWithValue(variable, convertirAValor(text));
+            if (valor <= 0) throw new Exception("El monto y la cantidad deben ser >0");
         }
 
         public Decimal convertirAValor(TextBox textBox)
@@ -149,7 +155,7 @@ namespace PagoAgilFrba
         }
         public void validarImporte(SqlCommand sqlCmd, string variable, TextBox text)
         {
-            if (string.IsNullOrWhiteSpace(text.Text)) throw new Exception("Ingrese un importe");
+            if (string.IsNullOrWhiteSpace(text.Text)) throw new Exception("Agregue items");
             if (Convert.ToDecimal(text.Text.Trim()) <= 0) throw new Exception("El importe debe ser mayor a 0");
             else this.validarConvYAgregarParam(sqlCmd, variable, text);
         }

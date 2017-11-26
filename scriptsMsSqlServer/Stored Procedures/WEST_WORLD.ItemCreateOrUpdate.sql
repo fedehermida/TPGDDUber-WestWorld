@@ -3,8 +3,7 @@ CREATE PROCEDURE WEST_WORLD.ItemCreateOrUpdate
 	@IDITEM bigint,
 	@NUMEROFACTURA bigint,
 	@MONTO numeric(15,2),
-	@CANTIDAD smallint,
-	@IMPORTE numeric(15,2)
+	@CANTIDAD smallint
 
 AS
 	
@@ -12,15 +11,14 @@ AS
 		BEGIN
 			IF EXISTS (SELECT * FROM WEST_WORLD.Item 
 					   WHERE numeroFactura = @NUMEROFACTURA AND monto = @MONTO 
-							 AND cantidad = @CANTIDAD AND importe = @IMPORTE)
-				RETURN -1
+							 AND cantidad = @CANTIDAD)				
+				RAISERROR(N'Ya existe el item ingresado para la factura %I64i', 15,2, @NUMEROFACTURA)
 
 			ELSE
 				INSERT INTO WEST_WORLD.Item(numeroFactura, cantidad, monto, importe)
-				VALUES(@NUMEROFACTURA, @CANTIDAD, @MONTO, @IMPORTE)
+				VALUES(@NUMEROFACTURA, @CANTIDAD, @MONTO, @CANTIDAD*@MONTO)
 
 				OPTION (RECOMPILE)
-				RETURN 0
 		END
 	
 	ELSE IF @mode ='Edit'
@@ -30,8 +28,6 @@ AS
 			SET numeroFactura = @NUMEROFACTURA,
 				monto=@MONTO, 
 				cantidad=@CANTIDAD,
-				importe=@IMPORTE
+				importe=@MONTO*@CANTIDAD
 			WHERE idItem = @IDITEM
 		END
-
-	RETURN 0

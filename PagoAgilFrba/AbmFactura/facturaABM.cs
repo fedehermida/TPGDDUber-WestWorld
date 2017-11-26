@@ -10,14 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
 namespace PagoAgilFrba.AbmFactura
 {
     public partial class facturaABM : Form
     {
         static SqlConnection sqlCon = new SqlConnection(@Properties.Settings.Default.SQLSERVER2012);
         private Utils utils = new Utils();
-        private RegistroPago.RegistroPago registroDePago = new RegistroPago.RegistroPago();
+        private List<Item> itemsList = new List<Item>();
 
         public facturaABM()
         {
@@ -30,67 +29,59 @@ namespace PagoAgilFrba.AbmFactura
         {
             List<KeyValuePair<int, string>> empresas = Utils.GetEmpresas();
             utils.llenar(empresaComboBox, empresas);
+            utils.llenar(empresaComboBoxNF, empresas);
             utils.llenar(empresaFilterComboBox, empresas);
             
         }
 
-        private void facturaABM_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guardarFactButton_Click_1(object sender, EventArgs e)
+        private void guardar_Click(object sender, EventArgs e)
         {
             try
             {
+                if (itemsList.Count == 0) throw new Exception("Ingrese items");
                 if (sqlCon.State == ConnectionState.Closed)
                 {
                     sqlCon.Open();
-                    if (guardarFactButton.Text == "Guardar Factura")
+                    
+                    SqlCommand sqlCmd = new SqlCommand("GD2C2017.WEST_WORLD.FacturaCreateOrUpdate", sqlCon);
+                    sqlCmd.CommandType = CommandType.StoredProcedure;
+                    sqlCmd.Parameters.AddWithValue("@mode", "Add");
+
+                    utils.validarYAgregarParam(sqlCmd, "@cliente", idClienteTextBox2NF);
+                    sqlCmd.Parameters.AddWithValue("@Empresa", empresaComboBoxNF.SelectedIndex + 1); //+1 Porque arranca de 0
+
+                    utils.validarYAgregarParam(sqlCmd, "@numeroFactura", numFactTextBoxNF);
+                    sqlCmd.Parameters.AddWithValue("@fecha_alta", fechaAltaFactDT_NF.Value);
+
+                    validarFechaVencimientoYAgregar(sqlCmd);
+
+                    utils.validarImporte(sqlCmd, "@total", totalTextBoxNF);
+
+                    sqlCmd.ExecuteNonQuery();
+
+                    SqlCommand sqlCmdItem;
+                    int c = 0;
+                    foreach (Item i in itemsList)
                     {
-                        SqlCommand sqlCmd = new SqlCommand("GD2C2017.WEST_WORLD.FacturaCreateOrUpdate", sqlCon);
-                        sqlCmd.CommandType = CommandType.StoredProcedure;
-                        sqlCmd.Parameters.AddWithValue("@mode", "Add");
+                        sqlCmdItem = new SqlCommand("GD2C2017.WEST_WORLD.ItemCreateOrUpdate", sqlCon);
+                        sqlCmdItem.CommandType = CommandType.StoredProcedure;
+                        sqlCmdItem.Parameters.AddWithValue("@mode", "Add");
+                        sqlCmdItem.Parameters.AddWithValue("@idItem", 0);
+                        sqlCmdItem.Parameters.AddWithValue("@monto", i.Monto);
+                        sqlCmdItem.Parameters.AddWithValue("@cantidad", i.Cantidad);
 
-                        utils.validarYAgregarParam(sqlCmd, "@cliente", idClienteTextBox2);
-                        sqlCmd.Parameters.AddWithValue("@Empresa", empresaComboBox.SelectedIndex + 1); //+1 Porque arranca de 0
+                        utils.validarYAgregarParam(sqlCmdItem, "@numeroFactura", numFactTextBoxNF);
 
-                        utils.validarYAgregarParam(sqlCmd, "@numeroFactura", numFactTextBox);
-                        sqlCmd.Parameters.AddWithValue("@fecha_alta", fechaAltaFactDT.Value);
-
-                        validarFechaVencimientoYAgregar(sqlCmd);
-
-                        utils.validarImporte(sqlCmd, "@total", totalTextBox);
-
-                        sqlCmd.ExecuteNonQuery();
-                        MessageBox.Show("Factura creada");
+                        sqlCmdItem.ExecuteNonQuery();
+                        c++;
                     }
-                    else
-                    {
+                    MessageBox.Show("Factura creada");
 
-                        SqlCommand sqlCmd = new SqlCommand("GD2C2017.WEST_WORLD.FacturaCreateOrUpdate", sqlCon);
-                        sqlCmd.CommandType = CommandType.StoredProcedure;
-                        sqlCmd.Parameters.AddWithValue("@mode", "Edit");
+                    if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
 
-                        utils.validarYAgregarParam(sqlCmd, "@cliente", idClienteTextBox2);
-                        sqlCmd.Parameters.AddWithValue("@Empresa", empresaComboBox.SelectedIndex + 1); //+1 Porque arranca de 0
-
-                        utils.validarYAgregarParam(sqlCmd, "@numeroFactura", numFactTextBox);
-                        sqlCmd.Parameters.AddWithValue("@fecha_alta", fechaAltaFactDT.Value);
-                        validarFechaVencimientoYAgregar(sqlCmd);
-
-                        utils.validarImporte(sqlCmd, "@total", totalTextBox);
-
-                        sqlCmd.ExecuteNonQuery();
-                        MessageBox.Show("Factura actualizada");
-
-                        if (sqlCon.State == ConnectionState.Open) sqlCmd.Connection.Close();
-
-                        numFactFilterTextBoxL.Text = numFactTextBox.Text.Trim();
-                        searchBtnL_Click(sender, e);
-                        tabControl1.SelectedIndex = 0;
-
-                    }
+                    numFactFilterTextBoxL.Text = numFactTextBoxNF.Text.Trim();
+                    searchBtnL_Click(sender, e);
+                    facturaTabControl.SelectedIndex = 0;
                 }
             }
             catch (Exception ex)
@@ -111,6 +102,62 @@ namespace PagoAgilFrba.AbmFactura
             {
                 if (sqlCon.State == ConnectionState.Open)
                     sqlCon.Close();
+            }
+        }
+
+        private void actualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                actualizarFactura();
+
+                numFactFilterTextBoxL.Text = numFactTextBox.Text.Trim();
+                searchBtnL_Click(sender, e);
+                facturaTabControl.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                if (ex is SqlException)
+                {
+                    SqlException sqlException = ex as SqlException;
+                    if (sqlException.Number == 8114) MessageBox.Show("Todos los campos correspondientes son obligatorios", "Error Message");
+                    else MessageBox.Show(ex.Message, "Mensaje de Error");
+                }
+                else
+                {
+                    MessageBox.Show(ex.Message, "Mensaje de Error");
+                }
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open)
+                    sqlCon.Close();
+            }
+        }
+
+        public void actualizarFactura()
+        {
+            if (sqlCon.State == ConnectionState.Closed)
+            {
+                sqlCon.Open();
+
+                SqlCommand sqlCmd = new SqlCommand("GD2C2017.WEST_WORLD.FacturaCreateOrUpdate", sqlCon);
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+                sqlCmd.Parameters.AddWithValue("@mode", "Edit");
+
+                utils.validarYAgregarParam(sqlCmd, "@cliente", idClienteTextBox2);
+                sqlCmd.Parameters.AddWithValue("@Empresa", empresaComboBox.SelectedIndex + 1); //+1 Porque arranca de 0
+
+                utils.validarYAgregarParam(sqlCmd, "@numeroFactura", numFactTextBox);
+                sqlCmd.Parameters.AddWithValue("@fecha_alta", fechaAltaFactDT.Value);
+                validarFechaVencimientoYAgregar(sqlCmd);
+
+                utils.validarImporte(sqlCmd, "@total", totalTextBox);
+
+                sqlCmd.ExecuteNonQuery();
+                MessageBox.Show("Factura actualizada");
+
+                sqlCon.Close();
             }
         }
 
@@ -136,6 +183,7 @@ namespace PagoAgilFrba.AbmFactura
                     fillDataGridViewItems();
                 }
                 actualizarImporteDeFactura();
+                actualizarFactura();
             }
             catch (Exception ex)
             {
@@ -170,7 +218,7 @@ namespace PagoAgilFrba.AbmFactura
 
                 sqlCmd.ExecuteNonQuery();
 
-                sqlCmd.Connection.Close();
+                sqlCon.Close();
             }
         }
 
@@ -187,12 +235,10 @@ namespace PagoAgilFrba.AbmFactura
                 utils.validarConvYAgregarParam(sqlCmd, "@monto", montoTextBox);
                 utils.validarConvYAgregarParam(sqlCmd, "@cantidad", cantTextBox);
 
-                sqlCmd.Parameters.AddWithValue("@importe", Convert.ToDecimal(montoTextBox.Text.Trim()) * Convert.ToInt16(cantTextBox.Text.Trim()));
                 if ((string.IsNullOrWhiteSpace(numFactTextBox.Text.Trim()))) throw new Exception("Ingrese un Numero de Factura");
                 else sqlCmd.Parameters.AddWithValue("@numeroFactura", numFactTextBox.Text.Trim());
 
-                int exitCode = sqlCmd.ExecuteNonQuery();
-                if (exitCode == -1) throw new Exception("Ya existe el item ingresado para la factura" + " " + numFactTextBox.Text.Trim());
+                sqlCmd.ExecuteNonQuery();
                 MessageBox.Show("Item creado");
 
                 sqlCon.Close();
@@ -272,16 +318,10 @@ namespace PagoAgilFrba.AbmFactura
             }
         }
 
-        private void empresaComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void limpiarBtn_Click_1(object sender, EventArgs e)
         {
             empresaComboBox.Text = numFactTextBox.Text = fechaAltaFactDT.Text = idClienteTextBox2.Text = clienteTextBox2.Text
                  = fechaVencDT.Text = totalTextBox.Text = montoTextBox.Text = cantTextBox.Text = numFactLabel2.Text = "";
-            guardarFactButton.Text = "Guardar Factura";
             agregarItemBtn.Text = "Agregar Item";
 
             itemsDataGrid.DataSource = new DataTable();
@@ -297,11 +337,6 @@ namespace PagoAgilFrba.AbmFactura
 
                 agregarItemBtn.Text = "Actualizar Item";
             }
-        }
-
-        private void itemsDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void searchBtnL_Click(object sender, EventArgs e)
@@ -346,20 +381,12 @@ namespace PagoAgilFrba.AbmFactura
             }
         }
 
-        private void ABM_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void totalTextBox_TextChanged(object sender, EventArgs e)
-        {
-        }
-
         private void facturasDataGridL_MouseDoubleClick(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             try
             {
                 if (!(string.IsNullOrWhiteSpace(facturasDataGridL.CurrentRow.Cells[7].Value.ToString())))
-                    throw new Exception("No se puede actualizar una factura pagada y/o rendida");
+                    throw new Exception("No se puede actualizar una factura pagada");
             
                 if (facturasDataGridL.CurrentRow.Index != -1)
                 {
@@ -383,8 +410,7 @@ namespace PagoAgilFrba.AbmFactura
                 
                     numFactLabel2.Text = numFactTextBox.Text;
 
-                    guardarFactButton.Text = "Actualizar Factura";
-                    tabControl1.SelectedIndex = 1;
+                    facturaTabControl.SelectedIndex = 1;
 
                     actualizarTablaItemsBtn_Click(sender, e); //actualiza DataGridView items
 
@@ -399,10 +425,6 @@ namespace PagoAgilFrba.AbmFactura
                 if (sqlCon.State == ConnectionState.Open)
                     sqlCon.Close();
             }
-        }
-
-        private void facturasDataGrid_CellContentClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
-        {
         }
 
         private void limpiarBtnL_Click(object sender, EventArgs e)
@@ -425,7 +447,7 @@ namespace PagoAgilFrba.AbmFactura
                     sqlCmd.Parameters.AddWithValue("@numerofactura", Convert.ToInt64(facturasDataGridL.CurrentRow.Cells[0].Value.ToString()));
 
                     int exitCode = sqlCmd.ExecuteNonQuery();
-                    if (exitCode == -1) MessageBox.Show("No se puede eliminar una factura pagada y/o rendida");
+                    if (exitCode == -1) MessageBox.Show("No se puede eliminar una factura pagada");
                     else
                     {
                         MessageBox.Show("Factura " + facturasDataGridL.CurrentRow.Cells[0].Value.ToString() + " Eliminada");
@@ -487,15 +509,6 @@ namespace PagoAgilFrba.AbmFactura
 
         }
 
-        private void Listado_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void clienteFilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
         private void limpiarItemBtn_Click(object sender, EventArgs e)
         {
             montoTextBox.Text = cantTextBox.Text = "";
@@ -514,7 +527,19 @@ namespace PagoAgilFrba.AbmFactura
             }
         }
 
-        private void seleccionarClienteBtn_Click_2(object sender, EventArgs e)
+        private void seleccionarClienteBtn_Click_NF(object sender, EventArgs e)
+        {
+            BuscarCliente busquedaDeCliente = new BuscarCliente();
+            busquedaDeCliente.ShowDialog();
+
+            if (!string.IsNullOrWhiteSpace(busquedaDeCliente.clienteTextBox.Text) & !string.IsNullOrWhiteSpace(busquedaDeCliente.idClienteTextBox.Text))
+            {
+                idClienteTextBox2NF.Text = busquedaDeCliente.idClienteTextBox.Text;
+                clienteTextBox2NF.Text = busquedaDeCliente.clienteTextBox.Text;
+            }
+        }
+
+        private void seleccionarClienteBtn_Click_Actualizar(object sender, EventArgs e)
         {
             BuscarCliente busquedaDeCliente = new BuscarCliente();
             busquedaDeCliente.ShowDialog();
@@ -534,6 +559,75 @@ namespace PagoAgilFrba.AbmFactura
                 MessageBox.Show("La fecha de vencimiento no debe ser mayor a la fecha de hoy", "Error Message");
                 fechaVencDT.Value = Convert.ToDateTime(DateTime.Now.Date);
             }
+        }
+
+        private void agregarItemBtnNF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(montoTextBoxNF.Text) | string.IsNullOrWhiteSpace(cantTextBoxNF.Text)) throw new Exception("Debe ingresar Monto y Cantidad");
+
+                Item item = new Item(Math.Round(Convert.ToDecimal(montoTextBoxNF.Text),2), Convert.ToInt16(cantTextBoxNF.Text));
+                utils.validarMontoOCant(item.Monto, montoTextBoxNF);
+                utils.validarMontoOCant(item.Cantidad, cantTextBoxNF);
+
+                if (!itemsList.Any(x => x.Monto == item.Monto & x.Cantidad == item.Cantidad))
+                {
+                    itemsDataGridNF.Rows.Add(new object[] {item.Monto,
+                                    item.Cantidad,
+                                    item.Importe
+                                    });
+
+                    itemsList.Add(item);
+
+                    totalTextBoxNF.Text = utils.calcularColumna(2, itemsDataGridNF);
+                    if (!itemsDataGridNF.ColumnHeadersVisible) itemsDataGridNF.ColumnHeadersVisible = true;
+
+                }
+                else throw new Exception("Ya existe el item ingresado");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Message");
+            }
+        }
+
+        private void eliminarItemBtnNF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (itemsDataGridNF.CurrentRow == null) throw new Exception("Seleccione un item a eliminar");
+
+                Item item = new Item(Convert.ToDecimal(itemsDataGridNF.CurrentRow.Cells[0].Value), Convert.ToInt16(itemsDataGridNF.CurrentRow.Cells[1].Value));
+
+                int index = itemsList.FindIndex(i => i.Cantidad == item.Cantidad & i.Monto == item.Monto);
+                itemsList.RemoveAt(index);
+
+                itemsDataGridNF.Rows.Remove(itemsDataGridNF.CurrentRow);
+
+                if (!itemsList.Any()) itemsDataGridNF.ColumnHeadersVisible = false;
+
+                totalTextBoxNF.Text = utils.calcularColumna(2, itemsDataGridNF);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Message");
+            }
+        }
+
+        private void LimpiarNF_Click(object sender, EventArgs e)
+        {
+            numFactTextBoxNF.Text = empresaComboBoxNF.Text = idClienteTextBox2NF.Text = clienteTextBox2NF.Text = cantTextBoxNF.Text = montoTextBoxNF.Text =
+                totalTextBoxNF.Text = fechaAltaFactDT_NF.Text = fechaVencDT_NF.Text = "";
+
+            itemsDataGridNF.ColumnHeadersVisible = false;
+            itemsDataGridNF.Rows.Clear();
+            itemsList = new List<Item>();
+        }
+
+        private void limpiarItemBtnNF_Click(object sender, EventArgs e)
+        {
+            montoTextBoxNF.Text = cantTextBoxNF.Text = "";
         }
 
     }
