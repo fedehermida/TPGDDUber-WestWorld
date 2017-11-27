@@ -35,6 +35,7 @@
             this.registarPagoBtn = new System.Windows.Forms.Button();
             this.rendirFacturasBtn = new System.Windows.Forms.Button();
             this.abmRolBtn = new System.Windows.Forms.Button();
+            this.devolverBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ABMClienteBtn
@@ -79,7 +80,7 @@
             // 
             // registarPagoBtn
             // 
-            this.registarPagoBtn.Location = new System.Drawing.Point(287, 113);
+            this.registarPagoBtn.Location = new System.Drawing.Point(552, 111);
             this.registarPagoBtn.Name = "registarPagoBtn";
             this.registarPagoBtn.Size = new System.Drawing.Size(218, 57);
             this.registarPagoBtn.TabIndex = 4;
@@ -89,7 +90,7 @@
             // 
             // rendirFacturasBtn
             // 
-            this.rendirFacturasBtn.Location = new System.Drawing.Point(552, 113);
+            this.rendirFacturasBtn.Location = new System.Drawing.Point(26, 200);
             this.rendirFacturasBtn.Name = "rendirFacturasBtn";
             this.rendirFacturasBtn.Size = new System.Drawing.Size(218, 57);
             this.rendirFacturasBtn.TabIndex = 5;
@@ -99,19 +100,29 @@
             // 
             // abmRolBtn
             // 
-            this.abmRolBtn.Location = new System.Drawing.Point(26, 198);
+            this.abmRolBtn.Location = new System.Drawing.Point(290, 112);
             this.abmRolBtn.Name = "abmRolBtn";
             this.abmRolBtn.Size = new System.Drawing.Size(218, 56);
-            this.abmRolBtn.TabIndex = 6;
+            this.abmRolBtn.TabIndex = 7;
             this.abmRolBtn.Text = "ABM Rol";
             this.abmRolBtn.UseVisualStyleBackColor = true;
-            this.abmRolBtn.Click += new System.EventHandler(this.abmRolBtn_Click);
+            // 
+            // devolverBtn
+            // 
+            this.devolverBtn.Location = new System.Drawing.Point(287, 200);
+            this.devolverBtn.Name = "devolverBtn";
+            this.devolverBtn.Size = new System.Drawing.Size(218, 57);
+            this.devolverBtn.TabIndex = 8;
+            this.devolverBtn.Text = "Devolver Factura/s";
+            this.devolverBtn.UseVisualStyleBackColor = true;
+            this.devolverBtn.Click += new System.EventHandler(this.devolverBtn_Click);
             // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(799, 280);
+            this.Controls.Add(this.devolverBtn);
             this.Controls.Add(this.abmRolBtn);
             this.Controls.Add(this.rendirFacturasBtn);
             this.Controls.Add(this.registarPagoBtn);
@@ -135,6 +146,7 @@
         private System.Windows.Forms.Button registarPagoBtn;
         private System.Windows.Forms.Button rendirFacturasBtn;
         private System.Windows.Forms.Button abmRolBtn;
+        private System.Windows.Forms.Button devolverBtn;
     }
 }
 

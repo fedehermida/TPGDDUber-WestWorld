@@ -64,5 +64,11 @@ namespace PagoAgilFrba
             AbmRol.rolABM rolABM = new AbmRol.rolABM();
             rolABM.ShowDialog();
         }
+
+        private void devolverBtn_Click(object sender, EventArgs e)
+        {
+            Devolucion.Devolucion devolucion = new Devolucion.Devolucion();
+            devolucion.ShowDialog();
+        }
     }
 }
