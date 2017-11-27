@@ -34,13 +34,14 @@
             this.ABMFacturaBtn = new System.Windows.Forms.Button();
             this.registarPagoBtn = new System.Windows.Forms.Button();
             this.rendirFacturasBtn = new System.Windows.Forms.Button();
+            this.abmRolBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ABMClienteBtn
             // 
-            this.ABMClienteBtn.Location = new System.Drawing.Point(27, 12);
+            this.ABMClienteBtn.Location = new System.Drawing.Point(26, 25);
             this.ABMClienteBtn.Name = "ABMClienteBtn";
-            this.ABMClienteBtn.Size = new System.Drawing.Size(218, 47);
+            this.ABMClienteBtn.Size = new System.Drawing.Size(218, 57);
             this.ABMClienteBtn.TabIndex = 0;
             this.ABMClienteBtn.Text = "ABM Cliente";
             this.ABMClienteBtn.UseVisualStyleBackColor = true;
@@ -48,9 +49,9 @@
             // 
             // ABMEmpresaBtn
             // 
-            this.ABMEmpresaBtn.Location = new System.Drawing.Point(288, 12);
+            this.ABMEmpresaBtn.Location = new System.Drawing.Point(287, 25);
             this.ABMEmpresaBtn.Name = "ABMEmpresaBtn";
-            this.ABMEmpresaBtn.Size = new System.Drawing.Size(218, 47);
+            this.ABMEmpresaBtn.Size = new System.Drawing.Size(218, 57);
             this.ABMEmpresaBtn.TabIndex = 1;
             this.ABMEmpresaBtn.Text = "ABM Empresa";
             this.ABMEmpresaBtn.UseVisualStyleBackColor = true;
@@ -58,9 +59,9 @@
             // 
             // AbmSucursalBtn
             // 
-            this.AbmSucursalBtn.Location = new System.Drawing.Point(553, 12);
+            this.AbmSucursalBtn.Location = new System.Drawing.Point(552, 25);
             this.AbmSucursalBtn.Name = "AbmSucursalBtn";
-            this.AbmSucursalBtn.Size = new System.Drawing.Size(218, 47);
+            this.AbmSucursalBtn.Size = new System.Drawing.Size(218, 57);
             this.AbmSucursalBtn.TabIndex = 2;
             this.AbmSucursalBtn.Text = "ABM Sucursal";
             this.AbmSucursalBtn.UseVisualStyleBackColor = true;
@@ -68,7 +69,7 @@
             // 
             // ABMFacturaBtn
             // 
-            this.ABMFacturaBtn.Location = new System.Drawing.Point(27, 89);
+            this.ABMFacturaBtn.Location = new System.Drawing.Point(26, 113);
             this.ABMFacturaBtn.Name = "ABMFacturaBtn";
             this.ABMFacturaBtn.Size = new System.Drawing.Size(218, 57);
             this.ABMFacturaBtn.TabIndex = 3;
@@ -78,7 +79,7 @@
             // 
             // registarPagoBtn
             // 
-            this.registarPagoBtn.Location = new System.Drawing.Point(288, 89);
+            this.registarPagoBtn.Location = new System.Drawing.Point(287, 113);
             this.registarPagoBtn.Name = "registarPagoBtn";
             this.registarPagoBtn.Size = new System.Drawing.Size(218, 57);
             this.registarPagoBtn.TabIndex = 4;
@@ -88,7 +89,7 @@
             // 
             // rendirFacturasBtn
             // 
-            this.rendirFacturasBtn.Location = new System.Drawing.Point(553, 89);
+            this.rendirFacturasBtn.Location = new System.Drawing.Point(552, 113);
             this.rendirFacturasBtn.Name = "rendirFacturasBtn";
             this.rendirFacturasBtn.Size = new System.Drawing.Size(218, 57);
             this.rendirFacturasBtn.TabIndex = 5;
@@ -96,11 +97,22 @@
             this.rendirFacturasBtn.UseVisualStyleBackColor = true;
             this.rendirFacturasBtn.Click += new System.EventHandler(this.rendirFacturasBtn_Click);
             // 
+            // abmRolBtn
+            // 
+            this.abmRolBtn.Location = new System.Drawing.Point(26, 198);
+            this.abmRolBtn.Name = "abmRolBtn";
+            this.abmRolBtn.Size = new System.Drawing.Size(218, 56);
+            this.abmRolBtn.TabIndex = 6;
+            this.abmRolBtn.Text = "ABM Rol";
+            this.abmRolBtn.UseVisualStyleBackColor = true;
+            this.abmRolBtn.Click += new System.EventHandler(this.abmRolBtn_Click);
+            // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(877, 317);
+            this.ClientSize = new System.Drawing.Size(799, 280);
+            this.Controls.Add(this.abmRolBtn);
             this.Controls.Add(this.rendirFacturasBtn);
             this.Controls.Add(this.registarPagoBtn);
             this.Controls.Add(this.ABMFacturaBtn);
@@ -122,6 +134,7 @@
         private System.Windows.Forms.Button ABMFacturaBtn;
         private System.Windows.Forms.Button registarPagoBtn;
         private System.Windows.Forms.Button rendirFacturasBtn;
+        private System.Windows.Forms.Button abmRolBtn;
     }
 }
 

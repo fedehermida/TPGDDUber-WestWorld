@@ -55,7 +55,7 @@ namespace PagoAgilFrba.AbmFactura
 
                     validarFechaVencimientoYAgregar(sqlCmd);
 
-                    utils.validarImporte(sqlCmd, "@total", totalTextBoxNF);
+                    utils.validarImporteYAgregar(sqlCmd, "@total", totalTextBoxNF);
 
                     sqlCmd.ExecuteNonQuery();
 
@@ -152,7 +152,7 @@ namespace PagoAgilFrba.AbmFactura
                 sqlCmd.Parameters.AddWithValue("@fecha_alta", fechaAltaFactDT.Value);
                 validarFechaVencimientoYAgregar(sqlCmd);
 
-                utils.validarImporte(sqlCmd, "@total", totalTextBox);
+                utils.validarImporteYAgregar(sqlCmd, "@total", totalTextBox);
 
                 sqlCmd.ExecuteNonQuery();
                 MessageBox.Show("Factura actualizada");
@@ -214,7 +214,7 @@ namespace PagoAgilFrba.AbmFactura
                 sqlCmd.CommandType = CommandType.StoredProcedure;
 
                 utils.validarYAgregarParam(sqlCmd, "@numeroFactura", numFactTextBox);
-                utils.validarImporte(sqlCmd, "@total", totalTextBox);
+                utils.validarImporteYAgregar(sqlCmd, "@total", totalTextBox);
 
                 sqlCmd.ExecuteNonQuery();
 
@@ -372,6 +372,8 @@ namespace PagoAgilFrba.AbmFactura
 
                 if (string.IsNullOrWhiteSpace(idClienteTextBox.Text)) sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", DBNull.Value);
                 else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirAValor(idClienteTextBox));
+
+                sqlDa.SelectCommand.Parameters.AddWithValue("@mes", 0);
 
                 DataTable dtbl = new DataTable();
 

@@ -58,5 +58,11 @@ namespace PagoAgilFrba
             Rendicion.Rendicion rendicion = new Rendicion.Rendicion();
             rendicion.ShowDialog();
         }
+
+        private void abmRolBtn_Click(object sender, EventArgs e)
+        {
+            AbmRol.rolABM rolABM = new AbmRol.rolABM();
+            rolABM.ShowDialog();
+        }
     }
 }

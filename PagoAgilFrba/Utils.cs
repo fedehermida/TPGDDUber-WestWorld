@@ -153,7 +153,7 @@ namespace PagoAgilFrba
         {
 
         }
-        public void validarImporte(SqlCommand sqlCmd, string variable, TextBox text)
+        public void validarImporteYAgregar(SqlCommand sqlCmd, string variable, TextBox text)
         {
             if (string.IsNullOrWhiteSpace(text.Text)) throw new Exception("Agregue items");
             if (Convert.ToDecimal(text.Text.Trim()) <= 0) throw new Exception("El importe debe ser mayor a 0");

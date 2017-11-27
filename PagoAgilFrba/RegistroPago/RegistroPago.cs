@@ -65,6 +65,8 @@ namespace PagoAgilFrba.RegistroPago
                 if (string.IsNullOrWhiteSpace(idClienteTextBox.Text)) sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", DBNull.Value);
                 else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirAValor(idClienteTextBox));
 
+                sqlDa.SelectCommand.Parameters.AddWithValue("@mes", 0);
+                
                 DataTable dtbl = new DataTable();
 
                 sqlDa.Fill(dtbl);
@@ -86,7 +88,7 @@ namespace PagoAgilFrba.RegistroPago
                 sqlCmd.CommandType = CommandType.StoredProcedure;
                 utils.validarYAgregarParam(sqlCmd, "@idCliente", idClienteTextBox);
 
-                utils.validarImporte(sqlCmd, "@importe", importeCobroTextBox);
+                utils.validarImporteYAgregar(sqlCmd, "@importe", importeCobroTextBox);
 
                 utils.validarYAgregarParam(sqlCmd, "@idSucursal", sucursalTextBox);
                 sqlCmd.Parameters.AddWithValue("@fechaCobro", DateTime.Now);
