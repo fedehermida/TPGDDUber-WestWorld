@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
-using System.Web;
 
 namespace PagoAgilFrba.Rendicion
 {
@@ -71,6 +65,7 @@ namespace PagoAgilFrba.Rendicion
                     sqlCon.Close();
             }
         }
+
         public void fillDataGridViewFacturas()
         {
             if (sqlCon.State == ConnectionState.Closed)
@@ -96,7 +91,7 @@ namespace PagoAgilFrba.Rendicion
                 foreach (DataRow dataRow in dtbl.Rows)
                 {
                     if (!numFactList.Contains(Convert.ToInt32(dataRow["Num Fact"])))
-                    numFactList.Add(Convert.ToInt32(dataRow["Num Fact"]));
+                        numFactList.Add(Convert.ToInt32(dataRow["Num Fact"]));
                 }
             }
         }
