@@ -131,11 +131,11 @@
             // fechaNacLabel
             // 
             this.fechaNacLabel.AutoSize = true;
-            this.fechaNacLabel.Location = new System.Drawing.Point(380, 146);
+            this.fechaNacLabel.Location = new System.Drawing.Point(326, 147);
             this.fechaNacLabel.Name = "fechaNacLabel";
-            this.fechaNacLabel.Size = new System.Drawing.Size(54, 13);
+            this.fechaNacLabel.Size = new System.Drawing.Size(108, 13);
             this.fechaNacLabel.TabIndex = 11;
-            this.fechaNacLabel.Text = "Fec. Nac.";
+            this.fechaNacLabel.Text = "Fecha de Nacimiento";
             // 
             // telefonoTxtBox
             // 
@@ -187,7 +187,6 @@
             this.clienteDataGrid.ReadOnly = true;
             this.clienteDataGrid.Size = new System.Drawing.Size(793, 150);
             this.clienteDataGrid.TabIndex = 25;
-            this.clienteDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.clienteDataGrid_CellContentClick);
             this.clienteDataGrid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.clienteDataGrid_MouseDoubleClick);
             // 
             // button1
@@ -202,9 +201,9 @@
             // 
             // searchButton
             // 
-            this.searchButton.Location = new System.Drawing.Point(673, 22);
+            this.searchButton.Location = new System.Drawing.Point(654, 18);
             this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(112, 23);
+            this.searchButton.Size = new System.Drawing.Size(112, 31);
             this.searchButton.TabIndex = 27;
             this.searchButton.Text = "Buscar";
             this.searchButton.UseVisualStyleBackColor = true;
@@ -218,7 +217,6 @@
             this.habilitadoLabel.Size = new System.Drawing.Size(54, 13);
             this.habilitadoLabel.TabIndex = 28;
             this.habilitadoLabel.Text = "Habilitado";
-            this.habilitadoLabel.Click += new System.EventHandler(this.label13_Click);
             // 
             // habilitadoCheck
             // 
@@ -228,7 +226,6 @@
             this.habilitadoCheck.Size = new System.Drawing.Size(15, 14);
             this.habilitadoCheck.TabIndex = 29;
             this.habilitadoCheck.UseVisualStyleBackColor = true;
-            this.habilitadoCheck.CheckedChanged += new System.EventHandler(this.habilitadoCheck_CheckedChanged);
             // 
             // filtrarGroupBox
             // 
@@ -248,7 +245,7 @@
             // 
             // dniFilterTxt
             // 
-            this.dniFilterTxt.Location = new System.Drawing.Point(538, 24);
+            this.dniFilterTxt.Location = new System.Drawing.Point(506, 24);
             this.dniFilterTxt.Name = "dniFilterTxt";
             this.dniFilterTxt.Size = new System.Drawing.Size(100, 20);
             this.dniFilterTxt.TabIndex = 30;
@@ -256,7 +253,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(488, 28);
+            this.label12.Location = new System.Drawing.Point(474, 27);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(26, 13);
             this.label12.TabIndex = 29;
@@ -321,7 +318,6 @@
             this.Controls.Add(this.filtrarGroupBox);
             this.Name = "clienteABM";
             this.Text = "ABMCliente";
-            this.Load += new System.EventHandler(this.clienteABM_Load);
             ((System.ComponentModel.ISupportInitialize)(this.clienteDataGrid)).EndInit();
             this.filtrarGroupBox.ResumeLayout(false);
             this.filtrarGroupBox.PerformLayout();

@@ -14,14 +14,6 @@ namespace PagoAgilFrba.AbmSucursal
             InitializeComponent();
         }
 
-        private void direccionTextBox_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void nombreTextBox_TextChanged(object sender, EventArgs e)
-        {
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             nombreTextBox.Text = direccionTextBox.Text = codigoPostalTxtBox.Text = nombreFilterTxt.Text =
@@ -63,7 +55,7 @@ namespace PagoAgilFrba.AbmSucursal
             }
             finally
             {
-                if(sqlCon.State == ConnectionState.Open) sqlCon.Close();
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
             }
 
         }
@@ -157,38 +149,5 @@ namespace PagoAgilFrba.AbmSucursal
                 guardarBtn.Text = "Actualizar";
             }
         }
-
-
-
-        private void sucursalDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void codigoPostalFilterTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void codigoPostalTxtBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void sucursalABM_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }

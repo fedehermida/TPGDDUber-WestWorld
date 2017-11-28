@@ -57,7 +57,6 @@
             this.direccionTextBox.Name = "direccionTextBox";
             this.direccionTextBox.Size = new System.Drawing.Size(121, 20);
             this.direccionTextBox.TabIndex = 11;
-            this.direccionTextBox.TextChanged += new System.EventHandler(this.direccionTextBox_TextChanged);
             // 
             // nombreTextBox
             // 
@@ -65,7 +64,6 @@
             this.nombreTextBox.Name = "nombreTextBox";
             this.nombreTextBox.Size = new System.Drawing.Size(126, 20);
             this.nombreTextBox.TabIndex = 10;
-            this.nombreTextBox.TextChanged += new System.EventHandler(this.nombreTextBox_TextChanged);
             // 
             // label3
             // 
@@ -91,7 +89,6 @@
             this.codigoPostalTxtBox.Name = "codigoPostalTxtBox";
             this.codigoPostalTxtBox.Size = new System.Drawing.Size(126, 20);
             this.codigoPostalTxtBox.TabIndex = 17;
-            this.codigoPostalTxtBox.TextChanged += new System.EventHandler(this.codigoPostalTxtBox_TextChanged);
             // 
             // label5
             // 
@@ -123,7 +120,6 @@
             this.sucursalDataGrid.ReadOnly = true;
             this.sucursalDataGrid.Size = new System.Drawing.Size(793, 150);
             this.sucursalDataGrid.TabIndex = 36;
-            this.sucursalDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.sucursalDataGrid_CellContentClick);
             this.sucursalDataGrid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.sucursalDataGrid_MouseDoubleClick);
             // 
             // guardarBtn
@@ -169,7 +165,6 @@
             this.filtrarGroupBox.TabIndex = 42;
             this.filtrarGroupBox.TabStop = false;
             this.filtrarGroupBox.Text = "Criterio De Búsqueda";
-            this.filtrarGroupBox.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // codigoPostalFilterTxtBox
             // 
@@ -248,7 +243,6 @@
             this.Controls.Add(this.label1);
             this.Name = "sucursalABM";
             this.Text = "ABM Sucursal";
-            this.Load += new System.EventHandler(this.sucursalABM_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sucursalDataGrid)).EndInit();
             this.filtrarGroupBox.ResumeLayout(false);
             this.filtrarGroupBox.PerformLayout();

@@ -286,16 +286,6 @@ namespace PagoAgilFrba.AbmFactura
             }
         }
 
-        private void itemsGroupBox_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cantTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void actualizarTablaItemsBtn_Click(object sender, EventArgs e)
         {
             try
@@ -502,8 +492,6 @@ namespace PagoAgilFrba.AbmFactura
                 if (sqlCon.State == ConnectionState.Open)
                     sqlCon.Close();
             }
-
-
         }
 
         private void limpiarItemBtn_Click(object sender, EventArgs e)

@@ -264,6 +264,7 @@
             // 
             // empresaFilterComboBox
             // 
+            this.empresaFilterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.empresaFilterComboBox.FormattingEnabled = true;
             this.empresaFilterComboBox.Location = new System.Drawing.Point(494, 29);
             this.empresaFilterComboBox.Name = "empresaFilterComboBox";
@@ -562,6 +563,7 @@
             // 
             // empresaComboBox
             // 
+            this.empresaComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.empresaComboBox.FormattingEnabled = true;
             this.empresaComboBox.Location = new System.Drawing.Point(175, 60);
             this.empresaComboBox.Name = "empresaComboBox";
@@ -865,6 +867,7 @@
             // 
             // empresaComboBoxNF
             // 
+            this.empresaComboBoxNF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.empresaComboBoxNF.FormattingEnabled = true;
             this.empresaComboBoxNF.Location = new System.Drawing.Point(173, 50);
             this.empresaComboBoxNF.Name = "empresaComboBoxNF";

@@ -134,6 +134,7 @@
             // 
             // empresaComboBox
             // 
+            this.empresaComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.empresaComboBox.FormattingEnabled = true;
             this.empresaComboBox.Location = new System.Drawing.Point(494, 29);
             this.empresaComboBox.Name = "empresaComboBox";
@@ -168,6 +169,7 @@
             this.eliminarBtn.TabIndex = 39;
             this.eliminarBtn.Text = "X";
             this.eliminarBtn.UseVisualStyleBackColor = true;
+            this.eliminarBtn.Click += new System.EventHandler(this.eliminarBtn_Click);
             // 
             // facturasACobrarLabel
             // 
@@ -188,6 +190,7 @@
             this.agregarABtn.TabIndex = 37;
             this.agregarABtn.Text = "=>";
             this.agregarABtn.UseVisualStyleBackColor = true;
+            this.agregarABtn.Click += new System.EventHandler(this.agregarABtn_Click);
             // 
             // facturasADevolverDataGrid
             // 
