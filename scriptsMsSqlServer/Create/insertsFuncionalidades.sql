@@ -12,6 +12,9 @@ INSERT INTO WEST_WORLD.Funcionalidad values ('Devoluciones');
 
 
 
+INSERT INTO WEST_WORLD.Rol values ('Administrador',1);
+INSERT INTO WEST_WORLD.Rol values ('Cobrador',1);
+
 INSERT INTO WEST_WORLD.Rol_Funcionalidad values (2,1);
 INSERT INTO WEST_WORLD.Rol_Funcionalidad values (3,1);
 INSERT INTO WEST_WORLD.Rol_Funcionalidad values (4,1);
@@ -21,8 +24,7 @@ INSERT INTO WEST_WORLD.Rol_Funcionalidad values (7,1);
 INSERT INTO WEST_WORLD.Rol_Funcionalidad values (8,1);
 
 
-INSERT INTO WEST_WORLD.Rol values ('Administrador',1);
-INSERT INTO WEST_WORLD.Rol values ('Cobrador',1);
+
 
 INSERT INTO WEST_WORLD.Rol_Usuario values (1,1);
 
