@@ -82,12 +82,13 @@
             // 
             // rubroComboBox
             // 
+            this.rubroComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.rubroComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.rubroComboBox.FormattingEnabled = true;
             this.rubroComboBox.Location = new System.Drawing.Point(399, 52);
             this.rubroComboBox.Name = "rubroComboBox";
             this.rubroComboBox.Size = new System.Drawing.Size(121, 21);
             this.rubroComboBox.TabIndex = 3;
-            this.rubroComboBox.SelectedIndexChanged += new System.EventHandler(this.rubroComboBox_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -130,7 +131,6 @@
             this.empresaDataGrid.ReadOnly = true;
             this.empresaDataGrid.Size = new System.Drawing.Size(727, 150);
             this.empresaDataGrid.TabIndex = 8;
-            this.empresaDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.empresaDataGrid_CellContentClick);
             this.empresaDataGrid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.empresaDataGrid_MouseDoubleClick);
             // 
             // btnGuardar
@@ -151,7 +151,6 @@
             this.habilitadoCheck.Size = new System.Drawing.Size(15, 14);
             this.habilitadoCheck.TabIndex = 31;
             this.habilitadoCheck.UseVisualStyleBackColor = true;
-            this.habilitadoCheck.CheckedChanged += new System.EventHandler(this.habilitadoCheck_CheckedChanged);
             // 
             // label13
             // 
@@ -190,9 +189,9 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(607, 30);
+            this.btnBuscar.Location = new System.Drawing.Point(608, 22);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(102, 23);
+            this.btnBuscar.Size = new System.Drawing.Size(111, 34);
             this.btnBuscar.TabIndex = 46;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -200,6 +199,7 @@
             // 
             // rubroFilterComboBox
             // 
+            this.rubroFilterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.rubroFilterComboBox.FormattingEnabled = true;
             this.rubroFilterComboBox.Location = new System.Drawing.Point(454, 30);
             this.rubroFilterComboBox.Name = "rubroFilterComboBox";
@@ -268,7 +268,6 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "empresaABM";
             this.Text = "ABM Empresa";
-            this.Load += new System.EventHandler(this.empresaABM_Load);
             ((System.ComponentModel.ISupportInitialize)(this.empresaDataGrid)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

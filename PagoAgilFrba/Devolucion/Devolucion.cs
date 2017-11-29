@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace PagoAgilFrba.Devolucion
@@ -23,7 +24,7 @@ namespace PagoAgilFrba.Devolucion
         {
             try
             {
-                fillDataGridViewFacturas();    
+                fillDataGridViewFacturas();
             }
             catch (Exception ex)
             {
@@ -51,7 +52,7 @@ namespace PagoAgilFrba.Devolucion
                 if (string.IsNullOrWhiteSpace(numFactFilterTextBoxL.Text.Trim())) sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", DBNull.Value);
                 else sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", utils.convertirAValor(numFactFilterTextBoxL));
 
-                if (string.IsNullOrWhiteSpace(idClienteTextBox.Text)) sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", DBNull.Value);
+                if (string.IsNullOrWhiteSpace(idClienteTextBox.Text.Trim())) sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", DBNull.Value);
                 else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirAValor(idClienteTextBox));
 
                 sqlDa.SelectCommand.Parameters.AddWithValue("@mes", 0);
@@ -60,6 +61,53 @@ namespace PagoAgilFrba.Devolucion
                 facturasDataGrid.DataSource = dtbl;
                 sqlDa.Fill(dtbl);
                 sqlCon.Close();
+            }
+        }
+
+        private void agregarABtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (facturasDataGrid.CurrentRow == null) throw new Exception("Seleccione una factura de la tabla facturas pagadas");
+
+                facturasADevolverDataGrid.ColumnHeadersVisible = true;
+                var numFact = facturasDataGrid.CurrentRow.Cells["Num Fact"].Value;
+
+                if (!numFactList.Contains(Convert.ToInt32(numFact)))
+                {
+                    facturasADevolverDataGrid.Rows.Add(new object[] {numFact,
+                                    facturasDataGrid.CurrentRow.Cells["Empresa"].Value,
+                                    facturasDataGrid.CurrentRow.Cells["Total"].Value,
+                                    facturasDataGrid.CurrentRow.Cells["Fecha Alta"].Value,
+                                    facturasDataGrid.CurrentRow.Cells["Fecha Venc"].Value
+                                    });
+
+                    numFactList.Add(Convert.ToInt32(numFact));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Message");
+            }
+        }
+
+        private void eliminarBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (facturasADevolverDataGrid.CurrentRow == null) throw new Exception("Seleccione una factura de la tabla Facturas a pagar");
+
+                var numFact = facturasADevolverDataGrid.CurrentRow.Cells[0].Value;
+                int index = numFactList.IndexOf(Convert.ToInt32(numFact));
+                numFactList.RemoveAt(index);
+
+                facturasADevolverDataGrid.Rows.Remove(facturasADevolverDataGrid.CurrentRow);
+
+                if (!numFactList.Any()) facturasADevolverDataGrid.ColumnHeadersVisible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Message");
             }
         }
 

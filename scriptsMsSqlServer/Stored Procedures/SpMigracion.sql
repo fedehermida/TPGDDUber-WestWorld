@@ -53,7 +53,7 @@ BEGIN
 
 	--Migrar Sucursal
 	INSERT INTO WEST_WORLD.Sucursal
-	SELECT DISTINCT Sucursal_Nombre, Sucursal_Dirección, Sucursal_Codigo_Postal, 1, NULL
+	SELECT DISTINCT Sucursal_Nombre, Sucursal_DirecciÃ³n, Sucursal_Codigo_Postal, 1, NULL
 	FROM gd_esquema.Maestra
 	WHERE Sucursal_Codigo_Postal IS NOT NULL
 
@@ -67,7 +67,7 @@ BEGIN
 	INSERT INTO WEST_WORLD.Pago
 	SELECT DISTINCT Pago_nro, Pago_Fecha, wc.idCliente, ws.idSucursal, Total, fp.idFormaPago
 	FROM gd_esquema.Maestra
-	JOIN WEST_WORLD.Cliente wc ON (wc.DNI = [Cliente-Dni])
+	JOIN WEST_WORLD.Cliente wc ON (wc.mail = [Cliente_Mail]) --WEST STYLE
 	JOIN WEST_WORLD.Sucursal ws ON (ws.codigoPostal = Sucursal_Codigo_Postal)
 	JOIN WEST_WORLD.FormaPago fp ON (fp.descripcion = FormaPagoDescripcion)
 	WHERE Pago_nro IS NOT NULL

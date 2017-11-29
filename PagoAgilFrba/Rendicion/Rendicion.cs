@@ -45,12 +45,12 @@ namespace PagoAgilFrba.Rendicion
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(empresaFilterComboBox.Text) | string.IsNullOrWhiteSpace(mesesComboBox.Text)) throw new Exception("Debe seleccionar una empresa y un mes");
+                if (string.IsNullOrWhiteSpace(empresaFilterComboBox.Text) | string.IsNullOrWhiteSpace(mesesComboBox.Text) | string.IsNullOrWhiteSpace(porcentajeComisionTextBox.Text)) throw new Exception("Complete todos los campos obligatorios");
 
                 fillDataGridViewFacturas();
 
                 cantFactTextBox.Text = facturasDataGrid.RowCount.ToString();
-                empresaTextBox.Text = empresaFilterComboBox.Text;
+                empresaTextBox.Text = empresaFilterComboBox.Text.Trim();
                 importeTotalTextBox.Text = utils.calcularColumna(5, facturasDataGrid);
                 importeNetoTextBox.Text = (Convert.ToDecimal(importeTotalTextBox.Text) * (1 - (Convert.ToDecimal(porcentajeComisionTextBox.Text) / 100))).ToString();
 
@@ -78,8 +78,8 @@ namespace PagoAgilFrba.Rendicion
                 if (string.IsNullOrWhiteSpace(empresaFilterComboBox.Text.Trim())) sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", DBNull.Value);
                 else sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", empresaFilterComboBox.SelectedIndex + 1);
 
-                sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", 0);
-                sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", 0);
+                sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", DBNull.Value);
+                sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", DBNull.Value);
 
                 sqlDa.SelectCommand.Parameters.AddWithValue("@mes", mesesComboBox.SelectedIndex + 1);
 

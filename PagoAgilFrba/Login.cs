@@ -61,7 +61,7 @@ namespace PagoAgilFrba
                 int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
                 if (count == 1)
                 {
-                    Index index = new Index();
+                    Index index = new Index(userTxtBox.Text);
                     index.ShowDialog();
                     this.Close();
                 }
@@ -80,6 +80,11 @@ namespace PagoAgilFrba
 
             } 
 
-        }        
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

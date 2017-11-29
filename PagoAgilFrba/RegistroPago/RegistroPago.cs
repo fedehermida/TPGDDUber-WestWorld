@@ -61,7 +61,7 @@ namespace PagoAgilFrba.RegistroPago
                 else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirAValor(idClienteTextBox));
 
                 sqlDa.SelectCommand.Parameters.AddWithValue("@mes", 0);
-                
+
                 DataTable dtbl = new DataTable();
 
                 sqlDa.Fill(dtbl);
@@ -174,7 +174,7 @@ namespace PagoAgilFrba.RegistroPago
         private void limpiarFiltrosBtn_Click(object sender, EventArgs e)
         {
             empresaFilterComboBox.Text = numFactFilterTextBoxL.Text = clienteTextBox.Text = idClienteTextBox.Text = clienteTxt.Text = "";
-            
+
             facturasDataGridL.DataSource = new DataTable();
             limpiarTablaFacturasACobrar();
         }

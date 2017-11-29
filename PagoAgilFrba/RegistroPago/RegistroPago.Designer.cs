@@ -56,14 +56,14 @@
             this.limpiarBtn = new System.Windows.Forms.Button();
             this.facturasLabel = new System.Windows.Forms.Label();
             this.facturasACobrarDataGrid = new System.Windows.Forms.DataGridView();
-            this.agregarABtn = new System.Windows.Forms.Button();
-            this.facturasACobrarLabel = new System.Windows.Forms.Label();
-            this.eliminarBtn = new System.Windows.Forms.Button();
             this.NumFact = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Empresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaAlta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaVencimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.agregarABtn = new System.Windows.Forms.Button();
+            this.facturasACobrarLabel = new System.Windows.Forms.Label();
+            this.eliminarBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.facturasDataGridL)).BeginInit();
             this.cobrarGroupBox.SuspendLayout();
             this.filtrarGroupBox.SuspendLayout();
@@ -117,6 +117,7 @@
             // 
             // formaPagoComboBox
             // 
+            this.formaPagoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.formaPagoComboBox.FormattingEnabled = true;
             this.formaPagoComboBox.Location = new System.Drawing.Point(121, 27);
             this.formaPagoComboBox.Name = "formaPagoComboBox";
@@ -295,6 +296,7 @@
             // 
             // empresaFilterComboBox
             // 
+            this.empresaFilterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.empresaFilterComboBox.FormattingEnabled = true;
             this.empresaFilterComboBox.Location = new System.Drawing.Point(470, 27);
             this.empresaFilterComboBox.Name = "empresaFilterComboBox";
@@ -361,38 +363,6 @@
             this.facturasACobrarDataGrid.Size = new System.Drawing.Size(360, 159);
             this.facturasACobrarDataGrid.TabIndex = 21;
             // 
-            // agregarABtn
-            // 
-            this.agregarABtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
-            this.agregarABtn.Location = new System.Drawing.Point(403, 191);
-            this.agregarABtn.Name = "agregarABtn";
-            this.agregarABtn.Size = new System.Drawing.Size(48, 37);
-            this.agregarABtn.TabIndex = 22;
-            this.agregarABtn.Text = "=>";
-            this.agregarABtn.UseVisualStyleBackColor = true;
-            this.agregarABtn.Click += new System.EventHandler(this.agregarABtn_Click);
-            // 
-            // facturasACobrarLabel
-            // 
-            this.facturasACobrarLabel.AutoSize = true;
-            this.facturasACobrarLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.facturasACobrarLabel.Location = new System.Drawing.Point(454, 134);
-            this.facturasACobrarLabel.Name = "facturasACobrarLabel";
-            this.facturasACobrarLabel.Size = new System.Drawing.Size(116, 17);
-            this.facturasACobrarLabel.TabIndex = 23;
-            this.facturasACobrarLabel.Text = "Facturas a pagar";
-            // 
-            // eliminarBtn
-            // 
-            this.eliminarBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
-            this.eliminarBtn.Location = new System.Drawing.Point(401, 234);
-            this.eliminarBtn.Name = "eliminarBtn";
-            this.eliminarBtn.Size = new System.Drawing.Size(50, 32);
-            this.eliminarBtn.TabIndex = 24;
-            this.eliminarBtn.Text = "X";
-            this.eliminarBtn.UseVisualStyleBackColor = true;
-            this.eliminarBtn.Click += new System.EventHandler(this.eliminarBtn_Click);
-            // 
             // NumFact
             // 
             this.NumFact.HeaderText = "Num Fact";
@@ -427,6 +397,38 @@
             this.fechaVencimiento.Name = "fechaVencimiento";
             this.fechaVencimiento.ReadOnly = true;
             this.fechaVencimiento.Width = 5;
+            // 
+            // agregarABtn
+            // 
+            this.agregarABtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
+            this.agregarABtn.Location = new System.Drawing.Point(403, 191);
+            this.agregarABtn.Name = "agregarABtn";
+            this.agregarABtn.Size = new System.Drawing.Size(48, 37);
+            this.agregarABtn.TabIndex = 22;
+            this.agregarABtn.Text = "=>";
+            this.agregarABtn.UseVisualStyleBackColor = true;
+            this.agregarABtn.Click += new System.EventHandler(this.agregarABtn_Click);
+            // 
+            // facturasACobrarLabel
+            // 
+            this.facturasACobrarLabel.AutoSize = true;
+            this.facturasACobrarLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.facturasACobrarLabel.Location = new System.Drawing.Point(454, 134);
+            this.facturasACobrarLabel.Name = "facturasACobrarLabel";
+            this.facturasACobrarLabel.Size = new System.Drawing.Size(116, 17);
+            this.facturasACobrarLabel.TabIndex = 23;
+            this.facturasACobrarLabel.Text = "Facturas a pagar";
+            // 
+            // eliminarBtn
+            // 
+            this.eliminarBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
+            this.eliminarBtn.Location = new System.Drawing.Point(401, 234);
+            this.eliminarBtn.Name = "eliminarBtn";
+            this.eliminarBtn.Size = new System.Drawing.Size(50, 32);
+            this.eliminarBtn.TabIndex = 24;
+            this.eliminarBtn.Text = "X";
+            this.eliminarBtn.UseVisualStyleBackColor = true;
+            this.eliminarBtn.Click += new System.EventHandler(this.eliminarBtn_Click);
             // 
             // RegistroPago
             // 
