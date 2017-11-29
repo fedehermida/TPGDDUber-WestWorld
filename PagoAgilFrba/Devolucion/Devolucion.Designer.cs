@@ -35,7 +35,7 @@
             this.clienteTextBox = new System.Windows.Forms.TextBox();
             this.numFactLabelL = new System.Windows.Forms.Label();
             this.numFactFilterTextBoxL = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.empresaComboBox = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.eliminarBtn = new System.Windows.Forms.Button();
@@ -69,7 +69,7 @@
             this.groupBox1.Controls.Add(this.clienteGroupBox);
             this.groupBox1.Controls.Add(this.numFactLabelL);
             this.groupBox1.Controls.Add(this.numFactFilterTextBoxL);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.empresaComboBox);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(42, 12);
@@ -84,7 +84,7 @@
             this.clienteGroupBox.Controls.Add(this.idClienteTextBox);
             this.clienteGroupBox.Controls.Add(this.seleccionarClienteBtn);
             this.clienteGroupBox.Controls.Add(this.clienteTextBox);
-            this.clienteGroupBox.Location = new System.Drawing.Point(26, 65);
+            this.clienteGroupBox.Location = new System.Drawing.Point(62, 65);
             this.clienteGroupBox.Name = "clienteGroupBox";
             this.clienteGroupBox.Size = new System.Drawing.Size(291, 54);
             this.clienteGroupBox.TabIndex = 26;
@@ -119,7 +119,7 @@
             // numFactLabelL
             // 
             this.numFactLabelL.AutoSize = true;
-            this.numFactLabelL.Location = new System.Drawing.Point(68, 32);
+            this.numFactLabelL.Location = new System.Drawing.Point(97, 33);
             this.numFactLabelL.Name = "numFactLabelL";
             this.numFactLabelL.Size = new System.Drawing.Size(98, 13);
             this.numFactLabelL.TabIndex = 17;
@@ -127,18 +127,19 @@
             // 
             // numFactFilterTextBoxL
             // 
-            this.numFactFilterTextBoxL.Location = new System.Drawing.Point(179, 29);
+            this.numFactFilterTextBoxL.Location = new System.Drawing.Point(208, 30);
             this.numFactFilterTextBoxL.Name = "numFactFilterTextBoxL";
             this.numFactFilterTextBoxL.Size = new System.Drawing.Size(121, 20);
             this.numFactFilterTextBoxL.TabIndex = 16;
             // 
-            // comboBox1
+            // empresaComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(494, 29);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(142, 21);
-            this.comboBox1.TabIndex = 19;
+            this.empresaComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.empresaComboBox.FormattingEnabled = true;
+            this.empresaComboBox.Location = new System.Drawing.Point(494, 29);
+            this.empresaComboBox.Name = "empresaComboBox";
+            this.empresaComboBox.Size = new System.Drawing.Size(142, 21);
+            this.empresaComboBox.TabIndex = 19;
             // 
             // button1
             // 
@@ -148,6 +149,7 @@
             this.button1.TabIndex = 18;
             this.button1.Text = "Buscar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // label1
             // 
@@ -167,6 +169,7 @@
             this.eliminarBtn.TabIndex = 39;
             this.eliminarBtn.Text = "X";
             this.eliminarBtn.UseVisualStyleBackColor = true;
+            this.eliminarBtn.Click += new System.EventHandler(this.eliminarBtn_Click);
             // 
             // facturasACobrarLabel
             // 
@@ -187,6 +190,7 @@
             this.agregarABtn.TabIndex = 37;
             this.agregarABtn.Text = "=>";
             this.agregarABtn.UseVisualStyleBackColor = true;
+            this.agregarABtn.Click += new System.EventHandler(this.agregarABtn_Click);
             // 
             // facturasADevolverDataGrid
             // 
@@ -382,7 +386,7 @@
         private System.Windows.Forms.TextBox clienteTextBox;
         private System.Windows.Forms.Label numFactLabelL;
         private System.Windows.Forms.TextBox numFactFilterTextBoxL;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox empresaComboBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button eliminarBtn;

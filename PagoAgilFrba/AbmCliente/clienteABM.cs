@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
@@ -20,19 +14,6 @@ namespace PagoAgilFrba.AbmCliente
             InitializeComponent();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
-        {
-        }
-
-        private void guardarToolStripButton_Click(object sender, EventArgs e)
-        {
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -40,7 +21,8 @@ namespace PagoAgilFrba.AbmCliente
                 if (sqlCon.State == ConnectionState.Closed)
                 {
                     sqlCon.Open();
-                    if (guardarBtn.Text == "Guardar"){
+                    if (guardarBtn.Text == "Guardar")
+                    {
                         SqlCommand sqlCmd = new SqlCommand("GD2C2017.WEST_WORLD.ClienteCreateOrUpdate", sqlCon);
                         sqlCmd.CommandType = CommandType.StoredProcedure;
                         sqlCmd.Parameters.AddWithValue("@mode", "Add");
@@ -83,14 +65,11 @@ namespace PagoAgilFrba.AbmCliente
                         searchButton_Click(sender, e);
 
                     }
-                    
-
                 }
-
             }
             catch (Exception ex)
-            { 
-                if(ex is SqlException)
+            {
+                if (ex is SqlException)
                 {
                     SqlException sqlException = ex as SqlException;
 
@@ -103,7 +82,6 @@ namespace PagoAgilFrba.AbmCliente
                 {
                     MessageBox.Show(ex.Message, "Mensaje de Error");
                 }
-                
             }
             finally
             {
@@ -121,9 +99,9 @@ namespace PagoAgilFrba.AbmCliente
                 sqlDa.SelectCommand.Parameters.AddWithValue("@nombre", nombreFilterTxt.Text.Trim());
                 sqlDa.SelectCommand.Parameters.AddWithValue("@apellido", apellidoFilterTxt.Text.Trim());
                 String dniFiltertxt = dniFilterTxt.Text.Trim();
-                if(dniFiltertxt == "" ){
+                if (string.IsNullOrWhiteSpace(dniFiltertxt))
+                {
                     sqlDa.SelectCommand.Parameters.AddWithValue("@dni", DBNull.Value);
-
                 }
                 else sqlDa.SelectCommand.Parameters.AddWithValue("@dni", dniFiltertxt);
                 DataTable dtbl = new DataTable();
@@ -148,13 +126,11 @@ namespace PagoAgilFrba.AbmCliente
             {
                 if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
             }
-
-
         }
 
         private void clienteDataGrid_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if(clienteDataGrid.CurrentRow.Index != -1)
+            if (clienteDataGrid.CurrentRow.Index != -1)
             {
                 nombreTextBox.Text = clienteDataGrid.CurrentRow.Cells[1].Value.ToString();
                 apellidoTextBox.Text = clienteDataGrid.CurrentRow.Cells[2].Value.ToString();
@@ -164,7 +140,7 @@ namespace PagoAgilFrba.AbmCliente
                 dniTextBox.Text = clienteDataGrid.CurrentRow.Cells[6].Value.ToString();
                 telefonoTxtBox.Text = clienteDataGrid.CurrentRow.Cells[7].Value.ToString();
                 fechaNacimientoTime.Text = clienteDataGrid.CurrentRow.Cells[8].Value.ToString();
-                habilitadoCheck.Checked = (bool) clienteDataGrid.CurrentRow.Cells[9].Value;
+                habilitadoCheck.Checked = (bool)clienteDataGrid.CurrentRow.Cells[9].Value;
                 guardarBtn.Text = "Actualizar";
             }
         }
@@ -182,26 +158,6 @@ namespace PagoAgilFrba.AbmCliente
         private void button1_Click_1(object sender, EventArgs e)
         {
             reset();
-        }
-
-        private void clienteABM_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void habilitadoCheck_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void clienteDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

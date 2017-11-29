@@ -112,17 +112,14 @@
     <Compile Include="Index.Designer.cs">
       <DependentUpon>Index.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListadoEstadistico\Form1.cs">
+    <Compile Include="ListadoEstadistico\ListadoEstadistico.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ListadoEstadistico\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ListadoEstadistico\ListadoEstadistico.Designer.cs">
+      <DependentUpon>ListadoEstadistico.cs</DependentUpon>
     </Compile>
     <Compile Include="RegistroPago\RegistroPago.Designer.cs">
       <DependentUpon>RegistroPago.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Utils.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -141,6 +138,7 @@
     <Compile Include="Rendicion\Rendicion.Designer.cs">
       <DependentUpon>Rendicion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils.cs" />
     <EmbeddedResource Include="AbmCliente\clienteABM.resx">
       <DependentUpon>clienteABM.cs</DependentUpon>
     </EmbeddedResource>

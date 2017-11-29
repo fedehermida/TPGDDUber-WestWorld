@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
-using System.Drawing;
+using System.Windows.Forms;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace PagoAgilFrba
 {
-    public class Utils : Form
+    public class Utils
     {
         static SqlConnection sqlCon = new SqlConnection(@Properties.Settings.Default.SQLSERVER2012);
 
@@ -118,14 +115,26 @@ namespace PagoAgilFrba
 
         public void validarYAgregarParam(SqlCommand sqlCmd, string variable, TextBox text)
         {
-            if ((string.IsNullOrWhiteSpace(text.Text.Trim()))) throw new Exception("Todos los campos correspondientes son obligatorios");
+            if ((string.IsNullOrWhiteSpace(text.Text.Trim()))) throw new Exception("Complete los campos obligatorios");
             else sqlCmd.Parameters.AddWithValue(variable, text.Text.Trim());
+        }
+
+        public void validarYAgregarParam(SqlDataAdapter sqlDa, string variable, TextBox text)
+        {
+            if ((string.IsNullOrWhiteSpace(text.Text.Trim()))) throw new Exception("Complete los campos obligatorios");
+            else sqlDa.SelectCommand.Parameters.AddWithValue(variable, text.Text.Trim());
         }
 
         public void validarConvYAgregarParam(SqlCommand sqlCmd, string variable, TextBox text)
         {
             validarMontoOCant(convertirAValor(text), text);
             sqlCmd.Parameters.AddWithValue(variable, convertirAValor(text));
+        }
+
+        public void validarConvYAgregarParam(SqlDataAdapter sqlDa, string variable, TextBox text)
+        {
+            validarMontoOCant(convertirAValor(text), text);
+            sqlDa.SelectCommand.Parameters.AddWithValue(variable, convertirAValor(text));
         }
 
         public void validarMontoOCant(decimal valor, TextBox text)
@@ -139,20 +148,6 @@ namespace PagoAgilFrba
             return Decimal.Parse(textBox.Text.Trim());
         }
 
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Name = "Utils";
-            this.Load += new System.EventHandler(this.Utils_Load);
-            this.ResumeLayout(false);
-
-        }
-
-        private void Utils_Load(object sender, EventArgs e)
-        {
-
-        }
         public void validarImporteYAgregar(SqlCommand sqlCmd, string variable, TextBox text)
         {
             if (string.IsNullOrWhiteSpace(text.Text)) throw new Exception("Agregue items");
