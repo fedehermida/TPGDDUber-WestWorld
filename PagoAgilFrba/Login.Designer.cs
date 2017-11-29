@@ -50,6 +50,7 @@
             this.passTxtBox.Name = "passTxtBox";
             this.passTxtBox.Size = new System.Drawing.Size(100, 20);
             this.passTxtBox.TabIndex = 1;
+            this.passTxtBox.UseSystemPasswordChar = true;
             // 
             // label1
             // 
@@ -102,6 +103,7 @@
             this.Controls.Add(this.userTxtBox);
             this.Name = "Login";
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
