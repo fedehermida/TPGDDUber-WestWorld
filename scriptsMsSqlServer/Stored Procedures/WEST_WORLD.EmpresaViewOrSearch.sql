@@ -3,7 +3,7 @@ CREATE PROCEDURE WEST_WORLD.EmpresaViewOrSearch
 	@cuit nvarchar(50),
 	@idRubro bigint
 AS
-	SELECT *
+	SELECT idEmpresa, cuit 'Cuit', nombre 'Nombre', direccion 'Direccion', idRubro, habilitado 'Habilitado', diaRendicion 'Día de Rendición'
 	FROM WEST_WORLD.Empresa
 	WHERE nombre LIKE @nombre + '%' 
 			 AND (@cuit IS NULL OR cuit LIKE @cuit)

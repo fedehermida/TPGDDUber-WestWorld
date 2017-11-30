@@ -273,7 +273,7 @@ namespace PagoAgilFrba.AbmFactura
                 sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                 
                 if (string.IsNullOrWhiteSpace(numFactTextBox.Text.Trim())) throw new Exception("Ingrese un Numero de Factura para ver sus items");
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", utils.convertirAValor(numFactTextBox));
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", utils.convertirADecimal(numFactTextBox));
 
                 DataTable dtbl = new DataTable();
                 sqlDa.Fill(dtbl);
@@ -350,13 +350,13 @@ namespace PagoAgilFrba.AbmFactura
                 sqlDa.SelectCommand.Parameters.AddWithValue("@estado", "Todas");
 
                 if (string.IsNullOrWhiteSpace(numFactFilterTextBoxL.Text.Trim())) sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", DBNull.Value);
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", utils.convertirAValor(numFactFilterTextBoxL));
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", utils.convertirADecimal(numFactFilterTextBoxL));
 
                 if (string.IsNullOrWhiteSpace(empresaFilterComboBox.Text.Trim())) sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", DBNull.Value);
                 else sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", empresaFilterComboBox.SelectedIndex + 1);
 
                 if (string.IsNullOrWhiteSpace(idClienteTextBox.Text)) sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", DBNull.Value);
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirAValor(idClienteTextBox));
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirADecimal(idClienteTextBox));
 
                 sqlDa.SelectCommand.Parameters.AddWithValue("@mes", 0);
 

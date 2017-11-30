@@ -19,6 +19,7 @@ namespace PagoAgilFrba.RegistroPago
             utils.llenar(empresaFilterComboBox, Utils.GetEmpresas());
             utils.llenar(formaPagoComboBox, Utils.GetFormasDePago());
             sucursalTextBox.Text = 1.ToString();//TODO sucursal harcodeada. el idSucursal sale del operador -> Usuario logueado
+            importeCobroTextBox.Text = 0.ToString();
 
         }
 
@@ -30,6 +31,8 @@ namespace PagoAgilFrba.RegistroPago
                 if (string.IsNullOrWhiteSpace(clienteTextBox.Text) & string.IsNullOrWhiteSpace(idClienteTextBox.Text)) throw new Exception("Debe seleccionar un cliente");
 
                 fillDataGridViewFacturas();
+                limpiarTablaFacturasACobrar();
+                clienteTxt.Text = clienteTextBox.Text;
             }
             catch (Exception ex)
             {
@@ -52,13 +55,13 @@ namespace PagoAgilFrba.RegistroPago
                 sqlDa.SelectCommand.Parameters.AddWithValue("@estado", "Sin Pago");
 
                 if (string.IsNullOrWhiteSpace(numFactFilterTextBoxL.Text.Trim())) sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", DBNull.Value);
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", utils.convertirAValor(numFactFilterTextBoxL));
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", utils.convertirABigInt(numFactFilterTextBoxL));
 
                 if (string.IsNullOrWhiteSpace(empresaFilterComboBox.Text.Trim())) sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", DBNull.Value);
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", empresaFilterComboBox.SelectedIndex + 1);
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", empresaFilterComboBox.SelectedIndex);
 
                 if (string.IsNullOrWhiteSpace(idClienteTextBox.Text)) sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", DBNull.Value);
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirAValor(idClienteTextBox));
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirADecimal(idClienteTextBox));
 
                 sqlDa.SelectCommand.Parameters.AddWithValue("@mes", 0);
 
@@ -66,9 +69,7 @@ namespace PagoAgilFrba.RegistroPago
 
                 sqlDa.Fill(dtbl);
                 facturasDataGridL.DataSource = dtbl;
-                limpiarTablaFacturasACobrar();
-                importeCobroTextBox.Text = "";
-
+                
                 sqlCon.Close();
             }
         }
@@ -88,7 +89,7 @@ namespace PagoAgilFrba.RegistroPago
                 utils.validarYAgregarParam(sqlCmd, "@idSucursal", sucursalTextBox);
                 sqlCmd.Parameters.AddWithValue("@fechaCobro", DateTime.Now);
                 if (string.IsNullOrWhiteSpace(formaPagoComboBox.Text)) throw new Exception("Seleccione una forma de pago");
-                sqlCmd.Parameters.AddWithValue("@idFormaDePago", formaPagoComboBox.SelectedIndex + 1);
+                sqlCmd.Parameters.AddWithValue("@idFormaDePago", formaPagoComboBox.SelectedIndex);
 
                 int idPago = -1;
                 var returnParameter = sqlCmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
@@ -104,11 +105,6 @@ namespace PagoAgilFrba.RegistroPago
             return -1;
         }
 
-
-        private void RegistroPago_Load_1(object sender, EventArgs e)
-        {
-
-        }
 
         private void cobrarBtn_Click(object sender, EventArgs e)
         {
@@ -148,14 +144,12 @@ namespace PagoAgilFrba.RegistroPago
             {
                 idClienteTextBox.Text = busquedaDeCliente.idClienteTextBox.Text;
                 clienteTextBox.Text = busquedaDeCliente.clienteTextBox.Text;
-                clienteTxt.Text = clienteTextBox.Text;
             }
         }
 
         private void limpiarBtn_Click(object sender, EventArgs e)
         {
             limpiarFiltrosBtn_Click(sender, e);
-            limpiarCobroBtn_Click(sender, e);
 
             fechaCobroDT.Value = Convert.ToDateTime(DateTime.Now.Date);
 
@@ -169,26 +163,23 @@ namespace PagoAgilFrba.RegistroPago
             facturasACobrarDataGrid.ColumnHeadersVisible = false;
             facturasACobrarDataGrid.Rows.Clear();
             numFactList = new List<int>();
+            importeCobroTextBox.Text = 0.ToString();
         }
 
         private void limpiarFiltrosBtn_Click(object sender, EventArgs e)
         {
-            empresaFilterComboBox.Text = numFactFilterTextBoxL.Text = clienteTextBox.Text = idClienteTextBox.Text = clienteTxt.Text = "";
+            numFactFilterTextBoxL.Text = clienteTextBox.Text = idClienteTextBox.Text = clienteTxt.Text = "";
+            empresaFilterComboBox.SelectedIndex = -1;
 
             facturasDataGridL.DataSource = new DataTable();
             limpiarTablaFacturasACobrar();
-        }
-
-        private void limpiarCobroBtn_Click(object sender, EventArgs e)
-        {
-            importeCobroTextBox.Text = formaPagoComboBox.Text = clienteTxt.Text = "";
         }
 
         private void agregarABtn_Click(object sender, EventArgs e)
         {
             try
             {
-                if (facturasDataGridL.CurrentRow == null) throw new Exception("Seleccione una factura de la tabla facturas sin pago");
+                if (facturasDataGridL.CurrentRow == null) throw new Exception("Seleccione una factura de la tabla Facturas sin pago");
 
                 facturasACobrarDataGrid.ColumnHeadersVisible = true;
                 var numFact = facturasDataGridL.CurrentRow.Cells["Num Fact"].Value;
@@ -234,6 +225,16 @@ namespace PagoAgilFrba.RegistroPago
                 MessageBox.Show(ex.Message, "Error Message");
             }
         }
+
+        private void empresaFilterComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (empresaFilterComboBox.SelectedIndex == 0) empresaFilterComboBox.SelectedIndex = -1;
+        }
+
+        private void formaPagoComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (formaPagoComboBox.SelectedIndex == 0) formaPagoComboBox.SelectedIndex = -1;
+        } 
 
     }
 }

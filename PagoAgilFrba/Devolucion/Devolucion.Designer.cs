@@ -316,7 +316,7 @@
             // motivoLabel
             // 
             this.motivoLabel.AutoSize = true;
-            this.motivoLabel.Location = new System.Drawing.Point(122, 69);
+            this.motivoLabel.Location = new System.Drawing.Point(114, 65);
             this.motivoLabel.Name = "motivoLabel";
             this.motivoLabel.Size = new System.Drawing.Size(39, 13);
             this.motivoLabel.TabIndex = 32;
@@ -333,7 +333,7 @@
             // fechaDevLabel
             // 
             this.fechaDevLabel.AutoSize = true;
-            this.fechaDevLabel.Location = new System.Drawing.Point(62, 26);
+            this.fechaDevLabel.Location = new System.Drawing.Point(46, 26);
             this.fechaDevLabel.Name = "fechaDevLabel";
             this.fechaDevLabel.Size = new System.Drawing.Size(107, 13);
             this.fechaDevLabel.TabIndex = 31;

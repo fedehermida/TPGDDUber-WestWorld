@@ -9,6 +9,8 @@ namespace PagoAgilFrba.AbmCliente
     public partial class clienteABM : Form
     {
         SqlConnection sqlCon = new SqlConnection(@Properties.Settings.Default.SQLSERVER2012);
+        Utils utils = new Utils();
+
         public clienteABM()
         {
             InitializeComponent();
@@ -40,6 +42,7 @@ namespace PagoAgilFrba.AbmCliente
                         MessageBox.Show("Cliente creado");
 
                         if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+                        
                         searchButton_Click(sender, e);
 
                     }
@@ -62,8 +65,10 @@ namespace PagoAgilFrba.AbmCliente
                         MessageBox.Show("Cliente modificado correctamente");
 
                         if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+                        dniFilterTxt.Text = dniTextBox.Text;
+                        limpiarCamposObligatorios();
+                        guardarBtn.Text = "Guardar";
                         searchButton_Click(sender, e);
-
                     }
                 }
             }
@@ -103,7 +108,7 @@ namespace PagoAgilFrba.AbmCliente
                 {
                     sqlDa.SelectCommand.Parameters.AddWithValue("@dni", DBNull.Value);
                 }
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@dni", dniFiltertxt);
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@dni", utils.convertirABigInt(dniFilterTxt));
                 DataTable dtbl = new DataTable();
                 sqlDa.Fill(dtbl);
 
@@ -147,9 +152,10 @@ namespace PagoAgilFrba.AbmCliente
 
         void reset()
         {
-            nombreTextBox.Text = apellidoTextBox.Text = mailTextBox.Text = direccionTextBox.Text =
-                codigoPostalTxtBox.Text = dniTextBox.Text = telefonoTxtBox.Text = fechaNacimientoTime.Text = "";
-            habilitadoCheck.Checked = false;
+            limpiarCamposObligatorios();
+
+            nombreFilterTxt.Text = apellidoFilterTxt.Text = dniFilterTxt.Text = "";
+
             guardarBtn.Text = "Guardar";
 
             clienteDataGrid.DataSource = new DataTable();
@@ -158,6 +164,13 @@ namespace PagoAgilFrba.AbmCliente
         private void button1_Click_1(object sender, EventArgs e)
         {
             reset();
+        }
+
+        private void limpiarCamposObligatorios()
+        {
+            nombreTextBox.Text = apellidoTextBox.Text = mailTextBox.Text = direccionTextBox.Text =
+                codigoPostalTxtBox.Text = dniTextBox.Text = telefonoTxtBox.Text = fechaNacimientoTime.Text = "";
+            habilitadoCheck.Checked = false;
         }
     }
 }

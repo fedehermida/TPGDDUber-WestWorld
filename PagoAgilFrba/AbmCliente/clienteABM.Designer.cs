@@ -33,6 +33,15 @@
             this.label11 = new System.Windows.Forms.Label();
             this.nombreFilterTxt = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.camposObligatoriosLabel = new System.Windows.Forms.Label();
+            this.nombreObligLabel = new System.Windows.Forms.Label();
+            this.apellidoObligLabel = new System.Windows.Forms.Label();
+            this.mailObligLabel = new System.Windows.Forms.Label();
+            this.dirObligLabel = new System.Windows.Forms.Label();
+            this.CPObligLabel = new System.Windows.Forms.Label();
+            this.DNIObligLabel = new System.Windows.Forms.Label();
+            this.telObligLabel = new System.Windows.Forms.Label();
+            this.FecNacObligLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.clienteDataGrid)).BeginInit();
             this.filtrarGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +65,7 @@
             // apellidoLabel
             // 
             this.apellidoLabel.AutoSize = true;
-            this.apellidoLabel.Location = new System.Drawing.Point(44, 70);
+            this.apellidoLabel.Location = new System.Drawing.Point(44, 65);
             this.apellidoLabel.Name = "apellidoLabel";
             this.apellidoLabel.Size = new System.Drawing.Size(44, 13);
             this.apellidoLabel.TabIndex = 2;
@@ -291,9 +300,108 @@
             this.label10.TabIndex = 25;
             this.label10.Text = "Nombre";
             // 
+            // camposObligatoriosLabel
+            // 
+            this.camposObligatoriosLabel.AutoSize = true;
+            this.camposObligatoriosLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.camposObligatoriosLabel.Location = new System.Drawing.Point(706, 504);
+            this.camposObligatoriosLabel.Name = "camposObligatoriosLabel";
+            this.camposObligatoriosLabel.Size = new System.Drawing.Size(152, 17);
+            this.camposObligatoriosLabel.TabIndex = 32;
+            this.camposObligatoriosLabel.Text = "camposObligatorios (*)";
+            // 
+            // nombreObligLabel
+            // 
+            this.nombreObligLabel.AutoSize = true;
+            this.nombreObligLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.nombreObligLabel.Location = new System.Drawing.Point(220, 19);
+            this.nombreObligLabel.Name = "nombreObligLabel";
+            this.nombreObligLabel.Size = new System.Drawing.Size(23, 17);
+            this.nombreObligLabel.TabIndex = 33;
+            this.nombreObligLabel.Text = "(*)";
+            // 
+            // apellidoObligLabel
+            // 
+            this.apellidoObligLabel.AutoSize = true;
+            this.apellidoObligLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.apellidoObligLabel.Location = new System.Drawing.Point(220, 61);
+            this.apellidoObligLabel.Name = "apellidoObligLabel";
+            this.apellidoObligLabel.Size = new System.Drawing.Size(23, 17);
+            this.apellidoObligLabel.TabIndex = 34;
+            this.apellidoObligLabel.Text = "(*)";
+            // 
+            // mailObligLabel
+            // 
+            this.mailObligLabel.AutoSize = true;
+            this.mailObligLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.mailObligLabel.Location = new System.Drawing.Point(220, 104);
+            this.mailObligLabel.Name = "mailObligLabel";
+            this.mailObligLabel.Size = new System.Drawing.Size(23, 17);
+            this.mailObligLabel.TabIndex = 35;
+            this.mailObligLabel.Text = "(*)";
+            // 
+            // dirObligLabel
+            // 
+            this.dirObligLabel.AutoSize = true;
+            this.dirObligLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.dirObligLabel.Location = new System.Drawing.Point(220, 139);
+            this.dirObligLabel.Name = "dirObligLabel";
+            this.dirObligLabel.Size = new System.Drawing.Size(23, 17);
+            this.dirObligLabel.TabIndex = 36;
+            this.dirObligLabel.Text = "(*)";
+            // 
+            // CPObligLabel
+            // 
+            this.CPObligLabel.AutoSize = true;
+            this.CPObligLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.CPObligLabel.Location = new System.Drawing.Point(507, 22);
+            this.CPObligLabel.Name = "CPObligLabel";
+            this.CPObligLabel.Size = new System.Drawing.Size(23, 17);
+            this.CPObligLabel.TabIndex = 37;
+            this.CPObligLabel.Text = "(*)";
+            // 
+            // DNIObligLabel
+            // 
+            this.DNIObligLabel.AutoSize = true;
+            this.DNIObligLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.DNIObligLabel.Location = new System.Drawing.Point(542, 63);
+            this.DNIObligLabel.Name = "DNIObligLabel";
+            this.DNIObligLabel.Size = new System.Drawing.Size(23, 17);
+            this.DNIObligLabel.TabIndex = 38;
+            this.DNIObligLabel.Text = "(*)";
+            // 
+            // telObligLabel
+            // 
+            this.telObligLabel.AutoSize = true;
+            this.telObligLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.telObligLabel.Location = new System.Drawing.Point(542, 108);
+            this.telObligLabel.Name = "telObligLabel";
+            this.telObligLabel.Size = new System.Drawing.Size(23, 17);
+            this.telObligLabel.TabIndex = 39;
+            this.telObligLabel.Text = "(*)";
+            // 
+            // FecNacObligLabel
+            // 
+            this.FecNacObligLabel.AutoSize = true;
+            this.FecNacObligLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.FecNacObligLabel.Location = new System.Drawing.Point(670, 142);
+            this.FecNacObligLabel.Name = "FecNacObligLabel";
+            this.FecNacObligLabel.Size = new System.Drawing.Size(23, 17);
+            this.FecNacObligLabel.TabIndex = 40;
+            this.FecNacObligLabel.Text = "(*)";
+            // 
             // clienteABM
             // 
             this.ClientSize = new System.Drawing.Size(870, 530);
+            this.Controls.Add(this.FecNacObligLabel);
+            this.Controls.Add(this.telObligLabel);
+            this.Controls.Add(this.DNIObligLabel);
+            this.Controls.Add(this.CPObligLabel);
+            this.Controls.Add(this.dirObligLabel);
+            this.Controls.Add(this.mailObligLabel);
+            this.Controls.Add(this.apellidoObligLabel);
+            this.Controls.Add(this.nombreObligLabel);
+            this.Controls.Add(this.camposObligatoriosLabel);
             this.Controls.Add(this.habilitadoCheck);
             this.Controls.Add(this.habilitadoLabel);
             this.Controls.Add(this.button1);
@@ -355,6 +463,15 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox nombreFilterTxt;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label camposObligatoriosLabel;
+        private System.Windows.Forms.Label nombreObligLabel;
+        private System.Windows.Forms.Label apellidoObligLabel;
+        private System.Windows.Forms.Label mailObligLabel;
+        private System.Windows.Forms.Label dirObligLabel;
+        private System.Windows.Forms.Label CPObligLabel;
+        private System.Windows.Forms.Label DNIObligLabel;
+        private System.Windows.Forms.Label telObligLabel;
+        private System.Windows.Forms.Label FecNacObligLabel;
     }
    
 }

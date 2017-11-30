@@ -48,8 +48,15 @@ namespace PagoAgilFrba.AbmEmpresa
                         utils.validarYAgregarParam(sqlCmd, "@cuit", cuitTextBox);
                         utils.validarYAgregarParam(sqlCmd, "@direccion", direccionTextBox);
 
-                        sqlCmd.Parameters.AddWithValue("@idRubro", rubroComboBox.SelectedIndex + 1); //+1 Porque arranca de 0
+                        if (rubroComboBox.SelectedIndex == -1) throw new Exception("Complete los campos obligatorios");
+                        else sqlCmd.Parameters.AddWithValue("@idRubro", rubroComboBox.SelectedIndex);
+
                         sqlCmd.Parameters.AddWithValue("@habilitado", habilitadoCheck.Checked);
+
+                        Byte dia = Byte.Parse(diaRendicionTextBox.Text.Trim());
+                        if ((string.IsNullOrWhiteSpace(diaRendicionTextBox.Text.Trim()))) throw new Exception("Complete los campos obligatorios");
+                        else if(dia<=0 | dia >28) throw new Exception("Ingrese un dia de rendición entre 1 y 28");
+                        else sqlCmd.Parameters.AddWithValue("@diaRendicion", dia);
 
                         sqlCmd.ExecuteNonQuery();
                         MessageBox.Show("Empresa creada");
@@ -68,14 +75,25 @@ namespace PagoAgilFrba.AbmEmpresa
                         utils.validarYAgregarParam(sqlCmd, "@cuit", cuitTextBox);
                         utils.validarYAgregarParam(sqlCmd, "@direccion", direccionTextBox);
 
-                        sqlCmd.Parameters.AddWithValue("@idRubro", rubroComboBox.SelectedIndex + 1); //+1 Porque arranca de 0
+                        if (rubroComboBox.SelectedIndex == -1) throw new Exception("Complete los campos obligatorios");
+                        else sqlCmd.Parameters.AddWithValue("@idRubro", rubroComboBox.SelectedIndex);
                         sqlCmd.Parameters.AddWithValue("@habilitado", habilitadoCheck.Checked);
+
+                        Byte dia = Byte.Parse(diaRendicionTextBox.Text.Trim());
+                        if ((string.IsNullOrWhiteSpace(diaRendicionTextBox.Text.Trim()))) throw new Exception("Complete los campos obligatorios");
+                        else if (dia <= 0 | dia > 28) throw new Exception("Ingrese un dia de rendición entre 1 y 28");
+                        else sqlCmd.Parameters.AddWithValue("@diaRendicion", dia);
 
                         sqlCmd.ExecuteNonQuery();
                         MessageBox.Show("Empresa modificada correctamente");
 
                         if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+                        cuitFilter.Text = cuitTextBox.Text;
+                        limpiarCamposObligatorios();
+                        btnGuardar.Text = "Guardar";
                         btnBuscar_Click_1(sender, e);
+
+
                     }
                 }
             }
@@ -109,8 +127,10 @@ namespace PagoAgilFrba.AbmEmpresa
                 cuitTextBox.Text = empresaDataGrid.CurrentRow.Cells[1].Value.ToString();
                 nombreTextBox.Text = empresaDataGrid.CurrentRow.Cells[2].Value.ToString();
                 direccionTextBox.Text = empresaDataGrid.CurrentRow.Cells[3].Value.ToString();
-                rubroComboBox.SelectedIndex = Convert.ToInt32(empresaDataGrid.CurrentRow.Cells[4].Value.ToString()) - 1;
+                rubroComboBox.SelectedIndex = Convert.ToInt32(empresaDataGrid.CurrentRow.Cells[4].Value.ToString());
                 habilitadoCheck.Checked = (bool)empresaDataGrid.CurrentRow.Cells[5].Value;
+                diaRendicionTextBox.Text = empresaDataGrid.CurrentRow.Cells[6].Value.ToString();
+
                 btnGuardar.Text = "Actualizar";
             }
         }
@@ -140,12 +160,12 @@ namespace PagoAgilFrba.AbmEmpresa
                 SqlDataAdapter sqlDa = new SqlDataAdapter("GD2C2017.WEST_WORLD.EmpresaViewOrSearch", sqlCon);
                 sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                 sqlDa.SelectCommand.Parameters.AddWithValue("@nombre", nombreFilterTextBox.Text.Trim());
-                if (string.IsNullOrWhiteSpace(cuitFilter.Text.Trim()))
-                    sqlDa.SelectCommand.Parameters.AddWithValue("@cuit", DBNull.Value);
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@cuit", cuitFilter.Text.Trim());
-                if (string.IsNullOrWhiteSpace(rubroFilterComboBox.Text.Trim()))
+
+                utils.validarYAgregarParam(sqlDa, "@cuit", cuitFilter);
+                
+                if (rubroFilterComboBox.SelectedIndex == -1)
                     sqlDa.SelectCommand.Parameters.AddWithValue("@idRubro", DBNull.Value);
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@idRubro", rubroFilterComboBox.SelectedIndex + 1);
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@idRubro", rubroFilterComboBox.SelectedIndex);
 
                 DataTable dtbl = new DataTable();
                 sqlDa.Fill(dtbl);
@@ -155,24 +175,32 @@ namespace PagoAgilFrba.AbmEmpresa
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void rubroComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            nombreTextBox.Text = direccionTextBox.Text = cuitTextBox.Text = nombreFilterTextBox.Text
-                = cuitFilter.Text = rubroComboBox.Text = rubroFilterComboBox.Text = "";
-            habilitadoCheck.Checked = false;
+            if (rubroComboBox.SelectedIndex == 0) rubroComboBox.SelectedIndex = -1;
+        }
+
+        private void limpiarBtn_Click(object sender, EventArgs e)
+        {
+            limpiarCamposObligatorios();
+            nombreFilterTextBox.Text = cuitFilter.Text = "";
+            rubroFilterComboBox.SelectedIndex = -1;
+
             btnGuardar.Text = "Guardar";
 
             empresaDataGrid.DataSource = new DataTable();
         }
 
-        private void empresaDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void limpiarCamposObligatorios()
         {
-
+            nombreTextBox.Text = direccionTextBox.Text = cuitTextBox.Text = diaRendicionTextBox.Text = "";
+            rubroComboBox.SelectedIndex = -1;
+            habilitadoCheck.Checked = false;
         }
 
-        private void empresaABM_Load(object sender, EventArgs e)
+        private void rubroFilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (rubroFilterComboBox.SelectedIndex == 0) rubroFilterComboBox.SelectedIndex = -1;
         }
 
 

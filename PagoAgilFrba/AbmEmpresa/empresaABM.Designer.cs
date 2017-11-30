@@ -49,6 +49,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.nombreFilterTextBox = new System.Windows.Forms.TextBox();
+            this.diaRendicionLabel = new System.Windows.Forms.Label();
+            this.diaRendicionTextBox = new System.Windows.Forms.TextBox();
+            this.camposObligatoriosLabel = new System.Windows.Forms.Label();
+            this.nombreObligLabel = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.empresaDataGrid)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -89,11 +97,12 @@
             this.rubroComboBox.Name = "rubroComboBox";
             this.rubroComboBox.Size = new System.Drawing.Size(121, 21);
             this.rubroComboBox.TabIndex = 3;
+            this.rubroComboBox.SelectedIndexChanged += new System.EventHandler(this.rubroComboBox_SelectedIndexChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(343, 58);
+            this.label4.Location = new System.Drawing.Point(343, 55);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 13);
             this.label4.TabIndex = 4;
@@ -135,7 +144,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(363, 95);
+            this.btnGuardar.Location = new System.Drawing.Point(605, 35);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(140, 36);
             this.btnGuardar.TabIndex = 16;
@@ -163,13 +172,13 @@
             // 
             // limpiarBtn
             // 
-            this.limpiarBtn.Location = new System.Drawing.Point(315, 391);
+            this.limpiarBtn.Location = new System.Drawing.Point(346, 397);
             this.limpiarBtn.Name = "limpiarBtn";
             this.limpiarBtn.Size = new System.Drawing.Size(103, 31);
             this.limpiarBtn.TabIndex = 38;
             this.limpiarBtn.Text = "Limpiar";
             this.limpiarBtn.UseVisualStyleBackColor = true;
-            this.limpiarBtn.Click += new System.EventHandler(this.button1_Click);
+            this.limpiarBtn.Click += new System.EventHandler(this.limpiarBtn_Click);
             // 
             // groupBox1
             // 
@@ -205,6 +214,7 @@
             this.rubroFilterComboBox.Name = "rubroFilterComboBox";
             this.rubroFilterComboBox.Size = new System.Drawing.Size(110, 21);
             this.rubroFilterComboBox.TabIndex = 45;
+            this.rubroFilterComboBox.SelectedIndexChanged += new System.EventHandler(this.rubroFilterComboBox_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -247,11 +257,96 @@
             this.nombreFilterTextBox.Size = new System.Drawing.Size(101, 20);
             this.nombreFilterTextBox.TabIndex = 14;
             // 
+            // diaRendicionLabel
+            // 
+            this.diaRendicionLabel.AutoSize = true;
+            this.diaRendicionLabel.Location = new System.Drawing.Point(288, 96);
+            this.diaRendicionLabel.Name = "diaRendicionLabel";
+            this.diaRendicionLabel.Size = new System.Drawing.Size(91, 13);
+            this.diaRendicionLabel.TabIndex = 40;
+            this.diaRendicionLabel.Text = "Día de Rendición";
+            // 
+            // diaRendicionTextBox
+            // 
+            this.diaRendicionTextBox.Location = new System.Drawing.Point(399, 94);
+            this.diaRendicionTextBox.MaxLength = 2;
+            this.diaRendicionTextBox.Name = "diaRendicionTextBox";
+            this.diaRendicionTextBox.Size = new System.Drawing.Size(50, 20);
+            this.diaRendicionTextBox.TabIndex = 41;
+            // 
+            // camposObligatoriosLabel
+            // 
+            this.camposObligatoriosLabel.AutoSize = true;
+            this.camposObligatoriosLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.camposObligatoriosLabel.Location = new System.Drawing.Point(635, 426);
+            this.camposObligatoriosLabel.Name = "camposObligatoriosLabel";
+            this.camposObligatoriosLabel.Size = new System.Drawing.Size(152, 17);
+            this.camposObligatoriosLabel.TabIndex = 42;
+            this.camposObligatoriosLabel.Text = "camposObligatorios (*)";
+            // 
+            // nombreObligLabel
+            // 
+            this.nombreObligLabel.AutoSize = true;
+            this.nombreObligLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.nombreObligLabel.Location = new System.Drawing.Point(205, 10);
+            this.nombreObligLabel.Name = "nombreObligLabel";
+            this.nombreObligLabel.Size = new System.Drawing.Size(23, 17);
+            this.nombreObligLabel.TabIndex = 43;
+            this.nombreObligLabel.Text = "(*)";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label8.Location = new System.Drawing.Point(205, 54);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(23, 17);
+            this.label8.TabIndex = 44;
+            this.label8.Text = "(*)";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label9.Location = new System.Drawing.Point(526, 11);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(23, 17);
+            this.label9.TabIndex = 45;
+            this.label9.Text = "(*)";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label10.Location = new System.Drawing.Point(526, 52);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(23, 17);
+            this.label10.TabIndex = 46;
+            this.label10.Text = "(*)";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label11.Location = new System.Drawing.Point(455, 94);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(23, 17);
+            this.label11.TabIndex = 47;
+            this.label11.Text = "(*)";
+            // 
             // empresaABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(799, 452);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.nombreObligLabel);
+            this.Controls.Add(this.camposObligatoriosLabel);
+            this.Controls.Add(this.diaRendicionTextBox);
+            this.Controls.Add(this.diaRendicionLabel);
             this.Controls.Add(this.limpiarBtn);
             this.Controls.Add(this.habilitadoCheck);
             this.Controls.Add(this.label13);
@@ -299,5 +394,13 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox nombreFilterTextBox;
+        private System.Windows.Forms.Label diaRendicionLabel;
+        private System.Windows.Forms.TextBox diaRendicionTextBox;
+        private System.Windows.Forms.Label camposObligatoriosLabel;
+        private System.Windows.Forms.Label nombreObligLabel;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
     }
 }

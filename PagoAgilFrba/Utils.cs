@@ -35,6 +35,7 @@ namespace PagoAgilFrba
         static public List<KeyValuePair<int, string>> GetEmpresas()
         {
             List<KeyValuePair<int, string>> empresas = new List<KeyValuePair<int, string>>();
+            empresas.Add(new KeyValuePair<int,string>(0,"(ninguna)"));
 
             SqlCommand com = new SqlCommand("WEST_WORLD.GetEmpresas", sqlCon);
             com.CommandType = CommandType.StoredProcedure;
@@ -55,6 +56,7 @@ namespace PagoAgilFrba
         static public List<KeyValuePair<int, string>> GetRubros()
         {
             List<KeyValuePair<int, string>> rubros = new List<KeyValuePair<int, string>>();
+            rubros.Add(new KeyValuePair<int, string>(0, "(ninguno)"));
 
             SqlCommand com = new SqlCommand("WEST_WORLD.GetRubros", sqlCon);
             com.CommandType = CommandType.StoredProcedure;
@@ -75,6 +77,7 @@ namespace PagoAgilFrba
         static public List<KeyValuePair<int, string>> GetFormasDePago()
         {
             List<KeyValuePair<int, string>> formasDePago = new List<KeyValuePair<int, string>>();
+            formasDePago.Add(new KeyValuePair<int, string>(0, "(ninguno)"));
 
             SqlCommand com = new SqlCommand("WEST_WORLD.GetFormasDePago", sqlCon);
             com.CommandType = CommandType.StoredProcedure;
@@ -121,20 +124,21 @@ namespace PagoAgilFrba
 
         public void validarYAgregarParam(SqlDataAdapter sqlDa, string variable, TextBox text)
         {
-            if ((string.IsNullOrWhiteSpace(text.Text.Trim()))) throw new Exception("Complete los campos obligatorios");
+            if (string.IsNullOrWhiteSpace(text.Text.Trim()))
+                sqlDa.SelectCommand.Parameters.AddWithValue(variable, DBNull.Value);
             else sqlDa.SelectCommand.Parameters.AddWithValue(variable, text.Text.Trim());
         }
 
         public void validarConvYAgregarParam(SqlCommand sqlCmd, string variable, TextBox text)
         {
-            validarMontoOCant(convertirAValor(text), text);
-            sqlCmd.Parameters.AddWithValue(variable, convertirAValor(text));
+            validarMontoOCant(convertirADecimal(text), text);
+            sqlCmd.Parameters.AddWithValue(variable, convertirADecimal(text));
         }
 
         public void validarConvYAgregarParam(SqlDataAdapter sqlDa, string variable, TextBox text)
         {
-            validarMontoOCant(convertirAValor(text), text);
-            sqlDa.SelectCommand.Parameters.AddWithValue(variable, convertirAValor(text));
+            validarMontoOCant(convertirADecimal(text), text);
+            sqlDa.SelectCommand.Parameters.AddWithValue(variable, convertirADecimal(text));
         }
 
         public void validarMontoOCant(decimal valor, TextBox text)
@@ -143,15 +147,20 @@ namespace PagoAgilFrba
             if (valor <= 0) throw new Exception("El monto y la cantidad deben ser >0");
         }
 
-        public Decimal convertirAValor(TextBox textBox)
+        public Decimal convertirADecimal(TextBox textBox)
         {
             return Decimal.Parse(textBox.Text.Trim());
         }
 
+        public Int64 convertirABigInt(TextBox textBox)
+        {
+            return Convert.ToInt64(textBox.Text.Trim());
+        }
+
         public void validarImporteYAgregar(SqlCommand sqlCmd, string variable, TextBox text)
         {
-            if (string.IsNullOrWhiteSpace(text.Text)) throw new Exception("Agregue items");
-            if (Convert.ToDecimal(text.Text.Trim()) <= 0) throw new Exception("El importe debe ser mayor a 0");
+            if (string.IsNullOrWhiteSpace(text.Text.Trim())) throw new Exception("Agregue items");
+            if (convertirADecimal(text) <= 0) throw new Exception("El importe debe ser mayor a 0");
             else this.validarConvYAgregarParam(sqlCmd, variable, text);
         }
 

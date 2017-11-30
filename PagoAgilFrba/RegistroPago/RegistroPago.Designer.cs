@@ -30,7 +30,6 @@
         {
             this.facturasDataGridL = new System.Windows.Forms.DataGridView();
             this.cobrarGroupBox = new System.Windows.Forms.GroupBox();
-            this.limpiarCobroBtn = new System.Windows.Forms.Button();
             this.formaPagoComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.fechaCobroDT = new System.Windows.Forms.DateTimePicker();
@@ -64,6 +63,7 @@
             this.agregarABtn = new System.Windows.Forms.Button();
             this.facturasACobrarLabel = new System.Windows.Forms.Label();
             this.eliminarBtn = new System.Windows.Forms.Button();
+            this.camposObligatoriosLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.facturasDataGridL)).BeginInit();
             this.cobrarGroupBox.SuspendLayout();
             this.filtrarGroupBox.SuspendLayout();
@@ -86,7 +86,6 @@
             // 
             // cobrarGroupBox
             // 
-            this.cobrarGroupBox.Controls.Add(this.limpiarCobroBtn);
             this.cobrarGroupBox.Controls.Add(this.formaPagoComboBox);
             this.cobrarGroupBox.Controls.Add(this.label1);
             this.cobrarGroupBox.Controls.Add(this.fechaCobroDT);
@@ -105,16 +104,6 @@
             this.cobrarGroupBox.TabStop = false;
             this.cobrarGroupBox.Text = "Registrar Pago";
             // 
-            // limpiarCobroBtn
-            // 
-            this.limpiarCobroBtn.Location = new System.Drawing.Point(695, 87);
-            this.limpiarCobroBtn.Name = "limpiarCobroBtn";
-            this.limpiarCobroBtn.Size = new System.Drawing.Size(75, 23);
-            this.limpiarCobroBtn.TabIndex = 29;
-            this.limpiarCobroBtn.Text = "Limpiar";
-            this.limpiarCobroBtn.UseVisualStyleBackColor = true;
-            this.limpiarCobroBtn.Click += new System.EventHandler(this.limpiarCobroBtn_Click);
-            // 
             // formaPagoComboBox
             // 
             this.formaPagoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -123,6 +112,7 @@
             this.formaPagoComboBox.Name = "formaPagoComboBox";
             this.formaPagoComboBox.Size = new System.Drawing.Size(121, 21);
             this.formaPagoComboBox.TabIndex = 25;
+            this.formaPagoComboBox.SelectedIndexChanged += new System.EventHandler(this.formaPagoComboBox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -145,11 +135,11 @@
             // formaDePagoLabel
             // 
             this.formaDePagoLabel.AutoSize = true;
-            this.formaDePagoLabel.Location = new System.Drawing.Point(36, 27);
+            this.formaDePagoLabel.Location = new System.Drawing.Point(23, 30);
             this.formaDePagoLabel.Name = "formaDePagoLabel";
-            this.formaDePagoLabel.Size = new System.Drawing.Size(79, 13);
+            this.formaDePagoLabel.Size = new System.Drawing.Size(92, 13);
             this.formaDePagoLabel.TabIndex = 22;
-            this.formaDePagoLabel.Text = "Forma de Pago";
+            this.formaDePagoLabel.Text = "Forma de Pago (*)";
             // 
             // clienteTxt
             // 
@@ -250,7 +240,7 @@
             this.clienteGroupBox.Size = new System.Drawing.Size(291, 54);
             this.clienteGroupBox.TabIndex = 26;
             this.clienteGroupBox.TabStop = false;
-            this.clienteGroupBox.Text = "Cliente (obligatorio)";
+            this.clienteGroupBox.Text = "Cliente (*)";
             // 
             // idClienteTextBox
             // 
@@ -262,7 +252,7 @@
             // 
             // seleccionarClienteBtn
             // 
-            this.seleccionarClienteBtn.Location = new System.Drawing.Point(204, 18);
+            this.seleccionarClienteBtn.Location = new System.Drawing.Point(204, 15);
             this.seleccionarClienteBtn.Name = "seleccionarClienteBtn";
             this.seleccionarClienteBtn.Size = new System.Drawing.Size(76, 27);
             this.seleccionarClienteBtn.TabIndex = 24;
@@ -302,6 +292,7 @@
             this.empresaFilterComboBox.Name = "empresaFilterComboBox";
             this.empresaFilterComboBox.Size = new System.Drawing.Size(142, 21);
             this.empresaFilterComboBox.TabIndex = 19;
+            this.empresaFilterComboBox.SelectedValueChanged += new System.EventHandler(this.empresaFilterComboBox_SelectedValueChanged);
             // 
             // searchBtnL
             // 
@@ -430,9 +421,20 @@
             this.eliminarBtn.UseVisualStyleBackColor = true;
             this.eliminarBtn.Click += new System.EventHandler(this.eliminarBtn_Click);
             // 
+            // camposObligatoriosLabel
+            // 
+            this.camposObligatoriosLabel.AutoSize = true;
+            this.camposObligatoriosLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.camposObligatoriosLabel.Location = new System.Drawing.Point(692, 455);
+            this.camposObligatoriosLabel.Name = "camposObligatoriosLabel";
+            this.camposObligatoriosLabel.Size = new System.Drawing.Size(152, 17);
+            this.camposObligatoriosLabel.TabIndex = 31;
+            this.camposObligatoriosLabel.Text = "camposObligatorios (*)";
+            // 
             // RegistroPago
             // 
             this.ClientSize = new System.Drawing.Size(856, 481);
+            this.Controls.Add(this.camposObligatoriosLabel);
             this.Controls.Add(this.eliminarBtn);
             this.Controls.Add(this.facturasACobrarLabel);
             this.Controls.Add(this.agregarABtn);
@@ -444,7 +446,6 @@
             this.Controls.Add(this.cobrarGroupBox);
             this.Name = "RegistroPago";
             this.Text = "Registrar Pago";
-            this.Load += new System.EventHandler(this.RegistroPago_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.facturasDataGridL)).EndInit();
             this.cobrarGroupBox.ResumeLayout(false);
             this.cobrarGroupBox.PerformLayout();
@@ -485,7 +486,6 @@
         private System.Windows.Forms.TextBox clienteTxt;
         private System.Windows.Forms.Label clienteLabel2;
         private System.Windows.Forms.Label facturasLabel;
-        private System.Windows.Forms.Button limpiarCobroBtn;
         private System.Windows.Forms.Button limpiarFiltrosBtn;
         private System.Windows.Forms.DataGridView facturasACobrarDataGrid;
         private System.Windows.Forms.Button agregarABtn;
@@ -496,5 +496,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaAlta;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaVencimiento;
+        private System.Windows.Forms.Label camposObligatoriosLabel;
     }
 }

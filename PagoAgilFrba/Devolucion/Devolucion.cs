@@ -50,10 +50,10 @@ namespace PagoAgilFrba.Devolucion
                 else sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", empresaComboBox.SelectedIndex + 1);
 
                 if (string.IsNullOrWhiteSpace(numFactFilterTextBoxL.Text.Trim())) sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", DBNull.Value);
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", utils.convertirAValor(numFactFilterTextBoxL));
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", utils.convertirADecimal(numFactFilterTextBoxL));
 
                 if (string.IsNullOrWhiteSpace(idClienteTextBox.Text.Trim())) sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", DBNull.Value);
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirAValor(idClienteTextBox));
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirADecimal(idClienteTextBox));
 
                 sqlDa.SelectCommand.Parameters.AddWithValue("@mes", 0);
 
