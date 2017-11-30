@@ -13,7 +13,8 @@ namespace PagoAgilFrba
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AbmRol.Form1());
+            // Application.Run(new AbmRol.Form1()); leo pajero no tenias que commitear esto
+            Application.Run(new Login());
         }
     }
 }

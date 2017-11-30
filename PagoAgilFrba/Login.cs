@@ -61,9 +61,8 @@ namespace PagoAgilFrba
                 int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
                 if (count == 1)
                 {
-                    Index index = new Index(userTxtBox.Text);
-                    index.ShowDialog();
-                    this.Close();
+                    checkMultipleSucursal(userTxtBox.Text);
+
                 }
                 else
                 {
@@ -82,8 +81,78 @@ namespace PagoAgilFrba
 
         }
 
-        private void Login_Load(object sender, EventArgs e)
+        private void checkMultipleRols(string user, int idSucursal)
         {
+            String query = "SELECT COUNT(1) from WEST_WORLD.Rol_Usuario ru " +
+                "JOIN WEST_WORLD.Usuario u ON (ru.idUsuario=u.idUser)" +
+                "WHERE u.[user]=@Usuario";
+            SqlCommand sqlCmd = new SqlCommand(query, con);
+            sqlCmd.CommandType = CommandType.Text;
+            sqlCmd.Parameters.AddWithValue("@Usuario", user);
+            int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
+            if(count == 0)
+            {
+                MessageBox.Show("Debe asignarle al menos un rol al usuario");
+            } else if (count == 1)
+            {
+                query = "SELECT idRol from WEST_WORLD.Rol_Usuario ru " +
+                "JOIN WEST_WORLD.Usuario u ON (ru.idUsuario=u.idUser) " +
+                "WHERE u.[user]=@Usuario";
+                sqlCmd = new SqlCommand(query, con);
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Parameters.AddWithValue("@Usuario", user);
+                int idRol = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                con.Close();
+                Index index = new Index(idRol, idSucursal);
+                index.ShowDialog();
+                this.Close();
+
+            } else
+            {
+                con.Close();
+                SelectRol selectRol = new SelectRol(user, idSucursal);
+                selectRol.ShowDialog();
+                this.Close();
+            }
+            
+        }
+
+        private void checkMultipleSucursal(string user)
+        {
+            String query = "SELECT COUNT(1) from WEST_WORLD.Sucursal s " +
+                "JOIN WEST_WORLD.Usuario u ON (s.operador=u.idUser)" +
+                "WHERE u.[user]=@Usuario " +
+                "AND s.habilitado=1";
+            SqlCommand sqlCmd = new SqlCommand(query, con);
+            sqlCmd.CommandType = CommandType.Text;
+            sqlCmd.Parameters.AddWithValue("@Usuario", user);
+            int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
+            if (count == 0)
+            {
+                MessageBox.Show("No tiene sucursales activas, debe tener almenos una sucursal activa");
+            }
+            else if (count == 1)
+            {
+                query = "SELECT idSucursal from WEST_WORLD.Sucursal s " +
+                "JOIN WEST_WORLD.Usuario u ON (s.operador=u.idUser) " +
+                "WHERE u.[user]=@Usuario " +
+                "AND s.habilitado=1";
+                sqlCmd = new SqlCommand(query, con);
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Parameters.AddWithValue("@Usuario", user);
+                int idSucursal = Convert.ToInt32(sqlCmd.ExecuteScalar());
+
+                checkMultipleRols(user, idSucursal);
+          
+
+            }
+            else
+            {
+                con.Close();
+                SelectSucursal selectSucursal = new SelectSucursal(user);
+                selectSucursal.ShowDialog();
+                this.Close();
+            }
 
         }
     }

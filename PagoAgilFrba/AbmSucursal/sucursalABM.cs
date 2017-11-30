@@ -8,10 +8,11 @@ namespace PagoAgilFrba.AbmSucursal
     public partial class sucursalABM : Form
     {
         SqlConnection sqlCon = new SqlConnection(@Properties.Settings.Default.SQLSERVER2012);
-
-        public sucursalABM()
+        int idSucursal;
+        public sucursalABM(int idSucursal)
         {
             InitializeComponent();
+            this.idSucursal = idSucursal;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -79,7 +80,10 @@ namespace PagoAgilFrba.AbmSucursal
                         validarYAgregar(sqlCmd, "@codigoPostal", codigoPostalTxtBox);
 
                         sqlCmd.Parameters.AddWithValue("@habilitado", habilitadoCheck.Checked);
-                        sqlCmd.Parameters.AddWithValue("@operador", 1);// TODO este id saldria del login
+
+
+                        int idOperador = getidOperador();
+                        sqlCmd.Parameters.AddWithValue("@operador", idOperador);// TODO este id saldria del login
 
                         sqlCmd.ExecuteNonQuery();
                         MessageBox.Show("Sucursal creada");
@@ -130,6 +134,35 @@ namespace PagoAgilFrba.AbmSucursal
                 if (sqlCon.State == ConnectionState.Open)
                     sqlCon.Close();
             }
+        }
+
+        private int getidOperador()
+        {
+            try
+            {
+                if (sqlCon.State == ConnectionState.Closed)
+                {
+                    sqlCon.Open();
+                }
+
+                String query = "Select s.operador from WEST_WORLD.Sucursal s WHERE s.idSucursal=@idSucursal";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.CommandType = CommandType.Text;
+
+                sqlCmd.Parameters.AddWithValue("@idSucursal", this.idSucursal);
+            
+                int idOperador = Convert.ToInt32(sqlCmd.ExecuteScalar());
+
+                return idOperador;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Mensaje de Error");
+                return 0;
+            }
+
+        
+
         }
 
         public void validarYAgregar(SqlCommand sqlCmd, string variable, TextBox text)

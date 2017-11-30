@@ -86,7 +86,6 @@ namespace PagoAgilFrba.AbmEmpresa
 
                         sqlCmd.ExecuteNonQuery();
                         MessageBox.Show("Empresa modificada correctamente");
-
                         if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
                         cuitFilter.Text = cuitTextBox.Text;
                         limpiarCamposObligatorios();
@@ -185,6 +184,7 @@ namespace PagoAgilFrba.AbmEmpresa
             limpiarCamposObligatorios();
             nombreFilterTextBox.Text = cuitFilter.Text = "";
             rubroFilterComboBox.SelectedIndex = -1;
+
 
             btnGuardar.Text = "Guardar";
 

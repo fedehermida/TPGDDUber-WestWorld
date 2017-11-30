@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,13 +14,15 @@ namespace PagoAgilFrba
     public partial class Index : Form
     {
         private SqlConnection con = new SqlConnection(@Properties.Settings.Default.SQLSERVER2012);
-        String user;
+        int idRol;
+        int idSucursal;
 
 
-        public Index(String user)
+        public Index(int idRol, int idSucursal)
         {
             InitializeComponent();
-            this.user = user; 
+            this.idRol = idRol;
+            this.idSucursal = idSucursal;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -36,13 +37,11 @@ namespace PagoAgilFrba
             String query = "Select f.idFuncionalidad, f.nombre from WEST_WORLD.Funcionalidad f " +
            "JOIN WEST_WORLD.Rol_Funcionalidad rf ON f.idFuncionalidad=rf.idFuncionalidad " +
                 "JOIN WEST_WORLD.Rol r ON rf.idRol=r.idRol " +
-                "JOIN WEST_WORLD.Rol_Usuario ru ON r.idRol=ru.idRol " +
-               "JOIN WEST_WORLD.Usuario u ON u.idUser=ru.idUsuario " +
-              " WHERE u.[user]=@Usuario";
+                " WHERE r.idRol=@idRol";
  
             SqlCommand sqlCmd = new SqlCommand(query, con);
             sqlCmd.CommandType = CommandType.Text;
-            sqlCmd.Parameters.AddWithValue("@Usuario", this.user);
+            sqlCmd.Parameters.AddWithValue("@idRol", this.idRol);
 
 
         SqlDataReader dr = sqlCmd.ExecuteReader();
@@ -102,7 +101,7 @@ namespace PagoAgilFrba
 
         private void abmSucursal_Click(object sender, EventArgs e)
         {
-            AbmSucursal.sucursalABM sucursalABM = new AbmSucursal.sucursalABM();
+            AbmSucursal.sucursalABM sucursalABM = new AbmSucursal.sucursalABM(this.idSucursal);
             sucursalABM.ShowDialog();
         }
 
@@ -126,8 +125,8 @@ namespace PagoAgilFrba
 
         private void abmRol_Click(object sender, EventArgs e)
         {
-            AbmRol.rolABM rolABM = new AbmRol.rolABM();
-            rolABM.ShowDialog();
+            //AbmRol.rolABM rolABM = new AbmRol.rolABM();
+            //rolABM.ShowDialog();
         }
 
         private void devolverBtn_Click(object sender, EventArgs e)
