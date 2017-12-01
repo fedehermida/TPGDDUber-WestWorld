@@ -175,5 +175,11 @@ namespace PagoAgilFrba.Rendicion
         {
             if (empresaFilterComboBox.SelectedIndex == 0) empresaFilterComboBox.SelectedIndex = -1;
         }
+
+        private void porcentajeComisionTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Utils utils = new Utils();
+            utils.validarCampoDecimal(e);
+        }
     }
 }

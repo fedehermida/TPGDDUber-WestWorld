@@ -8,9 +8,7 @@ CREATE PROCEDURE WEST_WORLD.RendicionCreate
 
 AS
 	
-	DECLARE @ID int
-	SET @ID = (SELECT MAX(numeroRendicion) + 1 FROM WEST_WORLD.Rendicion)
-	INSERT INTO WEST_WORLD.Rendicion(numeroRendicion, cantidadFacturas, empresa, FechaRendicion, importeNeto, importeTotal, porcentajeComision)
-		VALUES(@ID, @CANT_FACTURAS, @IDEMPRESA, @FECHA_RENDICION, @IMPORTE_NETO, @IMPORTE_TOTAL, @PORCENTAJE_COMISION)
+	INSERT INTO WEST_WORLD.Rendicion(cantidadFacturas, empresa, FechaRendicion, importeNeto, importeTotal, porcentajeComision)
+		VALUES(@CANT_FACTURAS, @IDEMPRESA, @FECHA_RENDICION, @IMPORTE_NETO, @IMPORTE_TOTAL, @PORCENTAJE_COMISION)
 
-RETURN @ID
+RETURN SCOPE_IDENTITY()
