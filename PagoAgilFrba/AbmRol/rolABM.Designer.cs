@@ -50,7 +50,7 @@ namespace PagoAgilFrba.AbmRol
             this.FuncionalidadAAgregar.FormattingEnabled = true;
             this.FuncionalidadAAgregar.Location = new System.Drawing.Point(317, 44);
             this.FuncionalidadAAgregar.Name = "FuncionalidadAAgregar";
-            this.FuncionalidadAAgregar.Size = new System.Drawing.Size(121, 21);
+            this.FuncionalidadAAgregar.Size = new System.Drawing.Size(121, 37);
             this.FuncionalidadAAgregar.TabIndex = 0;
             // 
             // label1
@@ -58,7 +58,7 @@ namespace PagoAgilFrba.AbmRol
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(227, 47);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 13);
+            this.label1.Size = new System.Drawing.Size(191, 29);
             this.label1.TabIndex = 1;
             this.label1.Text = "Funcionalidades";
             // 
@@ -66,7 +66,7 @@ namespace PagoAgilFrba.AbmRol
             // 
             this.NombreRol.Location = new System.Drawing.Point(119, 44);
             this.NombreRol.Name = "NombreRol";
-            this.NombreRol.Size = new System.Drawing.Size(100, 20);
+            this.NombreRol.Size = new System.Drawing.Size(100, 35);
             this.NombreRol.TabIndex = 2;
             // 
             // label2
@@ -74,7 +74,7 @@ namespace PagoAgilFrba.AbmRol
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(90, 47);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 13);
+            this.label2.Size = new System.Drawing.Size(50, 29);
             this.label2.TabIndex = 3;
             this.label2.Text = "Rol";
             // 
@@ -131,7 +131,7 @@ namespace PagoAgilFrba.AbmRol
             // 
             this.RolABuscar.Location = new System.Drawing.Point(122, 235);
             this.RolABuscar.Name = "RolABuscar";
-            this.RolABuscar.Size = new System.Drawing.Size(97, 20);
+            this.RolABuscar.Size = new System.Drawing.Size(97, 35);
             this.RolABuscar.TabIndex = 9;
             // 
             // label3
@@ -139,7 +139,7 @@ namespace PagoAgilFrba.AbmRol
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(93, 241);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(23, 13);
+            this.label3.Size = new System.Drawing.Size(50, 29);
             this.label3.TabIndex = 10;
             this.label3.Text = "Rol";
             // 
@@ -148,7 +148,7 @@ namespace PagoAgilFrba.AbmRol
             this.Habilitado.AutoSize = true;
             this.Habilitado.Location = new System.Drawing.Point(119, 84);
             this.Habilitado.Name = "Habilitado";
-            this.Habilitado.Size = new System.Drawing.Size(73, 17);
+            this.Habilitado.Size = new System.Drawing.Size(154, 33);
             this.Habilitado.TabIndex = 11;
             this.Habilitado.Text = "Habilitado";
             this.Habilitado.UseVisualStyleBackColor = true;
@@ -173,9 +173,11 @@ namespace PagoAgilFrba.AbmRol
             this.QuitarBtn.UseVisualStyleBackColor = true;
             this.QuitarBtn.Click += new System.EventHandler(this.QuitarBtn_Click);
             // 
-            // Form1
+            // rolABM
             // 
-            this.ClientSize = new System.Drawing.Size(908, 452);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(649, 520);
             this.Controls.Add(this.QuitarBtn);
             this.Controls.Add(this.LimpiarBtn);
             this.Controls.Add(this.Habilitado);
@@ -190,7 +192,7 @@ namespace PagoAgilFrba.AbmRol
             this.Controls.Add(this.NombreRol);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.FuncionalidadAAgregar);
-            this.Name = "Form1";
+            this.Name = "rolABM";
             ((System.ComponentModel.ISupportInitialize)(this.ListaDeRoles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
