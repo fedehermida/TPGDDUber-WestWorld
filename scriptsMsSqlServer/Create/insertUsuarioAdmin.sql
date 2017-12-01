@@ -1,4 +1,4 @@
-CREATE PROCEDURE insertUsuarioAdmin
+CREATE PROCEDURE WEST_WORLD.insertUsuarioAdmin
 AS
 BEGIN
     INSERT INTO WEST_WORLD.Usuario(

@@ -172,5 +172,21 @@ namespace PagoAgilFrba.AbmCliente
                 codigoPostalTxtBox.Text = dniTextBox.Text = telefonoTxtBox.Text = fechaNacimientoTime.Text = "";
             habilitadoCheck.Checked = false;
         }
+
+        private void dniFilterTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Utils utils = new Utils();
+            utils.validarCampoNumerico(e);
+        }
+
+        private void dniTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            utils.validarCampoNumerico(e);
+        }
+
+        private void telefonoTxtBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            utils.validarCampoNumerico(e);
+        }
     }
 }

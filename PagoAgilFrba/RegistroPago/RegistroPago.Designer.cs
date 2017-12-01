@@ -283,6 +283,7 @@
             this.numFactFilterTextBoxL.Name = "numFactFilterTextBoxL";
             this.numFactFilterTextBoxL.Size = new System.Drawing.Size(121, 20);
             this.numFactFilterTextBoxL.TabIndex = 16;
+            this.numFactFilterTextBoxL.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numFactFilterTextBoxL_KeyPress);
             // 
             // empresaFilterComboBox
             // 
@@ -427,9 +428,9 @@
             this.camposObligatoriosLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.camposObligatoriosLabel.Location = new System.Drawing.Point(692, 455);
             this.camposObligatoriosLabel.Name = "camposObligatoriosLabel";
-            this.camposObligatoriosLabel.Size = new System.Drawing.Size(152, 17);
+            this.camposObligatoriosLabel.Size = new System.Drawing.Size(158, 17);
             this.camposObligatoriosLabel.TabIndex = 31;
-            this.camposObligatoriosLabel.Text = "camposObligatorios (*)";
+            this.camposObligatoriosLabel.Text = "Campos Obligatorios (*)";
             // 
             // RegistroPago
             // 

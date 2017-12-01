@@ -152,6 +152,7 @@
             this.telefonoTxtBox.Name = "telefonoTxtBox";
             this.telefonoTxtBox.Size = new System.Drawing.Size(83, 20);
             this.telefonoTxtBox.TabIndex = 13;
+            this.telefonoTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.telefonoTxtBox_KeyPress);
             // 
             // dniTextBox
             // 
@@ -159,6 +160,7 @@
             this.dniTextBox.Name = "dniTextBox";
             this.dniTextBox.Size = new System.Drawing.Size(83, 20);
             this.dniTextBox.TabIndex = 14;
+            this.dniTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dniTextBox_KeyPress);
             // 
             // codigoPostalTxtBox
             // 
@@ -258,6 +260,7 @@
             this.dniFilterTxt.Name = "dniFilterTxt";
             this.dniFilterTxt.Size = new System.Drawing.Size(100, 20);
             this.dniFilterTxt.TabIndex = 30;
+            this.dniFilterTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dniFilterTxt_KeyPress);
             // 
             // label12
             // 
@@ -306,9 +309,9 @@
             this.camposObligatoriosLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.camposObligatoriosLabel.Location = new System.Drawing.Point(706, 504);
             this.camposObligatoriosLabel.Name = "camposObligatoriosLabel";
-            this.camposObligatoriosLabel.Size = new System.Drawing.Size(152, 17);
+            this.camposObligatoriosLabel.Size = new System.Drawing.Size(158, 17);
             this.camposObligatoriosLabel.TabIndex = 32;
-            this.camposObligatoriosLabel.Text = "camposObligatorios (*)";
+            this.camposObligatoriosLabel.Text = "Campos Obligatorios (*)";
             // 
             // nombreObligLabel
             // 

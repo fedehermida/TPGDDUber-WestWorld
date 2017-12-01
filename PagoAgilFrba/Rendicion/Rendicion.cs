@@ -76,7 +76,7 @@ namespace PagoAgilFrba.Rendicion
                 sqlDa.SelectCommand.Parameters.AddWithValue("@estado", "Con Pago Y Sin Rendicion");
 
                 if (string.IsNullOrWhiteSpace(empresaFilterComboBox.Text.Trim())) sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", DBNull.Value);
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", empresaFilterComboBox.SelectedIndex + 1);
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", empresaFilterComboBox.SelectedIndex);
 
                 sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", DBNull.Value);
                 sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", DBNull.Value);
@@ -149,7 +149,7 @@ namespace PagoAgilFrba.Rendicion
                 sqlCmd.CommandType = CommandType.StoredProcedure;
 
                 sqlCmd.Parameters.AddWithValue("@fecha_rendicion", DateTime.Now);
-                sqlCmd.Parameters.AddWithValue("@idEmpresa", empresaFilterComboBox.SelectedIndex + 1);
+                sqlCmd.Parameters.AddWithValue("@idEmpresa", empresaFilterComboBox.SelectedIndex);
                 utils.validarYAgregarParam(sqlCmd, "@cant_facturas", cantFactTextBox);
 
                 utils.validarImporteYAgregar(sqlCmd, "@importe_neto", importeNetoTextBox);

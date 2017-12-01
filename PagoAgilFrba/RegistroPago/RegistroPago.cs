@@ -234,6 +234,11 @@ namespace PagoAgilFrba.RegistroPago
         private void formaPagoComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (formaPagoComboBox.SelectedIndex == 0) formaPagoComboBox.SelectedIndex = -1;
+        }
+
+        private void numFactFilterTextBoxL_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            utils.validarCampoNumerico(e);
         } 
 
     }

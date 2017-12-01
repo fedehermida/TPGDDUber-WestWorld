@@ -2,7 +2,7 @@ CREATE TABLE "WEST_WORLD"."Cliente"(
 	"idCliente"   	BIGINT IDENTITY(1,1) NOT NULL,
 	"nombre"      	nvarchar(255) NOT NULL,
 	"apellido"    	nvarchar(255) NOT NULL,
-	"mail"        	nvarchar(255) unique NOT NULL,
+	"mail"        	nvarchar(255) UNIQUE NOT NULL,
 	"direccion"   	nvarchar(255) NOT NULL,
 	"codigoPostal"	nvarchar(255) NOT NULL,
 	"DNI"         	bigint NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE "WEST_WORLD"."Cliente"(
 GO
 CREATE TABLE "WEST_WORLD"."Empresa" (
 	"idEmpresa"		bigint IDENTITY(1,1) NOT NULL, 
-	"cuit"      	nvarchar(50) NOT NULL,
+	"cuit"      	nvarchar(50) NOT NULL UNIQUE,
 	"nombre"    	nvarchar(255) NOT NULL,
 	"direccion" 	nvarchar(255) NOT NULL,
 	"idRubro"   	BIGINT NOT NULL,

@@ -273,6 +273,7 @@
             this.diaRendicionTextBox.Name = "diaRendicionTextBox";
             this.diaRendicionTextBox.Size = new System.Drawing.Size(50, 20);
             this.diaRendicionTextBox.TabIndex = 41;
+            this.diaRendicionTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.diaRendicionTextBox_KeyPress);
             // 
             // camposObligatoriosLabel
             // 

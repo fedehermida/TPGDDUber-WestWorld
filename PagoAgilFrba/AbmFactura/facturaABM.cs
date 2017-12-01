@@ -34,6 +34,7 @@ namespace PagoAgilFrba.AbmFactura
             try
             {
                 if (itemsList.Count == 0) throw new Exception("Ingrese items");
+                if (empresaComboBoxNF.SelectedIndex == -1) throw new Exception("Complete los campos obligatorios");
                 if (sqlCon.State == ConnectionState.Closed)
                 {
                     sqlCon.Open();
@@ -43,7 +44,7 @@ namespace PagoAgilFrba.AbmFactura
                     sqlCmd.Parameters.AddWithValue("@mode", "Add");
 
                     utils.validarYAgregarParam(sqlCmd, "@cliente", idClienteTextBox2NF);
-                    sqlCmd.Parameters.AddWithValue("@Empresa", empresaComboBoxNF.SelectedIndex + 1); //+1 Porque arranca de 0
+                    sqlCmd.Parameters.AddWithValue("@Empresa", empresaComboBoxNF.SelectedIndex);
 
                     utils.validarYAgregarParam(sqlCmd, "@numeroFactura", numFactTextBoxNF);
                     sqlCmd.Parameters.AddWithValue("@fecha_alta", fechaAltaFactDT_NF.Value);
@@ -85,7 +86,7 @@ namespace PagoAgilFrba.AbmFactura
                 {
                     SqlException sqlException = ex as SqlException;
                     if (sqlException.Number == 2627) MessageBox.Show("No pueden existir 2 facturas con el mismo numero-factura", "Error Message");
-                    else if (sqlException.Number == 8114) MessageBox.Show("Todos los campos correspondientes son obligatorios", "Error Message");
+                    else if (sqlException.Number == 8114) MessageBox.Show("Complete los campos obligatorios", "Error Message");
                     else MessageBox.Show(ex.Message, "Mensaje de Error");
                 }
                 else
@@ -104,6 +105,8 @@ namespace PagoAgilFrba.AbmFactura
         {
             try
             {
+                if (empresaComboBox.SelectedIndex == -1) throw new Exception("Complete los campos obligatorios");
+
                 actualizarFactura();
 
                 numFactFilterTextBoxL.Text = numFactTextBox.Text.Trim();
@@ -115,7 +118,7 @@ namespace PagoAgilFrba.AbmFactura
                 if (ex is SqlException)
                 {
                     SqlException sqlException = ex as SqlException;
-                    if (sqlException.Number == 8114) MessageBox.Show("Todos los campos correspondientes son obligatorios", "Error Message");
+                    if (sqlException.Number == 8114) MessageBox.Show("Complete los campos obligatorios", "Error Message");
                     else MessageBox.Show(ex.Message, "Mensaje de Error");
                 }
                 else
@@ -141,7 +144,7 @@ namespace PagoAgilFrba.AbmFactura
                 sqlCmd.Parameters.AddWithValue("@mode", "Edit");
 
                 utils.validarYAgregarParam(sqlCmd, "@cliente", idClienteTextBox2);
-                sqlCmd.Parameters.AddWithValue("@Empresa", empresaComboBox.SelectedIndex + 1); //+1 Porque arranca de 0
+                sqlCmd.Parameters.AddWithValue("@Empresa", empresaComboBox.SelectedIndex);
 
                 utils.validarYAgregarParam(sqlCmd, "@numeroFactura", numFactTextBox);
                 sqlCmd.Parameters.AddWithValue("@fecha_alta", fechaAltaFactDT.Value);
@@ -167,6 +170,8 @@ namespace PagoAgilFrba.AbmFactura
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(montoTextBox.Text) | string.IsNullOrWhiteSpace(cantTextBox.Text)) throw new Exception("Debe ingresar Monto y Cantidad");
+
                 if (agregarItemBtn.Text == "Agregar Item")
                 {
                     insertarItem(sender, e);
@@ -353,7 +358,7 @@ namespace PagoAgilFrba.AbmFactura
                 else sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", utils.convertirADecimal(numFactFilterTextBoxL));
 
                 if (string.IsNullOrWhiteSpace(empresaFilterComboBox.Text.Trim())) sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", DBNull.Value);
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", empresaFilterComboBox.SelectedIndex + 1);
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", empresaFilterComboBox.SelectedIndex);
 
                 if (string.IsNullOrWhiteSpace(idClienteTextBox.Text)) sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", DBNull.Value);
                 else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirADecimal(idClienteTextBox));
@@ -389,7 +394,7 @@ namespace PagoAgilFrba.AbmFactura
                     while (reader.Read()) clienteTextBox2.Text = reader.GetString(0);
                     sqlCon.Close();
 
-                    empresaComboBox.SelectedIndex = Convert.ToInt32(facturasDataGridL.CurrentRow.Cells[2].Value.ToString()) - 1;
+                    empresaComboBox.SelectedIndex = Convert.ToInt32(facturasDataGridL.CurrentRow.Cells[2].Value.ToString());
 
                     fechaAltaFactDT.Text = facturasDataGridL.CurrentRow.Cells[3].Value.ToString();
                     fechaVencDT.Text = facturasDataGridL.CurrentRow.Cells[4].Value.ToString();
@@ -613,6 +618,56 @@ namespace PagoAgilFrba.AbmFactura
         private void limpiarItemBtnNF_Click(object sender, EventArgs e)
         {
             montoTextBoxNF.Text = cantTextBoxNF.Text = "";
+        }
+
+        private void numFactFilterTextBoxL_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            utils.validarCampoNumerico(e);
+        }
+
+        private void numFactTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            utils.validarCampoNumerico(e);
+        }
+
+        private void cantTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            utils.validarCampoNumerico(e);
+        }
+
+        private void cantTextBoxNF_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            utils.validarCampoNumerico(e);
+        }
+
+        private void numFactTextBoxNF_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            utils.validarCampoNumerico(e);
+        }
+
+        private void montoTextBoxNF_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            utils.validarCampoDecimal(e);
+        }
+
+        private void montoTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            utils.validarCampoDecimal(e);
+        }
+
+        private void empresaFilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (empresaFilterComboBox.SelectedIndex == 0) empresaFilterComboBox.SelectedIndex = -1;
+        }
+
+        private void empresaComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (empresaComboBox.SelectedIndex == 0) empresaComboBox.SelectedIndex = -1;
+        }
+
+        private void empresaComboBoxNF_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (empresaComboBoxNF.SelectedIndex == 0) empresaComboBoxNF.SelectedIndex = -1;
         }
 
     }

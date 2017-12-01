@@ -21,7 +21,7 @@ alumno y dichas columnas deben ser lo suficientemente descriptivas para poder br
 un informe detallado a la gerencia de la tropa.
 */
 
-CREATE OR ALTER PROCEDURE facturasCobradasPorEmpresa
+CREATE PROCEDURE WEST_WORLD.FacturasCobradasPorEmpresa
 @trimestre INT, @ANIO INT
 AS
 BEGIN
@@ -36,7 +36,7 @@ END
 
 set @MESHASTA = @MESDESDE + 2
 
-SELECT TOP 5 empresa, E.nombre, count(pago) 'Cantidad de Facturas Pagadas', count(numeroFactura) 'Cantidad de facturas totales', CAST(COUNT(pago) AS numeric(12,2))/CAST(COUNT(numeroFactura) AS numeric(12,2)) * 100 as 'Porcentaje de facturas cobradas'
+SELECT TOP 5 empresa 'Empresa', E.nombre 'Nombre', count(pago) 'Cantidad de Facturas Pagadas', count(numeroFactura) 'Cantidad de facturas totales', CAST(COUNT(pago) AS numeric(12,2))/CAST(COUNT(numeroFactura) AS numeric(12,2)) * 100 as 'Porcentaje de facturas cobradas'
 FROM WEST_WORLD.Factura F
 JOIN WEST_WORLD.Pago P ON (F.pago = P.numeroPago)
 JOIN WEST_WORLD.Empresa E ON (F.empresa = E.idEmpresa)
@@ -49,7 +49,7 @@ END
 
 
 
-CREATE OR ALTER PROCEDURE empresasConMayorMontoRendido
+CREATE PROCEDURE WEST_WORLD.EmpresasConMayorMontoRendido
 @trimestre int, @anio int
 AS
 BEGIN
@@ -65,7 +65,7 @@ END
 
 set @MESHASTA = @MESDESDE + 2
 
-SELECT TOP 5 empresa, e.nombre, SUM(importeNeto) AS 'Cantidad Rendida'
+SELECT TOP 5 empresa 'Empresa', e.nombre 'Nombre', SUM(importeNeto) AS 'Cantidad Rendida'
 FROM WEST_WORLD.Rendicion r
 JOIN WEST_WORLD.Empresa e ON (e.idEmpresa = r.empresa)
 WHERE	DATEPART(YEAR, FechaRendicion) = @ANIO AND
@@ -75,9 +75,9 @@ ORDER BY 3
 end
 
 
-execute empresasConMayorMontoRendido 2, 2017
+--execute empresasConMayorMontoRendido 2, 2017
 
-CREATE OR ALTER PROCEDURE ClientesConMasPagos
+CREATE PROCEDURE WEST_WORLD.ClientesConMasPagos
 @trimestre INT, @ANIO INT
 AS
 BEGIN
@@ -105,7 +105,7 @@ END
 
 --EXECUTE ClientesConMasPagos 2, 2017
 
-CREATE OR ALTER PROCEDURE ClientesCumplidores
+CREATE PROCEDURE WEST_WORLD.ClientesCumplidores
 @trimestre INT, @ANIO INT
 AS
 BEGIN

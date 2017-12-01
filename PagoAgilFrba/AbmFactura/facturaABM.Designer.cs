@@ -106,6 +106,17 @@
             this.empresaComboBoxNF = new System.Windows.Forms.ComboBox();
             this.numFactTextBoxNF = new System.Windows.Forms.TextBox();
             this.empresaLabelNF = new System.Windows.Forms.Label();
+            this.camposObligatoriosLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.facturaTabControl.SuspendLayout();
             this.ListadoTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.facturasDataGridL)).BeginInit();
@@ -151,7 +162,7 @@
             // 
             // limpiarBtnL
             // 
-            this.limpiarBtnL.Location = new System.Drawing.Point(303, 390);
+            this.limpiarBtnL.Location = new System.Drawing.Point(328, 405);
             this.limpiarBtnL.Name = "limpiarBtnL";
             this.limpiarBtnL.Size = new System.Drawing.Size(109, 31);
             this.limpiarBtnL.TabIndex = 4;
@@ -261,6 +272,7 @@
             this.numFactFilterTextBoxL.Name = "numFactFilterTextBoxL";
             this.numFactFilterTextBoxL.Size = new System.Drawing.Size(121, 20);
             this.numFactFilterTextBoxL.TabIndex = 16;
+            this.numFactFilterTextBoxL.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numFactFilterTextBoxL_KeyPress);
             // 
             // empresaFilterComboBox
             // 
@@ -270,6 +282,7 @@
             this.empresaFilterComboBox.Name = "empresaFilterComboBox";
             this.empresaFilterComboBox.Size = new System.Drawing.Size(142, 21);
             this.empresaFilterComboBox.TabIndex = 19;
+            this.empresaFilterComboBox.SelectedIndexChanged += new System.EventHandler(this.empresaFilterComboBox_SelectedIndexChanged);
             // 
             // searchBtnL
             // 
@@ -292,6 +305,11 @@
             // 
             // ActualizarTab
             // 
+            this.ActualizarTab.Controls.Add(this.label10);
+            this.ActualizarTab.Controls.Add(this.label9);
+            this.ActualizarTab.Controls.Add(this.label8);
+            this.ActualizarTab.Controls.Add(this.label7);
+            this.ActualizarTab.Controls.Add(this.label6);
             this.ActualizarTab.Controls.Add(this.clienteGroupBox2);
             this.ActualizarTab.Controls.Add(this.limpiarBtn);
             this.ActualizarTab.Controls.Add(this.itemsGroupBox);
@@ -319,12 +337,12 @@
             this.clienteGroupBox2.Controls.Add(this.idClienteTextBox2);
             this.clienteGroupBox2.Controls.Add(this.seleccionarBtn2);
             this.clienteGroupBox2.Controls.Add(this.clienteTextBox2);
-            this.clienteGroupBox2.Location = new System.Drawing.Point(45, 87);
+            this.clienteGroupBox2.Location = new System.Drawing.Point(43, 78);
             this.clienteGroupBox2.Name = "clienteGroupBox2";
             this.clienteGroupBox2.Size = new System.Drawing.Size(291, 54);
             this.clienteGroupBox2.TabIndex = 37;
             this.clienteGroupBox2.TabStop = false;
-            this.clienteGroupBox2.Text = "Cliente";
+            this.clienteGroupBox2.Text = "Cliente (*)";
             // 
             // idClienteTextBox2
             // 
@@ -354,7 +372,7 @@
             // 
             // limpiarBtn
             // 
-            this.limpiarBtn.Location = new System.Drawing.Point(330, 415);
+            this.limpiarBtn.Location = new System.Drawing.Point(328, 406);
             this.limpiarBtn.Name = "limpiarBtn";
             this.limpiarBtn.Size = new System.Drawing.Size(83, 29);
             this.limpiarBtn.TabIndex = 36;
@@ -370,7 +388,7 @@
             this.itemsGroupBox.Controls.Add(this.itemsFacturaLabel);
             this.itemsGroupBox.Controls.Add(this.actualizarItemsBtn);
             this.itemsGroupBox.Controls.Add(this.itemsDataGrid);
-            this.itemsGroupBox.Location = new System.Drawing.Point(44, 194);
+            this.itemsGroupBox.Location = new System.Drawing.Point(42, 185);
             this.itemsGroupBox.Name = "itemsGroupBox";
             this.itemsGroupBox.Size = new System.Drawing.Size(676, 206);
             this.itemsGroupBox.TabIndex = 34;
@@ -408,6 +426,7 @@
             this.montoTextBox.Name = "montoTextBox";
             this.montoTextBox.Size = new System.Drawing.Size(100, 20);
             this.montoTextBox.TabIndex = 14;
+            this.montoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.montoTextBox_KeyPress);
             // 
             // agregarItemBtn
             // 
@@ -425,6 +444,7 @@
             this.cantTextBox.Name = "cantTextBox";
             this.cantTextBox.Size = new System.Drawing.Size(100, 20);
             this.cantTextBox.TabIndex = 13;
+            this.cantTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cantTextBox_KeyPress);
             // 
             // cantidadLabel
             // 
@@ -484,16 +504,18 @@
             // itemsDataGrid
             // 
             this.itemsDataGrid.AllowUserToAddRows = false;
+            this.itemsDataGrid.AllowUserToDeleteRows = false;
             this.itemsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.itemsDataGrid.Location = new System.Drawing.Point(313, 36);
             this.itemsDataGrid.Name = "itemsDataGrid";
+            this.itemsDataGrid.ReadOnly = true;
             this.itemsDataGrid.Size = new System.Drawing.Size(346, 140);
             this.itemsDataGrid.TabIndex = 18;
             this.itemsDataGrid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.itemsDataGrid_MouseDoubleClick_1);
             // 
             // actualizarFactButton
             // 
-            this.actualizarFactButton.Location = new System.Drawing.Point(310, 147);
+            this.actualizarFactButton.Location = new System.Drawing.Point(308, 138);
             this.actualizarFactButton.Name = "actualizarFactButton";
             this.actualizarFactButton.Size = new System.Drawing.Size(121, 37);
             this.actualizarFactButton.TabIndex = 33;
@@ -504,7 +526,7 @@
             // totalTextBox
             // 
             this.totalTextBox.Enabled = false;
-            this.totalTextBox.Location = new System.Drawing.Point(600, 168);
+            this.totalTextBox.Location = new System.Drawing.Point(598, 159);
             this.totalTextBox.Name = "totalTextBox";
             this.totalTextBox.Size = new System.Drawing.Size(103, 20);
             this.totalTextBox.TabIndex = 32;
@@ -512,7 +534,7 @@
             // totalLabel
             // 
             this.totalLabel.AutoSize = true;
-            this.totalLabel.Location = new System.Drawing.Point(547, 171);
+            this.totalLabel.Location = new System.Drawing.Point(545, 162);
             this.totalLabel.Name = "totalLabel";
             this.totalLabel.Size = new System.Drawing.Size(31, 13);
             this.totalLabel.TabIndex = 31;
@@ -521,7 +543,7 @@
             // fechaVencLabel
             // 
             this.fechaVencLabel.AutoSize = true;
-            this.fechaVencLabel.Location = new System.Drawing.Point(393, 76);
+            this.fechaVencLabel.Location = new System.Drawing.Point(391, 67);
             this.fechaVencLabel.Name = "fechaVencLabel";
             this.fechaVencLabel.Size = new System.Drawing.Size(113, 13);
             this.fechaVencLabel.TabIndex = 30;
@@ -529,7 +551,7 @@
             // 
             // fechaVencDT
             // 
-            this.fechaVencDT.Location = new System.Drawing.Point(521, 76);
+            this.fechaVencDT.Location = new System.Drawing.Point(519, 67);
             this.fechaVencDT.Name = "fechaVencDT";
             this.fechaVencDT.Size = new System.Drawing.Size(213, 20);
             this.fechaVencDT.TabIndex = 29;
@@ -538,7 +560,7 @@
             // fechaAltaFactLabel
             // 
             this.fechaAltaFactLabel.AutoSize = true;
-            this.fechaAltaFactLabel.Location = new System.Drawing.Point(409, 31);
+            this.fechaAltaFactLabel.Location = new System.Drawing.Point(407, 22);
             this.fechaAltaFactLabel.Name = "fechaAltaFactLabel";
             this.fechaAltaFactLabel.Size = new System.Drawing.Size(97, 13);
             this.fechaAltaFactLabel.TabIndex = 28;
@@ -547,7 +569,7 @@
             // fechaAltaFactDT
             // 
             this.fechaAltaFactDT.Enabled = false;
-            this.fechaAltaFactDT.Location = new System.Drawing.Point(521, 31);
+            this.fechaAltaFactDT.Location = new System.Drawing.Point(519, 22);
             this.fechaAltaFactDT.Name = "fechaAltaFactDT";
             this.fechaAltaFactDT.Size = new System.Drawing.Size(213, 20);
             this.fechaAltaFactDT.TabIndex = 27;
@@ -555,7 +577,7 @@
             // numFactLabel
             // 
             this.numFactLabel.AutoSize = true;
-            this.numFactLabel.Location = new System.Drawing.Point(63, 34);
+            this.numFactLabel.Location = new System.Drawing.Point(61, 25);
             this.numFactLabel.Name = "numFactLabel";
             this.numFactLabel.Size = new System.Drawing.Size(98, 13);
             this.numFactLabel.TabIndex = 26;
@@ -565,22 +587,24 @@
             // 
             this.empresaComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.empresaComboBox.FormattingEnabled = true;
-            this.empresaComboBox.Location = new System.Drawing.Point(175, 60);
+            this.empresaComboBox.Location = new System.Drawing.Point(173, 51);
             this.empresaComboBox.Name = "empresaComboBox";
             this.empresaComboBox.Size = new System.Drawing.Size(121, 21);
             this.empresaComboBox.TabIndex = 25;
+            this.empresaComboBox.SelectedIndexChanged += new System.EventHandler(this.empresaComboBox_SelectedIndexChanged);
             // 
             // numFactTextBox
             // 
-            this.numFactTextBox.Location = new System.Drawing.Point(175, 34);
+            this.numFactTextBox.Location = new System.Drawing.Point(173, 25);
             this.numFactTextBox.Name = "numFactTextBox";
             this.numFactTextBox.Size = new System.Drawing.Size(121, 20);
             this.numFactTextBox.TabIndex = 24;
+            this.numFactTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numFactTextBox_KeyPress);
             // 
             // empresaLabel
             // 
             this.empresaLabel.AutoSize = true;
-            this.empresaLabel.Location = new System.Drawing.Point(102, 60);
+            this.empresaLabel.Location = new System.Drawing.Point(100, 51);
             this.empresaLabel.Name = "empresaLabel";
             this.empresaLabel.Size = new System.Drawing.Size(48, 13);
             this.empresaLabel.TabIndex = 23;
@@ -588,6 +612,11 @@
             // 
             // nuevaFacturaTab
             // 
+            this.nuevaFacturaTab.Controls.Add(this.label5);
+            this.nuevaFacturaTab.Controls.Add(this.label4);
+            this.nuevaFacturaTab.Controls.Add(this.label3);
+            this.nuevaFacturaTab.Controls.Add(this.label2);
+            this.nuevaFacturaTab.Controls.Add(this.label1);
             this.nuevaFacturaTab.Controls.Add(this.clienteGroupBox2NF);
             this.nuevaFacturaTab.Controls.Add(this.LimpiarNF);
             this.nuevaFacturaTab.Controls.Add(this.itemsGroupBoxNF);
@@ -620,7 +649,7 @@
             this.clienteGroupBox2NF.Size = new System.Drawing.Size(291, 54);
             this.clienteGroupBox2NF.TabIndex = 51;
             this.clienteGroupBox2NF.TabStop = false;
-            this.clienteGroupBox2NF.Text = "Cliente";
+            this.clienteGroupBox2NF.Text = "Cliente (*)";
             // 
             // idClienteTextBox2NF
             // 
@@ -703,6 +732,7 @@
             this.montoTextBoxNF.Name = "montoTextBoxNF";
             this.montoTextBoxNF.Size = new System.Drawing.Size(100, 20);
             this.montoTextBoxNF.TabIndex = 14;
+            this.montoTextBoxNF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.montoTextBoxNF_KeyPress);
             // 
             // agregarItemBtnNF
             // 
@@ -720,6 +750,7 @@
             this.cantTextBoxNF.Name = "cantTextBoxNF";
             this.cantTextBoxNF.Size = new System.Drawing.Size(100, 20);
             this.cantTextBoxNF.TabIndex = 13;
+            this.cantTextBoxNF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cantTextBoxNF_KeyPress);
             // 
             // cantidadLabelNF
             // 
@@ -772,12 +803,14 @@
             this.itemsDataGridNF.AllowUserToDeleteRows = false;
             this.itemsDataGridNF.AllowUserToResizeRows = false;
             this.itemsDataGridNF.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.itemsDataGridNF.ColumnHeadersVisible = false;
             this.itemsDataGridNF.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Monto,
             this.Cantidad,
             this.Importe});
             this.itemsDataGridNF.Location = new System.Drawing.Point(313, 36);
             this.itemsDataGridNF.Name = "itemsDataGridNF";
+            this.itemsDataGridNF.ReadOnly = true;
             this.itemsDataGridNF.Size = new System.Drawing.Size(346, 140);
             this.itemsDataGridNF.TabIndex = 18;
             // 
@@ -836,7 +869,7 @@
             // 
             this.fechaVencDT_NF.Location = new System.Drawing.Point(519, 66);
             this.fechaVencDT_NF.Name = "fechaVencDT_NF";
-            this.fechaVencDT_NF.Size = new System.Drawing.Size(200, 20);
+            this.fechaVencDT_NF.Size = new System.Drawing.Size(211, 20);
             this.fechaVencDT_NF.TabIndex = 44;
             // 
             // fechaAltaFactLabelNF
@@ -853,7 +886,7 @@
             this.fechaAltaFactDT_NF.Enabled = false;
             this.fechaAltaFactDT_NF.Location = new System.Drawing.Point(519, 21);
             this.fechaAltaFactDT_NF.Name = "fechaAltaFactDT_NF";
-            this.fechaAltaFactDT_NF.Size = new System.Drawing.Size(200, 20);
+            this.fechaAltaFactDT_NF.Size = new System.Drawing.Size(211, 20);
             this.fechaAltaFactDT_NF.TabIndex = 42;
             // 
             // numFactLabelNF
@@ -873,6 +906,7 @@
             this.empresaComboBoxNF.Name = "empresaComboBoxNF";
             this.empresaComboBoxNF.Size = new System.Drawing.Size(121, 21);
             this.empresaComboBoxNF.TabIndex = 40;
+            this.empresaComboBoxNF.SelectedIndexChanged += new System.EventHandler(this.empresaComboBoxNF_SelectedIndexChanged);
             // 
             // numFactTextBoxNF
             // 
@@ -880,6 +914,7 @@
             this.numFactTextBoxNF.Name = "numFactTextBoxNF";
             this.numFactTextBoxNF.Size = new System.Drawing.Size(121, 20);
             this.numFactTextBoxNF.TabIndex = 39;
+            this.numFactTextBoxNF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numFactTextBoxNF_KeyPress);
             // 
             // empresaLabelNF
             // 
@@ -890,12 +925,123 @@
             this.empresaLabelNF.TabIndex = 38;
             this.empresaLabelNF.Text = "Empresa";
             // 
+            // camposObligatoriosLabel
+            // 
+            this.camposObligatoriosLabel.AutoSize = true;
+            this.camposObligatoriosLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.camposObligatoriosLabel.Location = new System.Drawing.Point(619, 496);
+            this.camposObligatoriosLabel.Name = "camposObligatoriosLabel";
+            this.camposObligatoriosLabel.Size = new System.Drawing.Size(158, 17);
+            this.camposObligatoriosLabel.TabIndex = 34;
+            this.camposObligatoriosLabel.Text = "Campos Obligatorios (*)";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label1.Location = new System.Drawing.Point(300, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(23, 17);
+            this.label1.TabIndex = 52;
+            this.label1.Text = "(*)";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label2.Location = new System.Drawing.Point(300, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(23, 17);
+            this.label2.TabIndex = 53;
+            this.label2.Text = "(*)";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label3.Location = new System.Drawing.Point(732, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(23, 17);
+            this.label3.TabIndex = 54;
+            this.label3.Text = "(*)";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label4.Location = new System.Drawing.Point(732, 66);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(23, 17);
+            this.label4.TabIndex = 55;
+            this.label4.Text = "(*)";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label5.Location = new System.Drawing.Point(707, 157);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(23, 17);
+            this.label5.TabIndex = 56;
+            this.label5.Text = "(*)";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label6.Location = new System.Drawing.Point(300, 25);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(23, 17);
+            this.label6.TabIndex = 53;
+            this.label6.Text = "(*)";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label7.Location = new System.Drawing.Point(300, 51);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(23, 17);
+            this.label7.TabIndex = 54;
+            this.label7.Text = "(*)";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label8.Location = new System.Drawing.Point(732, 67);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(23, 17);
+            this.label8.TabIndex = 55;
+            this.label8.Text = "(*)";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label9.Location = new System.Drawing.Point(732, 21);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(23, 17);
+            this.label9.TabIndex = 56;
+            this.label9.Text = "(*)";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label10.Location = new System.Drawing.Point(707, 159);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(23, 17);
+            this.label10.TabIndex = 57;
+            this.label10.Text = "(*)";
+            // 
             // facturaABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(796, 505);
+            this.ClientSize = new System.Drawing.Size(796, 519);
             this.Controls.Add(this.facturaTabControl);
+            this.Controls.Add(this.camposObligatoriosLabel);
             this.Name = "facturaABM";
             this.Text = "ABM  Factura";
             this.facturaTabControl.ResumeLayout(false);
@@ -925,6 +1071,7 @@
             this.itemGroupBoxNF.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemsDataGridNF)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1008,6 +1155,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
+        private System.Windows.Forms.Label camposObligatoriosLabel;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
 
 
     }

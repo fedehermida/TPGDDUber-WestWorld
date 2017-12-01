@@ -164,6 +164,22 @@ namespace PagoAgilFrba
             else this.validarConvYAgregarParam(sqlCmd, variable, text);
         }
 
+        public void validarCampoNumerico(KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar)) e.Handled = false;
+            else if (Char.IsSeparator(e.KeyChar)) e.Handled = false;
+            else if (Char.IsControl(e.KeyChar)) e.Handled = false;            
+            else e.Handled = true;
+        }
+
+        public void validarCampoDecimal(KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar)) e.Handled = false;
+            else if (Char.IsSeparator(e.KeyChar)) e.Handled = false;
+            else if (Char.IsControl(e.KeyChar)) e.Handled = false;
+            else if (e.KeyChar.ToString().Equals(".")) e.Handled = false;
+            else e.Handled = true;
+        }
 
         public string calcularColumna(string columna, DataTable dtbl)
         {

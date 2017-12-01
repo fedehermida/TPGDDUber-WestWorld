@@ -203,6 +203,11 @@ namespace PagoAgilFrba.AbmEmpresa
             if (rubroFilterComboBox.SelectedIndex == 0) rubroFilterComboBox.SelectedIndex = -1;
         }
 
+        private void diaRendicionTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            utils.validarCampoNumerico(e);
+        }
+
 
     }
 }

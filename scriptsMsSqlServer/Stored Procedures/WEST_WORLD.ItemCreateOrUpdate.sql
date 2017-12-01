@@ -13,7 +13,8 @@ AS
 					   WHERE numeroFactura = @NUMEROFACTURA AND monto = @MONTO 
 							 AND cantidad = @CANTIDAD)				
 				RAISERROR(N'Ya existe el item ingresado para la factura %I64i', 15,2, @NUMEROFACTURA)
-
+			ELSE IF NOT EXISTS (SELECT * FROM WEST_WORLD.Factura WHERE numeroFactura = @NUMEROFACTURA)
+				RAISERROR(N'No existe la factura %I64i por lo que no se agregó el item', 15, 2, @NUMEROFACTURA)
 			ELSE
 				INSERT INTO WEST_WORLD.Item(numeroFactura, cantidad, monto, importe)
 				VALUES(@NUMEROFACTURA, @CANTIDAD, @MONTO, @CANTIDAD*@MONTO)

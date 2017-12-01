@@ -25,7 +25,7 @@ INSERT INTO WEST_WORLD.Rol_Funcionalidad values (7,1);
 INSERT INTO WEST_WORLD.Rol_Funcionalidad values (8,1);
 
 
-
+execute WEST_WORLD.insertUsuarioAdmin
 
 INSERT INTO WEST_WORLD.Rol_Usuario values (1,1);
 

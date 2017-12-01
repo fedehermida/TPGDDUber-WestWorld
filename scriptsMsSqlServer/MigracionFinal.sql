@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE migracion
+CREATE PROCEDURE WEST_WORLD.Migracion
 AS 
 BEGIN
 
@@ -172,5 +172,3 @@ MERGE INTO WEST_WORLD.Factura TNN
 	DROP TABLE #RendicionNueva
 
 END
-
-execute migracion
