@@ -48,7 +48,7 @@ namespace PagoAgilFrba.AbmRol
             // FuncionalidadAAgregar
             // 
             this.FuncionalidadAAgregar.FormattingEnabled = true;
-            this.FuncionalidadAAgregar.Location = new System.Drawing.Point(317, 44);
+            this.FuncionalidadAAgregar.Location = new System.Drawing.Point(712, 54);
             this.FuncionalidadAAgregar.Name = "FuncionalidadAAgregar";
             this.FuncionalidadAAgregar.Size = new System.Drawing.Size(121, 37);
             this.FuncionalidadAAgregar.TabIndex = 0;
@@ -56,7 +56,7 @@ namespace PagoAgilFrba.AbmRol
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(227, 47);
+            this.label1.Location = new System.Drawing.Point(504, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(191, 29);
             this.label1.TabIndex = 1;
@@ -64,15 +64,15 @@ namespace PagoAgilFrba.AbmRol
             // 
             // NombreRol
             // 
-            this.NombreRol.Location = new System.Drawing.Point(119, 44);
+            this.NombreRol.Location = new System.Drawing.Point(240, 54);
             this.NombreRol.Name = "NombreRol";
-            this.NombreRol.Size = new System.Drawing.Size(100, 35);
+            this.NombreRol.Size = new System.Drawing.Size(214, 35);
             this.NombreRol.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(90, 47);
+            this.label2.Location = new System.Drawing.Point(187, 57);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 29);
             this.label2.TabIndex = 3;
@@ -81,7 +81,7 @@ namespace PagoAgilFrba.AbmRol
             // listaFuncionalidadrs
             // 
             this.listaFuncionalidadrs.GridLines = true;
-            this.listaFuncionalidadrs.Location = new System.Drawing.Point(317, 84);
+            this.listaFuncionalidadrs.Location = new System.Drawing.Point(712, 97);
             this.listaFuncionalidadrs.Name = "listaFuncionalidadrs";
             this.listaFuncionalidadrs.Size = new System.Drawing.Size(121, 97);
             this.listaFuncionalidadrs.TabIndex = 4;
@@ -90,9 +90,9 @@ namespace PagoAgilFrba.AbmRol
             // 
             // CrearOUpdatear
             // 
-            this.CrearOUpdatear.Location = new System.Drawing.Point(363, 187);
+            this.CrearOUpdatear.Location = new System.Drawing.Point(712, 217);
             this.CrearOUpdatear.Name = "CrearOUpdatear";
-            this.CrearOUpdatear.Size = new System.Drawing.Size(75, 23);
+            this.CrearOUpdatear.Size = new System.Drawing.Size(117, 39);
             this.CrearOUpdatear.TabIndex = 5;
             this.CrearOUpdatear.Text = "Crear";
             this.CrearOUpdatear.UseVisualStyleBackColor = true;
@@ -100,9 +100,9 @@ namespace PagoAgilFrba.AbmRol
             // 
             // Agregar
             // 
-            this.Agregar.Location = new System.Drawing.Point(445, 41);
+            this.Agregar.Location = new System.Drawing.Point(855, 54);
             this.Agregar.Name = "Agregar";
-            this.Agregar.Size = new System.Drawing.Size(75, 23);
+            this.Agregar.Size = new System.Drawing.Size(132, 63);
             this.Agregar.TabIndex = 6;
             this.Agregar.Text = "Agregar";
             this.Agregar.UseVisualStyleBackColor = true;
@@ -111,17 +111,17 @@ namespace PagoAgilFrba.AbmRol
             // ListaDeRoles
             // 
             this.ListaDeRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ListaDeRoles.Location = new System.Drawing.Point(93, 275);
+            this.ListaDeRoles.Location = new System.Drawing.Point(43, 374);
             this.ListaDeRoles.Name = "ListaDeRoles";
-            this.ListaDeRoles.Size = new System.Drawing.Size(427, 150);
+            this.ListaDeRoles.Size = new System.Drawing.Size(1054, 378);
             this.ListaDeRoles.TabIndex = 7;
             this.ListaDeRoles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListaDeRoles_CellDoubleClick);
             // 
             // BuscarRol
             // 
-            this.BuscarRol.Location = new System.Drawing.Point(230, 233);
+            this.BuscarRol.Location = new System.Drawing.Point(607, 312);
             this.BuscarRol.Name = "BuscarRol";
-            this.BuscarRol.Size = new System.Drawing.Size(139, 23);
+            this.BuscarRol.Size = new System.Drawing.Size(178, 56);
             this.BuscarRol.TabIndex = 8;
             this.BuscarRol.Text = "Buscar";
             this.BuscarRol.UseVisualStyleBackColor = true;
@@ -129,15 +129,15 @@ namespace PagoAgilFrba.AbmRol
             // 
             // RolABuscar
             // 
-            this.RolABuscar.Location = new System.Drawing.Point(122, 235);
+            this.RolABuscar.Location = new System.Drawing.Point(195, 323);
             this.RolABuscar.Name = "RolABuscar";
-            this.RolABuscar.Size = new System.Drawing.Size(97, 35);
+            this.RolABuscar.Size = new System.Drawing.Size(259, 35);
             this.RolABuscar.TabIndex = 9;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(93, 241);
+            this.label3.Location = new System.Drawing.Point(139, 326);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(50, 29);
             this.label3.TabIndex = 10;
@@ -146,7 +146,7 @@ namespace PagoAgilFrba.AbmRol
             // Habilitado
             // 
             this.Habilitado.AutoSize = true;
-            this.Habilitado.Location = new System.Drawing.Point(119, 84);
+            this.Habilitado.Location = new System.Drawing.Point(195, 130);
             this.Habilitado.Name = "Habilitado";
             this.Habilitado.Size = new System.Drawing.Size(154, 33);
             this.Habilitado.TabIndex = 11;
@@ -155,9 +155,9 @@ namespace PagoAgilFrba.AbmRol
             // 
             // LimpiarBtn
             // 
-            this.LimpiarBtn.Location = new System.Drawing.Point(375, 233);
+            this.LimpiarBtn.Location = new System.Drawing.Point(815, 312);
             this.LimpiarBtn.Name = "LimpiarBtn";
-            this.LimpiarBtn.Size = new System.Drawing.Size(145, 23);
+            this.LimpiarBtn.Size = new System.Drawing.Size(183, 56);
             this.LimpiarBtn.TabIndex = 12;
             this.LimpiarBtn.Text = "Limpiar";
             this.LimpiarBtn.UseVisualStyleBackColor = true;
@@ -165,9 +165,9 @@ namespace PagoAgilFrba.AbmRol
             // 
             // QuitarBtn
             // 
-            this.QuitarBtn.Location = new System.Drawing.Point(445, 84);
+            this.QuitarBtn.Location = new System.Drawing.Point(855, 146);
             this.QuitarBtn.Name = "QuitarBtn";
-            this.QuitarBtn.Size = new System.Drawing.Size(75, 23);
+            this.QuitarBtn.Size = new System.Drawing.Size(132, 59);
             this.QuitarBtn.TabIndex = 13;
             this.QuitarBtn.Text = "Quitar";
             this.QuitarBtn.UseVisualStyleBackColor = true;
@@ -177,7 +177,7 @@ namespace PagoAgilFrba.AbmRol
             // 
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(649, 520);
+            this.ClientSize = new System.Drawing.Size(1134, 793);
             this.Controls.Add(this.QuitarBtn);
             this.Controls.Add(this.LimpiarBtn);
             this.Controls.Add(this.Habilitado);

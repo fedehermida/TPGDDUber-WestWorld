@@ -81,7 +81,7 @@ namespace PagoAgilFrba.Rendicion
                 sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", DBNull.Value);
                 sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", DBNull.Value);
 
-                sqlDa.SelectCommand.Parameters.AddWithValue("@mes", mesesComboBox.SelectedIndex + 1);
+                sqlDa.SelectCommand.Parameters.AddWithValue("@mes", mesesComboBox.SelectedIndex);
 
                 DataTable dtbl = new DataTable();
                 facturasDataGrid.DataSource = dtbl;
@@ -106,7 +106,7 @@ namespace PagoAgilFrba.Rendicion
         {
             limpiarRendBtn_Click(sender, e);
             facturasDataGrid.DataSource = new DataTable();
-            empresaFilterComboBox.Text = mesesComboBox.Text = "";
+            empresaFilterComboBox.SelectedIndex = mesesComboBox.SelectedIndex = -1;
             numFactList = new List<int>();
         }
 
@@ -171,5 +171,9 @@ namespace PagoAgilFrba.Rendicion
             return -1;
         }
 
+        private void empresaFilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (empresaFilterComboBox.SelectedIndex == 0) empresaFilterComboBox.SelectedIndex = -1;
+        }
     }
 }
