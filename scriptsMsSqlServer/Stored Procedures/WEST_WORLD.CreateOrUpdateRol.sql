@@ -1,4 +1,4 @@
-alter PROCEDURE WEST_WORLD.CreateOrUpdateRol
+CREATE PROCEDURE WEST_WORLD.CreateOrUpdateRol
 @nombre VARCHAR(50),
 @habilitado bit
 
