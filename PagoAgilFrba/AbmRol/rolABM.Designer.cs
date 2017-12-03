@@ -56,7 +56,7 @@ namespace PagoAgilFrba.AbmRol
             // 
             this.funcionalidadesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.funcionalidadesComboBox.FormattingEnabled = true;
-            this.funcionalidadesComboBox.Location = new System.Drawing.Point(350, 18);
+            this.funcionalidadesComboBox.Location = new System.Drawing.Point(350, 14);
             this.funcionalidadesComboBox.Name = "funcionalidadesComboBox";
             this.funcionalidadesComboBox.Size = new System.Drawing.Size(121, 21);
             this.funcionalidadesComboBox.TabIndex = 3;
@@ -64,7 +64,7 @@ namespace PagoAgilFrba.AbmRol
             // funcionalidadesLabel
             // 
             this.funcionalidadesLabel.AutoSize = true;
-            this.funcionalidadesLabel.Location = new System.Drawing.Point(260, 21);
+            this.funcionalidadesLabel.Location = new System.Drawing.Point(260, 17);
             this.funcionalidadesLabel.Name = "funcionalidadesLabel";
             this.funcionalidadesLabel.Size = new System.Drawing.Size(84, 13);
             this.funcionalidadesLabel.TabIndex = 1;
@@ -89,9 +89,9 @@ namespace PagoAgilFrba.AbmRol
             // funcionalidadesListView
             // 
             this.funcionalidadesListView.GridLines = true;
-            this.funcionalidadesListView.Location = new System.Drawing.Point(350, 45);
+            this.funcionalidadesListView.Location = new System.Drawing.Point(262, 45);
             this.funcionalidadesListView.Name = "funcionalidadesListView";
-            this.funcionalidadesListView.Size = new System.Drawing.Size(121, 97);
+            this.funcionalidadesListView.Size = new System.Drawing.Size(209, 97);
             this.funcionalidadesListView.TabIndex = 4;
             this.funcionalidadesListView.UseCompatibleStateImageBehavior = false;
             this.funcionalidadesListView.View = System.Windows.Forms.View.List;
@@ -240,7 +240,7 @@ namespace PagoAgilFrba.AbmRol
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label6.Location = new System.Drawing.Point(321, 48);
+            this.label6.Location = new System.Drawing.Point(231, 15);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(23, 17);
             this.label6.TabIndex = 20;

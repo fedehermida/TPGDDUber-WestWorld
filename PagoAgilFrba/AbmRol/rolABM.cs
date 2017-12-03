@@ -39,7 +39,7 @@ namespace PagoAgilFrba.AbmRol
                     if (string.IsNullOrWhiteSpace(rolTextBox.Text.Trim())) throw new Exception("Ingrese un nombre de Rol");
                     if (funcionalidades.Count == 0) throw new Exception("Debe agregar funcionadidades");
                     sqlCon.Open();
-                    SqlCommand sqlCmd = new SqlCommand("WEST_WORLD.CreateOrUpdateRol", sqlCon);
+                    SqlCommand sqlCmd = new SqlCommand("WEST_WORLD.CreateRol", sqlCon);
                     sqlCmd.CommandType = CommandType.StoredProcedure;
 
                     utils.validarYAgregarParam(sqlCmd, "@nombre", rolTextBox);
@@ -52,6 +52,11 @@ namespace PagoAgilFrba.AbmRol
 
                     int idRol = -1;
                     idRol = Convert.ToInt32(returnParameter.Value);
+                    SqlCommand sqlCom1 = new SqlCommand("WEST_WORLD.ValidarCreateOrUpdateRol", sqlCon);
+                    sqlCom1.CommandType = CommandType.StoredProcedure;
+                    sqlCom1.Parameters.AddWithValue("@idRol", idRol);
+                    
+                    sqlCom1.ExecuteNonQuery();
 
                     foreach (int id in funcionalidades)
                     {
@@ -63,7 +68,7 @@ namespace PagoAgilFrba.AbmRol
                     }
 
                     sqlCon.Close();
-                    MessageBox.Show("Rol creado correctamente");
+                    MessageBox.Show("Rol creado correctamente", "Mensaje");
                 }
                 else
                 {
@@ -97,7 +102,16 @@ namespace PagoAgilFrba.AbmRol
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error message");
+                if (ex is SqlException)
+                {
+                    SqlException sqlException = ex as SqlException;
+
+                    if (sqlException.Number == 2627) MessageBox.Show("No pueden existir 2 clientes con el mismo mail", "Error Message");
+                    else if (sqlException.Number == 8114) MessageBox.Show("Todos los campos son obligatorios", "Error Message");
+                    else MessageBox.Show(ex.Message, "Mensaje de Error");
+
+                }else
+                    MessageBox.Show(ex.Message, "Error message");
             }
             finally
             {
@@ -108,6 +122,8 @@ namespace PagoAgilFrba.AbmRol
     
         private void ListaDeRoles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            funcionalidadesListView.Clear();
+            funcionalidades.Clear();
             sqlCon.Open();
             SqlDataAdapter sqlCom2 = new SqlDataAdapter("WEST_WORLD.FuncionalidadesRol", sqlCon);
             sqlCom2.SelectCommand.CommandType = CommandType.StoredProcedure;

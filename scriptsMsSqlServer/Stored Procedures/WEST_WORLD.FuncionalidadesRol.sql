@@ -4,7 +4,7 @@ CREATE PROCEDURE WEST_WORLD.FuncionalidadesRol
 AS
 BEGIN
 	SELECT f.nombre 
-	FROM WEST_WORLD.Rol r 
-	JOIN WEST_WORLD.Rol_Funcionalidad rf ON (@idRol=rf.idRol)
+	FROM WEST_WORLD.Rol_Funcionalidad rf
 	JOIN WEST_WORLD.Funcionalidad f ON (rf.idFuncionalidad=f.idFuncionalidad)
+	WHERE rf.idRol = @idRol
 END

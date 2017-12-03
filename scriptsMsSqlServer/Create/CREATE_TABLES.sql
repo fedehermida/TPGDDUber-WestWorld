@@ -2,7 +2,7 @@ CREATE TABLE "WEST_WORLD"."Cliente"(
 	"idCliente"   	BIGINT IDENTITY(1,1) NOT NULL,
 	"nombre"      	nvarchar(255) NOT NULL,
 	"apellido"    	nvarchar(255) NOT NULL,
-	"mail"        	nvarchar(255) UNIQUE NOT NULL,
+	"mail"        	nvarchar(255) NOT NULL,
 	"direccion"   	nvarchar(255) NOT NULL,
 	"codigoPostal"	nvarchar(255) NOT NULL,
 	"DNI"         	bigint NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE "WEST_WORLD"."Cliente"(
 GO
 CREATE TABLE "WEST_WORLD"."Empresa" (
 	"idEmpresa"		bigint IDENTITY(1,1) NOT NULL, 
-	"cuit"      	nvarchar(50) NOT NULL UNIQUE,
+	"cuit"      	nvarchar(50) NOT NULL,
 	"nombre"    	nvarchar(255) NOT NULL,
 	"direccion" 	nvarchar(255) NOT NULL,
 	"idRubro"   	BIGINT NOT NULL,
@@ -24,12 +24,12 @@ CREATE TABLE "WEST_WORLD"."Empresa" (
 ON [PRIMARY])
 GO
 CREATE TABLE "WEST_WORLD"."Factura"  ( 
-	"numeroFactura"   	bigint NOT NULL UNIQUE,
+	"numeroFactura"   	bigint NOT NULL,
 	"cliente"         	bigint NULL,
 	"empresa"         	bigint NULL,
 	"fechaAlta"       	datetime NOT NULL,
-	"fechaVencimiento"	datetime NOT NULL CHECK (fechaVencimiento >= SYSDATETIME()),
-	"total"           	numeric(15,2) NOT NULL CHECK (total > 0),
+	"fechaVencimiento"	datetime NOT NULL,
+	"total"           	numeric(15,2) NOT NULL,
 	"rendicion"       	bigint,
 	"pago"				bigint,
 	CONSTRAINT "facturaPK" PRIMARY KEY CLUSTERED("numeroFactura")
@@ -58,10 +58,10 @@ CREATE TABLE "WEST_WORLD"."Funcionalidad"  (
 GO
 CREATE TABLE "WEST_WORLD"."Pago"  ( 
 	"numeroPago"       	bigint NOT NULL,
-	"fechaCobro"      	datetime NOT NULL DEFAULT SYSDATETIME(),
+	"fechaCobro"      	datetime NOT NULL,
 	"cliente"         	bigint NOT NULL,
 	"sucursal"        	bigint NOT NULL,
-	"importe"         	numeric(15,2) NOT NULL CHECK(importe > 0),
+	"importe"         	numeric(15,2) NOT NULL,
 	"formaPago"       	bigint NOT NULL,
 	CONSTRAINT "pagoPK" PRIMARY KEY CLUSTERED("numeroPago")
  ON [PRIMARY])
@@ -106,7 +106,7 @@ CREATE TABLE "WEST_WORLD"."Sucursal"  (
 	"idSucursal"  	bigint IDENTITY(1,1) NOT NULL,
 	"nombre"      	nvarchar(50) NOT NULL,
 	"direccion"   	nvarchar(50) NOT NULL,
-	"codigoPostal"	nvarchar(10) NOT NULL UNIQUE,
+	"codigoPostal"	nvarchar(10) NOT NULL,
 	"habilitado"  	bit NOT NULL,
 	"operador"    	bigint NULL,
 	CONSTRAINT "PKSucursal" PRIMARY KEY NONCLUSTERED("idSucursal")
@@ -233,3 +233,23 @@ ALTER TABLE [WEST_WORLD].[Factura]
 	ON DELETE NO ACTION 
 	ON UPDATE NO ACTION 
 GO
+
+------------- CONSTRAINTS (no fk) --------------------
+
+ALTER TABLE [WEST_WORLD].[Factura]  WITH CHECK ADD CHECK  (([fechaVencimiento]>=sysdatetime()))
+GO
+ALTER TABLE [WEST_WORLD].[Factura]  WITH CHECK ADD CHECK  (([total]>(0)))
+GO
+ALTER TABLE [WEST_WORLD].[Pago]  WITH CHECK ADD CHECK  (([importe]>(0)))
+GO
+ALTER TABLE [WEST_WORLD].[Pago] ADD  DEFAULT (sysdatetime()) FOR [fechaCobro]
+GO
+ALTER TABLE [WEST_WORLD].[Cliente] ADD  DEFAULT ('-') FOR [telefono]
+GO
+ALTER TABLE [WEST_WORLD].[Empresa] ADD UNIQUE ([cuit])
+GO
+ALTER TABLE [WEST_WORLD].[Cliente] ADD UNIQUE ([mail])
+GO
+ALTER TABLE [WEST_WORLD].[Factura] ADD UNIQUE ([numeroFactura])
+GO
+ALTER TABLE [WEST_WORLD].[Sucursal] ADD UNIQUE ([codigoPostal]);
