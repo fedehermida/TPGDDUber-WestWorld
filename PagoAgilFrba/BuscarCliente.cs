@@ -8,15 +8,11 @@ namespace PagoAgilFrba
     public partial class BuscarCliente : Form
     {
         SqlConnection sqlCon = new SqlConnection(@Properties.Settings.Default.SQLSERVER2012);
+        Utils utils = new Utils();
 
         public BuscarCliente()
         {
             InitializeComponent();
-        }
-
-        private void filtrarGroupBox_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -78,6 +74,11 @@ namespace PagoAgilFrba
         {
             idClienteTextBox.Text = clienteTextBox.Text = "";
             this.Close();
+        }
+
+        private void dniFilterTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            utils.validarCampoNumerico(e);
         }
 
     }

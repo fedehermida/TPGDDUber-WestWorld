@@ -61,9 +61,11 @@ namespace PagoAgilFrba.RegistroPago
                 else sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", empresaFilterComboBox.SelectedIndex);
 
                 if (string.IsNullOrWhiteSpace(idClienteTextBox.Text)) sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", DBNull.Value);
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirADecimal(idClienteTextBox));
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirABigInt(idClienteTextBox));
 
                 sqlDa.SelectCommand.Parameters.AddWithValue("@mes", 0);
+
+                
 
                 DataTable dtbl = new DataTable();
 
@@ -197,6 +199,8 @@ namespace PagoAgilFrba.RegistroPago
 
                     importeCobroTextBox.Text = utils.calcularColumna(2, facturasACobrarDataGrid);
                 }
+                else
+                    throw new Exception("Ya existe la factura seleccionada en la tabla facturas a pagar");
             }
             catch (Exception ex)
             {
@@ -239,6 +243,11 @@ namespace PagoAgilFrba.RegistroPago
         private void numFactFilterTextBoxL_KeyPress(object sender, KeyPressEventArgs e)
         {
             utils.validarCampoNumerico(e);
+        }
+
+        private void RegistroPago_Activated(object sender, EventArgs e)
+        {
+            seleccionarClienteBtn.Focus();
         } 
 
     }

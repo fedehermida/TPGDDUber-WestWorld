@@ -96,7 +96,7 @@
             this.rubroComboBox.Location = new System.Drawing.Point(399, 52);
             this.rubroComboBox.Name = "rubroComboBox";
             this.rubroComboBox.Size = new System.Drawing.Size(121, 21);
-            this.rubroComboBox.TabIndex = 3;
+            this.rubroComboBox.TabIndex = 5;
             this.rubroComboBox.SelectedIndexChanged += new System.EventHandler(this.rubroComboBox_SelectedIndexChanged);
             // 
             // label4
@@ -113,21 +113,21 @@
             this.nombreTextBox.Location = new System.Drawing.Point(99, 12);
             this.nombreTextBox.Name = "nombreTextBox";
             this.nombreTextBox.Size = new System.Drawing.Size(100, 20);
-            this.nombreTextBox.TabIndex = 5;
+            this.nombreTextBox.TabIndex = 1;
             // 
             // cuitTextBox
             // 
             this.cuitTextBox.Location = new System.Drawing.Point(99, 55);
             this.cuitTextBox.Name = "cuitTextBox";
             this.cuitTextBox.Size = new System.Drawing.Size(100, 20);
-            this.cuitTextBox.TabIndex = 6;
+            this.cuitTextBox.TabIndex = 2;
             // 
             // direccionTextBox
             // 
             this.direccionTextBox.Location = new System.Drawing.Point(399, 10);
             this.direccionTextBox.Name = "direccionTextBox";
             this.direccionTextBox.Size = new System.Drawing.Size(121, 20);
-            this.direccionTextBox.TabIndex = 7;
+            this.direccionTextBox.TabIndex = 4;
             // 
             // empresaDataGrid
             // 
@@ -144,10 +144,10 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(605, 35);
+            this.btnGuardar.Location = new System.Drawing.Point(605, 52);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(140, 36);
-            this.btnGuardar.TabIndex = 16;
+            this.btnGuardar.TabIndex = 7;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -158,7 +158,7 @@
             this.habilitadoCheck.Location = new System.Drawing.Point(99, 95);
             this.habilitadoCheck.Name = "habilitadoCheck";
             this.habilitadoCheck.Size = new System.Drawing.Size(15, 14);
-            this.habilitadoCheck.TabIndex = 31;
+            this.habilitadoCheck.TabIndex = 3;
             this.habilitadoCheck.UseVisualStyleBackColor = true;
             // 
             // label13
@@ -175,7 +175,7 @@
             this.limpiarBtn.Location = new System.Drawing.Point(346, 397);
             this.limpiarBtn.Name = "limpiarBtn";
             this.limpiarBtn.Size = new System.Drawing.Size(103, 31);
-            this.limpiarBtn.TabIndex = 38;
+            this.limpiarBtn.TabIndex = 12;
             this.limpiarBtn.Text = "Limpiar";
             this.limpiarBtn.UseVisualStyleBackColor = true;
             this.limpiarBtn.Click += new System.EventHandler(this.limpiarBtn_Click);
@@ -192,7 +192,7 @@
             this.groupBox1.Location = new System.Drawing.Point(26, 146);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(740, 70);
-            this.groupBox1.TabIndex = 39;
+            this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Criterio De Búsqueda";
             // 
@@ -201,7 +201,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(608, 22);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(111, 34);
-            this.btnBuscar.TabIndex = 46;
+            this.btnBuscar.TabIndex = 11;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click_1);
@@ -213,7 +213,7 @@
             this.rubroFilterComboBox.Location = new System.Drawing.Point(454, 30);
             this.rubroFilterComboBox.Name = "rubroFilterComboBox";
             this.rubroFilterComboBox.Size = new System.Drawing.Size(110, 21);
-            this.rubroFilterComboBox.TabIndex = 45;
+            this.rubroFilterComboBox.TabIndex = 10;
             this.rubroFilterComboBox.SelectedIndexChanged += new System.EventHandler(this.rubroFilterComboBox_SelectedIndexChanged);
             // 
             // label7
@@ -230,7 +230,7 @@
             this.cuitFilter.Location = new System.Drawing.Point(257, 32);
             this.cuitFilter.Name = "cuitFilter";
             this.cuitFilter.Size = new System.Drawing.Size(112, 20);
-            this.cuitFilter.TabIndex = 43;
+            this.cuitFilter.TabIndex = 9;
             // 
             // label6
             // 
@@ -255,7 +255,7 @@
             this.nombreFilterTextBox.Location = new System.Drawing.Point(87, 32);
             this.nombreFilterTextBox.Name = "nombreFilterTextBox";
             this.nombreFilterTextBox.Size = new System.Drawing.Size(101, 20);
-            this.nombreFilterTextBox.TabIndex = 14;
+            this.nombreFilterTextBox.TabIndex = 8;
             // 
             // diaRendicionLabel
             // 
@@ -272,7 +272,7 @@
             this.diaRendicionTextBox.MaxLength = 2;
             this.diaRendicionTextBox.Name = "diaRendicionTextBox";
             this.diaRendicionTextBox.Size = new System.Drawing.Size(50, 20);
-            this.diaRendicionTextBox.TabIndex = 41;
+            this.diaRendicionTextBox.TabIndex = 6;
             this.diaRendicionTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.diaRendicionTextBox_KeyPress);
             // 
             // camposObligatoriosLabel
@@ -364,6 +364,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "empresaABM";
             this.Text = "ABM Empresa";
+            this.Activated += new System.EventHandler(this.empresaABM_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.empresaDataGrid)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

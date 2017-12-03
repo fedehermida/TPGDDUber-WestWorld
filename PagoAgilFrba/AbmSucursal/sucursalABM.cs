@@ -17,8 +17,8 @@ namespace PagoAgilFrba.AbmSucursal
 
         private void button1_Click(object sender, EventArgs e)
         {
-            nombreTextBox.Text = direccionTextBox.Text = codigoPostalTxtBox.Text = nombreFilterTxt.Text =
-                            apellidoFilterTxt.Text = "";
+            limpiarCamposObligatorios();
+            nombreFilterTxt.Text =  direccionFilterTxt.Text = codigoPostalFilterTxtBox.Text = "";
             habilitadoCheck.Checked = false;
             guardarBtn.Text = "Guardar";
 
@@ -33,7 +33,7 @@ namespace PagoAgilFrba.AbmSucursal
                 SqlDataAdapter sqlDa = new SqlDataAdapter("GD2C2017.WEST_WORLD.SucursalViewOrSearch", sqlCon);
                 sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                 sqlDa.SelectCommand.Parameters.AddWithValue("@nombre", nombreFilterTxt.Text.Trim());
-                sqlDa.SelectCommand.Parameters.AddWithValue("@direccion", apellidoFilterTxt.Text.Trim());
+                sqlDa.SelectCommand.Parameters.AddWithValue("@direccion", direccionFilterTxt.Text.Trim());
                 if (codigoPostalFilterTxtBox.Text.Trim() == "")
                     sqlDa.SelectCommand.Parameters.AddWithValue("@codigoPostal", DBNull.Value);
                 else sqlDa.SelectCommand.Parameters.AddWithValue("@codigoPostal", codigoPostalFilterTxtBox.Text.Trim());
@@ -108,8 +108,11 @@ namespace PagoAgilFrba.AbmSucursal
                         sqlCmd.ExecuteNonQuery();
                         MessageBox.Show("Sucursal modificada correctamente");
 
-                        if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+                        codigoPostalFilterTxtBox.Text = codigoPostalTxtBox.Text;
+                        limpiarCamposObligatorios();
+                        guardarBtn.Text = "Guardar";
                         searchButton_Click(sender, e);
+
                     }
                 }
             }
@@ -136,6 +139,11 @@ namespace PagoAgilFrba.AbmSucursal
             }
         }
 
+        private void limpiarCamposObligatorios() {
+            codigoPostalTxtBox.Text = nombreTextBox.Text = direccionTextBox.Text = "";
+            habilitadoCheck.Checked = false;
+        }
+        
         private int getidOperador()
         {
             try
@@ -181,6 +189,11 @@ namespace PagoAgilFrba.AbmSucursal
                 habilitadoCheck.Checked = (bool)sucursalDataGrid.CurrentRow.Cells[4].Value;
                 guardarBtn.Text = "Actualizar";
             }
+        }
+
+        private void sucursalABM_Activated(object sender, EventArgs e)
+        {
+            searchButton.Focus();
         }
     }
 }

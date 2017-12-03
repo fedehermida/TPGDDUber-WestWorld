@@ -43,7 +43,7 @@
             this.codigoPostalFilterTxtBox = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.apellidoFilterTxt = new System.Windows.Forms.TextBox();
+            this.direccionFilterTxt = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.nombreFilterTxt = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -56,14 +56,14 @@
             this.direccionTextBox.Location = new System.Drawing.Point(489, 33);
             this.direccionTextBox.Name = "direccionTextBox";
             this.direccionTextBox.Size = new System.Drawing.Size(121, 20);
-            this.direccionTextBox.TabIndex = 11;
+            this.direccionTextBox.TabIndex = 3;
             // 
             // nombreTextBox
             // 
             this.nombreTextBox.Location = new System.Drawing.Point(125, 33);
             this.nombreTextBox.Name = "nombreTextBox";
             this.nombreTextBox.Size = new System.Drawing.Size(126, 20);
-            this.nombreTextBox.TabIndex = 10;
+            this.nombreTextBox.TabIndex = 1;
             // 
             // label3
             // 
@@ -88,7 +88,7 @@
             this.codigoPostalTxtBox.Location = new System.Drawing.Point(125, 87);
             this.codigoPostalTxtBox.Name = "codigoPostalTxtBox";
             this.codigoPostalTxtBox.Size = new System.Drawing.Size(126, 20);
-            this.codigoPostalTxtBox.TabIndex = 17;
+            this.codigoPostalTxtBox.TabIndex = 2;
             // 
             // label5
             // 
@@ -104,7 +104,7 @@
             this.button1.Location = new System.Drawing.Point(333, 375);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(134, 31);
-            this.button1.TabIndex = 37;
+            this.button1.TabIndex = 10;
             this.button1.Text = "Limpiar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -127,7 +127,7 @@
             this.guardarBtn.Location = new System.Drawing.Point(683, 47);
             this.guardarBtn.Name = "guardarBtn";
             this.guardarBtn.Size = new System.Drawing.Size(96, 37);
-            this.guardarBtn.TabIndex = 28;
+            this.guardarBtn.TabIndex = 5;
             this.guardarBtn.Text = "Guardar";
             this.guardarBtn.UseVisualStyleBackColor = true;
             this.guardarBtn.Click += new System.EventHandler(this.guardarBtn_Click);
@@ -138,7 +138,7 @@
             this.habilitadoCheck.Location = new System.Drawing.Point(495, 87);
             this.habilitadoCheck.Name = "habilitadoCheck";
             this.habilitadoCheck.Size = new System.Drawing.Size(15, 14);
-            this.habilitadoCheck.TabIndex = 40;
+            this.habilitadoCheck.TabIndex = 4;
             this.habilitadoCheck.UseVisualStyleBackColor = true;
             // 
             // label13
@@ -155,14 +155,14 @@
             this.filtrarGroupBox.Controls.Add(this.codigoPostalFilterTxtBox);
             this.filtrarGroupBox.Controls.Add(this.searchButton);
             this.filtrarGroupBox.Controls.Add(this.label8);
-            this.filtrarGroupBox.Controls.Add(this.apellidoFilterTxt);
+            this.filtrarGroupBox.Controls.Add(this.direccionFilterTxt);
             this.filtrarGroupBox.Controls.Add(this.label7);
             this.filtrarGroupBox.Controls.Add(this.nombreFilterTxt);
             this.filtrarGroupBox.Controls.Add(this.label6);
             this.filtrarGroupBox.Location = new System.Drawing.Point(33, 146);
             this.filtrarGroupBox.Name = "filtrarGroupBox";
             this.filtrarGroupBox.Size = new System.Drawing.Size(797, 56);
-            this.filtrarGroupBox.TabIndex = 42;
+            this.filtrarGroupBox.TabIndex = 6;
             this.filtrarGroupBox.TabStop = false;
             this.filtrarGroupBox.Text = "Criterio De Búsqueda";
             // 
@@ -171,14 +171,14 @@
             this.codigoPostalFilterTxtBox.Location = new System.Drawing.Point(542, 23);
             this.codigoPostalFilterTxtBox.Name = "codigoPostalFilterTxtBox";
             this.codigoPostalFilterTxtBox.Size = new System.Drawing.Size(63, 20);
-            this.codigoPostalFilterTxtBox.TabIndex = 48;
+            this.codigoPostalFilterTxtBox.TabIndex = 8;
             // 
             // searchButton
             // 
             this.searchButton.Location = new System.Drawing.Point(650, 21);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(112, 23);
-            this.searchButton.TabIndex = 47;
+            this.searchButton.TabIndex = 9;
             this.searchButton.Text = "Buscar";
             this.searchButton.UseVisualStyleBackColor = true;
             this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
@@ -192,12 +192,12 @@
             this.label8.TabIndex = 46;
             this.label8.Text = "Codigo Postal";
             // 
-            // apellidoFilterTxt
+            // direccionFilterTxt
             // 
-            this.apellidoFilterTxt.Location = new System.Drawing.Point(283, 24);
-            this.apellidoFilterTxt.Name = "apellidoFilterTxt";
-            this.apellidoFilterTxt.Size = new System.Drawing.Size(163, 20);
-            this.apellidoFilterTxt.TabIndex = 45;
+            this.direccionFilterTxt.Location = new System.Drawing.Point(283, 24);
+            this.direccionFilterTxt.Name = "direccionFilterTxt";
+            this.direccionFilterTxt.Size = new System.Drawing.Size(163, 20);
+            this.direccionFilterTxt.TabIndex = 7;
             // 
             // label7
             // 
@@ -213,7 +213,7 @@
             this.nombreFilterTxt.Location = new System.Drawing.Point(71, 24);
             this.nombreFilterTxt.Name = "nombreFilterTxt";
             this.nombreFilterTxt.Size = new System.Drawing.Size(124, 20);
-            this.nombreFilterTxt.TabIndex = 43;
+            this.nombreFilterTxt.TabIndex = 6;
             // 
             // label6
             // 
@@ -243,6 +243,7 @@
             this.Controls.Add(this.label1);
             this.Name = "sucursalABM";
             this.Text = "ABM Sucursal";
+            this.Activated += new System.EventHandler(this.sucursalABM_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.sucursalDataGrid)).EndInit();
             this.filtrarGroupBox.ResumeLayout(false);
             this.filtrarGroupBox.PerformLayout();
@@ -268,7 +269,7 @@
         private System.Windows.Forms.TextBox codigoPostalFilterTxtBox;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox apellidoFilterTxt;
+        private System.Windows.Forms.TextBox direccionFilterTxt;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox nombreFilterTxt;
         private System.Windows.Forms.Label label6;

@@ -36,10 +36,10 @@
             this.numFactLabelL = new System.Windows.Forms.Label();
             this.numFactFilterTextBoxL = new System.Windows.Forms.TextBox();
             this.empresaComboBox = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.searchBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.eliminarBtn = new System.Windows.Forms.Button();
-            this.facturasACobrarLabel = new System.Windows.Forms.Label();
+            this.facturasADevolverLabel = new System.Windows.Forms.Label();
             this.agregarABtn = new System.Windows.Forms.Button();
             this.facturasADevolverDataGrid = new System.Windows.Forms.DataGridView();
             this.NumFact = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,12 +51,12 @@
             this.facturasDataGrid = new System.Windows.Forms.DataGridView();
             this.limpiarBtn = new System.Windows.Forms.Button();
             this.devolucionGroupBox = new System.Windows.Forms.GroupBox();
-            this.limpiarRendBtn = new System.Windows.Forms.Button();
+            this.limpiarDevBtn = new System.Windows.Forms.Button();
             this.devolverBtn = new System.Windows.Forms.Button();
             this.motivoLabel = new System.Windows.Forms.Label();
             this.fechaRendDT = new System.Windows.Forms.DateTimePicker();
             this.fechaDevLabel = new System.Windows.Forms.Label();
-            this.cantFactTextBox = new System.Windows.Forms.TextBox();
+            this.motivoTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.clienteGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.facturasADevolverDataGrid)).BeginInit();
@@ -70,12 +70,12 @@
             this.groupBox1.Controls.Add(this.numFactLabelL);
             this.groupBox1.Controls.Add(this.numFactFilterTextBoxL);
             this.groupBox1.Controls.Add(this.empresaComboBox);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.searchBtn);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(42, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(773, 136);
-            this.groupBox1.TabIndex = 33;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Criterio de Búsqueda";
             // 
@@ -87,7 +87,7 @@
             this.clienteGroupBox.Location = new System.Drawing.Point(62, 65);
             this.clienteGroupBox.Name = "clienteGroupBox";
             this.clienteGroupBox.Size = new System.Drawing.Size(291, 54);
-            this.clienteGroupBox.TabIndex = 26;
+            this.clienteGroupBox.TabIndex = 2;
             this.clienteGroupBox.TabStop = false;
             this.clienteGroupBox.Text = "Cliente";
             // 
@@ -104,9 +104,10 @@
             this.seleccionarClienteBtn.Location = new System.Drawing.Point(204, 18);
             this.seleccionarClienteBtn.Name = "seleccionarClienteBtn";
             this.seleccionarClienteBtn.Size = new System.Drawing.Size(76, 20);
-            this.seleccionarClienteBtn.TabIndex = 24;
+            this.seleccionarClienteBtn.TabIndex = 2;
             this.seleccionarClienteBtn.Text = "Seleccionar";
             this.seleccionarClienteBtn.UseVisualStyleBackColor = true;
+            this.seleccionarClienteBtn.Click += new System.EventHandler(this.seleccionarClienteBtn_Click);
             // 
             // clienteTextBox
             // 
@@ -130,7 +131,8 @@
             this.numFactFilterTextBoxL.Location = new System.Drawing.Point(208, 30);
             this.numFactFilterTextBoxL.Name = "numFactFilterTextBoxL";
             this.numFactFilterTextBoxL.Size = new System.Drawing.Size(121, 20);
-            this.numFactFilterTextBoxL.TabIndex = 16;
+            this.numFactFilterTextBoxL.TabIndex = 1;
+            this.numFactFilterTextBoxL.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numFactFilterTextBoxL_KeyPress);
             // 
             // empresaComboBox
             // 
@@ -139,17 +141,18 @@
             this.empresaComboBox.Location = new System.Drawing.Point(494, 29);
             this.empresaComboBox.Name = "empresaComboBox";
             this.empresaComboBox.Size = new System.Drawing.Size(142, 21);
-            this.empresaComboBox.TabIndex = 19;
+            this.empresaComboBox.TabIndex = 3;
+            this.empresaComboBox.SelectedIndexChanged += new System.EventHandler(this.empresaComboBox_SelectedIndexChanged);
             // 
-            // button1
+            // searchBtn
             // 
-            this.button1.Location = new System.Drawing.Point(452, 74);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(184, 36);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Buscar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.searchBtn_Click);
+            this.searchBtn.Location = new System.Drawing.Point(452, 74);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(184, 36);
+            this.searchBtn.TabIndex = 4;
+            this.searchBtn.Text = "Buscar";
+            this.searchBtn.UseVisualStyleBackColor = true;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // label1
             // 
@@ -166,20 +169,20 @@
             this.eliminarBtn.Location = new System.Drawing.Point(399, 264);
             this.eliminarBtn.Name = "eliminarBtn";
             this.eliminarBtn.Size = new System.Drawing.Size(50, 32);
-            this.eliminarBtn.TabIndex = 39;
+            this.eliminarBtn.TabIndex = 6;
             this.eliminarBtn.Text = "X";
             this.eliminarBtn.UseVisualStyleBackColor = true;
             this.eliminarBtn.Click += new System.EventHandler(this.eliminarBtn_Click);
             // 
-            // facturasACobrarLabel
+            // facturasADevolverLabel
             // 
-            this.facturasACobrarLabel.AutoSize = true;
-            this.facturasACobrarLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.facturasACobrarLabel.Location = new System.Drawing.Point(452, 164);
-            this.facturasACobrarLabel.Name = "facturasACobrarLabel";
-            this.facturasACobrarLabel.Size = new System.Drawing.Size(133, 17);
-            this.facturasACobrarLabel.TabIndex = 38;
-            this.facturasACobrarLabel.Text = "Facturas a devolver";
+            this.facturasADevolverLabel.AutoSize = true;
+            this.facturasADevolverLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.facturasADevolverLabel.Location = new System.Drawing.Point(452, 164);
+            this.facturasADevolverLabel.Name = "facturasADevolverLabel";
+            this.facturasADevolverLabel.Size = new System.Drawing.Size(133, 17);
+            this.facturasADevolverLabel.TabIndex = 38;
+            this.facturasADevolverLabel.Text = "Facturas a devolver";
             // 
             // agregarABtn
             // 
@@ -187,7 +190,7 @@
             this.agregarABtn.Location = new System.Drawing.Point(401, 221);
             this.agregarABtn.Name = "agregarABtn";
             this.agregarABtn.Size = new System.Drawing.Size(48, 37);
-            this.agregarABtn.TabIndex = 37;
+            this.agregarABtn.TabIndex = 5;
             this.agregarABtn.Text = "=>";
             this.agregarABtn.UseVisualStyleBackColor = true;
             this.agregarABtn.Click += new System.EventHandler(this.agregarABtn_Click);
@@ -276,40 +279,42 @@
             this.limpiarBtn.Location = new System.Drawing.Point(383, 535);
             this.limpiarBtn.Name = "limpiarBtn";
             this.limpiarBtn.Size = new System.Drawing.Size(111, 31);
-            this.limpiarBtn.TabIndex = 41;
+            this.limpiarBtn.TabIndex = 10;
             this.limpiarBtn.Text = "Limpiar Todo";
             this.limpiarBtn.UseVisualStyleBackColor = true;
+            this.limpiarBtn.Click += new System.EventHandler(this.limpiarBtn_Click);
             // 
             // devolucionGroupBox
             // 
-            this.devolucionGroupBox.Controls.Add(this.limpiarRendBtn);
+            this.devolucionGroupBox.Controls.Add(this.limpiarDevBtn);
             this.devolucionGroupBox.Controls.Add(this.devolverBtn);
             this.devolucionGroupBox.Controls.Add(this.motivoLabel);
             this.devolucionGroupBox.Controls.Add(this.fechaRendDT);
             this.devolucionGroupBox.Controls.Add(this.fechaDevLabel);
-            this.devolucionGroupBox.Controls.Add(this.cantFactTextBox);
+            this.devolucionGroupBox.Controls.Add(this.motivoTextBox);
             this.devolucionGroupBox.Location = new System.Drawing.Point(45, 374);
             this.devolucionGroupBox.Name = "devolucionGroupBox";
             this.devolucionGroupBox.Size = new System.Drawing.Size(770, 146);
-            this.devolucionGroupBox.TabIndex = 40;
+            this.devolucionGroupBox.TabIndex = 7;
             this.devolucionGroupBox.TabStop = false;
             this.devolucionGroupBox.Text = "Devolucion";
             // 
-            // limpiarRendBtn
+            // limpiarDevBtn
             // 
-            this.limpiarRendBtn.Location = new System.Drawing.Point(695, 123);
-            this.limpiarRendBtn.Name = "limpiarRendBtn";
-            this.limpiarRendBtn.Size = new System.Drawing.Size(75, 23);
-            this.limpiarRendBtn.TabIndex = 29;
-            this.limpiarRendBtn.Text = "Limpiar";
-            this.limpiarRendBtn.UseVisualStyleBackColor = true;
+            this.limpiarDevBtn.Location = new System.Drawing.Point(695, 123);
+            this.limpiarDevBtn.Name = "limpiarDevBtn";
+            this.limpiarDevBtn.Size = new System.Drawing.Size(75, 23);
+            this.limpiarDevBtn.TabIndex = 9;
+            this.limpiarDevBtn.Text = "Limpiar";
+            this.limpiarDevBtn.UseVisualStyleBackColor = true;
+            this.limpiarDevBtn.Click += new System.EventHandler(this.limpiarDevBtn_Click);
             // 
             // devolverBtn
             // 
             this.devolverBtn.Location = new System.Drawing.Point(528, 51);
             this.devolverBtn.Name = "devolverBtn";
             this.devolverBtn.Size = new System.Drawing.Size(196, 41);
-            this.devolverBtn.TabIndex = 10;
+            this.devolverBtn.TabIndex = 8;
             this.devolverBtn.Text = "Devolver";
             this.devolverBtn.UseVisualStyleBackColor = true;
             // 
@@ -339,14 +344,13 @@
             this.fechaDevLabel.TabIndex = 31;
             this.fechaDevLabel.Text = "Fecha de devolución";
             // 
-            // cantFactTextBox
+            // motivoTextBox
             // 
-            this.cantFactTextBox.Enabled = false;
-            this.cantFactTextBox.Location = new System.Drawing.Point(166, 62);
-            this.cantFactTextBox.Multiline = true;
-            this.cantFactTextBox.Name = "cantFactTextBox";
-            this.cantFactTextBox.Size = new System.Drawing.Size(283, 78);
-            this.cantFactTextBox.TabIndex = 33;
+            this.motivoTextBox.Location = new System.Drawing.Point(166, 62);
+            this.motivoTextBox.Multiline = true;
+            this.motivoTextBox.Name = "motivoTextBox";
+            this.motivoTextBox.Size = new System.Drawing.Size(283, 78);
+            this.motivoTextBox.TabIndex = 7;
             // 
             // Devolucion
             // 
@@ -356,7 +360,7 @@
             this.Controls.Add(this.limpiarBtn);
             this.Controls.Add(this.devolucionGroupBox);
             this.Controls.Add(this.eliminarBtn);
-            this.Controls.Add(this.facturasACobrarLabel);
+            this.Controls.Add(this.facturasADevolverLabel);
             this.Controls.Add(this.agregarABtn);
             this.Controls.Add(this.facturasADevolverDataGrid);
             this.Controls.Add(this.facturasLabel);
@@ -364,6 +368,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Devolucion";
             this.Text = "Devolución";
+            this.Activated += new System.EventHandler(this.Devolucion_Activated);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.clienteGroupBox.ResumeLayout(false);
@@ -387,10 +392,10 @@
         private System.Windows.Forms.Label numFactLabelL;
         private System.Windows.Forms.TextBox numFactFilterTextBoxL;
         private System.Windows.Forms.ComboBox empresaComboBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button eliminarBtn;
-        private System.Windows.Forms.Label facturasACobrarLabel;
+        private System.Windows.Forms.Label facturasADevolverLabel;
         private System.Windows.Forms.Button agregarABtn;
         private System.Windows.Forms.DataGridView facturasADevolverDataGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumFact;
@@ -402,11 +407,11 @@
         private System.Windows.Forms.DataGridView facturasDataGrid;
         private System.Windows.Forms.Button limpiarBtn;
         private System.Windows.Forms.GroupBox devolucionGroupBox;
-        private System.Windows.Forms.Button limpiarRendBtn;
+        private System.Windows.Forms.Button limpiarDevBtn;
         private System.Windows.Forms.Button devolverBtn;
         private System.Windows.Forms.Label motivoLabel;
         private System.Windows.Forms.DateTimePicker fechaRendDT;
         private System.Windows.Forms.Label fechaDevLabel;
-        private System.Windows.Forms.TextBox cantFactTextBox;
+        private System.Windows.Forms.TextBox motivoTextBox;
     }
 }

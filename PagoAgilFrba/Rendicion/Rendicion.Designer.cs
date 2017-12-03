@@ -39,9 +39,12 @@
             this.mesLabel = new System.Windows.Forms.Label();
             this.mesesComboBox = new System.Windows.Forms.ComboBox();
             this.rendirBtn = new System.Windows.Forms.Button();
-            this.limpiarRendBtn = new System.Windows.Forms.Button();
             this.rendicionGroupBox = new System.Windows.Forms.GroupBox();
+            this.calcularGroupBox = new System.Windows.Forms.GroupBox();
+            this.calcularRendBtn = new System.Windows.Forms.Button();
             this.oblPorcLabel = new System.Windows.Forms.Label();
+            this.porcentajeComisionTextBox = new System.Windows.Forms.TextBox();
+            this.porcentajeComisionLabel = new System.Windows.Forms.Label();
             this.importeTotalTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.empresaTextBox = new System.Windows.Forms.TextBox();
@@ -49,22 +52,22 @@
             this.fechaRendDT = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.cantFactTextBox = new System.Windows.Forms.TextBox();
-            this.porcentajeLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.importeNetoTextBox = new System.Windows.Forms.TextBox();
-            this.porcentajeComisionTextBox = new System.Windows.Forms.TextBox();
-            this.porcentajeComisionLabel = new System.Windows.Forms.Label();
             this.importeNetoLabel = new System.Windows.Forms.Label();
             this.facturasLabel = new System.Windows.Forms.Label();
             this.camposObligatoriosLabel = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.limpiarRendBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.facturasDataGrid)).BeginInit();
             this.filtrarGroupBox.SuspendLayout();
             this.rendicionGroupBox.SuspendLayout();
+            this.calcularGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // limpiarBtn
             // 
-            this.limpiarBtn.Location = new System.Drawing.Point(331, 449);
+            this.limpiarBtn.Location = new System.Drawing.Point(335, 491);
             this.limpiarBtn.Name = "limpiarBtn";
             this.limpiarBtn.Size = new System.Drawing.Size(111, 31);
             this.limpiarBtn.TabIndex = 28;
@@ -144,7 +147,7 @@
             // 
             this.oblEmprLabel.AutoSize = true;
             this.oblEmprLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.oblEmprLabel.Location = new System.Drawing.Point(229, 27);
+            this.oblEmprLabel.Location = new System.Drawing.Point(229, 29);
             this.oblEmprLabel.Name = "oblEmprLabel";
             this.oblEmprLabel.Size = new System.Drawing.Size(24, 18);
             this.oblEmprLabel.TabIndex = 48;
@@ -170,7 +173,9 @@
             // 
             // rendirBtn
             // 
-            this.rendirBtn.Location = new System.Drawing.Point(97, 90);
+            this.rendirBtn.Enabled = false;
+            this.rendirBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.rendirBtn.Location = new System.Drawing.Point(252, 133);
             this.rendirBtn.Name = "rendirBtn";
             this.rendirBtn.Size = new System.Drawing.Size(196, 32);
             this.rendirBtn.TabIndex = 10;
@@ -178,55 +183,80 @@
             this.rendirBtn.UseVisualStyleBackColor = true;
             this.rendirBtn.Click += new System.EventHandler(this.rendirBtn_Click);
             // 
-            // limpiarRendBtn
-            // 
-            this.limpiarRendBtn.Location = new System.Drawing.Point(626, 123);
-            this.limpiarRendBtn.Name = "limpiarRendBtn";
-            this.limpiarRendBtn.Size = new System.Drawing.Size(75, 23);
-            this.limpiarRendBtn.TabIndex = 29;
-            this.limpiarRendBtn.Text = "Limpiar";
-            this.limpiarRendBtn.UseVisualStyleBackColor = true;
-            this.limpiarRendBtn.Click += new System.EventHandler(this.limpiarRendBtn_Click);
-            // 
             // rendicionGroupBox
             // 
-            this.rendicionGroupBox.Controls.Add(this.oblPorcLabel);
+            this.rendicionGroupBox.Controls.Add(this.limpiarRendBtn);
+            this.rendicionGroupBox.Controls.Add(this.calcularGroupBox);
             this.rendicionGroupBox.Controls.Add(this.importeTotalTextBox);
             this.rendicionGroupBox.Controls.Add(this.label3);
             this.rendicionGroupBox.Controls.Add(this.empresaTextBox);
-            this.rendicionGroupBox.Controls.Add(this.limpiarRendBtn);
             this.rendicionGroupBox.Controls.Add(this.rendirBtn);
             this.rendicionGroupBox.Controls.Add(this.cantFactLabel);
             this.rendicionGroupBox.Controls.Add(this.fechaRendDT);
             this.rendicionGroupBox.Controls.Add(this.label1);
             this.rendicionGroupBox.Controls.Add(this.cantFactTextBox);
-            this.rendicionGroupBox.Controls.Add(this.porcentajeLabel);
             this.rendicionGroupBox.Controls.Add(this.label2);
             this.rendicionGroupBox.Controls.Add(this.importeNetoTextBox);
-            this.rendicionGroupBox.Controls.Add(this.porcentajeComisionTextBox);
-            this.rendicionGroupBox.Controls.Add(this.porcentajeComisionLabel);
             this.rendicionGroupBox.Controls.Add(this.importeNetoLabel);
             this.rendicionGroupBox.Location = new System.Drawing.Point(40, 289);
             this.rendicionGroupBox.Name = "rendicionGroupBox";
-            this.rendicionGroupBox.Size = new System.Drawing.Size(701, 146);
+            this.rendicionGroupBox.Size = new System.Drawing.Size(701, 191);
             this.rendicionGroupBox.TabIndex = 25;
             this.rendicionGroupBox.TabStop = false;
-            this.rendicionGroupBox.Text = "Rendicion";
+            // 
+            // calcularGroupBox
+            // 
+            this.calcularGroupBox.Controls.Add(this.calcularRendBtn);
+            this.calcularGroupBox.Controls.Add(this.oblPorcLabel);
+            this.calcularGroupBox.Controls.Add(this.porcentajeComisionTextBox);
+            this.calcularGroupBox.Controls.Add(this.porcentajeComisionLabel);
+            this.calcularGroupBox.Location = new System.Drawing.Point(6, 7);
+            this.calcularGroupBox.Name = "calcularGroupBox";
+            this.calcularGroupBox.Size = new System.Drawing.Size(689, 46);
+            this.calcularGroupBox.TabIndex = 52;
+            this.calcularGroupBox.TabStop = false;
+            // 
+            // calcularRendBtn
+            // 
+            this.calcularRendBtn.Location = new System.Drawing.Point(488, 10);
+            this.calcularRendBtn.Name = "calcularRendBtn";
+            this.calcularRendBtn.Size = new System.Drawing.Size(106, 29);
+            this.calcularRendBtn.TabIndex = 55;
+            this.calcularRendBtn.Text = "Calcular Rendición";
+            this.calcularRendBtn.UseVisualStyleBackColor = true;
+            this.calcularRendBtn.Click += new System.EventHandler(this.calcularRendBtn_Click);
             // 
             // oblPorcLabel
             // 
             this.oblPorcLabel.AutoSize = true;
             this.oblPorcLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.oblPorcLabel.Location = new System.Drawing.Point(618, 44);
+            this.oblPorcLabel.Location = new System.Drawing.Point(388, 15);
             this.oblPorcLabel.Name = "oblPorcLabel";
             this.oblPorcLabel.Size = new System.Drawing.Size(24, 18);
-            this.oblPorcLabel.TabIndex = 47;
+            this.oblPorcLabel.TabIndex = 54;
             this.oblPorcLabel.Text = "(*)";
+            // 
+            // porcentajeComisionTextBox
+            // 
+            this.porcentajeComisionTextBox.Location = new System.Drawing.Point(329, 15);
+            this.porcentajeComisionTextBox.MaxLength = 4;
+            this.porcentajeComisionTextBox.Name = "porcentajeComisionTextBox";
+            this.porcentajeComisionTextBox.Size = new System.Drawing.Size(52, 20);
+            this.porcentajeComisionTextBox.TabIndex = 53;
+            // 
+            // porcentajeComisionLabel
+            // 
+            this.porcentajeComisionLabel.AutoSize = true;
+            this.porcentajeComisionLabel.Location = new System.Drawing.Point(61, 18);
+            this.porcentajeComisionLabel.Name = "porcentajeComisionLabel";
+            this.porcentajeComisionLabel.Size = new System.Drawing.Size(262, 13);
+            this.porcentajeComisionLabel.TabIndex = 52;
+            this.porcentajeComisionLabel.Text = "Porcentaje de Comisión De La Empresa Seleccionada";
             // 
             // importeTotalTextBox
             // 
             this.importeTotalTextBox.Enabled = false;
-            this.importeTotalTextBox.Location = new System.Drawing.Point(534, 19);
+            this.importeTotalTextBox.Location = new System.Drawing.Point(551, 59);
             this.importeTotalTextBox.Name = "importeTotalTextBox";
             this.importeTotalTextBox.Size = new System.Drawing.Size(100, 20);
             this.importeTotalTextBox.TabIndex = 46;
@@ -234,7 +264,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(452, 22);
+            this.label3.Location = new System.Drawing.Point(469, 62);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 13);
             this.label3.TabIndex = 45;
@@ -243,7 +273,7 @@
             // empresaTextBox
             // 
             this.empresaTextBox.Enabled = false;
-            this.empresaTextBox.Location = new System.Drawing.Point(534, 97);
+            this.empresaTextBox.Location = new System.Drawing.Point(171, 87);
             this.empresaTextBox.Name = "empresaTextBox";
             this.empresaTextBox.Size = new System.Drawing.Size(100, 20);
             this.empresaTextBox.TabIndex = 42;
@@ -251,7 +281,7 @@
             // cantFactLabel
             // 
             this.cantFactLabel.AutoSize = true;
-            this.cantFactLabel.Location = new System.Drawing.Point(52, 52);
+            this.cantFactLabel.Location = new System.Drawing.Point(55, 116);
             this.cantFactLabel.Name = "cantFactLabel";
             this.cantFactLabel.Size = new System.Drawing.Size(108, 13);
             this.cantFactLabel.TabIndex = 32;
@@ -260,7 +290,7 @@
             // fechaRendDT
             // 
             this.fechaRendDT.Enabled = false;
-            this.fechaRendDT.Location = new System.Drawing.Point(166, 23);
+            this.fechaRendDT.Location = new System.Drawing.Point(171, 62);
             this.fechaRendDT.Name = "fechaRendDT";
             this.fechaRendDT.Size = new System.Drawing.Size(216, 20);
             this.fechaRendDT.TabIndex = 30;
@@ -268,7 +298,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(62, 23);
+            this.label1.Location = new System.Drawing.Point(67, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 13);
             this.label1.TabIndex = 31;
@@ -277,25 +307,15 @@
             // cantFactTextBox
             // 
             this.cantFactTextBox.Enabled = false;
-            this.cantFactTextBox.Location = new System.Drawing.Point(168, 49);
+            this.cantFactTextBox.Location = new System.Drawing.Point(171, 113);
             this.cantFactTextBox.Name = "cantFactTextBox";
             this.cantFactTextBox.Size = new System.Drawing.Size(57, 20);
             this.cantFactTextBox.TabIndex = 33;
             // 
-            // porcentajeLabel
-            // 
-            this.porcentajeLabel.AutoSize = true;
-            this.porcentajeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.porcentajeLabel.Location = new System.Drawing.Point(592, 46);
-            this.porcentajeLabel.Name = "porcentajeLabel";
-            this.porcentajeLabel.Size = new System.Drawing.Size(20, 16);
-            this.porcentajeLabel.TabIndex = 40;
-            this.porcentajeLabel.Text = "%";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(472, 100);
+            this.label2.Location = new System.Drawing.Point(109, 90);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 41;
@@ -304,33 +324,15 @@
             // importeNetoTextBox
             // 
             this.importeNetoTextBox.Enabled = false;
-            this.importeNetoTextBox.Location = new System.Drawing.Point(534, 71);
+            this.importeNetoTextBox.Location = new System.Drawing.Point(551, 90);
             this.importeNetoTextBox.Name = "importeNetoTextBox";
             this.importeNetoTextBox.Size = new System.Drawing.Size(100, 20);
             this.importeNetoTextBox.TabIndex = 37;
             // 
-            // porcentajeComisionTextBox
-            // 
-            this.porcentajeComisionTextBox.Location = new System.Drawing.Point(534, 45);
-            this.porcentajeComisionTextBox.MaxLength = 4;
-            this.porcentajeComisionTextBox.Name = "porcentajeComisionTextBox";
-            this.porcentajeComisionTextBox.Size = new System.Drawing.Size(52, 20);
-            this.porcentajeComisionTextBox.TabIndex = 39;
-            this.porcentajeComisionTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.porcentajeComisionTextBox_KeyPress);
-            // 
-            // porcentajeComisionLabel
-            // 
-            this.porcentajeComisionLabel.AutoSize = true;
-            this.porcentajeComisionLabel.Location = new System.Drawing.Point(410, 48);
-            this.porcentajeComisionLabel.Name = "porcentajeComisionLabel";
-            this.porcentajeComisionLabel.Size = new System.Drawing.Size(118, 13);
-            this.porcentajeComisionLabel.TabIndex = 38;
-            this.porcentajeComisionLabel.Text = "Porcentaje de Comisión";
-            // 
             // importeNetoLabel
             // 
             this.importeNetoLabel.AutoSize = true;
-            this.importeNetoLabel.Location = new System.Drawing.Point(452, 74);
+            this.importeNetoLabel.Location = new System.Drawing.Point(469, 93);
             this.importeNetoLabel.Name = "importeNetoLabel";
             this.importeNetoLabel.Size = new System.Drawing.Size(68, 13);
             this.importeNetoLabel.TabIndex = 36;
@@ -350,30 +352,51 @@
             // 
             this.camposObligatoriosLabel.AutoSize = true;
             this.camposObligatoriosLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.camposObligatoriosLabel.Location = new System.Drawing.Point(607, 464);
+            this.camposObligatoriosLabel.Location = new System.Drawing.Point(607, 513);
             this.camposObligatoriosLabel.Name = "camposObligatoriosLabel";
             this.camposObligatoriosLabel.Size = new System.Drawing.Size(158, 17);
             this.camposObligatoriosLabel.TabIndex = 30;
             this.camposObligatoriosLabel.Text = "Campos Obligatorios (*)";
             // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(40, 296);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(327, 100);
+            this.panel1.TabIndex = 52;
+            // 
+            // limpiarRendBtn
+            // 
+            this.limpiarRendBtn.Location = new System.Drawing.Point(624, 170);
+            this.limpiarRendBtn.Name = "limpiarRendBtn";
+            this.limpiarRendBtn.Size = new System.Drawing.Size(77, 21);
+            this.limpiarRendBtn.TabIndex = 53;
+            this.limpiarRendBtn.Text = "Limpiar";
+            this.limpiarRendBtn.UseVisualStyleBackColor = true;
+            this.limpiarRendBtn.Click += new System.EventHandler(this.limpiarRendBtn_Click);
+            // 
             // Rendicion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(777, 495);
+            this.ClientSize = new System.Drawing.Size(777, 539);
             this.Controls.Add(this.camposObligatoriosLabel);
             this.Controls.Add(this.facturasLabel);
             this.Controls.Add(this.limpiarBtn);
             this.Controls.Add(this.facturasDataGrid);
             this.Controls.Add(this.filtrarGroupBox);
             this.Controls.Add(this.rendicionGroupBox);
+            this.Controls.Add(this.panel1);
             this.Name = "Rendicion";
             this.Text = "Rendicion";
+            this.Activated += new System.EventHandler(this.Rendicion_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.facturasDataGrid)).EndInit();
             this.filtrarGroupBox.ResumeLayout(false);
             this.filtrarGroupBox.PerformLayout();
             this.rendicionGroupBox.ResumeLayout(false);
             this.rendicionGroupBox.PerformLayout();
+            this.calcularGroupBox.ResumeLayout(false);
+            this.calcularGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -388,7 +411,6 @@
         private System.Windows.Forms.DataGridView facturasDataGrid;
         private System.Windows.Forms.GroupBox filtrarGroupBox;
         private System.Windows.Forms.Button rendirBtn;
-        private System.Windows.Forms.Button limpiarRendBtn;
         private System.Windows.Forms.GroupBox rendicionGroupBox;
         private System.Windows.Forms.Label facturasLabel;
         private System.Windows.Forms.TextBox empresaTextBox;
@@ -403,13 +425,16 @@
         private System.Windows.Forms.ComboBox mesesComboBox;
         private System.Windows.Forms.TextBox importeTotalTextBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label porcentajeLabel;
-        private System.Windows.Forms.TextBox porcentajeComisionTextBox;
-        private System.Windows.Forms.Label porcentajeComisionLabel;
         private System.Windows.Forms.Label oblMesLabel;
         private System.Windows.Forms.Label oblEmprLabel;
-        private System.Windows.Forms.Label oblPorcLabel;
         private System.Windows.Forms.Label camposObligatoriosLabel;
+        private System.Windows.Forms.GroupBox calcularGroupBox;
+        private System.Windows.Forms.Button calcularRendBtn;
+        private System.Windows.Forms.Label oblPorcLabel;
+        private System.Windows.Forms.TextBox porcentajeComisionTextBox;
+        private System.Windows.Forms.Label porcentajeComisionLabel;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button limpiarRendBtn;
 
     }
 }

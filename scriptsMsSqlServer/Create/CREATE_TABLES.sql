@@ -2,7 +2,7 @@ CREATE TABLE "WEST_WORLD"."Cliente"(
 	"idCliente"   	BIGINT IDENTITY(1,1) NOT NULL,
 	"nombre"      	nvarchar(255) NOT NULL,
 	"apellido"    	nvarchar(255) NOT NULL,
-	"mail"        	nvarchar(255) unique NOT NULL,
+	"mail"        	nvarchar(255) UNIQUE NOT NULL,
 	"direccion"   	nvarchar(255) NOT NULL,
 	"codigoPostal"	nvarchar(255) NOT NULL,
 	"DNI"         	bigint NOT NULL,
@@ -14,11 +14,12 @@ CREATE TABLE "WEST_WORLD"."Cliente"(
 GO
 CREATE TABLE "WEST_WORLD"."Empresa" (
 	"idEmpresa"		bigint IDENTITY(1,1) NOT NULL, 
-	"cuit"      	nvarchar(50) NOT NULL,
+	"cuit"      	nvarchar(50) NOT NULL UNIQUE,
 	"nombre"    	nvarchar(255) NOT NULL,
 	"direccion" 	nvarchar(255) NOT NULL,
 	"idRubro"   	BIGINT NOT NULL,
 	"habilitado"	bit NOT NULL,
+	"diaRendicion"  tinyint NOT NULL,
 	CONSTRAINT "empresaPK" PRIMARY KEY CLUSTERED("idEmpresa")
 ON [PRIMARY])
 GO
@@ -27,7 +28,7 @@ CREATE TABLE "WEST_WORLD"."Factura"  (
 	"cliente"         	bigint NULL,
 	"empresa"         	bigint NULL,
 	"fechaAlta"       	datetime NOT NULL,
-	"FechaVencimiento"	datetime NOT NULL,
+	"fechaVencimiento"	datetime NOT NULL CHECK (fechaVencimiento >= SYSDATETIME()),
 	"total"           	numeric(15,2) NOT NULL CHECK (total > 0),
 	"rendicion"       	bigint,
 	"pago"				bigint,
@@ -57,7 +58,7 @@ CREATE TABLE "WEST_WORLD"."Funcionalidad"  (
 GO
 CREATE TABLE "WEST_WORLD"."Pago"  ( 
 	"numeroPago"       	bigint NOT NULL,
-	"FechaCobro"      	datetime NOT NULL DEFAULT SYSDATETIME(),
+	"fechaCobro"      	datetime NOT NULL DEFAULT SYSDATETIME(),
 	"cliente"         	bigint NOT NULL,
 	"sucursal"        	bigint NOT NULL,
 	"importe"         	numeric(15,2) NOT NULL CHECK(importe > 0),
@@ -66,9 +67,9 @@ CREATE TABLE "WEST_WORLD"."Pago"  (
  ON [PRIMARY])
 GO
 CREATE TABLE "WEST_WORLD"."Rendicion"  ( 
-	"numeroRendicion"      	bigint NOT NULL,
+	"numeroRendicion"      	bigint IDENTITY(1,1) NOT NULL,
 	"FechaRendicion"    	datetime NOT NULL,
-	"cantidadFacturas"  	smallint NOT NULL,
+	"cantidadFacturas"  	int NOT NULL,
 	"importeNeto"       	numeric(15,2) NOT NULL,
 	"empresa"           	bigint NOT NULL,
 	"porcentajeComision"	numeric(5,2) NOT NULL,
@@ -105,7 +106,7 @@ CREATE TABLE "WEST_WORLD"."Sucursal"  (
 	"idSucursal"  	bigint IDENTITY(1,1) NOT NULL,
 	"nombre"      	nvarchar(50) NOT NULL,
 	"direccion"   	nvarchar(50) NOT NULL,
-	"codigoPostal"	nvarchar(10) NOT NULL,
+	"codigoPostal"	nvarchar(10) NOT NULL UNIQUE,
 	"habilitado"  	bit NOT NULL,
 	"operador"    	bigint NULL,
 	CONSTRAINT "PKSucursal" PRIMARY KEY NONCLUSTERED("idSucursal")

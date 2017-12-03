@@ -276,7 +276,7 @@ namespace PagoAgilFrba.AbmFactura
                 sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
 
                 if (string.IsNullOrWhiteSpace(numFactTextBox.Text.Trim())) throw new Exception("Ingrese un Numero de Factura para ver sus items");
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", utils.convertirADecimal(numFactTextBox));
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", utils.convertirABigInt(numFactTextBox));
 
                 DataTable dtbl = new DataTable();
                 sqlDa.Fill(dtbl);
@@ -355,13 +355,13 @@ namespace PagoAgilFrba.AbmFactura
                 sqlDa.SelectCommand.Parameters.AddWithValue("@estado", "Todas");
 
                 if (string.IsNullOrWhiteSpace(numFactFilterTextBoxL.Text.Trim())) sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", DBNull.Value);
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", utils.convertirADecimal(numFactFilterTextBoxL));
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", utils.convertirABigInt(numFactFilterTextBoxL));
 
                 if (string.IsNullOrWhiteSpace(empresaFilterComboBox.Text.Trim())) sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", DBNull.Value);
                 else sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", empresaFilterComboBox.SelectedIndex);
 
                 if (string.IsNullOrWhiteSpace(idClienteTextBox.Text)) sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", DBNull.Value);
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirADecimal(idClienteTextBox));
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirABigInt(idClienteTextBox));
 
                 sqlDa.SelectCommand.Parameters.AddWithValue("@mes", 0);
 
@@ -670,6 +670,11 @@ namespace PagoAgilFrba.AbmFactura
         private void empresaComboBoxNF_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (empresaComboBoxNF.SelectedIndex == 0) empresaComboBoxNF.SelectedIndex = -1;
+        }
+
+        private void facturaABM_Activated(object sender, EventArgs e)
+        {
+            searchBtnL.Focus();
         }
 
     }

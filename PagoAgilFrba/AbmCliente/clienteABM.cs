@@ -188,5 +188,10 @@ namespace PagoAgilFrba.AbmCliente
         {
             utils.validarCampoNumerico(e);
         }
+
+        private void clienteABM_Activated(object sender, EventArgs e)
+        {
+            searchButton.Focus();
+        }
     }
 }

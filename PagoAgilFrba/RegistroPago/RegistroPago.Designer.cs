@@ -100,7 +100,7 @@
             this.cobrarGroupBox.Location = new System.Drawing.Point(47, 319);
             this.cobrarGroupBox.Name = "cobrarGroupBox";
             this.cobrarGroupBox.Size = new System.Drawing.Size(770, 110);
-            this.cobrarGroupBox.TabIndex = 14;
+            this.cobrarGroupBox.TabIndex = 8;
             this.cobrarGroupBox.TabStop = false;
             this.cobrarGroupBox.Text = "Registrar Pago";
             // 
@@ -111,7 +111,7 @@
             this.formaPagoComboBox.Location = new System.Drawing.Point(121, 27);
             this.formaPagoComboBox.Name = "formaPagoComboBox";
             this.formaPagoComboBox.Size = new System.Drawing.Size(121, 21);
-            this.formaPagoComboBox.TabIndex = 25;
+            this.formaPagoComboBox.TabIndex = 8;
             this.formaPagoComboBox.SelectedIndexChanged += new System.EventHandler(this.formaPagoComboBox_SelectedIndexChanged);
             // 
             // label1
@@ -147,7 +147,7 @@
             this.clienteTxt.Location = new System.Drawing.Point(121, 65);
             this.clienteTxt.Name = "clienteTxt";
             this.clienteTxt.Size = new System.Drawing.Size(121, 20);
-            this.clienteTxt.TabIndex = 20;
+            this.clienteTxt.TabIndex = 90;
             // 
             // sucursalTextBox
             // 
@@ -155,7 +155,7 @@
             this.sucursalTextBox.Location = new System.Drawing.Point(328, 28);
             this.sucursalTextBox.Name = "sucursalTextBox";
             this.sucursalTextBox.Size = new System.Drawing.Size(140, 20);
-            this.sucursalTextBox.TabIndex = 19;
+            this.sucursalTextBox.TabIndex = 100;
             // 
             // clienteLabel2
             // 
@@ -189,7 +189,7 @@
             this.cobrarBtn.Location = new System.Drawing.Point(514, 60);
             this.cobrarBtn.Name = "cobrarBtn";
             this.cobrarBtn.Size = new System.Drawing.Size(145, 32);
-            this.cobrarBtn.TabIndex = 10;
+            this.cobrarBtn.TabIndex = 9;
             this.cobrarBtn.Text = "Cobrar";
             this.cobrarBtn.UseVisualStyleBackColor = true;
             this.cobrarBtn.Click += new System.EventHandler(this.cobrarBtn_Click);
@@ -200,7 +200,7 @@
             this.importeCobroTextBox.Location = new System.Drawing.Point(559, 23);
             this.importeCobroTextBox.Name = "importeCobroTextBox";
             this.importeCobroTextBox.Size = new System.Drawing.Size(100, 20);
-            this.importeCobroTextBox.TabIndex = 0;
+            this.importeCobroTextBox.TabIndex = 54;
             // 
             // filtrarGroupBox
             // 
@@ -214,7 +214,7 @@
             this.filtrarGroupBox.Location = new System.Drawing.Point(47, 12);
             this.filtrarGroupBox.Name = "filtrarGroupBox";
             this.filtrarGroupBox.Size = new System.Drawing.Size(770, 119);
-            this.filtrarGroupBox.TabIndex = 18;
+            this.filtrarGroupBox.TabIndex = 1;
             this.filtrarGroupBox.TabStop = false;
             this.filtrarGroupBox.Text = "Criterio de Búsqueda";
             // 
@@ -223,7 +223,7 @@
             this.limpiarFiltrosBtn.Location = new System.Drawing.Point(695, 96);
             this.limpiarFiltrosBtn.Name = "limpiarFiltrosBtn";
             this.limpiarFiltrosBtn.Size = new System.Drawing.Size(75, 23);
-            this.limpiarFiltrosBtn.TabIndex = 27;
+            this.limpiarFiltrosBtn.TabIndex = 5;
             this.limpiarFiltrosBtn.Text = "Limpiar";
             this.limpiarFiltrosBtn.UseVisualStyleBackColor = true;
             this.limpiarFiltrosBtn.Click += new System.EventHandler(this.limpiarFiltrosBtn_Click);
@@ -238,7 +238,7 @@
             this.clienteGroupBox.Location = new System.Drawing.Point(66, 61);
             this.clienteGroupBox.Name = "clienteGroupBox";
             this.clienteGroupBox.Size = new System.Drawing.Size(291, 54);
-            this.clienteGroupBox.TabIndex = 26;
+            this.clienteGroupBox.TabIndex = 2;
             this.clienteGroupBox.TabStop = false;
             this.clienteGroupBox.Text = "Cliente (*)";
             // 
@@ -255,7 +255,7 @@
             this.seleccionarClienteBtn.Location = new System.Drawing.Point(204, 15);
             this.seleccionarClienteBtn.Name = "seleccionarClienteBtn";
             this.seleccionarClienteBtn.Size = new System.Drawing.Size(76, 27);
-            this.seleccionarClienteBtn.TabIndex = 24;
+            this.seleccionarClienteBtn.TabIndex = 2;
             this.seleccionarClienteBtn.Text = "Seleccionar";
             this.seleccionarClienteBtn.UseVisualStyleBackColor = true;
             this.seleccionarClienteBtn.Click += new System.EventHandler(this.seleccionarClienteBtn_Click);
@@ -282,7 +282,7 @@
             this.numFactFilterTextBoxL.Location = new System.Drawing.Point(192, 25);
             this.numFactFilterTextBoxL.Name = "numFactFilterTextBoxL";
             this.numFactFilterTextBoxL.Size = new System.Drawing.Size(121, 20);
-            this.numFactFilterTextBoxL.TabIndex = 16;
+            this.numFactFilterTextBoxL.TabIndex = 1;
             this.numFactFilterTextBoxL.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numFactFilterTextBoxL_KeyPress);
             // 
             // empresaFilterComboBox
@@ -292,7 +292,7 @@
             this.empresaFilterComboBox.Location = new System.Drawing.Point(470, 27);
             this.empresaFilterComboBox.Name = "empresaFilterComboBox";
             this.empresaFilterComboBox.Size = new System.Drawing.Size(142, 21);
-            this.empresaFilterComboBox.TabIndex = 19;
+            this.empresaFilterComboBox.TabIndex = 3;
             this.empresaFilterComboBox.SelectedValueChanged += new System.EventHandler(this.empresaFilterComboBox_SelectedValueChanged);
             // 
             // searchBtnL
@@ -300,7 +300,7 @@
             this.searchBtnL.Location = new System.Drawing.Point(420, 71);
             this.searchBtnL.Name = "searchBtnL";
             this.searchBtnL.Size = new System.Drawing.Size(192, 35);
-            this.searchBtnL.TabIndex = 18;
+            this.searchBtnL.TabIndex = 4;
             this.searchBtnL.Text = "Buscar";
             this.searchBtnL.UseVisualStyleBackColor = true;
             this.searchBtnL.Click += new System.EventHandler(this.searchBtnL_Click);
@@ -319,7 +319,7 @@
             this.limpiarBtn.Location = new System.Drawing.Point(386, 435);
             this.limpiarBtn.Name = "limpiarBtn";
             this.limpiarBtn.Size = new System.Drawing.Size(111, 31);
-            this.limpiarBtn.TabIndex = 19;
+            this.limpiarBtn.TabIndex = 10;
             this.limpiarBtn.Text = "Limpiar Todo";
             this.limpiarBtn.UseVisualStyleBackColor = true;
             this.limpiarBtn.Click += new System.EventHandler(this.limpiarBtn_Click);
@@ -396,7 +396,7 @@
             this.agregarABtn.Location = new System.Drawing.Point(403, 191);
             this.agregarABtn.Name = "agregarABtn";
             this.agregarABtn.Size = new System.Drawing.Size(48, 37);
-            this.agregarABtn.TabIndex = 22;
+            this.agregarABtn.TabIndex = 6;
             this.agregarABtn.Text = "=>";
             this.agregarABtn.UseVisualStyleBackColor = true;
             this.agregarABtn.Click += new System.EventHandler(this.agregarABtn_Click);
@@ -417,7 +417,7 @@
             this.eliminarBtn.Location = new System.Drawing.Point(401, 234);
             this.eliminarBtn.Name = "eliminarBtn";
             this.eliminarBtn.Size = new System.Drawing.Size(50, 32);
-            this.eliminarBtn.TabIndex = 24;
+            this.eliminarBtn.TabIndex = 7;
             this.eliminarBtn.Text = "X";
             this.eliminarBtn.UseVisualStyleBackColor = true;
             this.eliminarBtn.Click += new System.EventHandler(this.eliminarBtn_Click);
@@ -447,6 +447,7 @@
             this.Controls.Add(this.cobrarGroupBox);
             this.Name = "RegistroPago";
             this.Text = "Registrar Pago";
+            this.Activated += new System.EventHandler(this.RegistroPago_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.facturasDataGridL)).EndInit();
             this.cobrarGroupBox.ResumeLayout(false);
             this.cobrarGroupBox.PerformLayout();

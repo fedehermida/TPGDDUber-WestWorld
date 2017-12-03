@@ -45,6 +45,11 @@
             this.searchBtnL = new System.Windows.Forms.Button();
             this.empresaFilterLabel = new System.Windows.Forms.Label();
             this.ActualizarTab = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.clienteGroupBox2 = new System.Windows.Forms.GroupBox();
             this.idClienteTextBox2 = new System.Windows.Forms.TextBox();
             this.seleccionarBtn2 = new System.Windows.Forms.Button();
@@ -75,6 +80,11 @@
             this.numFactTextBox = new System.Windows.Forms.TextBox();
             this.empresaLabel = new System.Windows.Forms.Label();
             this.nuevaFacturaTab = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.clienteGroupBox2NF = new System.Windows.Forms.GroupBox();
             this.idClienteTextBox2NF = new System.Windows.Forms.TextBox();
             this.seleccionarBtn2NF = new System.Windows.Forms.Button();
@@ -107,16 +117,6 @@
             this.numFactTextBoxNF = new System.Windows.Forms.TextBox();
             this.empresaLabelNF = new System.Windows.Forms.Label();
             this.camposObligatoriosLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.facturaTabControl.SuspendLayout();
             this.ListadoTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.facturasDataGridL)).BeginInit();
@@ -165,7 +165,7 @@
             this.limpiarBtnL.Location = new System.Drawing.Point(328, 405);
             this.limpiarBtnL.Name = "limpiarBtnL";
             this.limpiarBtnL.Size = new System.Drawing.Size(109, 31);
-            this.limpiarBtnL.TabIndex = 4;
+            this.limpiarBtnL.TabIndex = 6;
             this.limpiarBtnL.Text = "Limpiar";
             this.limpiarBtnL.UseVisualStyleBackColor = true;
             this.limpiarBtnL.Click += new System.EventHandler(this.limpiarBtnL_Click);
@@ -215,7 +215,7 @@
             this.filtrarGroupBox.Location = new System.Drawing.Point(25, 9);
             this.filtrarGroupBox.Name = "filtrarGroupBox";
             this.filtrarGroupBox.Size = new System.Drawing.Size(717, 136);
-            this.filtrarGroupBox.TabIndex = 16;
+            this.filtrarGroupBox.TabIndex = 1;
             this.filtrarGroupBox.TabStop = false;
             this.filtrarGroupBox.Text = "Criterio de Búsqueda";
             // 
@@ -227,7 +227,7 @@
             this.clienteGroupBox.Location = new System.Drawing.Point(26, 65);
             this.clienteGroupBox.Name = "clienteGroupBox";
             this.clienteGroupBox.Size = new System.Drawing.Size(291, 54);
-            this.clienteGroupBox.TabIndex = 26;
+            this.clienteGroupBox.TabIndex = 2;
             this.clienteGroupBox.TabStop = false;
             this.clienteGroupBox.Text = "Cliente";
             // 
@@ -244,7 +244,7 @@
             this.seleccionarClienteBtn.Location = new System.Drawing.Point(204, 18);
             this.seleccionarClienteBtn.Name = "seleccionarClienteBtn";
             this.seleccionarClienteBtn.Size = new System.Drawing.Size(76, 20);
-            this.seleccionarClienteBtn.TabIndex = 24;
+            this.seleccionarClienteBtn.TabIndex = 2;
             this.seleccionarClienteBtn.Text = "Seleccionar";
             this.seleccionarClienteBtn.UseVisualStyleBackColor = true;
             this.seleccionarClienteBtn.Click += new System.EventHandler(this.seleccionarClienteBtn_Click);
@@ -271,7 +271,7 @@
             this.numFactFilterTextBoxL.Location = new System.Drawing.Point(179, 29);
             this.numFactFilterTextBoxL.Name = "numFactFilterTextBoxL";
             this.numFactFilterTextBoxL.Size = new System.Drawing.Size(121, 20);
-            this.numFactFilterTextBoxL.TabIndex = 16;
+            this.numFactFilterTextBoxL.TabIndex = 1;
             this.numFactFilterTextBoxL.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numFactFilterTextBoxL_KeyPress);
             // 
             // empresaFilterComboBox
@@ -281,7 +281,7 @@
             this.empresaFilterComboBox.Location = new System.Drawing.Point(494, 29);
             this.empresaFilterComboBox.Name = "empresaFilterComboBox";
             this.empresaFilterComboBox.Size = new System.Drawing.Size(142, 21);
-            this.empresaFilterComboBox.TabIndex = 19;
+            this.empresaFilterComboBox.TabIndex = 3;
             this.empresaFilterComboBox.SelectedIndexChanged += new System.EventHandler(this.empresaFilterComboBox_SelectedIndexChanged);
             // 
             // searchBtnL
@@ -289,7 +289,7 @@
             this.searchBtnL.Location = new System.Drawing.Point(452, 78);
             this.searchBtnL.Name = "searchBtnL";
             this.searchBtnL.Size = new System.Drawing.Size(184, 30);
-            this.searchBtnL.TabIndex = 18;
+            this.searchBtnL.TabIndex = 4;
             this.searchBtnL.Text = "Buscar";
             this.searchBtnL.UseVisualStyleBackColor = true;
             this.searchBtnL.Click += new System.EventHandler(this.searchBtnL_Click);
@@ -332,6 +332,56 @@
             this.ActualizarTab.Text = "Actualizar";
             this.ActualizarTab.UseVisualStyleBackColor = true;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label10.Location = new System.Drawing.Point(707, 159);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(23, 17);
+            this.label10.TabIndex = 57;
+            this.label10.Text = "(*)";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label9.Location = new System.Drawing.Point(732, 21);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(23, 17);
+            this.label9.TabIndex = 56;
+            this.label9.Text = "(*)";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label8.Location = new System.Drawing.Point(732, 67);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(23, 17);
+            this.label8.TabIndex = 55;
+            this.label8.Text = "(*)";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label7.Location = new System.Drawing.Point(300, 51);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(23, 17);
+            this.label7.TabIndex = 54;
+            this.label7.Text = "(*)";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label6.Location = new System.Drawing.Point(300, 25);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(23, 17);
+            this.label6.TabIndex = 53;
+            this.label6.Text = "(*)";
+            // 
             // clienteGroupBox2
             // 
             this.clienteGroupBox2.Controls.Add(this.idClienteTextBox2);
@@ -340,7 +390,7 @@
             this.clienteGroupBox2.Location = new System.Drawing.Point(43, 78);
             this.clienteGroupBox2.Name = "clienteGroupBox2";
             this.clienteGroupBox2.Size = new System.Drawing.Size(291, 54);
-            this.clienteGroupBox2.TabIndex = 37;
+            this.clienteGroupBox2.TabIndex = 3;
             this.clienteGroupBox2.TabStop = false;
             this.clienteGroupBox2.Text = "Cliente (*)";
             // 
@@ -357,7 +407,7 @@
             this.seleccionarBtn2.Location = new System.Drawing.Point(204, 18);
             this.seleccionarBtn2.Name = "seleccionarBtn2";
             this.seleccionarBtn2.Size = new System.Drawing.Size(76, 20);
-            this.seleccionarBtn2.TabIndex = 24;
+            this.seleccionarBtn2.TabIndex = 3;
             this.seleccionarBtn2.Text = "Seleccionar";
             this.seleccionarBtn2.UseVisualStyleBackColor = true;
             this.seleccionarBtn2.Click += new System.EventHandler(this.seleccionarClienteBtn_Click_Actualizar);
@@ -375,7 +425,7 @@
             this.limpiarBtn.Location = new System.Drawing.Point(328, 406);
             this.limpiarBtn.Name = "limpiarBtn";
             this.limpiarBtn.Size = new System.Drawing.Size(83, 29);
-            this.limpiarBtn.TabIndex = 36;
+            this.limpiarBtn.TabIndex = 12;
             this.limpiarBtn.Text = "Limpiar todo";
             this.limpiarBtn.UseVisualStyleBackColor = true;
             this.limpiarBtn.Click += new System.EventHandler(this.limpiarBtn_Click_1);
@@ -391,7 +441,7 @@
             this.itemsGroupBox.Location = new System.Drawing.Point(42, 185);
             this.itemsGroupBox.Name = "itemsGroupBox";
             this.itemsGroupBox.Size = new System.Drawing.Size(676, 206);
-            this.itemsGroupBox.TabIndex = 34;
+            this.itemsGroupBox.TabIndex = 10;
             this.itemsGroupBox.TabStop = false;
             this.itemsGroupBox.Text = "Items";
             // 
@@ -406,7 +456,7 @@
             this.itemGroupBox.Location = new System.Drawing.Point(31, 36);
             this.itemGroupBox.Name = "itemGroupBox";
             this.itemGroupBox.Size = new System.Drawing.Size(250, 140);
-            this.itemGroupBox.TabIndex = 25;
+            this.itemGroupBox.TabIndex = 6;
             this.itemGroupBox.TabStop = false;
             this.itemGroupBox.Text = "Item";
             // 
@@ -415,7 +465,7 @@
             this.limpiarItemBtn.Location = new System.Drawing.Point(0, 117);
             this.limpiarItemBtn.Name = "limpiarItemBtn";
             this.limpiarItemBtn.Size = new System.Drawing.Size(75, 23);
-            this.limpiarItemBtn.TabIndex = 18;
+            this.limpiarItemBtn.TabIndex = 9;
             this.limpiarItemBtn.Text = "Limpiar";
             this.limpiarItemBtn.UseVisualStyleBackColor = true;
             this.limpiarItemBtn.Click += new System.EventHandler(this.limpiarItemBtn_Click);
@@ -425,7 +475,7 @@
             this.montoTextBox.Location = new System.Drawing.Point(99, 28);
             this.montoTextBox.Name = "montoTextBox";
             this.montoTextBox.Size = new System.Drawing.Size(100, 20);
-            this.montoTextBox.TabIndex = 14;
+            this.montoTextBox.TabIndex = 6;
             this.montoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.montoTextBox_KeyPress);
             // 
             // agregarItemBtn
@@ -433,7 +483,7 @@
             this.agregarItemBtn.Location = new System.Drawing.Point(99, 80);
             this.agregarItemBtn.Name = "agregarItemBtn";
             this.agregarItemBtn.Size = new System.Drawing.Size(100, 23);
-            this.agregarItemBtn.TabIndex = 17;
+            this.agregarItemBtn.TabIndex = 8;
             this.agregarItemBtn.Text = "Agregar Item";
             this.agregarItemBtn.UseVisualStyleBackColor = true;
             this.agregarItemBtn.Click += new System.EventHandler(this.agregarItemBtn_Click_1);
@@ -443,7 +493,7 @@
             this.cantTextBox.Location = new System.Drawing.Point(99, 54);
             this.cantTextBox.Name = "cantTextBox";
             this.cantTextBox.Size = new System.Drawing.Size(100, 20);
-            this.cantTextBox.TabIndex = 13;
+            this.cantTextBox.TabIndex = 7;
             this.cantTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cantTextBox_KeyPress);
             // 
             // cantidadLabel
@@ -469,7 +519,7 @@
             this.eliminarItemBtn.Location = new System.Drawing.Point(568, 177);
             this.eliminarItemBtn.Name = "eliminarItemBtn";
             this.eliminarItemBtn.Size = new System.Drawing.Size(75, 23);
-            this.eliminarItemBtn.TabIndex = 24;
+            this.eliminarItemBtn.TabIndex = 11;
             this.eliminarItemBtn.Text = "Eliminar";
             this.eliminarItemBtn.UseVisualStyleBackColor = true;
             this.eliminarItemBtn.Click += new System.EventHandler(this.eliminarItemBtn_Click);
@@ -496,7 +546,7 @@
             this.actualizarItemsBtn.Location = new System.Drawing.Point(326, 177);
             this.actualizarItemsBtn.Name = "actualizarItemsBtn";
             this.actualizarItemsBtn.Size = new System.Drawing.Size(100, 23);
-            this.actualizarItemsBtn.TabIndex = 21;
+            this.actualizarItemsBtn.TabIndex = 10;
             this.actualizarItemsBtn.Text = "Actualizar Tabla";
             this.actualizarItemsBtn.UseVisualStyleBackColor = true;
             this.actualizarItemsBtn.Click += new System.EventHandler(this.actualizarTablaItemsBtn_Click);
@@ -518,7 +568,7 @@
             this.actualizarFactButton.Location = new System.Drawing.Point(308, 138);
             this.actualizarFactButton.Name = "actualizarFactButton";
             this.actualizarFactButton.Size = new System.Drawing.Size(121, 37);
-            this.actualizarFactButton.TabIndex = 33;
+            this.actualizarFactButton.TabIndex = 5;
             this.actualizarFactButton.Text = "Actualizar Factura";
             this.actualizarFactButton.UseVisualStyleBackColor = true;
             this.actualizarFactButton.Click += new System.EventHandler(this.actualizar_Click);
@@ -529,7 +579,7 @@
             this.totalTextBox.Location = new System.Drawing.Point(598, 159);
             this.totalTextBox.Name = "totalTextBox";
             this.totalTextBox.Size = new System.Drawing.Size(103, 20);
-            this.totalTextBox.TabIndex = 32;
+            this.totalTextBox.TabIndex = 30;
             // 
             // totalLabel
             // 
@@ -554,7 +604,7 @@
             this.fechaVencDT.Location = new System.Drawing.Point(519, 67);
             this.fechaVencDT.Name = "fechaVencDT";
             this.fechaVencDT.Size = new System.Drawing.Size(213, 20);
-            this.fechaVencDT.TabIndex = 29;
+            this.fechaVencDT.TabIndex = 4;
             this.fechaVencDT.ValueChanged += new System.EventHandler(this.fechaVencDT_ValueChanged);
             // 
             // fechaAltaFactLabel
@@ -590,7 +640,7 @@
             this.empresaComboBox.Location = new System.Drawing.Point(173, 51);
             this.empresaComboBox.Name = "empresaComboBox";
             this.empresaComboBox.Size = new System.Drawing.Size(121, 21);
-            this.empresaComboBox.TabIndex = 25;
+            this.empresaComboBox.TabIndex = 2;
             this.empresaComboBox.SelectedIndexChanged += new System.EventHandler(this.empresaComboBox_SelectedIndexChanged);
             // 
             // numFactTextBox
@@ -598,7 +648,7 @@
             this.numFactTextBox.Location = new System.Drawing.Point(173, 25);
             this.numFactTextBox.Name = "numFactTextBox";
             this.numFactTextBox.Size = new System.Drawing.Size(121, 20);
-            this.numFactTextBox.TabIndex = 24;
+            this.numFactTextBox.TabIndex = 1;
             this.numFactTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numFactTextBox_KeyPress);
             // 
             // empresaLabel
@@ -639,6 +689,56 @@
             this.nuevaFacturaTab.Text = "Nueva Factura";
             this.nuevaFacturaTab.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label5.Location = new System.Drawing.Point(707, 157);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(23, 17);
+            this.label5.TabIndex = 56;
+            this.label5.Text = "(*)";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label4.Location = new System.Drawing.Point(732, 66);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(23, 17);
+            this.label4.TabIndex = 55;
+            this.label4.Text = "(*)";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label3.Location = new System.Drawing.Point(732, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(23, 17);
+            this.label3.TabIndex = 54;
+            this.label3.Text = "(*)";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label2.Location = new System.Drawing.Point(300, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(23, 17);
+            this.label2.TabIndex = 53;
+            this.label2.Text = "(*)";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label1.Location = new System.Drawing.Point(300, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(23, 17);
+            this.label1.TabIndex = 52;
+            this.label1.Text = "(*)";
+            // 
             // clienteGroupBox2NF
             // 
             this.clienteGroupBox2NF.Controls.Add(this.idClienteTextBox2NF);
@@ -647,7 +747,7 @@
             this.clienteGroupBox2NF.Location = new System.Drawing.Point(43, 77);
             this.clienteGroupBox2NF.Name = "clienteGroupBox2NF";
             this.clienteGroupBox2NF.Size = new System.Drawing.Size(291, 54);
-            this.clienteGroupBox2NF.TabIndex = 51;
+            this.clienteGroupBox2NF.TabIndex = 3;
             this.clienteGroupBox2NF.TabStop = false;
             this.clienteGroupBox2NF.Text = "Cliente (*)";
             // 
@@ -664,7 +764,7 @@
             this.seleccionarBtn2NF.Location = new System.Drawing.Point(204, 18);
             this.seleccionarBtn2NF.Name = "seleccionarBtn2NF";
             this.seleccionarBtn2NF.Size = new System.Drawing.Size(76, 20);
-            this.seleccionarBtn2NF.TabIndex = 24;
+            this.seleccionarBtn2NF.TabIndex = 3;
             this.seleccionarBtn2NF.Text = "Seleccionar";
             this.seleccionarBtn2NF.UseVisualStyleBackColor = true;
             this.seleccionarBtn2NF.Click += new System.EventHandler(this.seleccionarClienteBtn_Click_NF);
@@ -682,7 +782,7 @@
             this.LimpiarNF.Location = new System.Drawing.Point(328, 405);
             this.LimpiarNF.Name = "LimpiarNF";
             this.LimpiarNF.Size = new System.Drawing.Size(83, 29);
-            this.LimpiarNF.TabIndex = 50;
+            this.LimpiarNF.TabIndex = 11;
             this.LimpiarNF.Text = "Limpiar todo";
             this.LimpiarNF.UseVisualStyleBackColor = true;
             this.LimpiarNF.Click += new System.EventHandler(this.LimpiarNF_Click);
@@ -697,7 +797,7 @@
             this.itemsGroupBoxNF.Location = new System.Drawing.Point(42, 184);
             this.itemsGroupBoxNF.Name = "itemsGroupBoxNF";
             this.itemsGroupBoxNF.Size = new System.Drawing.Size(676, 206);
-            this.itemsGroupBoxNF.TabIndex = 49;
+            this.itemsGroupBoxNF.TabIndex = 10;
             this.itemsGroupBoxNF.TabStop = false;
             this.itemsGroupBoxNF.Text = "Items";
             // 
@@ -712,7 +812,7 @@
             this.itemGroupBoxNF.Location = new System.Drawing.Point(31, 36);
             this.itemGroupBoxNF.Name = "itemGroupBoxNF";
             this.itemGroupBoxNF.Size = new System.Drawing.Size(250, 140);
-            this.itemGroupBoxNF.TabIndex = 25;
+            this.itemGroupBoxNF.TabIndex = 6;
             this.itemGroupBoxNF.TabStop = false;
             this.itemGroupBoxNF.Text = "Item";
             // 
@@ -721,7 +821,7 @@
             this.limpiarItemBtnNF.Location = new System.Drawing.Point(0, 117);
             this.limpiarItemBtnNF.Name = "limpiarItemBtnNF";
             this.limpiarItemBtnNF.Size = new System.Drawing.Size(75, 23);
-            this.limpiarItemBtnNF.TabIndex = 18;
+            this.limpiarItemBtnNF.TabIndex = 9;
             this.limpiarItemBtnNF.Text = "Limpiar";
             this.limpiarItemBtnNF.UseVisualStyleBackColor = true;
             this.limpiarItemBtnNF.Click += new System.EventHandler(this.limpiarItemBtnNF_Click);
@@ -731,7 +831,7 @@
             this.montoTextBoxNF.Location = new System.Drawing.Point(99, 28);
             this.montoTextBoxNF.Name = "montoTextBoxNF";
             this.montoTextBoxNF.Size = new System.Drawing.Size(100, 20);
-            this.montoTextBoxNF.TabIndex = 14;
+            this.montoTextBoxNF.TabIndex = 6;
             this.montoTextBoxNF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.montoTextBoxNF_KeyPress);
             // 
             // agregarItemBtnNF
@@ -739,7 +839,7 @@
             this.agregarItemBtnNF.Location = new System.Drawing.Point(99, 80);
             this.agregarItemBtnNF.Name = "agregarItemBtnNF";
             this.agregarItemBtnNF.Size = new System.Drawing.Size(100, 23);
-            this.agregarItemBtnNF.TabIndex = 17;
+            this.agregarItemBtnNF.TabIndex = 8;
             this.agregarItemBtnNF.Text = "Agregar Item";
             this.agregarItemBtnNF.UseVisualStyleBackColor = true;
             this.agregarItemBtnNF.Click += new System.EventHandler(this.agregarItemBtnNF_Click);
@@ -749,7 +849,7 @@
             this.cantTextBoxNF.Location = new System.Drawing.Point(99, 54);
             this.cantTextBoxNF.Name = "cantTextBoxNF";
             this.cantTextBoxNF.Size = new System.Drawing.Size(100, 20);
-            this.cantTextBoxNF.TabIndex = 13;
+            this.cantTextBoxNF.TabIndex = 7;
             this.cantTextBoxNF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cantTextBoxNF_KeyPress);
             // 
             // cantidadLabelNF
@@ -775,7 +875,7 @@
             this.eliminarItemBtnNF.Location = new System.Drawing.Point(568, 177);
             this.eliminarItemBtnNF.Name = "eliminarItemBtnNF";
             this.eliminarItemBtnNF.Size = new System.Drawing.Size(75, 23);
-            this.eliminarItemBtnNF.TabIndex = 24;
+            this.eliminarItemBtnNF.TabIndex = 10;
             this.eliminarItemBtnNF.Text = "Eliminar";
             this.eliminarItemBtnNF.UseVisualStyleBackColor = true;
             this.eliminarItemBtnNF.Click += new System.EventHandler(this.eliminarItemBtnNF_Click);
@@ -818,23 +918,26 @@
             // 
             this.Monto.HeaderText = "Monto";
             this.Monto.Name = "Monto";
+            this.Monto.ReadOnly = true;
             // 
             // Cantidad
             // 
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
             // 
             // Importe
             // 
             this.Importe.HeaderText = "Importe";
             this.Importe.Name = "Importe";
+            this.Importe.ReadOnly = true;
             // 
             // guardarFactButtonNF
             // 
             this.guardarFactButtonNF.Location = new System.Drawing.Point(308, 137);
             this.guardarFactButtonNF.Name = "guardarFactButtonNF";
             this.guardarFactButtonNF.Size = new System.Drawing.Size(121, 37);
-            this.guardarFactButtonNF.TabIndex = 48;
+            this.guardarFactButtonNF.TabIndex = 5;
             this.guardarFactButtonNF.Text = "Guardar Factura";
             this.guardarFactButtonNF.UseVisualStyleBackColor = true;
             this.guardarFactButtonNF.Click += new System.EventHandler(this.guardar_Click);
@@ -870,7 +973,7 @@
             this.fechaVencDT_NF.Location = new System.Drawing.Point(519, 66);
             this.fechaVencDT_NF.Name = "fechaVencDT_NF";
             this.fechaVencDT_NF.Size = new System.Drawing.Size(211, 20);
-            this.fechaVencDT_NF.TabIndex = 44;
+            this.fechaVencDT_NF.TabIndex = 4;
             // 
             // fechaAltaFactLabelNF
             // 
@@ -905,7 +1008,7 @@
             this.empresaComboBoxNF.Location = new System.Drawing.Point(173, 50);
             this.empresaComboBoxNF.Name = "empresaComboBoxNF";
             this.empresaComboBoxNF.Size = new System.Drawing.Size(121, 21);
-            this.empresaComboBoxNF.TabIndex = 40;
+            this.empresaComboBoxNF.TabIndex = 2;
             this.empresaComboBoxNF.SelectedIndexChanged += new System.EventHandler(this.empresaComboBoxNF_SelectedIndexChanged);
             // 
             // numFactTextBoxNF
@@ -913,7 +1016,7 @@
             this.numFactTextBoxNF.Location = new System.Drawing.Point(173, 24);
             this.numFactTextBoxNF.Name = "numFactTextBoxNF";
             this.numFactTextBoxNF.Size = new System.Drawing.Size(121, 20);
-            this.numFactTextBoxNF.TabIndex = 39;
+            this.numFactTextBoxNF.TabIndex = 1;
             this.numFactTextBoxNF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numFactTextBoxNF_KeyPress);
             // 
             // empresaLabelNF
@@ -935,106 +1038,6 @@
             this.camposObligatoriosLabel.TabIndex = 34;
             this.camposObligatoriosLabel.Text = "Campos Obligatorios (*)";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label1.Location = new System.Drawing.Point(300, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 17);
-            this.label1.TabIndex = 52;
-            this.label1.Text = "(*)";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label2.Location = new System.Drawing.Point(300, 50);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 17);
-            this.label2.TabIndex = 53;
-            this.label2.Text = "(*)";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label3.Location = new System.Drawing.Point(732, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(23, 17);
-            this.label3.TabIndex = 54;
-            this.label3.Text = "(*)";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label4.Location = new System.Drawing.Point(732, 66);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(23, 17);
-            this.label4.TabIndex = 55;
-            this.label4.Text = "(*)";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label5.Location = new System.Drawing.Point(707, 157);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(23, 17);
-            this.label5.TabIndex = 56;
-            this.label5.Text = "(*)";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label6.Location = new System.Drawing.Point(300, 25);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(23, 17);
-            this.label6.TabIndex = 53;
-            this.label6.Text = "(*)";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label7.Location = new System.Drawing.Point(300, 51);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(23, 17);
-            this.label7.TabIndex = 54;
-            this.label7.Text = "(*)";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label8.Location = new System.Drawing.Point(732, 67);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(23, 17);
-            this.label8.TabIndex = 55;
-            this.label8.Text = "(*)";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label9.Location = new System.Drawing.Point(732, 21);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(23, 17);
-            this.label9.TabIndex = 56;
-            this.label9.Text = "(*)";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label10.Location = new System.Drawing.Point(707, 159);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(23, 17);
-            this.label10.TabIndex = 57;
-            this.label10.Text = "(*)";
-            // 
             // facturaABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1044,6 +1047,7 @@
             this.Controls.Add(this.camposObligatoriosLabel);
             this.Name = "facturaABM";
             this.Text = "ABM  Factura";
+            this.Activated += new System.EventHandler(this.facturaABM_Activated);
             this.facturaTabControl.ResumeLayout(false);
             this.ListadoTab.ResumeLayout(false);
             this.ListadoTab.PerformLayout();

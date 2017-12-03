@@ -32,6 +32,18 @@ namespace PagoAgilFrba
             items.ForEach(item => list.Items.Add(item));
         }
 
+        public int getKey(string value, List<KeyValuePair<int, string>> items)
+        {
+            KeyValuePair<int, string> item = items.Find(e => e.Value == value);
+            return item.Key;
+        }
+
+        public string getValue(int key, List<KeyValuePair<int, string>> items)
+        {
+            KeyValuePair<int, string> item = items.Find(e => e.Key == key);
+            return item.Value;
+        }
+
         static public List<KeyValuePair<int, string>> GetEmpresas()
         {
             List<KeyValuePair<int, string>> empresas = new List<KeyValuePair<int, string>>();
@@ -149,7 +161,7 @@ namespace PagoAgilFrba
 
         public Decimal convertirADecimal(TextBox textBox)
         {
-            return Decimal.Parse(textBox.Text.Trim());
+             return Decimal.Parse(textBox.Text.Trim());
         }
 
         public Int64 convertirABigInt(TextBox textBox)
@@ -167,7 +179,6 @@ namespace PagoAgilFrba
         public void validarCampoNumerico(KeyPressEventArgs e)
         {
             if (Char.IsDigit(e.KeyChar)) e.Handled = false;
-            else if (Char.IsSeparator(e.KeyChar)) e.Handled = false;
             else if (Char.IsControl(e.KeyChar)) e.Handled = false;            
             else e.Handled = true;
         }
@@ -175,9 +186,9 @@ namespace PagoAgilFrba
         public void validarCampoDecimal(KeyPressEventArgs e)
         {
             if (Char.IsDigit(e.KeyChar)) e.Handled = false;
-            else if (Char.IsSeparator(e.KeyChar)) e.Handled = false;
             else if (Char.IsControl(e.KeyChar)) e.Handled = false;
             else if (e.KeyChar.ToString().Equals(".")) e.Handled = false;
+            else if (e.KeyChar.ToString().Equals(",")) e.Handled = false;
             else e.Handled = true;
         }
 

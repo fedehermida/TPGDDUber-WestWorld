@@ -208,6 +208,11 @@ namespace PagoAgilFrba.AbmEmpresa
             utils.validarCampoNumerico(e);
         }
 
+        private void empresaABM_Activated(object sender, EventArgs e)
+        {
+            btnBuscar.Focus();
+        }
+
 
     }
 }

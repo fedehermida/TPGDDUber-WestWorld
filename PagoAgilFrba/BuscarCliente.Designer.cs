@@ -49,13 +49,17 @@
             // 
             this.clienteDataGridView.AllowUserToAddRows = false;
             this.clienteDataGridView.AllowUserToDeleteRows = false;
+            this.clienteDataGridView.AllowUserToResizeColumns = false;
             this.clienteDataGridView.AllowUserToResizeRows = false;
+            this.clienteDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.clienteDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.clienteDataGridView.Location = new System.Drawing.Point(12, 28);
             this.clienteDataGridView.Name = "clienteDataGridView";
             this.clienteDataGridView.ReadOnly = true;
+            this.clienteDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.clienteDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.clienteDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.clienteDataGridView.Size = new System.Drawing.Size(252, 144);
+            this.clienteDataGridView.Size = new System.Drawing.Size(308, 144);
             this.clienteDataGridView.TabIndex = 0;
             this.clienteDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.clienteDataGridView_Seleccionar);
             this.clienteDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.clienteDataGridView_Seleccionar);
@@ -70,13 +74,12 @@
             this.filtrarGroupBox.Controls.Add(this.label11);
             this.filtrarGroupBox.Controls.Add(this.nombreFilterTxt);
             this.filtrarGroupBox.Controls.Add(this.label10);
-            this.filtrarGroupBox.Location = new System.Drawing.Point(270, 12);
+            this.filtrarGroupBox.Location = new System.Drawing.Point(326, 12);
             this.filtrarGroupBox.Name = "filtrarGroupBox";
             this.filtrarGroupBox.Size = new System.Drawing.Size(206, 168);
             this.filtrarGroupBox.TabIndex = 32;
             this.filtrarGroupBox.TabStop = false;
             this.filtrarGroupBox.Text = "Criterio De Búsqueda";
-            this.filtrarGroupBox.Enter += new System.EventHandler(this.filtrarGroupBox_Enter);
             // 
             // dniFilterTextBox
             // 
@@ -84,6 +87,7 @@
             this.dniFilterTextBox.Name = "dniFilterTextBox";
             this.dniFilterTextBox.Size = new System.Drawing.Size(118, 20);
             this.dniFilterTextBox.TabIndex = 30;
+            this.dniFilterTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dniFilterTextBox_KeyPress);
             // 
             // label12
             // 
@@ -156,7 +160,7 @@
             // 
             // cancelarBtn
             // 
-            this.cancelarBtn.Location = new System.Drawing.Point(380, 194);
+            this.cancelarBtn.Location = new System.Drawing.Point(439, 194);
             this.cancelarBtn.Name = "cancelarBtn";
             this.cancelarBtn.Size = new System.Drawing.Size(93, 29);
             this.cancelarBtn.TabIndex = 33;
@@ -176,7 +180,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(485, 240);
+            this.ClientSize = new System.Drawing.Size(544, 240);
             this.Controls.Add(this.idClienteTextBox);
             this.Controls.Add(this.cancelarBtn);
             this.Controls.Add(this.seleccionarBtn);

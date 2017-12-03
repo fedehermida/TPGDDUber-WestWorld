@@ -25,6 +25,7 @@ namespace PagoAgilFrba.Devolucion
             try
             {
                 fillDataGridViewFacturas();
+                limpiarTablaFacturasADevolver();
             }
             catch (Exception ex)
             {
@@ -47,13 +48,13 @@ namespace PagoAgilFrba.Devolucion
                 sqlDa.SelectCommand.Parameters.AddWithValue("@estado", "Con Pago Y Sin Rendicion");
 
                 if (string.IsNullOrWhiteSpace(empresaComboBox.Text.Trim())) sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", DBNull.Value);
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", empresaComboBox.SelectedIndex + 1);
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", empresaComboBox.SelectedIndex);
 
                 if (string.IsNullOrWhiteSpace(numFactFilterTextBoxL.Text.Trim())) sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", DBNull.Value);
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", utils.convertirADecimal(numFactFilterTextBoxL));
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", utils.convertirABigInt(numFactFilterTextBoxL));
 
                 if (string.IsNullOrWhiteSpace(idClienteTextBox.Text.Trim())) sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", DBNull.Value);
-                else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirADecimal(idClienteTextBox));
+                else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirABigInt(idClienteTextBox));
 
                 sqlDa.SelectCommand.Parameters.AddWithValue("@mes", 0);
 
@@ -62,6 +63,14 @@ namespace PagoAgilFrba.Devolucion
                 sqlDa.Fill(dtbl);
                 sqlCon.Close();
             }
+        }
+
+        private void limpiarTablaFacturasADevolver()
+        {
+            facturasADevolverDataGrid.ColumnHeadersVisible = false;
+            facturasADevolverDataGrid.Rows.Clear();
+            numFactList = new List<int>();
+            facturasADevolverDataGrid.Text = 0.ToString();
         }
 
         private void agregarABtn_Click(object sender, EventArgs e)
@@ -84,6 +93,8 @@ namespace PagoAgilFrba.Devolucion
 
                     numFactList.Add(Convert.ToInt32(numFact));
                 }
+                else 
+                    throw new Exception("Ya existe la factura seleccionada en la tabla facturas a devolver");
             }
             catch (Exception ex)
             {
@@ -110,6 +121,50 @@ namespace PagoAgilFrba.Devolucion
                 MessageBox.Show(ex.Message, "Error Message");
             }
         }
+
+        private void limpiarDevBtn_Click(object sender, EventArgs e)
+        {
+            motivoTextBox.Text = "";
+        }
+
+        private void empresaComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(empresaComboBox.SelectedIndex == 0) empresaComboBox.SelectedIndex = -1;
+        }
+
+        private void seleccionarClienteBtn_Click(object sender, EventArgs e)
+        {
+            BuscarCliente busquedaDeCliente = new BuscarCliente();
+            busquedaDeCliente.ShowDialog();
+
+            if (!string.IsNullOrWhiteSpace(busquedaDeCliente.clienteTextBox.Text) & !string.IsNullOrWhiteSpace(busquedaDeCliente.idClienteTextBox.Text))
+            {
+                idClienteTextBox.Text = busquedaDeCliente.idClienteTextBox.Text;
+                clienteTextBox.Text = busquedaDeCliente.clienteTextBox.Text;
+            }
+        }
+
+        private void numFactFilterTextBoxL_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            utils.validarCampoNumerico(e);
+        }
+
+        private void Devolucion_Activated(object sender, EventArgs e)
+        {
+            searchBtn.Focus();
+        }
+
+        private void limpiarBtn_Click(object sender, EventArgs e)
+        {
+            limpiarDevBtn_Click(sender, e);
+            limpiarTablaFacturasADevolver();
+            DataTable dtbl = new DataTable();
+            facturasDataGrid.DataSource = dtbl;
+            numFactFilterTextBoxL.Text = idClienteTextBox.Text = clienteTextBox.Text = "";
+            empresaComboBox.SelectedIndex = -1;
+        }
+
+     
 
     }
 }
