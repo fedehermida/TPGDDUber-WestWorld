@@ -14,7 +14,7 @@ namespace PagoAgilFrba
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // Application.Run(new AbmRol.Form1()); leo pajero no tenias que commitear esto
-            Application.Run(new Login());
+            Application.Run(new AbmRol.rolABM());
         }
     }
 }
