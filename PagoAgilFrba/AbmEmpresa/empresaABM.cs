@@ -168,8 +168,8 @@ namespace PagoAgilFrba.AbmEmpresa
 
                 DataTable dtbl = new DataTable();
                 sqlDa.Fill(dtbl);
-
                 empresaDataGrid.DataSource = dtbl;
+
                 if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
             }
         }
