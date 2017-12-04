@@ -44,6 +44,10 @@ namespace PagoAgilFrba.AbmRol
                 MessageBox.Show(ex.Message, "Mensaje de Error");
                 return 0;
             }
+            finally
+            {
+                sqlCon.Close();
+            }
         }
 
         public void llenarListaFuncionalidades()
