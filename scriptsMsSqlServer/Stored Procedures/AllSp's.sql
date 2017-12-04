@@ -12,14 +12,55 @@ END
 
 GO
 
-CREATE or ALTER PROCEDURE WEST_WORLD.BuscarRoles 
-@Nombre VARCHAR(50),
-@IdFuncionalidad BIGINT
-as
-SELECT r.idRol,r.nombre FROM WEST_WORLD.Rol r INNER JOIN WEST_WORLD.Rol_Funcionalidad rf ON
-		r.idRol=rf.idRol
-WHERE (Nombre LIKE @Nombre or @Nombre IS NULL)  And (idFuncionalidad= @IdFuncionalidad or @IdFuncionalidad IS NULL)
+CREATE OR ALTER PROCEDURE WEST_WORLD.BuscarRoles
+@Nombre VARCHAR(50)
 
+AS
+
+BEGIN
+	SELECT idRol, nombre as 'Nombre', habilitado as 'Habilitado'
+	FROM WEST_WORLD.Rol
+	WHERE (@Nombre IS NULL OR nombre LIKE CONCAT(@Nombre, '%'))
+END
+
+GO
+CREATE OR ALTER PROCEDURE WEST_WORLD.CreateRol
+@nombre VARCHAR(50),
+@habilitado bit
+
+AS
+	
+BEGIN
+	IF NOT EXISTS (SELECT nombre FROM WEST_WORLD.Rol WHERE nombre = @nombre)
+	BEGIN
+		INSERT INTO WEST_WORLD.Rol(nombre,habilitado) 
+		VALUES(@nombre, @habilitado)
+		RETURN SCOPE_IDENTITY()
+	END
+	ELSE
+		RAISERROR(N'El Rol "%s" ya existe. Intente con otro nombre', 16, 2, @nombre)
+END
+GO
+CREATE OR ALTER PROCEDURE WEST_WORLD.FuncionalidadesRol 
+@idRol BIGINT
+
+AS
+BEGIN
+	SELECT f.nombre,f.idFuncionalidad 
+	FROM WEST_WORLD.Rol_Funcionalidad rf
+	JOIN WEST_WORLD.Funcionalidad f ON (rf.idFuncionalidad=f.idFuncionalidad)
+	WHERE rf.idRol = @idRol
+END
+GO
+CREATE OR ALTER PROCEDURE WEST_WORLD.ActualizarRol 
+@idRol BIGINT,
+@nombre VARCHAR(50),
+@habilitado BIT
+as
+UPDATE WEST_WORLD.Rol 
+SET nombre=@nombre,
+	habilitado=@habilitado
+WHERE idRol=@idRol
 GO
 
 CREATE or ALTER PROCEDURE WEST_WORLD.ClienteCreateOrUpdate
@@ -299,8 +340,9 @@ AS
 
 GO
 
-CREATE PROCEDURE WEST_WORLD.GetFuncionalidades as
-SELECT nombre FROM WEST_WORLD.Funcionalidad 
+CREATE OR ALTER PROCEDURE WEST_WORLD.GetFuncionalidades
+as
+SELECT * FROM WEST_WORLD.Funcionalidad 
 
 
 GO

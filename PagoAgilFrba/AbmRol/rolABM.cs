@@ -76,14 +76,14 @@ namespace PagoAgilFrba.AbmRol
 
                     sqlCmd.ExecuteNonQuery();
 
-                    int idRol = -1; 
+                    int idRol = -1;
                     idRol = Convert.ToInt32(returnParameter.Value);
-                    SqlCommand sqlCom1 = new SqlCommand("WEST_WORLD.ValidarCreateOrUpdateRol", sqlCon);
+                    /*SqlCommand sqlCom1 = new SqlCommand("WEST_WORLD.ValidarCreateOrUpdateRol", sqlCon);
                     sqlCom1.CommandType = CommandType.StoredProcedure;
                     sqlCom1.Parameters.AddWithValue("@idRol", idRol);
                     
                     sqlCom1.ExecuteNonQuery();
-
+                    */
                     foreach (int id in funcionalidades)
                     {
                         SqlCommand sqlCom = new SqlCommand("WEST_WORLD.AgregarFuncionalidad", sqlCon);
@@ -92,6 +92,15 @@ namespace PagoAgilFrba.AbmRol
                         sqlCom.Parameters.AddWithValue("@idFuncionalidad", id);
                         sqlCom.ExecuteNonQuery();
                     }
+
+
+                    SqlCommand sqlComUser = new SqlCommand("WEST_WORLD.AgregarRolAUsuario", sqlCon);
+                    sqlComUser.CommandType = CommandType.StoredProcedure;
+                    sqlComUser.Parameters.AddWithValue("@idUser", idUser);
+                    sqlComUser.Parameters.AddWithValue("@idRol", idRol);
+
+                    sqlComUser.ExecuteNonQuery();
+
 
                     sqlCon.Close();
                     MessageBox.Show("Rol creado correctamente", "Mensaje");
@@ -122,6 +131,8 @@ namespace PagoAgilFrba.AbmRol
                         sqlCmd2.Parameters.AddWithValue("@IdFuncionalidad", id);
                         sqlCmd2.ExecuteNonQuery();
                     }
+
+                    MessageBox.Show("Se Actualizo el Rol de manera correcta");
 
                     sqlCon.Close();
                 }
@@ -162,6 +173,7 @@ namespace PagoAgilFrba.AbmRol
                 DataRow dr = dtbl.Rows[i];
                 ListViewItem listItem = new ListViewItem(dr["nombre"].ToString());
                 funcionalidadesListView.Items.Add(listItem);
+                funcionalidades.Add(Convert.ToInt32(dr["idFuncionalidad"]));
             }
 
             rolTextBox.Text = rolesDataGridView.CurrentRow.Cells[1].Value.ToString();
@@ -218,7 +230,7 @@ namespace PagoAgilFrba.AbmRol
                 foreach (ListViewItem funcionalidad in funcionalidadesListView.SelectedItems)
                 {
                     funcionalidadesListView.Items.Remove(funcionalidad);
-                    int algo = utils.getKey(funcionalidad.Text, funcionalidadesKeyValue);
+                    int algo = utils.getKey(funcionalidad.Text, funcionalidadesKeyValue); 
                     funcionalidades.Remove(algo);
                 }
             }
