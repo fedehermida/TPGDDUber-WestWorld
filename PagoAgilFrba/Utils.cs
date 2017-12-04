@@ -5,7 +5,9 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace PagoAgilFrba
 {
@@ -187,9 +189,24 @@ namespace PagoAgilFrba
         {
             if (Char.IsDigit(e.KeyChar)) e.Handled = false;
             else if (Char.IsControl(e.KeyChar)) e.Handled = false;
-            else if (e.KeyChar.ToString().Equals(".")) e.Handled = false;
-            else if (e.KeyChar.ToString().Equals(",")) e.Handled = false;
+            else if (e.KeyChar.ToString().Equals(".")) //si es español no pasa
+            {
+                if (Thread.CurrentThread.CurrentUICulture.Name == "es-ES")
+                    e.Handled = true;
+            }
+            else if (e.KeyChar.ToString().Equals(",")) //si es español pasa
+            {
+                if (Thread.CurrentThread.CurrentUICulture.Name == "es-ES")
+                    e.Handled = true; e.Handled = false;
+            }
             else e.Handled = true;
+        }
+
+        public void esDecimal(string valor)
+        {
+            if (valor.ToArray().Where(lr => lr.Equals('.') | lr.Equals(',')).Count() > 1) throw new Exception("Decimal invalido");
+            if (valor.StartsWith(".") | valor.EndsWith(".") | valor.StartsWith(",") | valor.EndsWith(",")) throw new Exception("Decimal invalido");
+
         }
 
         public string calcularColumna(string columna, DataTable dtbl)

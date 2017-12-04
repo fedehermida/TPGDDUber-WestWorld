@@ -8,7 +8,7 @@ CREATE PROCEDURE WEST_WORLD.ValidarCreateOrUpdateRol
 AS
 
 BEGIN
-	IF EXISTS (SELECT max(rol.nombre) from (SELECT r.idRol, r.nombre
+	IF EXISTS(SELECT r.idRol, r.nombre
 	FROM WEST_WORLD.Rol_Funcionalidad rf JOIN WEST_WORLD.Rol r ON (rf.idRol = r.idRol)
 	WHERE idFuncionalidad IN (SELECT idFuncionalidad
 								FROM WEST_WORLD.Rol_Funcionalidad
@@ -23,9 +23,10 @@ BEGIN
 									FROM WEST_WORLD.Rol_Funcionalidad 
 									WHERE idRol = @idRol
 									)
-	) rol )
+	)
 
 	BEGIN
+		DELETE FROM WEST_WORLD.Rol_Funcionalidad WHERE idRol = @idRol
 		DELETE FROM WEST_WORLD.Rol WHERE idRol = @idRol
 		RAISERROR('Ya existe un rol con las mismas funcionalidades', 16, 2)
 	END

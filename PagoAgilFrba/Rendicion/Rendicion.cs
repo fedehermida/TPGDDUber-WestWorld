@@ -94,7 +94,7 @@ namespace PagoAgilFrba.Rendicion
 
         private void limpiarRendicion()
         {
-            cantFactTextBox.Text = empresaTextBox.Text = importeNetoTextBox.Text = importeTotalTextBox.Text = "";
+            cantFactTextBox.Text = empresaTextBox.Text = importeNetoTextBox.Text = importeTotalTextBox.Text = porcDisableTxtBox.Text = "";
             rendirBtn.Enabled = false;
 
         }
@@ -113,7 +113,6 @@ namespace PagoAgilFrba.Rendicion
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(porcentajeComisionTextBox.Text)) throw new Exception("Ingrese porcentaje de comisión");
                 validarFechaRendicion();
 
                 int idRendicion = rendirFacturas();
@@ -132,6 +131,7 @@ namespace PagoAgilFrba.Rendicion
                 }
                 rendirBtn.Enabled = false;
                 facturasDataGrid.DataSource = new DataTable();
+                numFactList.Clear();
             }
             catch (Exception ex)
             {
@@ -177,7 +177,7 @@ namespace PagoAgilFrba.Rendicion
                 utils.validarImporteYAgregar(sqlCmd, "@importe_neto", importeNetoTextBox);
                 utils.validarImporteYAgregar(sqlCmd, "@importe_total", importeTotalTextBox);
 
-                utils.validarYAgregarParam(sqlCmd, "@porcentaje_comision", porcentajeComisionTextBox);
+                utils.validarConvYAgregarParam(sqlCmd, "@porcentaje_comision", porcDisableTxtBox);
 
                 int idRendicion = -1;
                 var returnParameter = sqlCmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
@@ -203,26 +203,13 @@ namespace PagoAgilFrba.Rendicion
             utils.validarCampoDecimal(e);
         }
 
-        private void porcentajeComisionTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                calcularPorcentaje();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error Message");
-            }
-        }
-
         private void calcularPorcentaje() {
-            if (!string.IsNullOrWhiteSpace(importeTotalTextBox.Text) & !string.IsNullOrWhiteSpace(porcentajeComisionTextBox.Text.Trim()) & !porcentajeComisionTextBox.Text.Equals("."))
-            {
-                utils.convertirADecimal(porcentajeComisionTextBox);
-                if (utils.convertirADecimal(porcentajeComisionTextBox) > 0 & utils.convertirADecimal(porcentajeComisionTextBox) < new Decimal(100.001))
-                    importeNetoTextBox.Text = Decimal.Round(Convert.ToDecimal(importeTotalTextBox.Text) * (1 - (Convert.ToDecimal(porcentajeComisionTextBox.Text) / 100)), 2).ToString();
-                else importeNetoTextBox.Text = "";
-            }
+            utils.esDecimal(porcentajeComisionTextBox.Text.Trim()); //tira exception si no es decimal
+            Decimal porcentaje = utils.convertirADecimal(porcentajeComisionTextBox);
+            if (porcentaje >= 0 & porcentaje < new Decimal(101))
+                importeNetoTextBox.Text = Decimal.Round(Convert.ToDecimal(importeTotalTextBox.Text) * (1 - (porcentaje / 100)), 2).ToString();
+            else
+               throw new Exception("Porcentaje fuera de rango");
         }
 
         private void Rendicion_Activated(object sender, EventArgs e)
@@ -241,11 +228,13 @@ namespace PagoAgilFrba.Rendicion
                 empresaTextBox.Text = empresaFilterComboBox.Text.Trim();
                 importeTotalTextBox.Text = utils.calcularColumna(5, facturasDataGrid);
                 calcularPorcentaje();
+                porcDisableTxtBox.Text = porcentajeComisionTextBox.Text.Trim();
                 rendirBtn.Enabled = true;
                 rendirBtn.Focus();
             }
             catch (Exception ex)
             {
+                limpiarRendBtn_Click(sender, e);
                 MessageBox.Show(ex.Message, "Error message");
             }
         }

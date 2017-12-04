@@ -1,7 +1,7 @@
 USE GD2C2017
 
 --IMPORTANTE: SE DEBE MANTENER EL ORDEN DE LOS DROP PARA QUE NO ROMPA
---Primero se eliminan las tablas con que tengan una fk hacia otra tabla 
+--Primero se eliminan las tablas que tengan una fk hacia otra tabla 
 -- y que ninguna otra tabla la referencie mediante una fk
 GO
 IF OBJECT_ID('WEST_WORLD.Rol_Funcionalidad', 'U') IS NOT NULL
@@ -51,6 +51,9 @@ DROP TABLE WEST_WORLD.Sucursal
 GO
 IF OBJECT_ID('WEST_WORLD.Usuario', 'U') IS NOT NULL
 DROP TABLE WEST_WORLD.Usuario
+GO
+IF OBJECT_ID('WEST_WORLD.Devolucion', 'U') IS NOT NULL
+DROP TABLE WEST_WORLD.Devolucion
 
 ----------------------------------------- CREATE TABLES --------------------------------------------------------
 GO
@@ -62,7 +65,7 @@ CREATE TABLE "WEST_WORLD"."Cliente"(
 	"direccion"   	nvarchar(255) NOT NULL,
 	"codigoPostal"	nvarchar(255) NOT NULL,
 	"DNI"         	bigint NOT NULL,
-	"telefono"    	numeric(15),
+	"telefono"    	numeric(15) NOT NULL,
 	"fecha_nac"   	datetime NOT NULL,
 	"habilitado"	bit NOT NULL,
 	CONSTRAINT "id" PRIMARY KEY CLUSTERED("idCliente")
@@ -90,6 +93,17 @@ CREATE TABLE "WEST_WORLD"."Factura"  (
 	"pago"				bigint,
 	CONSTRAINT "facturaPK" PRIMARY KEY CLUSTERED("numeroFactura")
  ON [PRIMARY])
+GO
+CREATE TABLE WEST_WORLD.Devolucion (
+	"numeroDevolucion" INT IDENTITY(1,1),
+	"fechaDevolucion" DATE DEFAULT getdate(),
+	"factura" INT NOT NULL,
+	"pago" INT NOT NULL,
+	"cliente" INT NOT NULL,
+	"importe" decimal(15,2),
+	"motivo" VARCHAR(255),
+	CONSTRAINT "devolucionPK" PRIMARY KEY CLUSTERED("numeroDevolucion")
+	ON [PRIMARY])
 GO
 CREATE TABLE "WEST_WORLD"."Item"( 
 	"idItem"       	bigint IDENTITY(1,1) NOT NULL,
@@ -306,7 +320,7 @@ GO
 GO	
 	/*MIGRACION CLIENTE*/
 	INSERT INTO WEST_WORLD.Cliente (nombre, apellido, mail, direccion, codigoPostal, DNI, telefono, fecha_nac, habilitado)
-	SELECT DISTINCT [Cliente-Nombre], [Cliente-Apellido], Cliente_Mail, Cliente_Direccion, Cliente_Codigo_Postal, [Cliente-Dni], NULL, [Cliente-Fecha_Nac], 1
+	SELECT DISTINCT [Cliente-Nombre], [Cliente-Apellido], Cliente_Mail, Cliente_Direccion, Cliente_Codigo_Postal, [Cliente-Dni], 0, [Cliente-Fecha_Nac], 1
 	FROM gd_esquema.Maestra
 
 	
@@ -412,9 +426,9 @@ ALTER TABLE [WEST_WORLD].[Factura]  WITH CHECK ADD CHECK  (([total]>(0)))
 GO
 ALTER TABLE [WEST_WORLD].[Pago]  WITH CHECK ADD CHECK  (([importe]>(0)))
 GO
-ALTER TABLE [WEST_WORLD].[Pago] ADD  DEFAULT (sysdatetime()) FOR [fechaCobro]
+ALTER TABLE [WEST_WORLD].[Pago] ADD DEFAULT (sysdatetime()) FOR [fechaCobro]
 GO
-ALTER TABLE [WEST_WORLD].[Cliente] ADD  DEFAULT ('-') FOR [telefono]
+ALTER TABLE [WEST_WORLD].[Cliente] ADD DEFAULT (0) FOR [telefono]
 GO
 ALTER TABLE [WEST_WORLD].[Empresa] ADD UNIQUE ([cuit])
 GO
@@ -455,7 +469,7 @@ INSERT INTO WEST_WORLD.Funcionalidad values ('ABM Sucursal');
 INSERT INTO WEST_WORLD.Funcionalidad values ('ABM Rol');
 INSERT INTO WEST_WORLD.Funcionalidad values ('ABM Factura');
 INSERT INTO WEST_WORLD.Funcionalidad values ('Registro de Pago');
-INSERT INTO WEST_WORLD.Funcionalidad values ('Rendici�n de Facturas');
+INSERT INTO WEST_WORLD.Funcionalidad values ('Rendicion de Facturas');
 INSERT INTO WEST_WORLD.Funcionalidad values ('Devoluciones');
 GO
 INSERT INTO WEST_WORLD.Rol values ('Administrador',1);

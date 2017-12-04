@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace PagoAgilFrba.RegistroPago
 {
@@ -18,9 +19,8 @@ namespace PagoAgilFrba.RegistroPago
             InitializeComponent();
             utils.llenar(empresaFilterComboBox, Utils.GetEmpresas());
             utils.llenar(formaPagoComboBox, Utils.GetFormasDePago());
-            sucursalTextBox.Text = idSucursal.ToString();//TODO sucursal harcodeada. el idSucursal sale del operador -> Usuario logueado
+            sucursalTextBox.Text = idSucursal.ToString();//El idSucursal sale Usuario logueado si trabaja en mas de 1 sucursal. Sino agarra la unica que tiene
             importeCobroTextBox.Text = 0.ToString();
-
         }
 
 
@@ -65,10 +65,7 @@ namespace PagoAgilFrba.RegistroPago
 
                 sqlDa.SelectCommand.Parameters.AddWithValue("@mes", 0);
 
-                
-
                 DataTable dtbl = new DataTable();
-
                 sqlDa.Fill(dtbl);
                 facturasDataGridL.DataSource = dtbl;
                 
@@ -124,7 +121,9 @@ namespace PagoAgilFrba.RegistroPago
 
                     sqlCmd.ExecuteNonQuery();
                 }
+                sqlCon.Close();
 
+                searchBtnL_Click(sender, e);
             }
             catch (Exception ex)
             {

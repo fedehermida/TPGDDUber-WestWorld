@@ -311,12 +311,14 @@
             // 
             // devolverBtn
             // 
+            this.devolverBtn.Enabled = false;
             this.devolverBtn.Location = new System.Drawing.Point(528, 51);
             this.devolverBtn.Name = "devolverBtn";
             this.devolverBtn.Size = new System.Drawing.Size(196, 41);
             this.devolverBtn.TabIndex = 8;
             this.devolverBtn.Text = "Devolver";
             this.devolverBtn.UseVisualStyleBackColor = true;
+            this.devolverBtn.Click += new System.EventHandler(this.devolverBtn_Click);
             // 
             // motivoLabel
             // 

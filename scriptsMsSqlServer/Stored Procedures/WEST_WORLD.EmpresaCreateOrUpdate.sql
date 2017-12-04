@@ -28,7 +28,7 @@ AS
 		IF (EXISTS (SELECT idEmpresa FROM WEST_WORLD.Empresa WHERE idEmpresa=@idEmpresa AND habilitado=1)  AND (@habilitado=0))	
 			BEGIN
 				--Veo si tiene alguna factura no rendida. Si estan todas rendidas se puede dar de baja
-				IF EXISTS (SELECT numeroFactura FROM WEST_WORLD.Factura WHERE empresa = @idEmpresa AND rendicion IS NULL)
+				IF EXISTS (SELECT numeroFactura FROM WEST_WORLD.Factura WHERE empresa = @idEmpresa AND rendicion IS NULL AND pago IS NOT NULL)
 					RAISERROR('No es posible darle de baja a una empresa con 1 o más facturas sin rendir', 16, 1)
 				ELSE 
 					UPDATE WEST_WORLD.Empresa

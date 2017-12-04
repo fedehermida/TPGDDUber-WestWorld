@@ -56,14 +56,15 @@ namespace PagoAgilFrba.AbmRol
             utils.llenar(funcionalidadesComboBox, funcionalidadesKeyValue);
         }
 
-        private void Crear_Click(object sender, EventArgs e)
+        private void CrearOActualizar_Click(object sender, EventArgs e)
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(rolTextBox.Text.Trim())) throw new Exception("Ingrese un nombre de Rol");
+                if (funcionalidades.Count == 0) throw new Exception("Debe agregar funcionadidades");
+
                 if (crearOrUpdateBtn.Text == "Crear")
                 {
-                    if (string.IsNullOrWhiteSpace(rolTextBox.Text.Trim())) throw new Exception("Ingrese un nombre de Rol");
-                    if (funcionalidades.Count == 0) throw new Exception("Debe agregar funcionadidades");
                     sqlCon.Open();
                     SqlCommand sqlCmd = new SqlCommand("WEST_WORLD.CreateRol", sqlCon);
                     sqlCmd.CommandType = CommandType.StoredProcedure;
@@ -78,12 +79,7 @@ namespace PagoAgilFrba.AbmRol
 
                     int idRol = -1;
                     idRol = Convert.ToInt32(returnParameter.Value);
-                    /*SqlCommand sqlCom1 = new SqlCommand("WEST_WORLD.ValidarCreateOrUpdateRol", sqlCon);
-                    sqlCom1.CommandType = CommandType.StoredProcedure;
-                    sqlCom1.Parameters.AddWithValue("@idRol", idRol);
-                    
-                    sqlCom1.ExecuteNonQuery();
-                    */
+                  
                     foreach (int id in funcionalidades)
                     {
                         SqlCommand sqlCom = new SqlCommand("WEST_WORLD.AgregarFuncionalidad", sqlCon);
@@ -93,7 +89,12 @@ namespace PagoAgilFrba.AbmRol
                         sqlCom.ExecuteNonQuery();
                     }
 
-
+                    SqlCommand sqlCom1 = new SqlCommand("WEST_WORLD.ValidarCreateOrUpdateRol", sqlCon);
+                    sqlCom1.CommandType = CommandType.StoredProcedure;
+                    sqlCom1.Parameters.AddWithValue("@idRol", idRol);
+                    
+                    sqlCom1.ExecuteNonQuery();
+                  
                     SqlCommand sqlComUser = new SqlCommand("WEST_WORLD.AgregarRolAUsuario", sqlCon);
                     sqlComUser.CommandType = CommandType.StoredProcedure;
                     sqlComUser.Parameters.AddWithValue("@idUser", idUser);
@@ -115,9 +116,8 @@ namespace PagoAgilFrba.AbmRol
                     sqlCom2.Parameters.AddWithValue("@nombre", rolTextBox.Text);
                     sqlCom2.Parameters.AddWithValue("@habilitado", habilitadoCheckBox.Checked);
                     sqlCom2.ExecuteNonQuery();
-
-
-                    SqlCommand sqlCom3 = new SqlCommand("WEST_wORLD.ActualizarFuncionalidades", sqlCon);
+                    
+                    SqlCommand sqlCom3 = new SqlCommand("WEST_WORLD.ActualizarFuncionalidades", sqlCon);
                     sqlCom3.CommandType = CommandType.StoredProcedure;
                     sqlCom3.Parameters.AddWithValue("@idRol", Convert.ToInt32(rolesDataGridView.CurrentRow.Cells[0].Value.ToString()));
                     sqlCom3.ExecuteNonQuery();
@@ -135,7 +135,9 @@ namespace PagoAgilFrba.AbmRol
                     MessageBox.Show("Se Actualizo el Rol de manera correcta");
 
                     sqlCon.Close();
+                    LimpiarCamposObligatorios();
                 }
+                searchBtn_Click(sender, e);
             }
             catch (Exception ex)
             {
@@ -186,15 +188,22 @@ namespace PagoAgilFrba.AbmRol
 
         private void LimpiarBtn_Click(object sender, EventArgs e)
         {
-            funcionalidadesComboBox.SelectedIndex = -1;
+            LimpiarCamposObligatorios();
+
             rolesDataGridView.DataSource = new DataTable();
-            rolTextBox.Text = "";
             rolFilterTextBox.Text = "";
+
+        }
+
+        private void LimpiarCamposObligatorios() {
+            funcionalidadesComboBox.SelectedIndex = -1;
+            rolTextBox.Text = "";
             funcionalidadesListView.Clear();
+            funcionalidades.Clear();
             habilitadoCheckBox.Checked = false;
             crearOrUpdateBtn.Text = "Crear";
         }
-
+        
         private void searchBtn_Click(object sender, EventArgs e)
         {
             sqlCon.Open();

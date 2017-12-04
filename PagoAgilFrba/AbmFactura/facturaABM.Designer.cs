@@ -555,6 +555,7 @@
             // 
             this.itemsDataGrid.AllowUserToAddRows = false;
             this.itemsDataGrid.AllowUserToDeleteRows = false;
+            this.itemsDataGrid.AllowUserToResizeRows = false;
             this.itemsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.itemsDataGrid.Location = new System.Drawing.Point(313, 36);
             this.itemsDataGrid.Name = "itemsDataGrid";

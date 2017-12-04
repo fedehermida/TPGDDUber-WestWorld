@@ -338,7 +338,6 @@
             // 
             this.facturasACobrarDataGrid.AllowUserToAddRows = false;
             this.facturasACobrarDataGrid.AllowUserToDeleteRows = false;
-            this.facturasACobrarDataGrid.AllowUserToResizeColumns = false;
             this.facturasACobrarDataGrid.AllowUserToResizeRows = false;
             this.facturasACobrarDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.facturasACobrarDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

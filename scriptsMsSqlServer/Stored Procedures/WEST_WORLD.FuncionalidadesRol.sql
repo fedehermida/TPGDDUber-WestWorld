@@ -1,4 +1,4 @@
-ALTER PROCEDURE WEST_WORLD.FuncionalidadesRol 
+CREATE PROCEDURE WEST_WORLD.FuncionalidadesRol 
 @idRol BIGINT
 
 AS

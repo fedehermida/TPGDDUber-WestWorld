@@ -25,7 +25,7 @@ namespace PagoAgilFrba.Devolucion
             try
             {
                 fillDataGridViewFacturas();
-                limpiarTablaFacturasADevolver();
+                //limpiarTablaFacturasADevolver();
             }
             catch (Exception ex)
             {
@@ -95,6 +95,7 @@ namespace PagoAgilFrba.Devolucion
                 }
                 else 
                     throw new Exception("Ya existe la factura seleccionada en la tabla facturas a devolver");
+                if (!devolverBtn.Enabled) devolverBtn.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -114,7 +115,11 @@ namespace PagoAgilFrba.Devolucion
 
                 facturasADevolverDataGrid.Rows.Remove(facturasADevolverDataGrid.CurrentRow);
 
-                if (!numFactList.Any()) facturasADevolverDataGrid.ColumnHeadersVisible = false;
+                if (!numFactList.Any())
+                {
+                    facturasADevolverDataGrid.ColumnHeadersVisible = false;
+                    devolverBtn.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -162,6 +167,39 @@ namespace PagoAgilFrba.Devolucion
             facturasDataGrid.DataSource = dtbl;
             numFactFilterTextBoxL.Text = idClienteTextBox.Text = clienteTextBox.Text = "";
             empresaComboBox.SelectedIndex = -1;
+            devolverBtn.Enabled = false;
+        }
+
+        private void devolverBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                sqlCon.Open();
+                foreach (int numFact in numFactList)
+                {
+                    SqlCommand sqlCmd = new SqlCommand("GD2C2017.WEST_WORLD.DevolucionDeFactura", sqlCon);
+                    sqlCmd.CommandType = CommandType.StoredProcedure;
+                    sqlCmd.Parameters.AddWithValue("@numeroFactura", numFact);
+                    utils.validarYAgregarParam(sqlCmd, "@motivo", motivoTextBox);
+
+                    sqlCmd.ExecuteNonQuery();
+                }
+                sqlCon.Close();
+
+                searchBtn_Click(sender, e);
+                limpiarTablaFacturasADevolver();
+
+                MessageBox.Show("Se efectuo la devolucion de las facturas seleccionadas", "Mensaje");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Message");
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open)
+                    sqlCon.Close();
+            }
         }
 
      

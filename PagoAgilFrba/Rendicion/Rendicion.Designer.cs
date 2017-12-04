@@ -40,6 +40,7 @@
             this.mesesComboBox = new System.Windows.Forms.ComboBox();
             this.rendirBtn = new System.Windows.Forms.Button();
             this.rendicionGroupBox = new System.Windows.Forms.GroupBox();
+            this.limpiarRendBtn = new System.Windows.Forms.Button();
             this.calcularGroupBox = new System.Windows.Forms.GroupBox();
             this.calcularRendBtn = new System.Windows.Forms.Button();
             this.oblPorcLabel = new System.Windows.Forms.Label();
@@ -58,7 +59,8 @@
             this.facturasLabel = new System.Windows.Forms.Label();
             this.camposObligatoriosLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.limpiarRendBtn = new System.Windows.Forms.Button();
+            this.porcDisableLabel = new System.Windows.Forms.Label();
+            this.porcDisableTxtBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.facturasDataGrid)).BeginInit();
             this.filtrarGroupBox.SuspendLayout();
             this.rendicionGroupBox.SuspendLayout();
@@ -185,6 +187,8 @@
             // 
             // rendicionGroupBox
             // 
+            this.rendicionGroupBox.Controls.Add(this.porcDisableLabel);
+            this.rendicionGroupBox.Controls.Add(this.porcDisableTxtBox);
             this.rendicionGroupBox.Controls.Add(this.limpiarRendBtn);
             this.rendicionGroupBox.Controls.Add(this.calcularGroupBox);
             this.rendicionGroupBox.Controls.Add(this.importeTotalTextBox);
@@ -203,6 +207,16 @@
             this.rendicionGroupBox.Size = new System.Drawing.Size(701, 191);
             this.rendicionGroupBox.TabIndex = 25;
             this.rendicionGroupBox.TabStop = false;
+            // 
+            // limpiarRendBtn
+            // 
+            this.limpiarRendBtn.Location = new System.Drawing.Point(624, 170);
+            this.limpiarRendBtn.Name = "limpiarRendBtn";
+            this.limpiarRendBtn.Size = new System.Drawing.Size(77, 21);
+            this.limpiarRendBtn.TabIndex = 53;
+            this.limpiarRendBtn.Text = "Limpiar";
+            this.limpiarRendBtn.UseVisualStyleBackColor = true;
+            this.limpiarRendBtn.Click += new System.EventHandler(this.limpiarRendBtn_Click);
             // 
             // calcularGroupBox
             // 
@@ -239,10 +253,11 @@
             // porcentajeComisionTextBox
             // 
             this.porcentajeComisionTextBox.Location = new System.Drawing.Point(329, 15);
-            this.porcentajeComisionTextBox.MaxLength = 4;
+            this.porcentajeComisionTextBox.MaxLength = 5;
             this.porcentajeComisionTextBox.Name = "porcentajeComisionTextBox";
             this.porcentajeComisionTextBox.Size = new System.Drawing.Size(52, 20);
             this.porcentajeComisionTextBox.TabIndex = 53;
+            this.porcentajeComisionTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.porcentajeComisionTextBox_KeyPress);
             // 
             // porcentajeComisionLabel
             // 
@@ -324,7 +339,7 @@
             // importeNetoTextBox
             // 
             this.importeNetoTextBox.Enabled = false;
-            this.importeNetoTextBox.Location = new System.Drawing.Point(551, 90);
+            this.importeNetoTextBox.Location = new System.Drawing.Point(551, 111);
             this.importeNetoTextBox.Name = "importeNetoTextBox";
             this.importeNetoTextBox.Size = new System.Drawing.Size(100, 20);
             this.importeNetoTextBox.TabIndex = 37;
@@ -332,7 +347,7 @@
             // importeNetoLabel
             // 
             this.importeNetoLabel.AutoSize = true;
-            this.importeNetoLabel.Location = new System.Drawing.Point(469, 93);
+            this.importeNetoLabel.Location = new System.Drawing.Point(469, 113);
             this.importeNetoLabel.Name = "importeNetoLabel";
             this.importeNetoLabel.Size = new System.Drawing.Size(68, 13);
             this.importeNetoLabel.TabIndex = 36;
@@ -365,15 +380,22 @@
             this.panel1.Size = new System.Drawing.Size(327, 100);
             this.panel1.TabIndex = 52;
             // 
-            // limpiarRendBtn
+            // porcDisableLabel
             // 
-            this.limpiarRendBtn.Location = new System.Drawing.Point(624, 170);
-            this.limpiarRendBtn.Name = "limpiarRendBtn";
-            this.limpiarRendBtn.Size = new System.Drawing.Size(77, 21);
-            this.limpiarRendBtn.TabIndex = 53;
-            this.limpiarRendBtn.Text = "Limpiar";
-            this.limpiarRendBtn.UseVisualStyleBackColor = true;
-            this.limpiarRendBtn.Click += new System.EventHandler(this.limpiarRendBtn_Click);
+            this.porcDisableLabel.AutoSize = true;
+            this.porcDisableLabel.Location = new System.Drawing.Point(480, 88);
+            this.porcDisableLabel.Name = "porcDisableLabel";
+            this.porcDisableLabel.Size = new System.Drawing.Size(58, 13);
+            this.porcDisableLabel.TabIndex = 57;
+            this.porcDisableLabel.Text = "Porcentaje";
+            // 
+            // porcDisableTxtBox
+            // 
+            this.porcDisableTxtBox.Enabled = false;
+            this.porcDisableTxtBox.Location = new System.Drawing.Point(551, 85);
+            this.porcDisableTxtBox.Name = "porcDisableTxtBox";
+            this.porcDisableTxtBox.Size = new System.Drawing.Size(49, 20);
+            this.porcDisableTxtBox.TabIndex = 56;
             // 
             // Rendicion
             // 
@@ -435,6 +457,8 @@
         private System.Windows.Forms.Label porcentajeComisionLabel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button limpiarRendBtn;
+        private System.Windows.Forms.Label porcDisableLabel;
+        private System.Windows.Forms.TextBox porcDisableTxtBox;
 
     }
 }

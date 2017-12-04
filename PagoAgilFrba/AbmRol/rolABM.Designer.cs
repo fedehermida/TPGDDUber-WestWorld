@@ -46,7 +46,6 @@ namespace PagoAgilFrba.AbmRol
             this.limpiarBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.rolesDataGridView)).BeginInit();
             this.criterioDeBusquedaGroupBox.SuspendLayout();
@@ -88,8 +87,10 @@ namespace PagoAgilFrba.AbmRol
             // 
             // funcionalidadesListView
             // 
+            this.funcionalidadesListView.BackColor = System.Drawing.SystemColors.Window;
             this.funcionalidadesListView.GridLines = true;
             this.funcionalidadesListView.Location = new System.Drawing.Point(262, 45);
+            this.funcionalidadesListView.MultiSelect = false;
             this.funcionalidadesListView.Name = "funcionalidadesListView";
             this.funcionalidadesListView.Size = new System.Drawing.Size(209, 97);
             this.funcionalidadesListView.TabIndex = 4;
@@ -104,11 +105,11 @@ namespace PagoAgilFrba.AbmRol
             this.crearOrUpdateBtn.TabIndex = 7;
             this.crearOrUpdateBtn.Text = "Crear";
             this.crearOrUpdateBtn.UseVisualStyleBackColor = true;
-            this.crearOrUpdateBtn.Click += new System.EventHandler(this.Crear_Click);
+            this.crearOrUpdateBtn.Click += new System.EventHandler(this.CrearOActualizar_Click);
             // 
             // agregarBtn
             // 
-            this.agregarBtn.Location = new System.Drawing.Point(477, 45);
+            this.agregarBtn.Location = new System.Drawing.Point(480, 45);
             this.agregarBtn.Name = "agregarBtn";
             this.agregarBtn.Size = new System.Drawing.Size(84, 25);
             this.agregarBtn.TabIndex = 5;
@@ -120,7 +121,6 @@ namespace PagoAgilFrba.AbmRol
             // 
             this.rolesDataGridView.AllowUserToAddRows = false;
             this.rolesDataGridView.AllowUserToDeleteRows = false;
-            this.rolesDataGridView.AllowUserToResizeColumns = false;
             this.rolesDataGridView.AllowUserToResizeRows = false;
             this.rolesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rolesDataGridView.Location = new System.Drawing.Point(37, 259);
@@ -141,7 +141,7 @@ namespace PagoAgilFrba.AbmRol
             // 
             // quitarBtn
             // 
-            this.quitarBtn.Location = new System.Drawing.Point(477, 76);
+            this.quitarBtn.Location = new System.Drawing.Point(480, 76);
             this.quitarBtn.Name = "quitarBtn";
             this.quitarBtn.Size = new System.Drawing.Size(84, 25);
             this.quitarBtn.TabIndex = 6;
@@ -226,16 +226,6 @@ namespace PagoAgilFrba.AbmRol
             this.label4.TabIndex = 18;
             this.label4.Text = "(*)";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label5.Location = new System.Drawing.Point(108, 60);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(23, 17);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "(*)";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -252,7 +242,6 @@ namespace PagoAgilFrba.AbmRol
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(601, 437);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.limpiarBtn);
@@ -299,7 +288,6 @@ namespace PagoAgilFrba.AbmRol
         private System.Windows.Forms.Button limpiarBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
     }
 }

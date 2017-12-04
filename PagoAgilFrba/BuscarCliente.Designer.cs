@@ -49,7 +49,6 @@
             // 
             this.clienteDataGridView.AllowUserToAddRows = false;
             this.clienteDataGridView.AllowUserToDeleteRows = false;
-            this.clienteDataGridView.AllowUserToResizeColumns = false;
             this.clienteDataGridView.AllowUserToResizeRows = false;
             this.clienteDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.clienteDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
