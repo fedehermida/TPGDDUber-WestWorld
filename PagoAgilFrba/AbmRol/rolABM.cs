@@ -78,12 +78,12 @@ namespace PagoAgilFrba.AbmRol
 
                     int idRol = -1;
                     idRol = Convert.ToInt32(returnParameter.Value);
-                    SqlCommand sqlCom1 = new SqlCommand("WEST_WORLD.ValidarCreateOrUpdateRol", sqlCon);
+                    /*SqlCommand sqlCom1 = new SqlCommand("WEST_WORLD.ValidarCreateOrUpdateRol", sqlCon);
                     sqlCom1.CommandType = CommandType.StoredProcedure;
                     sqlCom1.Parameters.AddWithValue("@idRol", idRol);
                     
                     sqlCom1.ExecuteNonQuery();
-
+                    */
                     foreach (int id in funcionalidades)
                     {
                         SqlCommand sqlCom = new SqlCommand("WEST_WORLD.AgregarFuncionalidad", sqlCon);
@@ -96,7 +96,9 @@ namespace PagoAgilFrba.AbmRol
 
                     SqlCommand sqlComUser = new SqlCommand("WEST_WORLD.AgregarRolAUsuario", sqlCon);
                     sqlComUser.CommandType = CommandType.StoredProcedure;
-                    sqlComUser.Parameters.AddWithValue("@idUsuario", idUser);
+                    sqlComUser.Parameters.AddWithValue("@idUser", idUser);
+                    sqlComUser.Parameters.AddWithValue("@idRol", idRol);
+
                     sqlComUser.ExecuteNonQuery();
 
 
