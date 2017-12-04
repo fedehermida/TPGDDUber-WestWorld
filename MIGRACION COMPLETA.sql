@@ -10,6 +10,9 @@ GO
 IF OBJECT_ID('WEST_WORLD.Funcionalidad', 'U') IS NOT NULL
 DROP TABLE WEST_WORLD.Funcionalidad 
 GO
+IF OBJECT_ID('WEST_WORLD.Sucursal_Usuario', 'U') IS NOT NULL
+DROP TABLE WEST_WORLD.Sucursal_Usuario 
+GO
 IF OBJECT_ID('WEST_WORLD.Rol_Usuario', 'U') IS NOT NULL
 DROP TABLE WEST_WORLD.Rol_Usuario
 GO
@@ -155,13 +158,18 @@ CREATE TABLE "WEST_WORLD"."Rubro"  (
 	CONSTRAINT "idRubro" PRIMARY KEY CLUSTERED("idRubro")
  ON [PRIMARY])
 GO
+CREATE TABLE "WEST_WORLD"."Sucursal_Usuario"  ( 
+	"idUsuario"	bigint NOT NULL,
+	"idSucursal" bigint NOT NULL,
+	CONSTRAINT "SucursalUsuarioPK" PRIMARY KEY CLUSTERED("idUsuario","idSucursal")
+ ON [PRIMARY])
+GO
 CREATE TABLE "WEST_WORLD"."Sucursal"  (  
 	"idSucursal"  	bigint IDENTITY(1,1) NOT NULL,
 	"nombre"      	nvarchar(50) NOT NULL,
 	"direccion"   	nvarchar(50) NOT NULL,
 	"codigoPostal"	nvarchar(10) NOT NULL,
 	"habilitado"  	bit NOT NULL,
-	"operador"    	bigint NULL,
 	CONSTRAINT "PKSucursal" PRIMARY KEY NONCLUSTERED("idSucursal")
 ON [PRIMARY])
 GO
@@ -258,10 +266,17 @@ ALTER TABLE "WEST_WORLD"."Rol_Usuario"
 	ON DELETE NO ACTION 
 	ON UPDATE NO ACTION 
 GO
-ALTER TABLE [WEST_WORLD].[Sucursal]
-	ADD CONSTRAINT [FKoperador]
-	FOREIGN KEY([operador])
-	REFERENCES [WEST_WORLD].[Usuario]([idUser])
+ALTER TABLE "WEST_WORLD"."Sucursal_Usuario"
+	ADD CONSTRAINT "FKSucursalusuario"
+	FOREIGN KEY("idUsuario")
+	REFERENCES "WEST_WORLD"."Usuario"("idUser")
+	ON DELETE NO ACTION 
+	ON UPDATE NO ACTION 
+GO
+ALTER TABLE "WEST_WORLD"."Sucursal_Usuario"
+	ADD CONSTRAINT "FKSucursalusuario1"
+	FOREIGN KEY("idSucursal")
+	REFERENCES "WEST_WORLD"."Sucursal"("idSucursal")
 	ON DELETE NO ACTION 
 	ON UPDATE NO ACTION 
 GO
@@ -311,7 +326,7 @@ GO
 GO
 	--Migrar Sucursal
 	INSERT INTO WEST_WORLD.Sucursal
-	SELECT DISTINCT Sucursal_Nombre, Sucursal_Dirección, Sucursal_Codigo_Postal, 1, NULL
+	SELECT DISTINCT Sucursal_Nombre, Sucursal_DirecciÃ³n, Sucursal_Codigo_Postal, 1
 	FROM gd_esquema.Maestra
 	WHERE Sucursal_Codigo_Postal IS NOT NULL
 
@@ -440,7 +455,7 @@ INSERT INTO WEST_WORLD.Funcionalidad values ('ABM Sucursal');
 INSERT INTO WEST_WORLD.Funcionalidad values ('ABM Rol');
 INSERT INTO WEST_WORLD.Funcionalidad values ('ABM Factura');
 INSERT INTO WEST_WORLD.Funcionalidad values ('Registro de Pago');
-INSERT INTO WEST_WORLD.Funcionalidad values ('Rendición de Facturas');
+INSERT INTO WEST_WORLD.Funcionalidad values ('Rendiciï¿½n de Facturas');
 INSERT INTO WEST_WORLD.Funcionalidad values ('Devoluciones');
 GO
 INSERT INTO WEST_WORLD.Rol values ('Administrador',1);
@@ -458,4 +473,9 @@ GO
 INSERT INTO WEST_WORLD.Usuario([user], pass, failedLogins)
 						VALUES('admin', (SELECT HASHBYTES('SHA2_256', 'w23e')), 0)
 INSERT INTO WEST_WORLD.Rol_Usuario VALUES (1,1);
+INSERT INTO WEST_WORLD.Rol_Usuario VALUES (1,2);
+
+INSERT INTO WEST_WORLD.Sucursal_Usuario VALUES (1,1);
+
 GO
+

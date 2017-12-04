@@ -13,12 +13,12 @@ namespace PagoAgilFrba.RegistroPago
         private Utils utils = new Utils();
         private List<int> numFactList = new List<int>();
 
-        public RegistroPago()
+        public RegistroPago(int idSucursal)
         {
             InitializeComponent();
             utils.llenar(empresaFilterComboBox, Utils.GetEmpresas());
             utils.llenar(formaPagoComboBox, Utils.GetFormasDePago());
-            sucursalTextBox.Text = 1.ToString();//TODO sucursal harcodeada. el idSucursal sale del operador -> Usuario logueado
+            sucursalTextBox.Text = idSucursal.ToString();//TODO sucursal harcodeada. el idSucursal sale del operador -> Usuario logueado
             importeCobroTextBox.Text = 0.ToString();
 
         }

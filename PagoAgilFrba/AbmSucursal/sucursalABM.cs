@@ -8,11 +8,11 @@ namespace PagoAgilFrba.AbmSucursal
     public partial class sucursalABM : Form
     {
         SqlConnection sqlCon = new SqlConnection(@Properties.Settings.Default.SQLSERVER2012);
-        int idSucursal;
-        public sucursalABM(int idSucursal)
+        string user;
+        public sucursalABM(string user)
         {
             InitializeComponent();
-            this.idSucursal = idSucursal;
+            this.user = user;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -82,8 +82,8 @@ namespace PagoAgilFrba.AbmSucursal
                         sqlCmd.Parameters.AddWithValue("@habilitado", habilitadoCheck.Checked);
 
 
-                        int idOperador = getidOperador();
-                        sqlCmd.Parameters.AddWithValue("@operador", idOperador);// TODO este id saldria del login
+                        //int idOperador = getidOperador();
+                        sqlCmd.Parameters.AddWithValue("@operador", this.user);// TODO este id saldria del login
 
                         sqlCmd.ExecuteNonQuery();
                         MessageBox.Show("Sucursal creada");
@@ -144,34 +144,31 @@ namespace PagoAgilFrba.AbmSucursal
             habilitadoCheck.Checked = false;
         }
         
-        private int getidOperador()
-        {
-            try
-            {
-                if (sqlCon.State == ConnectionState.Closed)
-                {
-                    sqlCon.Open();
-                }
+        //private int getidOperador()
+        //{
+        //    try
+        //    {
+        //        if (sqlCon.State == ConnectionState.Closed)
+        //        {
+        //            sqlCon.Open();
+        //        }
 
-                String query = "Select s.operador from WEST_WORLD.Sucursal s WHERE s.idSucursal=@idSucursal";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.CommandType = CommandType.Text;
+        //        String query = "Select u.idUser from WEST_WORLD.Usuario s WHERE s.idSucursal=@idSucursal";
+        //        SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+        //        sqlCmd.CommandType = CommandType.Text;
 
-                sqlCmd.Parameters.AddWithValue("@idSucursal", this.idSucursal);
+        //        sqlCmd.Parameters.AddWithValue("@idSucursal", this.idSucursal);
             
-                int idOperador = Convert.ToInt32(sqlCmd.ExecuteScalar());
+        //        int idOperador = Convert.ToInt32(sqlCmd.ExecuteScalar());
 
-                return idOperador;
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Mensaje de Error");
-                return 0;
-            }
-
-        
-
-        }
+        //        return idOperador;
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "Mensaje de Error");
+        //        return 0;
+        //    }
+        //}
 
         public void validarYAgregar(SqlCommand sqlCmd, string variable, TextBox text)
         {

@@ -34,7 +34,8 @@ namespace PagoAgilFrba
             String query = "Select r.idRol, r.nombre from WEST_WORLD.Rol r " +
            "JOIN WEST_WORLD.Rol_Usuario ru ON ru.idRol=r.idRol " +
                 "JOIN WEST_WORLD.Usuario u ON ru.idUsuario=u.idUser " +
-                " WHERE u.[user]=@User";
+                " WHERE u.[user]=@User " +
+                "AND r.habilitado=1";
 
             SqlCommand sqlCmd = new SqlCommand(query, con);
             sqlCmd.CommandType = CommandType.Text;
@@ -59,10 +60,19 @@ namespace PagoAgilFrba
                selectedItem = (ComboboxItem) comboRol.SelectedItem;
             int idRol = selectedItem.Value;
             con.Close();
-            Index index = new Index(idRol,this.idSucursal);
-            this.Close();
-            index.ShowDialog();
+            showIndex(idRol, this.idSucursal);
             
+
+        }
+
+        private void showIndex(int idRol, int idSucursal)
+        {
+            Index index = new Index(idRol, idSucursal, this.user);
+            index.Location = this.Location;
+            index.StartPosition = FormStartPosition.Manual;
+          //  index.FormClosing += delegate { this.Show(); };
+            index.Show();
+            this.Hide();
 
         }
     }

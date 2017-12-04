@@ -24,7 +24,8 @@ namespace PagoAgilFrba
 
         private void ExitBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+             
+            Application.Exit();
         }
 
         private void LoginBtn_Click(object sender, EventArgs e)
@@ -83,36 +84,37 @@ namespace PagoAgilFrba
 
         private void checkMultipleRols(string user, int idSucursal)
         {
-            String query = "SELECT COUNT(1) from WEST_WORLD.Rol_Usuario ru " +
-                "JOIN WEST_WORLD.Usuario u ON (ru.idUsuario=u.idUser)" +
-                "WHERE u.[user]=@Usuario";
+            String query = "SELECT COUNT(1) from WEST_WORLD.Rol r " +
+                "JOIN WEST_WORLD.Rol_Usuario ru ON (ru.idRol=r.idRol) " +
+                "JOIN WEST_WORLD.Usuario u ON (ru.idUsuario=u.idUSer) " +
+                "WHERE u.[user]=@Usuario " +
+                "AND r.habilitado=1";
             SqlCommand sqlCmd = new SqlCommand(query, con);
             sqlCmd.CommandType = CommandType.Text;
             sqlCmd.Parameters.AddWithValue("@Usuario", user);
             int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
             if(count == 0)
             {
-                MessageBox.Show("Debe asignarle al menos un rol al usuario");
+                MessageBox.Show("Debe asignarle al menos un rol habilitado al usuario");
             } else if (count == 1)
             {
-                query = "SELECT idRol from WEST_WORLD.Rol_Usuario ru " +
-                "JOIN WEST_WORLD.Usuario u ON (ru.idUsuario=u.idUser) " +
-                "WHERE u.[user]=@Usuario";
+                query = "SELECT idRol from WEST_WORLD.Rol r " +
+                "JOIN WEST_WORLD.Rol_Usuario ru ON (ru.idRol=r.idRol) " +
+                "JOIN WEST_WORLD.Usuario u ON (ru.idUsuario=u.idUSer) " +
+                "WHERE u.[user]=@Usuario " +
+                "AND r.habilitado=1";
                 sqlCmd = new SqlCommand(query, con);
                 sqlCmd.CommandType = CommandType.Text;
                 sqlCmd.Parameters.AddWithValue("@Usuario", user);
                 int idRol = Convert.ToInt32(sqlCmd.ExecuteScalar());
                 con.Close();
-                Index index = new Index(idRol, idSucursal);
-                index.ShowDialog();
-                this.Close();
+                showIndex(idRol, idSucursal, user);
+
 
             } else
             {
                 con.Close();
-                SelectRol selectRol = new SelectRol(user, idSucursal);
-                selectRol.ShowDialog();
-                this.Close();
+                showSelectRol(user, idSucursal);
             }
             
         }
@@ -120,7 +122,8 @@ namespace PagoAgilFrba
         private void checkMultipleSucursal(string user)
         {
             String query = "SELECT COUNT(1) from WEST_WORLD.Sucursal s " +
-                "JOIN WEST_WORLD.Usuario u ON (s.operador=u.idUser)" +
+                "JOIN WEST_WORLD.Sucursal_Usuario su ON (su.idSucursal=s.idSucursal) " +
+                "JOIN WEST_WORLD.Usuario u ON (u.idUser=su.idUsuario) " +           
                 "WHERE u.[user]=@Usuario " +
                 "AND s.habilitado=1";
             SqlCommand sqlCmd = new SqlCommand(query, con);
@@ -133,8 +136,9 @@ namespace PagoAgilFrba
             }
             else if (count == 1)
             {
-                query = "SELECT idSucursal from WEST_WORLD.Sucursal s " +
-                "JOIN WEST_WORLD.Usuario u ON (s.operador=u.idUser) " +
+                query = "SELECT s.idSucursal from WEST_WORLD.Sucursal s " +
+                "JOIN WEST_WORLD.Sucursal_Usuario su ON (su.idSucursal=s.idSucursal) " +
+                "JOIN WEST_WORLD.Usuario u ON (u.idUser=su.idUsuario) " +
                 "WHERE u.[user]=@Usuario " +
                 "AND s.habilitado=1";
                 sqlCmd = new SqlCommand(query, con);
@@ -149,11 +153,44 @@ namespace PagoAgilFrba
             else
             {
                 con.Close();
-                SelectSucursal selectSucursal = new SelectSucursal(user);
-                selectSucursal.ShowDialog();
-                this.Close();
+                showSelectSucursal(user);
             }
 
         }
+        private void showSelectSucursal(String user)
+        {
+            SelectSucursal selectSucursal = new SelectSucursal(user);
+            selectSucursal.Location = this.Location;
+            selectSucursal.StartPosition = FormStartPosition.Manual;
+            selectSucursal.FormClosing += delegate { this.Show(); };
+            selectSucursal.Show();
+            this.Hide();
+
+        }
+
+        private void showSelectRol(String user, int idSucursal)
+        {
+            SelectRol selectRol = new SelectRol(user,idSucursal);
+            selectRol.Location = this.Location;
+            selectRol.StartPosition = FormStartPosition.Manual;
+            selectRol.FormClosing += delegate { this.Show(); };
+            selectRol.Show();
+            this.Hide();
+
+        }
+
+
+        private void showIndex(int idRol, int idSucursal, string user)
+        {
+            Index index = new Index(idRol, idSucursal, user);
+            index.Location = this.Location;
+            index.StartPosition = FormStartPosition.Manual;
+            index.FormClosing += delegate { this.Show(); };
+            index.Show();
+            this.Hide();
+
+        }
+
+
     }
 }

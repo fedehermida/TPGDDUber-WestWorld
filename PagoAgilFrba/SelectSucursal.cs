@@ -30,13 +30,14 @@ namespace PagoAgilFrba
                 con.Open();
 
             String query = "Select s.idSucursal, s.nombre from WEST_WORLD.Sucursal s " +
-           "JOIN WEST_WORLD.Usuario u ON s.operador=u.idUser " +
-                " WHERE u.[user]=@User " +
+           "JOIN WEST_WORLD.Sucursal_Usuario su ON (su.idSucursal=s.idSucursal) " +
+                "JOIN WEST_WORLD.Usuario u ON (u.idUser=su.idUsuario) " +
+                "WHERE u.[user]=@Usuario " +
                 "AND s.habilitado=1";
 
             SqlCommand sqlCmd = new SqlCommand(query, con);
             sqlCmd.CommandType = CommandType.Text;
-            sqlCmd.Parameters.AddWithValue("@User", this.user);
+            sqlCmd.Parameters.AddWithValue("@Usuario", this.user);
 
 
             SqlDataReader dr = sqlCmd.ExecuteReader();
@@ -93,18 +94,39 @@ namespace PagoAgilFrba
                 sqlCmd.Parameters.AddWithValue("@Usuario", user);
                 int idRol = Convert.ToInt32(sqlCmd.ExecuteScalar());
                 con.Close();
-                Index index = new Index(idRol,idSucursal);
-                index.ShowDialog();
-                this.Close();
+
+                showIndex(idRol, idSucursal);
 
             }
             else
             {
                 con.Close();
-                SelectRol selectRol = new SelectRol(user,idSucursal);
-                selectRol.ShowDialog();
-                this.Close();
+
+                showSelectRol(user, idSucursal);
             }
+
+        }
+
+        private void showSelectRol(String user, int idSucursal)
+        {
+            SelectRol selectRol = new SelectRol(user, idSucursal);
+            selectRol.Location = this.Location;
+            selectRol.StartPosition = FormStartPosition.Manual;
+          //  selectRol.FormClosing += delegate { Login.Show(); };
+            selectRol.Show();
+            this.Hide();
+
+        }
+
+
+        private void showIndex(int idRol, int idSucursal)
+        {
+            Index index = new Index(idRol, idSucursal, this.user);
+            index.Location = this.Location;
+            index.StartPosition = FormStartPosition.Manual;
+           // index.FormClosing += delegate { this.Show(); };
+            index.Show();
+            this.Hide();
 
         }
 

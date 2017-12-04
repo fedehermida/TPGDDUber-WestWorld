@@ -16,14 +16,17 @@ namespace PagoAgilFrba
         private SqlConnection con = new SqlConnection(@Properties.Settings.Default.SQLSERVER2012);
         int idRol;
         int idSucursal;
+        string user;
 
 
-        public Index(int idRol, int idSucursal)
+        public Index(int idRol, int idSucursal, string user)
         {
             InitializeComponent();
             this.idRol = idRol;
             this.idSucursal = idSucursal;
+            this.user = user;
         }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -101,7 +104,7 @@ namespace PagoAgilFrba
 
         private void abmSucursal_Click(object sender, EventArgs e)
         {
-            AbmSucursal.sucursalABM sucursalABM = new AbmSucursal.sucursalABM(this.idSucursal);
+            AbmSucursal.sucursalABM sucursalABM = new AbmSucursal.sucursalABM(this.user);
             sucursalABM.ShowDialog();
         }
 
@@ -113,7 +116,7 @@ namespace PagoAgilFrba
 
         private void registarPago_Click(object sender, EventArgs e)
         {
-            RegistroPago.RegistroPago registroPago = new RegistroPago.RegistroPago();
+            RegistroPago.RegistroPago registroPago = new RegistroPago.RegistroPago(idSucursal);
             registroPago.ShowDialog();
         }
 
@@ -125,8 +128,8 @@ namespace PagoAgilFrba
 
         private void abmRol_Click(object sender, EventArgs e)
         {
-            //AbmRol.rolABM rolABM = new AbmRol.rolABM();
-            //rolABM.ShowDialog();
+            AbmRol.rolABM rolABM = new AbmRol.rolABM(this.user);
+            rolABM.ShowDialog();
         }
 
         private void devolverBtn_Click(object sender, EventArgs e)
@@ -141,7 +144,15 @@ namespace PagoAgilFrba
             empresaABM.ShowDialog();
         }
 
-       
+        private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+         
+
+            Login login = new Login();
+            login.Show();
+            this.Hide();
+
+        }
     }
 }
 
