@@ -13,16 +13,38 @@ namespace PagoAgilFrba.AbmRol
     {
         private List<int> funcionalidades = new List<int>();
         List<KeyValuePair<int, string>> funcionalidadesKeyValue;
+        private int idUser;
 
         static SqlConnection sqlCon = new SqlConnection(@Properties.Settings.Default.SQLSERVER2012);
         private Utils utils = new Utils();
 
-        public rolABM()
+        public rolABM(string user)
         {
             InitializeComponent();
             llenarListaFuncionalidades();
+            this.idUser = getIdUser(user);
         }
 
+        private int getIdUser(string user)
+        {
+            try
+            {
+                if (sqlCon.State == ConnectionState.Closed)
+                    sqlCon.Open();
+
+
+                String query = "Select idUser from WEST_WORLD.Usuario WHERE [user]=@Usuario";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Parameters.AddWithValue("@Usuario", user);
+                int idUser = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                return idUser;
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Mensaje de Error");
+                return 0;
+            }
+        }
 
         public void llenarListaFuncionalidades()
         {
