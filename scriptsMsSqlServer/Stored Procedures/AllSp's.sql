@@ -11,6 +11,20 @@ END
 
 
 GO
+CREATE PROCEDURE WEST_WORLD.ActualizarFuncionalidades
+@idRol BIGINT as
+DELETE FROM WEST_WORLD.Rol_Funcionalidad
+WHERE idRol=@idRol
+GO
+CREATE OR ALTER PROCEDURE [WEST_WORLD].[AgregarRolAUsuario] 
+@idUser BIGINT, 
+@idRol BIGINT
+as
+BEGIN
+INSERT INTO WEST_WORLD.Rol_Usuario (idRol,idUsuario)
+VALUES(@idRol,@idUser)
+END
+GO
 
 CREATE OR ALTER PROCEDURE WEST_WORLD.BuscarRoles
 @Nombre VARCHAR(50)
@@ -478,14 +492,14 @@ RETURN 0
 
 GO
 
-CREATE PROCEDURE WEST_WORLD.SucursalCreateOrUpdate
+CREATE or ALTER   PROCEDURE WEST_WORLD.SucursalCreateOrUpdate
 @mode nvarchar(10),
 @idSucursal bigint,
 @nombre nvarchar(50),
 @direccion nvarchar(50),
 @codigoPostal nvarchar(50),
 @habilitado bit,
-@operador bigint
+@operador nvarchar(50)
 
 AS
 	IF @mode='Add'
@@ -494,15 +508,21 @@ AS
 			nombre, 
 			direccion, 
 			codigoPostal, 
-			habilitado,
-			operador
+			habilitado		
 		)
 		VALUES(
 			@nombre,
 			@direccion,
 			@codigoPostal,
-			@habilitado,
-			@operador
+			@habilitado			
+		)
+		INSERT INTO WEST_WORLD.Sucursal_Usuario(
+			idUsuario,
+			idSucursal
+		)
+		VALUES(
+			(SELECT idUser from WEST_WORLD.Usuario where [user]=@operador),	
+			(SELECT idSucursal from WEST_WORLD.Sucursal where codigoPostal=@codigoPostal)
 		)
 	END
 	ELSE IF @mode ='Edit'
@@ -511,8 +531,7 @@ AS
 		SET nombre=@nombre,
 			direccion=@direccion, 
 			codigoPostal=@codigoPostal, 
-			habilitado=@habilitado,
-			operador=@operador
+			habilitado=@habilitado
 		WHERE idSucursal=@idSucursal
 	END	
 
