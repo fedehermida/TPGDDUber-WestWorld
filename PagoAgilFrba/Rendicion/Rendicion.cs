@@ -77,7 +77,7 @@ namespace PagoAgilFrba.Rendicion
                 sqlDa.SelectCommand.Parameters.AddWithValue("@numeroFactura", DBNull.Value);
                 sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", DBNull.Value);
 
-                sqlDa.SelectCommand.Parameters.AddWithValue("@mes", mesesComboBox.SelectedIndex);
+                sqlDa.SelectCommand.Parameters.AddWithValue("@mes", mesesComboBox.SelectedIndex + 1);
 
                 DataTable dtbl = new DataTable();
                 facturasDataGrid.DataSource = dtbl;
