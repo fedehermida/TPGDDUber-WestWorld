@@ -86,6 +86,10 @@ namespace PagoAgilFrba
                         item.Click += new EventHandler(devolverBtn_Click);
                         this.toolStripMenuItem1.DropDownItems.Add(item);
                         break;
+                    case 9:
+                        item.Click += new EventHandler(listadoBtn_Click);
+                        this.toolStripMenuItem1.DropDownItems.Add(item);
+                        break;
                 }
 
                 
@@ -142,6 +146,12 @@ namespace PagoAgilFrba
         {
             AbmEmpresa.empresaABM empresaABM = new AbmEmpresa.empresaABM();
             empresaABM.ShowDialog();
+        }
+
+        private void listadoBtn_Click(object sender, EventArgs e)
+        {
+            ListadoEstadistico.ListadoEstadistico listado = new ListadoEstadistico.ListadoEstadistico();
+            listado.ShowDialog();
         }
 
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
