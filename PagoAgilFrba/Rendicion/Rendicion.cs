@@ -45,7 +45,7 @@ namespace PagoAgilFrba.Rendicion
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(empresaFilterComboBox.Text) | string.IsNullOrWhiteSpace(mesesComboBox.Text)) throw new Exception("Complete los campos obligatorios");
+                if (string.IsNullOrWhiteSpace(empresaFilterComboBox.Text) | string.IsNullOrWhiteSpace(mesesComboBox.Text) | string.IsNullOrWhiteSpace(anioTextBox.Text)) throw new Exception("Complete los campos obligatorios");
 
                 fillDataGridViewFacturas();
                 limpiarRendicion();
@@ -78,6 +78,7 @@ namespace PagoAgilFrba.Rendicion
                 sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", DBNull.Value);
 
                 sqlDa.SelectCommand.Parameters.AddWithValue("@mes", mesesComboBox.SelectedIndex + 1);
+                utils.validarYAgregarParam(sqlDa, "@anio", anioTextBox);
 
                 DataTable dtbl = new DataTable();
                 facturasDataGrid.DataSource = dtbl;
@@ -106,6 +107,7 @@ namespace PagoAgilFrba.Rendicion
 
             facturasDataGrid.DataSource = new DataTable();
             empresaFilterComboBox.SelectedIndex = mesesComboBox.SelectedIndex = -1;
+            anioTextBox.Text = "";
             numFactList = new List<int>();
         }
 
@@ -242,6 +244,11 @@ namespace PagoAgilFrba.Rendicion
         private void limpiarRendBtn_Click(object sender, EventArgs e)
         {
             limpiarRendicion();
+        }
+
+        private void anioTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            utils.validarCampoNumerico(e);
         }
     }
 }

@@ -24,6 +24,7 @@ namespace PagoAgilFrba.Devolucion
         {
             try
             {
+
                 fillDataGridViewFacturas();
                 //limpiarTablaFacturasADevolver();
             }
@@ -57,6 +58,7 @@ namespace PagoAgilFrba.Devolucion
                 else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirABigInt(idClienteTextBox));
 
                 sqlDa.SelectCommand.Parameters.AddWithValue("@mes", 0);
+                sqlDa.SelectCommand.Parameters.AddWithValue("@anio", 0);
 
                 DataTable dtbl = new DataTable();
                 facturasDataGrid.DataSource = dtbl;
@@ -188,7 +190,7 @@ namespace PagoAgilFrba.Devolucion
 
                 searchBtn_Click(sender, e);
                 limpiarTablaFacturasADevolver();
-
+                devolverBtn.Enabled = false;
                 MessageBox.Show("Se efectuo la devolucion de las facturas seleccionadas", "Mensaje");
             }
             catch (Exception ex)

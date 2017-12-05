@@ -40,6 +40,8 @@
             this.mesesComboBox = new System.Windows.Forms.ComboBox();
             this.rendirBtn = new System.Windows.Forms.Button();
             this.rendicionGroupBox = new System.Windows.Forms.GroupBox();
+            this.porcDisableLabel = new System.Windows.Forms.Label();
+            this.porcDisableTxtBox = new System.Windows.Forms.TextBox();
             this.limpiarRendBtn = new System.Windows.Forms.Button();
             this.calcularGroupBox = new System.Windows.Forms.GroupBox();
             this.calcularRendBtn = new System.Windows.Forms.Button();
@@ -59,8 +61,9 @@
             this.facturasLabel = new System.Windows.Forms.Label();
             this.camposObligatoriosLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.porcDisableLabel = new System.Windows.Forms.Label();
-            this.porcDisableTxtBox = new System.Windows.Forms.TextBox();
+            this.anioTextBox = new System.Windows.Forms.TextBox();
+            this.anioLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.facturasDataGrid)).BeginInit();
             this.filtrarGroupBox.SuspendLayout();
             this.rendicionGroupBox.SuspendLayout();
@@ -81,7 +84,7 @@
             // 
             this.empresaFilterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.empresaFilterComboBox.FormattingEnabled = true;
-            this.empresaFilterComboBox.Location = new System.Drawing.Point(83, 30);
+            this.empresaFilterComboBox.Location = new System.Drawing.Point(58, 30);
             this.empresaFilterComboBox.Name = "empresaFilterComboBox";
             this.empresaFilterComboBox.Size = new System.Drawing.Size(142, 21);
             this.empresaFilterComboBox.TabIndex = 19;
@@ -89,9 +92,9 @@
             // 
             // searchBtnL
             // 
-            this.searchBtnL.Location = new System.Drawing.Point(506, 22);
+            this.searchBtnL.Location = new System.Drawing.Point(570, 22);
             this.searchBtnL.Name = "searchBtnL";
-            this.searchBtnL.Size = new System.Drawing.Size(176, 35);
+            this.searchBtnL.Size = new System.Drawing.Size(125, 35);
             this.searchBtnL.TabIndex = 18;
             this.searchBtnL.Text = "Buscar";
             this.searchBtnL.UseVisualStyleBackColor = true;
@@ -100,7 +103,7 @@
             // empresaFilterLabel
             // 
             this.empresaFilterLabel.AutoSize = true;
-            this.empresaFilterLabel.Location = new System.Drawing.Point(20, 33);
+            this.empresaFilterLabel.Location = new System.Drawing.Point(6, 33);
             this.empresaFilterLabel.Name = "empresaFilterLabel";
             this.empresaFilterLabel.Size = new System.Drawing.Size(48, 13);
             this.empresaFilterLabel.TabIndex = 20;
@@ -121,6 +124,9 @@
             // 
             // filtrarGroupBox
             // 
+            this.filtrarGroupBox.Controls.Add(this.label4);
+            this.filtrarGroupBox.Controls.Add(this.anioLabel);
+            this.filtrarGroupBox.Controls.Add(this.anioTextBox);
             this.filtrarGroupBox.Controls.Add(this.oblMesLabel);
             this.filtrarGroupBox.Controls.Add(this.oblEmprLabel);
             this.filtrarGroupBox.Controls.Add(this.mesLabel);
@@ -139,7 +145,7 @@
             // 
             this.oblMesLabel.AutoSize = true;
             this.oblMesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.oblMesLabel.Location = new System.Drawing.Point(430, 30);
+            this.oblMesLabel.Location = new System.Drawing.Point(393, 30);
             this.oblMesLabel.Name = "oblMesLabel";
             this.oblMesLabel.Size = new System.Drawing.Size(24, 18);
             this.oblMesLabel.TabIndex = 49;
@@ -149,7 +155,7 @@
             // 
             this.oblEmprLabel.AutoSize = true;
             this.oblEmprLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.oblEmprLabel.Location = new System.Drawing.Point(229, 29);
+            this.oblEmprLabel.Location = new System.Drawing.Point(204, 29);
             this.oblEmprLabel.Name = "oblEmprLabel";
             this.oblEmprLabel.Size = new System.Drawing.Size(24, 18);
             this.oblEmprLabel.TabIndex = 48;
@@ -158,7 +164,7 @@
             // mesLabel
             // 
             this.mesLabel.AutoSize = true;
-            this.mesLabel.Location = new System.Drawing.Point(270, 33);
+            this.mesLabel.Location = new System.Drawing.Point(233, 33);
             this.mesLabel.Name = "mesLabel";
             this.mesLabel.Size = new System.Drawing.Size(27, 13);
             this.mesLabel.TabIndex = 22;
@@ -168,7 +174,7 @@
             // 
             this.mesesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mesesComboBox.FormattingEnabled = true;
-            this.mesesComboBox.Location = new System.Drawing.Point(303, 30);
+            this.mesesComboBox.Location = new System.Drawing.Point(266, 30);
             this.mesesComboBox.Name = "mesesComboBox";
             this.mesesComboBox.Size = new System.Drawing.Size(121, 21);
             this.mesesComboBox.TabIndex = 21;
@@ -207,6 +213,23 @@
             this.rendicionGroupBox.Size = new System.Drawing.Size(701, 191);
             this.rendicionGroupBox.TabIndex = 25;
             this.rendicionGroupBox.TabStop = false;
+            // 
+            // porcDisableLabel
+            // 
+            this.porcDisableLabel.AutoSize = true;
+            this.porcDisableLabel.Location = new System.Drawing.Point(480, 88);
+            this.porcDisableLabel.Name = "porcDisableLabel";
+            this.porcDisableLabel.Size = new System.Drawing.Size(58, 13);
+            this.porcDisableLabel.TabIndex = 57;
+            this.porcDisableLabel.Text = "Porcentaje";
+            // 
+            // porcDisableTxtBox
+            // 
+            this.porcDisableTxtBox.Enabled = false;
+            this.porcDisableTxtBox.Location = new System.Drawing.Point(551, 85);
+            this.porcDisableTxtBox.Name = "porcDisableTxtBox";
+            this.porcDisableTxtBox.Size = new System.Drawing.Size(49, 20);
+            this.porcDisableTxtBox.TabIndex = 56;
             // 
             // limpiarRendBtn
             // 
@@ -380,22 +403,33 @@
             this.panel1.Size = new System.Drawing.Size(327, 100);
             this.panel1.TabIndex = 52;
             // 
-            // porcDisableLabel
+            // anioTextBox
             // 
-            this.porcDisableLabel.AutoSize = true;
-            this.porcDisableLabel.Location = new System.Drawing.Point(480, 88);
-            this.porcDisableLabel.Name = "porcDisableLabel";
-            this.porcDisableLabel.Size = new System.Drawing.Size(58, 13);
-            this.porcDisableLabel.TabIndex = 57;
-            this.porcDisableLabel.Text = "Porcentaje";
+            this.anioTextBox.Location = new System.Drawing.Point(483, 31);
+            this.anioTextBox.MaxLength = 4;
+            this.anioTextBox.Name = "anioTextBox";
+            this.anioTextBox.Size = new System.Drawing.Size(47, 20);
+            this.anioTextBox.TabIndex = 50;
+            this.anioTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.anioTextBox_KeyPress);
             // 
-            // porcDisableTxtBox
+            // anioLabel
             // 
-            this.porcDisableTxtBox.Enabled = false;
-            this.porcDisableTxtBox.Location = new System.Drawing.Point(551, 85);
-            this.porcDisableTxtBox.Name = "porcDisableTxtBox";
-            this.porcDisableTxtBox.Size = new System.Drawing.Size(49, 20);
-            this.porcDisableTxtBox.TabIndex = 56;
+            this.anioLabel.AutoSize = true;
+            this.anioLabel.Location = new System.Drawing.Point(451, 34);
+            this.anioLabel.Name = "anioLabel";
+            this.anioLabel.Size = new System.Drawing.Size(26, 13);
+            this.anioLabel.TabIndex = 51;
+            this.anioLabel.Text = "Año";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label4.Location = new System.Drawing.Point(536, 31);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(24, 18);
+            this.label4.TabIndex = 52;
+            this.label4.Text = "(*)";
             // 
             // Rendicion
             // 
@@ -459,6 +493,9 @@
         private System.Windows.Forms.Button limpiarRendBtn;
         private System.Windows.Forms.Label porcDisableLabel;
         private System.Windows.Forms.TextBox porcDisableTxtBox;
+        private System.Windows.Forms.TextBox anioTextBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label anioLabel;
 
     }
 }

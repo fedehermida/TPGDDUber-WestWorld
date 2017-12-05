@@ -64,6 +64,7 @@ namespace PagoAgilFrba.RegistroPago
                 else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirABigInt(idClienteTextBox));
 
                 sqlDa.SelectCommand.Parameters.AddWithValue("@mes", 0);
+                sqlDa.SelectCommand.Parameters.AddWithValue("@anio", 0);
 
                 DataTable dtbl = new DataTable();
                 sqlDa.Fill(dtbl);

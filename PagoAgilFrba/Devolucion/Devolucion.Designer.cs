@@ -57,6 +57,8 @@
             this.fechaRendDT = new System.Windows.Forms.DateTimePicker();
             this.fechaDevLabel = new System.Windows.Forms.Label();
             this.motivoTextBox = new System.Windows.Forms.TextBox();
+            this.camposObligLabel = new System.Windows.Forms.Label();
+            this.obligLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.clienteGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.facturasADevolverDataGrid)).BeginInit();
@@ -286,6 +288,7 @@
             // 
             // devolucionGroupBox
             // 
+            this.devolucionGroupBox.Controls.Add(this.obligLabel);
             this.devolucionGroupBox.Controls.Add(this.limpiarDevBtn);
             this.devolucionGroupBox.Controls.Add(this.devolverBtn);
             this.devolucionGroupBox.Controls.Add(this.motivoLabel);
@@ -323,7 +326,7 @@
             // motivoLabel
             // 
             this.motivoLabel.AutoSize = true;
-            this.motivoLabel.Location = new System.Drawing.Point(114, 65);
+            this.motivoLabel.Location = new System.Drawing.Point(94, 65);
             this.motivoLabel.Name = "motivoLabel";
             this.motivoLabel.Size = new System.Drawing.Size(39, 13);
             this.motivoLabel.TabIndex = 32;
@@ -354,11 +357,32 @@
             this.motivoTextBox.Size = new System.Drawing.Size(283, 78);
             this.motivoTextBox.TabIndex = 7;
             // 
+            // camposObligLabel
+            // 
+            this.camposObligLabel.AutoSize = true;
+            this.camposObligLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.camposObligLabel.Location = new System.Drawing.Point(714, 552);
+            this.camposObligLabel.Name = "camposObligLabel";
+            this.camposObligLabel.Size = new System.Drawing.Size(158, 17);
+            this.camposObligLabel.TabIndex = 39;
+            this.camposObligLabel.Text = "Campos Obligatorios (*)";
+            // 
+            // obligLabel
+            // 
+            this.obligLabel.AutoSize = true;
+            this.obligLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.obligLabel.Location = new System.Drawing.Point(136, 61);
+            this.obligLabel.Name = "obligLabel";
+            this.obligLabel.Size = new System.Drawing.Size(24, 18);
+            this.obligLabel.TabIndex = 33;
+            this.obligLabel.Text = "(*)";
+            // 
             // Devolucion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 578);
+            this.Controls.Add(this.camposObligLabel);
             this.Controls.Add(this.limpiarBtn);
             this.Controls.Add(this.devolucionGroupBox);
             this.Controls.Add(this.eliminarBtn);
@@ -415,5 +439,7 @@
         private System.Windows.Forms.DateTimePicker fechaRendDT;
         private System.Windows.Forms.Label fechaDevLabel;
         private System.Windows.Forms.TextBox motivoTextBox;
+        private System.Windows.Forms.Label obligLabel;
+        private System.Windows.Forms.Label camposObligLabel;
     }
 }
