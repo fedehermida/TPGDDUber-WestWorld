@@ -110,6 +110,8 @@ namespace PagoAgilFrba.AbmFactura
                 numFactFilterTextBoxL.Text = numFactTextBox.Text.Trim();
                 searchBtnL_Click(sender, e);
                 facturaTabControl.SelectedIndex = 0;
+
+                MessageBox.Show("Factura actualizada");
             }
             catch (Exception ex)
             {
@@ -153,7 +155,6 @@ namespace PagoAgilFrba.AbmFactura
                 utils.validarImporteYAgregar(sqlCmd, "@total", totalTextBox);
 
                 sqlCmd.ExecuteNonQuery();
-                MessageBox.Show("Factura actualizada");
 
                 sqlCon.Close();
             }
@@ -166,42 +167,42 @@ namespace PagoAgilFrba.AbmFactura
             else sqlCmd.Parameters.AddWithValue("@fecha_venc", fechaVencDT.Value);
         }
 
-        private void agregarItemBtn_Click_1(object sender, EventArgs e)
+        private void agregarItemBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(montoTextBox.Text) | string.IsNullOrWhiteSpace(cantTextBox.Text)) throw new Exception("Debe ingresar Monto y Cantidad");
+                if (string.IsNullOrWhiteSpace(montoTextBox.Text.Trim()) | string.IsNullOrWhiteSpace(cantTextBox.Text.Trim())) throw new Exception("Debe ingresar Monto y Cantidad");
+                utils.esDecimal(montoTextBox.Text.Trim());
 
-                if (agregarItemBtn.Text == "Agregar Item")
+                if (agregarItemBtn.Text.Trim() == "Agregar Item")
                 {
                     insertarItem(sender, e);
-                    fillDataGridViewItems();
                 }
                 else
                 {
                     actualizarItem();
-                    fillDataGridViewItems();
                 }
+
+                fillDataGridViewItems();
                 actualizarImporteDeFactura();
                 actualizarFactura();
             }
             catch (Exception ex)
             {
-                if (ex is SqlException)
-                {
-                    SqlException sqlException = ex as SqlException;
-                    MessageBox.Show(ex.Message, "Mensaje de Error");
-                }
-                else
-                {
-                    MessageBox.Show(ex.Message, "Error Message");
-                }
+                MessageBox.Show(ex.Message, "Error Message");
+                limpiarItems();
             }
             finally
             {
                 if (sqlCon.State == ConnectionState.Open)
                     sqlCon.Close();
             }
+        }
+
+        private void limpiarItems()
+        {
+            totalTextBox.Text = numFactLabel2.Text = "";
+            itemsDataGrid.DataSource = new DataTable();
         }
 
         public void actualizarImporteDeFactura()
@@ -283,7 +284,7 @@ namespace PagoAgilFrba.AbmFactura
                 itemsDataGrid.DataSource = dtbl;
 
                 totalTextBox.Text = utils.calcularColumna("importe", dtbl);
-                numFactLabel2.Text = numFactTextBox.Text;
+                numFactLabel2.Text = numFactTextBox.Text.Trim();
 
                 sqlCon.Close();
             }
@@ -298,6 +299,7 @@ namespace PagoAgilFrba.AbmFactura
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error Message");
+                limpiarItems();
             }
             finally
             {
@@ -322,7 +324,7 @@ namespace PagoAgilFrba.AbmFactura
             {
                 montoTextBox.Text = itemsDataGrid.CurrentRow.Cells[1].Value.ToString();
                 cantTextBox.Text = itemsDataGrid.CurrentRow.Cells[2].Value.ToString();
-                numFactLabel2.Text = numFactTextBox.Text;
+                numFactLabel2.Text = numFactTextBox.Text.Trim();
 
                 agregarItemBtn.Text = "Actualizar Item";
             }
@@ -360,7 +362,7 @@ namespace PagoAgilFrba.AbmFactura
                 if (string.IsNullOrWhiteSpace(empresaFilterComboBox.Text.Trim())) sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", DBNull.Value);
                 else sqlDa.SelectCommand.Parameters.AddWithValue("@idEmpresa", empresaFilterComboBox.SelectedIndex);
 
-                if (string.IsNullOrWhiteSpace(idClienteTextBox.Text)) sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", DBNull.Value);
+                if (string.IsNullOrWhiteSpace(idClienteTextBox.Text.Trim())) sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", DBNull.Value);
                 else sqlDa.SelectCommand.Parameters.AddWithValue("@idCliente", utils.convertirABigInt(idClienteTextBox));
 
                 sqlDa.SelectCommand.Parameters.AddWithValue("@mes", 0);
@@ -400,7 +402,7 @@ namespace PagoAgilFrba.AbmFactura
                     fechaVencDT.Text = facturasDataGridL.CurrentRow.Cells[4].Value.ToString();
                     totalTextBox.Text = facturasDataGridL.CurrentRow.Cells[5].Value.ToString();
 
-                    numFactLabel2.Text = numFactTextBox.Text;
+                    numFactLabel2.Text = numFactTextBox.Text.Trim();
 
                     facturaTabControl.SelectedIndex = 1;
 
@@ -514,8 +516,8 @@ namespace PagoAgilFrba.AbmFactura
 
             if (!string.IsNullOrWhiteSpace(busquedaDeCliente.clienteTextBox.Text) & !string.IsNullOrWhiteSpace(busquedaDeCliente.idClienteTextBox.Text))
             {
-                idClienteTextBox.Text = busquedaDeCliente.idClienteTextBox.Text;
-                clienteTextBox.Text = busquedaDeCliente.clienteTextBox.Text;
+                idClienteTextBox.Text = busquedaDeCliente.idClienteTextBox.Text.Trim();
+                clienteTextBox.Text = busquedaDeCliente.clienteTextBox.Text.Trim();
             }
         }
 
@@ -526,8 +528,8 @@ namespace PagoAgilFrba.AbmFactura
 
             if (!string.IsNullOrWhiteSpace(busquedaDeCliente.clienteTextBox.Text) & !string.IsNullOrWhiteSpace(busquedaDeCliente.idClienteTextBox.Text))
             {
-                idClienteTextBox2NF.Text = busquedaDeCliente.idClienteTextBox.Text;
-                clienteTextBox2NF.Text = busquedaDeCliente.clienteTextBox.Text;
+                idClienteTextBox2NF.Text = busquedaDeCliente.idClienteTextBox.Text.Trim();
+                clienteTextBox2NF.Text = busquedaDeCliente.clienteTextBox.Text.Trim();
             }
         }
 
@@ -538,8 +540,8 @@ namespace PagoAgilFrba.AbmFactura
 
             if (!string.IsNullOrWhiteSpace(busquedaDeCliente.clienteTextBox.Text) & !string.IsNullOrWhiteSpace(busquedaDeCliente.idClienteTextBox.Text))
             {
-                idClienteTextBox2.Text = busquedaDeCliente.idClienteTextBox.Text;
-                clienteTextBox2.Text = busquedaDeCliente.clienteTextBox.Text;
+                idClienteTextBox2.Text = busquedaDeCliente.idClienteTextBox.Text.Trim();
+                clienteTextBox2.Text = busquedaDeCliente.clienteTextBox.Text.Trim();
             }
         }
 
@@ -557,9 +559,10 @@ namespace PagoAgilFrba.AbmFactura
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(montoTextBoxNF.Text) | string.IsNullOrWhiteSpace(cantTextBoxNF.Text)) throw new Exception("Debe ingresar Monto y Cantidad");
+                if (string.IsNullOrWhiteSpace(montoTextBoxNF.Text.Trim()) | string.IsNullOrWhiteSpace(cantTextBoxNF.Text.Trim())) throw new Exception("Debe ingresar Monto y Cantidad");
+                utils.esDecimal(montoTextBoxNF.Text.Trim());
 
-                Item item = new Item(Math.Round(Convert.ToDecimal(montoTextBoxNF.Text), 2), Convert.ToInt16(cantTextBoxNF.Text));
+                Item item = new Item(Math.Round(Convert.ToDecimal(montoTextBoxNF.Text.Trim())), Convert.ToInt16(cantTextBoxNF.Text.Trim()));
                 utils.validarMontoOCant(item.Monto, montoTextBoxNF);
                 utils.validarMontoOCant(item.Cantidad, cantTextBoxNF);
 

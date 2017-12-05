@@ -5,8 +5,10 @@ IF OBJECT_ID('WEST_WORLD.ActualizarFuncionalidades') IS NOT NULL
 DROP PROCEDURE WEST_WORLD.ActualizarFuncionalidades 
 
 GO
+
 CREATE PROCEDURE WEST_WORLD.ActualizarFuncionalidades
-@idRol BIGINT as
+@idRol BIGINT 
+as
 DELETE FROM WEST_WORLD.Rol_Funcionalidad
 WHERE idRol=@idRol
 
@@ -18,11 +20,12 @@ DROP PROCEDURE WEST_WORLD.AgregarFuncionalidad
 GO
 
 CREATE PROCEDURE WEST_WORLD.AgregarFuncionalidad 
-@IdRol BIGINT,
-@IdFuncionalidad BIGINT
-as
+@idRol BIGINT,
+@idFuncionalidad BIGINT
+
+AS
 BEGIN
-    INSERT INTO WEST_WORLD.Rol_Funcionalidad(idRol,idFuncionalidad) values(@IdRol,@IdFuncionalidad)
+	INSERT INTO WEST_WORLD.Rol_Funcionalidad(idRol,idFuncionalidad) values(@idRol,@idFuncionalidad)
 END
 
 GO
@@ -195,7 +198,8 @@ CREATE PROCEDURE WEST_WORLD.ClienteViewOrSearch
 	@apellido nvarchar(255),
 	@dni numeric(15)
 AS
-	SELECT *
+	SELECT idCliente, nombre as 'Nombre', apellido as 'Apellido', mail as 'Email', direccion as 'Direccion', codigoPostal as 'Codigo Postal',
+		   DNI, telefono as 'Telefono', fecha_nac as 'Fecha de Nacimiento', habilitado as 'Habilitado'
 	FROM WEST_WORLD.Cliente
 	WHERE nombre LIKE @nombre + '%' 
 			AND apellido LIKE @apellido + '%' 
@@ -409,22 +413,28 @@ CREATE PROCEDURE WEST_WORLD.FacturaViewOrSearch
 
 AS	
 	IF @ESTADO = 'Sin Pago'
-		SELECT numeroFactura as 'Num Fact', cliente as Cliente, empresa as Empresa, fechaAlta as 'Fecha Alta', FechaVencimiento as 'Fecha Venc', total as 'Total' 
-		FROM WEST_WORLD.Factura f JOIN WEST_WORLD.Empresa e ON (f.empresa = e.idEmpresa)
-			WHERE (@NUMEROFACTURA IS NULL OR (numeroFactura = @NUMEROFACTURA))
-				AND (@IDEMPRESA IS NULL OR (empresa = @IDEMPRESA))
-				AND (cliente = @IDCLIENTE)
-				AND (pago IS NULL) AND (rendicion IS NULL)
-				AND (e.habilitado = 1)
+		IF EXISTS (SELECT 1 FROM WEST_WORLD.Cliente WHERE idCliente = @IDCLIENTE AND habilitado = 0)
+			RAISERROR('El cliente seleccionado se encuentra inactivo, por lo cual no puede pagar facturas', 16,2)
+		ELSE
+			SELECT numeroFactura as 'Num Fact', cliente as 'Cliente', empresa as 'Empresa', fechaAlta as 'Fecha Alta', fechaVencimiento as 'Fecha Venc', total as 'Total' 
+			FROM WEST_WORLD.Factura f JOIN WEST_WORLD.Empresa e ON (f.empresa = e.idEmpresa)
+				WHERE (@NUMEROFACTURA IS NULL OR (numeroFactura = @NUMEROFACTURA))
+					AND (@IDEMPRESA IS NULL OR (empresa = @IDEMPRESA))
+					AND (cliente = @IDCLIENTE)
+					AND (pago IS NULL) AND (rendicion IS NULL)
+					AND (e.habilitado = 1)
+					AND (f.fechaVencimiento <= SYSDATETIME())
 	ELSE IF @ESTADO = 'Con Pago Y Sin Rendicion'
-		SELECT numeroFactura as 'Num Fact', cliente as 'Cliente', empresa as 'Empresa', fechaAlta as 'Fecha Alta', FechaVencimiento as 'Fecha Venc', total as 'Total', rendicion as 'Rendicion', pago as 'Pago' FROM WEST_WORLD.Factura
-			WHERE (@NUMEROFACTURA IS NULL OR (numeroFactura = @NUMEROFACTURA))
-				AND (@IDEMPRESA IS NULL OR (empresa = @IDEMPRESA))
-				AND (@IDCLIENTE IS NULL OR (cliente = @IDCLIENTE))
-				AND (pago IS NOT NULL) AND (rendicion IS NULL)
-				AND (@MES = 0 OR MONTH(fechaAlta) = @MES)
+		SELECT numeroFactura as 'Num Fact', cliente as 'Cliente', empresa as 'Empresa', fechaAlta as 'Fecha Alta', FechaVencimiento as 'Fecha Venc', total as 'Total', rendicion as 'Rendicion', pago as 'Pago' 
+		FROM WEST_WORLD.Factura f JOIN WEST_WORLD.Empresa e ON (f.empresa = e.idEmpresa)
+		WHERE (@NUMEROFACTURA IS NULL OR (numeroFactura = @NUMEROFACTURA))
+			AND (@IDEMPRESA IS NULL OR (empresa = @IDEMPRESA))
+			AND (pago IS NOT NULL) AND (rendicion IS NULL)
+			AND (e.habilitado = 1)
+			AND (@MES = 0 OR MONTH(fechaAlta) = @MES)
 	ELSE 
-		SELECT numeroFactura as 'Num Fact', cliente as 'Cliente', empresa as 'Empresa', fechaAlta as 'Fecha Alta', FechaVencimiento as 'Fecha Venc', total as 'Total', rendicion as 'Rendicion', pago as 'Pago' FROM WEST_WORLD.Factura
+		SELECT numeroFactura as 'Num Fact', cliente as 'Cliente', empresa as 'Empresa', fechaAlta as 'Fecha Alta', FechaVencimiento as 'Fecha Venc', total as 'Total', rendicion as 'Rendicion', pago as 'Pago' 
+		FROM WEST_WORLD.Factura
 			WHERE (@NUMEROFACTURA IS NULL OR (numeroFactura = @NUMEROFACTURA))
 				AND (@IDEMPRESA IS NULL OR (empresa = @IDEMPRESA))
 				AND (@IDCLIENTE IS NULL OR (cliente = @IDCLIENTE))	
@@ -494,7 +504,6 @@ IF OBJECT_ID('WEST_WORLD.ItemCreateOrUpdate') IS NOT NULL
 DROP PROCEDURE WEST_WORLD.ItemCreateOrUpdate 
 
 GO
-
 CREATE PROCEDURE WEST_WORLD.ItemCreateOrUpdate
 	@MODE nvarchar(10),
 	@IDITEM bigint,
@@ -510,7 +519,8 @@ AS
 					   WHERE numeroFactura = @NUMEROFACTURA AND monto = @MONTO 
 							 AND cantidad = @CANTIDAD)				
 				RAISERROR(N'Ya existe el item ingresado para la factura %I64i', 15,2, @NUMEROFACTURA)
-
+			ELSE IF NOT EXISTS (SELECT * FROM WEST_WORLD.Factura WHERE numeroFactura = @NUMEROFACTURA)
+				RAISERROR(N'No existe la factura %I64i por lo que no se agregó el item', 15, 2, @NUMEROFACTURA)
 			ELSE
 				INSERT INTO WEST_WORLD.Item(numeroFactura, cantidad, monto, importe)
 				VALUES(@NUMEROFACTURA, @CANTIDAD, @MONTO, @CANTIDAD*@MONTO)
@@ -528,7 +538,6 @@ AS
 				importe=@MONTO*@CANTIDAD
 			WHERE idItem = @IDITEM
 		END
-
 
 GO
 
@@ -560,7 +569,7 @@ CREATE PROCEDURE WEST_WORLD.ItemView
 
 AS
 	IF EXISTS (SELECT numeroFactura FROM WEST_WORLD.Factura WHERE numeroFactura = @NUMEROFACTURA)
-		SELECT idItem, monto, cantidad, importe
+		SELECT idItem, monto as 'Monto', cantidad as 'Cantidad', importe as 'Importe'
 		FROM WEST_WORLD.Item i
 		WHERE numeroFactura = @NUMEROFACTURA
 
@@ -625,7 +634,7 @@ CREATE PROCEDURE WEST_WORLD.SeleccionarCliente
 	@apellido nvarchar(255),
 	@dni numeric(15)
 AS
-	SELECT idCliente, nombre, apellido, DNI
+	SELECT idCliente, nombre as 'Nombre', apellido as 'Apellido', DNI
 	FROM WEST_WORLD.Cliente
 	WHERE nombre LIKE @nombre + '%' 
 			AND apellido LIKE @apellido + '%' 
@@ -698,7 +707,7 @@ CREATE PROCEDURE WEST_WORLD.SucursalViewOrSearch
 	@direccion nvarchar(50),
 	@codigoPostal nvarchar(50)
 AS
-	SELECT *
+	SELECT idSucursal, nombre as 'Nombre', direccion as 'Direccion', codigoPostal as 'Codigo Postal', habilitado as 'Habilitado'
 	FROM WEST_WORLD.Sucursal
 	WHERE nombre LIKE @nombre + '%' 
 			 AND direccion LIKE @direccion + '%'

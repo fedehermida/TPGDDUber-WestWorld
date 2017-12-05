@@ -486,7 +486,7 @@
             this.agregarItemBtn.TabIndex = 8;
             this.agregarItemBtn.Text = "Agregar Item";
             this.agregarItemBtn.UseVisualStyleBackColor = true;
-            this.agregarItemBtn.Click += new System.EventHandler(this.agregarItemBtn_Click_1);
+            this.agregarItemBtn.Click += new System.EventHandler(this.agregarItemBtn_Click);
             // 
             // cantTextBox
             // 

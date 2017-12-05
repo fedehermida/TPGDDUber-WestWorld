@@ -44,6 +44,7 @@
             // 
             // comboRol
             // 
+            this.comboRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboRol.FormattingEnabled = true;
             this.comboRol.Location = new System.Drawing.Point(172, 95);
             this.comboRol.Name = "comboRol";
@@ -52,9 +53,9 @@
             // 
             // SeleccionBtn
             // 
-            this.SeleccionBtn.Location = new System.Drawing.Point(241, 145);
+            this.SeleccionBtn.Location = new System.Drawing.Point(237, 145);
             this.SeleccionBtn.Name = "SeleccionBtn";
-            this.SeleccionBtn.Size = new System.Drawing.Size(75, 23);
+            this.SeleccionBtn.Size = new System.Drawing.Size(99, 29);
             this.SeleccionBtn.TabIndex = 2;
             this.SeleccionBtn.Text = "Seleccionar";
             this.SeleccionBtn.UseVisualStyleBackColor = true;

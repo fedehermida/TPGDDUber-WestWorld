@@ -1,3 +1,4 @@
+
 CREATE PROCEDURE WEST_WORLD.SucursalCreateOrUpdate
 @mode nvarchar(10),
 @idSucursal bigint,
@@ -5,7 +6,7 @@ CREATE PROCEDURE WEST_WORLD.SucursalCreateOrUpdate
 @direccion nvarchar(50),
 @codigoPostal nvarchar(50),
 @habilitado bit,
-@operador bigint
+@operador nvarchar(50)
 
 AS
 	IF @mode='Add'
@@ -14,15 +15,21 @@ AS
 			nombre, 
 			direccion, 
 			codigoPostal, 
-			habilitado,
-			operador
+			habilitado		
 		)
 		VALUES(
 			@nombre,
 			@direccion,
 			@codigoPostal,
-			@habilitado,
-			@operador
+			@habilitado			
+		)
+		INSERT INTO WEST_WORLD.Sucursal_Usuario(
+			idUsuario,
+			idSucursal
+		)
+		VALUES(
+			(SELECT idUser from WEST_WORLD.Usuario where [user]=@operador),	
+			(SELECT idSucursal from WEST_WORLD.Sucursal where codigoPostal=@codigoPostal)
 		)
 	END
 	ELSE IF @mode ='Edit'
@@ -31,8 +38,7 @@ AS
 		SET nombre=@nombre,
 			direccion=@direccion, 
 			codigoPostal=@codigoPostal, 
-			habilitado=@habilitado,
-			operador=@operador
+			habilitado=@habilitado
 		WHERE idSucursal=@idSucursal
 	END	
 

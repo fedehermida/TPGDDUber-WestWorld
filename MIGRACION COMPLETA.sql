@@ -484,6 +484,10 @@ INSERT INTO WEST_WORLD.Rol_Funcionalidad values (6,1);
 INSERT INTO WEST_WORLD.Rol_Funcionalidad values (7,1);
 INSERT INTO WEST_WORLD.Rol_Funcionalidad values (8,1);
 GO
+INSERT INTO WEST_WORLD.Rol_Funcionalidad values (5,2);
+INSERT INTO WEST_WORLD.Rol_Funcionalidad values (6,2);
+INSERT INTO WEST_WORLD.Rol_Funcionalidad values (8,2);
+GO
 INSERT INTO WEST_WORLD.Usuario([user], pass, failedLogins)
 						VALUES('admin', (SELECT HASHBYTES('SHA2_256', 'w23e')), 0)
 INSERT INTO WEST_WORLD.Rol_Usuario VALUES (1,1);

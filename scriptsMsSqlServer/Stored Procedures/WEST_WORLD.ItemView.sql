@@ -3,7 +3,7 @@ CREATE PROCEDURE WEST_WORLD.ItemView
 
 AS
 	IF EXISTS (SELECT numeroFactura FROM WEST_WORLD.Factura WHERE numeroFactura = @NUMEROFACTURA)
-		SELECT idItem, monto, cantidad, importe
+		SELECT idItem, monto as 'Monto', cantidad as 'Cantidad', importe as 'Importe'
 		FROM WEST_WORLD.Item i
 		WHERE numeroFactura = @NUMEROFACTURA
 

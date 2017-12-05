@@ -204,9 +204,8 @@ namespace PagoAgilFrba
 
         public void esDecimal(string valor)
         {
-            if (valor.ToArray().Where(lr => lr.Equals('.') | lr.Equals(',')).Count() > 1) throw new Exception("Decimal invalido");
-            if (valor.StartsWith(".") | valor.EndsWith(".") | valor.StartsWith(",") | valor.EndsWith(",")) throw new Exception("Decimal invalido");
-
+            if (valor.ToArray().Where(lr => lr.Equals('.') | lr.Equals(',')).Count() > 1) throw new Exception("Numero decimal invalido");
+            if (valor.StartsWith(".") | valor.EndsWith(".") | valor.StartsWith(",") | valor.EndsWith(",")) throw new Exception("Numero decimal invalido");
         }
 
         public string calcularColumna(string columna, DataTable dtbl)
