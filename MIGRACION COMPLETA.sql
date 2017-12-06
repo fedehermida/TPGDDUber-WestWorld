@@ -25,6 +25,9 @@ GO
 IF OBJECT_ID('WEST_WORLD.Item', 'U') IS NOT NULL
 DROP TABLE WEST_WORLD.Item
 GO
+IF OBJECT_ID('WEST_WORLD.Devolucion', 'U') IS NOT NULL
+DROP TABLE WEST_WORLD.Devolucion
+GO
 IF OBJECT_ID('WEST_WORLD.Factura', 'U') IS NOT NULL
 DROP TABLE WEST_WORLD.Factura
 GO
@@ -51,9 +54,6 @@ DROP TABLE WEST_WORLD.Sucursal
 GO
 IF OBJECT_ID('WEST_WORLD.Usuario', 'U') IS NOT NULL
 DROP TABLE WEST_WORLD.Usuario
-GO
-IF OBJECT_ID('WEST_WORLD.Devolucion', 'U') IS NOT NULL
-DROP TABLE WEST_WORLD.Devolucion
 
 ----------------------------------------- CREATE TABLES --------------------------------------------------------
 GO
