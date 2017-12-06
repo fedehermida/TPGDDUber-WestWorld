@@ -546,16 +546,6 @@ namespace PagoAgilFrba.AbmFactura
             }
         }
 
-        private void fechaVencDT_ValueChanged(object sender, EventArgs e)
-        {
-            DateTime fechaVenc = Convert.ToDateTime(fechaVencDT.Value);
-            if (fechaVenc.Date > DateTime.Now.Date)
-            {
-                MessageBox.Show("La fecha de vencimiento no debe ser mayor a la fecha de hoy", "Error Message");
-                fechaVencDT.Value = Convert.ToDateTime(DateTime.Now.Date);
-            }
-        }
-
         private void agregarItemBtnNF_Click(object sender, EventArgs e)
         {
             try
@@ -679,6 +669,42 @@ namespace PagoAgilFrba.AbmFactura
         private void facturaABM_Activated(object sender, EventArgs e)
         {
             searchBtnL.Focus();
+        }
+
+        private void fechaVencDT_NF_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime fechaVenc = Convert.ToDateTime(fechaVencDT_NF.Value);
+                if (fechaVenc.Date > DateTime.Now.Date)
+                {
+                    fechaVencDT_NF.Value = Convert.ToDateTime(DateTime.Now.Date);
+                    throw new Exception("La fecha de vencimiento no debe ser mayor a la fecha de hoy");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Message");
+            }
+        }
+
+        private void fechaVencDT_ValueChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                DateTime fechaAlta = Convert.ToDateTime(fechaAltaFactDT.Value);
+                DateTime fechaVenc = Convert.ToDateTime(fechaVencDT.Value);
+                if (fechaVenc.Date > fechaAlta)
+                {
+                    fechaVencDT.Value = Convert.ToDateTime(fechaAlta);
+                    throw new Exception("La fecha de vencimiento no debe ser mayor a la fecha de alta");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Message");
+            }
         }
 
     }

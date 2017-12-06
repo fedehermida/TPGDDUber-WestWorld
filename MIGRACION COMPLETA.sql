@@ -96,12 +96,12 @@ CREATE TABLE "WEST_WORLD"."Factura"  (
 GO
 CREATE TABLE WEST_WORLD.Devolucion (
 	"numeroDevolucion" INT IDENTITY(1,1),
-	"fechaDevolucion" DATE DEFAULT getdate(),
-	"factura" INT NOT NULL,
+	"fechaDevolucion" DATE DEFAULT getdate() NOT NULL,
+	"factura" bigint NOT NULL,
 	"pago" INT NOT NULL,
 	"cliente" INT NOT NULL,
-	"importe" decimal(15,2),
-	"motivo" VARCHAR(255),
+	"importe" decimal(15,2) NOT NULL,
+	"motivo" VARCHAR(255) NOT NULL,
 	CONSTRAINT "devolucionPK" PRIMARY KEY CLUSTERED("numeroDevolucion")
 	ON [PRIMARY])
 GO
@@ -294,28 +294,34 @@ ALTER TABLE "WEST_WORLD"."Sucursal_Usuario"
 	ON DELETE NO ACTION 
 	ON UPDATE NO ACTION 
 GO
-ALTER TABLE [WEST_WORLD].[Empresa]
-	ADD CONSTRAINT [rubroFK]
-	FOREIGN KEY([idRubro])
-	REFERENCES [WEST_WORLD].[Rubro]([idRubro])
+ALTER TABLE "WEST_WORLD"."Empresa"
+	ADD CONSTRAINT "rubroFK"
+	FOREIGN KEY("idRubro")
+	REFERENCES "WEST_WORLD"."Rubro"("idRubro")
 	ON DELETE NO ACTION 
 	ON UPDATE NO ACTION 
 GO
-ALTER TABLE [WEST_WORLD].[Factura]
-	ADD CONSTRAINT [rendicionFK]
-	FOREIGN KEY([rendicion])
-	REFERENCES [WEST_WORLD].[Rendicion]([numeroRendicion])
+ALTER TABLE "WEST_WORLD"."Factura"
+	ADD CONSTRAINT "rendicionFK"
+	FOREIGN KEY("rendicion")
+	REFERENCES "WEST_WORLD"."Rendicion"("numeroRendicion")
 	ON DELETE NO ACTION 
 	ON UPDATE NO ACTION 
 GO
-ALTER TABLE [WEST_WORLD].[Factura]
-	ADD CONSTRAINT [pagoFK]
-	FOREIGN KEY([pago])
-	REFERENCES [WEST_WORLD].[Pago]([numeroPago])
+ALTER TABLE "WEST_WORLD"."Factura"
+	ADD CONSTRAINT "pagoFK"
+	FOREIGN KEY("pago")
+	REFERENCES "WEST_WORLD"."Pago"("numeroPago")
 	ON DELETE NO ACTION 
 	ON UPDATE NO ACTION 
 GO
-
+ALTER TABLE "WEST_WORLD"."Devolucion"
+	ADD CONSTRAINT "nroFacturaFK2"
+	FOREIGN KEY("factura")
+	REFERENCES "WEST_WORLD"."Factura"("numeroFactura")
+	ON DELETE CASCADE
+	ON UPDATE NO ACTION 
+GO
 -------------------------------- MIGRACION -------------------------------------------------------------------------------------------------------
 GO	
 	/*MIGRACION CLIENTE*/
@@ -441,7 +447,7 @@ ALTER TABLE [WEST_WORLD].[Sucursal] ADD UNIQUE ([codigoPostal]);
 ---------------------------- TRIGGERS ----------------------------------
 GO
 
-CREATE TRIGGER validarMail ON WEST_WORLD.Cliente
+CREATE TRIGGER validarMailInsert ON WEST_WORLD.Cliente
 INSTEAD OF INSERT
 AS
 BEGIN

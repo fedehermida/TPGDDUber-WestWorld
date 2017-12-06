@@ -619,7 +619,6 @@
             // 
             // fechaAltaFactDT
             // 
-            this.fechaAltaFactDT.Enabled = false;
             this.fechaAltaFactDT.Location = new System.Drawing.Point(519, 22);
             this.fechaAltaFactDT.Name = "fechaAltaFactDT";
             this.fechaAltaFactDT.Size = new System.Drawing.Size(213, 20);
@@ -975,6 +974,7 @@
             this.fechaVencDT_NF.Name = "fechaVencDT_NF";
             this.fechaVencDT_NF.Size = new System.Drawing.Size(211, 20);
             this.fechaVencDT_NF.TabIndex = 4;
+            this.fechaVencDT_NF.ValueChanged += new System.EventHandler(this.fechaVencDT_NF_ValueChanged);
             // 
             // fechaAltaFactLabelNF
             // 
