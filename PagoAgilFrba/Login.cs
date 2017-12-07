@@ -191,6 +191,15 @@ namespace PagoAgilFrba
 
         }
 
+        private void ExitBtn_Click(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void passTxtBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter)) LoginBtn_Click(sender, e);
+        }
 
     }
 }

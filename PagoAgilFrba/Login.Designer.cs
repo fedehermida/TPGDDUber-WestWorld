@@ -51,6 +51,7 @@
             this.passTxtBox.Size = new System.Drawing.Size(100, 20);
             this.passTxtBox.TabIndex = 1;
             this.passTxtBox.UseSystemPasswordChar = true;
+            this.passTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.passTxtBox_KeyPress);
             // 
             // label1
             // 
@@ -103,6 +104,7 @@
             this.Controls.Add(this.userTxtBox);
             this.Name = "Login";
             this.Text = "Login";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ExitBtn_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 
