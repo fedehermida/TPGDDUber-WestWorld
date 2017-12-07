@@ -34,6 +34,9 @@
             this.empresaFilterLabel = new System.Windows.Forms.Label();
             this.facturasDataGrid = new System.Windows.Forms.DataGridView();
             this.filtrarGroupBox = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.anioLabel = new System.Windows.Forms.Label();
+            this.anioTextBox = new System.Windows.Forms.TextBox();
             this.oblMesLabel = new System.Windows.Forms.Label();
             this.oblEmprLabel = new System.Windows.Forms.Label();
             this.mesLabel = new System.Windows.Forms.Label();
@@ -61,9 +64,6 @@
             this.facturasLabel = new System.Windows.Forms.Label();
             this.camposObligatoriosLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.anioTextBox = new System.Windows.Forms.TextBox();
-            this.anioLabel = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.facturasDataGrid)).BeginInit();
             this.filtrarGroupBox.SuspendLayout();
             this.rendicionGroupBox.SuspendLayout();
@@ -140,6 +140,34 @@
             this.filtrarGroupBox.TabIndex = 27;
             this.filtrarGroupBox.TabStop = false;
             this.filtrarGroupBox.Text = "Criterio de Búsqueda";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label4.Location = new System.Drawing.Point(536, 31);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(24, 18);
+            this.label4.TabIndex = 52;
+            this.label4.Text = "(*)";
+            // 
+            // anioLabel
+            // 
+            this.anioLabel.AutoSize = true;
+            this.anioLabel.Location = new System.Drawing.Point(451, 34);
+            this.anioLabel.Name = "anioLabel";
+            this.anioLabel.Size = new System.Drawing.Size(26, 13);
+            this.anioLabel.TabIndex = 51;
+            this.anioLabel.Text = "Año";
+            // 
+            // anioTextBox
+            // 
+            this.anioTextBox.Location = new System.Drawing.Point(483, 31);
+            this.anioTextBox.MaxLength = 4;
+            this.anioTextBox.Name = "anioTextBox";
+            this.anioTextBox.Size = new System.Drawing.Size(47, 20);
+            this.anioTextBox.TabIndex = 50;
+            this.anioTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.anioTextBox_KeyPress);
             // 
             // oblMesLabel
             // 
@@ -403,34 +431,6 @@
             this.panel1.Size = new System.Drawing.Size(327, 100);
             this.panel1.TabIndex = 52;
             // 
-            // anioTextBox
-            // 
-            this.anioTextBox.Location = new System.Drawing.Point(483, 31);
-            this.anioTextBox.MaxLength = 4;
-            this.anioTextBox.Name = "anioTextBox";
-            this.anioTextBox.Size = new System.Drawing.Size(47, 20);
-            this.anioTextBox.TabIndex = 50;
-            this.anioTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.anioTextBox_KeyPress);
-            // 
-            // anioLabel
-            // 
-            this.anioLabel.AutoSize = true;
-            this.anioLabel.Location = new System.Drawing.Point(451, 34);
-            this.anioLabel.Name = "anioLabel";
-            this.anioLabel.Size = new System.Drawing.Size(26, 13);
-            this.anioLabel.TabIndex = 51;
-            this.anioLabel.Text = "Año";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label4.Location = new System.Drawing.Point(536, 31);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(24, 18);
-            this.label4.TabIndex = 52;
-            this.label4.Text = "(*)";
-            // 
             // Rendicion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -444,7 +444,7 @@
             this.Controls.Add(this.rendicionGroupBox);
             this.Controls.Add(this.panel1);
             this.Name = "Rendicion";
-            this.Text = "Rendicion";
+            this.Text = "Rendicion De Facturas Cobradas";
             this.Activated += new System.EventHandler(this.Rendicion_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.facturasDataGrid)).EndInit();
             this.filtrarGroupBox.ResumeLayout(false);

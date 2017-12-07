@@ -163,6 +163,11 @@ namespace PagoAgilFrba
             this.Hide();
 
         }
+
+        private void Index_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
 

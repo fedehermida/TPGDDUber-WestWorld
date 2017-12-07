@@ -110,6 +110,8 @@ namespace PagoAgilFrba.RegistroPago
         {
             try
             {
+                if (facturasACobrarDataGrid.RowCount == 0) throw new Exception("Ingrese facturas a pagar");
+
                 int idPago = cobrar();
                 if (idPago == -1) throw new Exception("No se pudo registrar el pago");
                 sqlCon.Open();

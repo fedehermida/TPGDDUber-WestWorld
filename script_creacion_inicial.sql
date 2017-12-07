@@ -55,6 +55,120 @@ GO
 IF OBJECT_ID('WEST_WORLD.Usuario', 'U') IS NOT NULL
 DROP TABLE WEST_WORLD.Usuario
 
+------------------------------------- DROP STORED PROCEDURES -------------------------------------------------
+
+GO
+IF OBJECT_ID('WEST_WORLD.ActualizarFuncionalidades') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.ActualizarFuncionalidades 
+GO
+IF OBJECT_ID('WEST_WORLD.AgregarFuncionalidad') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.AgregarFuncionalidad 
+GO
+IF OBJECT_ID('WEST_WORLD.AgregarRolAUsuario') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.AgregarRolAUsuario 
+GO
+IF OBJECT_ID('WEST_WORLD.BuscarRoles') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.BuscarRoles 
+GO
+IF OBJECT_ID('WEST_WORLD.CreateRol') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.CreateRol 
+GO
+IF OBJECT_ID('WEST_WORLD.FuncionalidadesRol') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.FuncionalidadesRol 
+GO
+IF OBJECT_ID('WEST_WORLD.ActualizarRol') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.ActualizarRol
+GO 
+IF OBJECT_ID('WEST_WORLD.ClienteCreateOrUpdate') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.ClienteCreateOrUpdate
+GO
+IF OBJECT_ID('WEST_WORLD.ClienteViewOrSearch') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.ClienteViewOrSearch
+GO
+IF OBJECT_ID('WEST_WORLD.EmpresaCreateOrUpdate') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.EmpresaCreateOrUpdate
+GO
+IF OBJECT_ID('WEST_WORLD.EmpresaViewOrSearch') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.EmpresaViewOrSearch 
+GO
+IF OBJECT_ID('WEST_WORLD.FacturaAsignarPago') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.FacturaAsignarPago 
+GO
+IF OBJECT_ID('WEST_WORLD.FacturaAsignarRendicion') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.FacturaAsignarRendicion 
+GO
+IF OBJECT_ID('WEST_WORLD.FacturaCreateOrUpdate') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.FacturaCreateOrUpdate 
+GO
+IF OBJECT_ID('WEST_WORLD.FacturaDelete') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.FacturaDelete 
+GO
+IF OBJECT_ID('WEST_WORLD.FacturaImporteUpdate') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.FacturaImporteUpdate 
+GO
+IF OBJECT_ID('WEST_WORLD.FacturaViewOrSearch') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.FacturaViewOrSearch 
+GO
+IF OBJECT_ID('WEST_WORLD.GetEmpresas') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.GetEmpresas 
+GO
+IF OBJECT_ID('WEST_WORLD.GetFormasDePago') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.GetFormasDePago 
+GO
+IF OBJECT_ID('WEST_WORLD.GetFuncionalidades') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.GetFuncionalidades 
+GO
+IF OBJECT_ID('WEST_WORLD.GetRubros') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.GetRubros 
+GO
+IF OBJECT_ID('WEST_WORLD.ItemCreateOrUpdate') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.ItemCreateOrUpdate 
+GO
+IF OBJECT_ID('WEST_WORLD.ItemDelete') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.ItemDelete
+GO
+IF OBJECT_ID('WEST_WORLD.ItemView') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.ItemView
+GO
+IF OBJECT_ID('WEST_WORLD.PagoCreate') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.PagoCreate
+GO
+IF OBJECT_ID('WEST_WORLD.SeleccionarCliente') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.SeleccionarCliente
+GO
+IF OBJECT_ID('WEST_WORLD.SucursalCreateOrUpdate') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.SucursalCreateOrUpdate
+GO
+IF OBJECT_ID('WEST_WORLD.SucursalViewOrSearch') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.SucursalViewOrSearch
+GO
+IF OBJECT_ID('WEST_WORLD.ClientesConMasPagos') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.ClientesConMasPagos
+GO
+IF OBJECT_ID('WEST_WORLD.ClientesCumplidores') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.ClientesCumplidores
+GO
+IF OBJECT_ID('WEST_WORLD.EmpresasConMayorMontoRendido') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.EmpresasConMayorMontoRendido
+GO
+IF OBJECT_ID('WEST_WORLD.FacturasCobradasPorEmpresa') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.FacturasCobradasPorEmpresa
+GO
+IF OBJECT_ID('WEST_WORLD.ValidarCreateOrUpdateRol') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.ValidarCreateOrUpdateRol
+GO
+IF OBJECT_ID('WEST_WORLD.DevolucionDeFactura') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.DevolucionDeFactura
+
+------------------------------------- DROP & CREATE SCHEMA ------------------------------------------
+GO
+
+IF EXISTS (SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'WEST_WORLD')
+		DROP SCHEMA WEST_WORLD
+		
+GO
+CREATE SCHEMA WEST_WORLD AUTHORIZATION gd
+
 ----------------------------------------- CREATE TABLES --------------------------------------------------------
 GO
 CREATE TABLE "WEST_WORLD"."Cliente"( 
@@ -518,21 +632,11 @@ GO
 ----------------------------STORED PROCEDURES-------------------------------------------------------------------------
 GO
 
-IF OBJECT_ID('WEST_WORLD.ActualizarFuncionalidades') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.ActualizarFuncionalidades 
-
-GO
-
 CREATE PROCEDURE WEST_WORLD.ActualizarFuncionalidades
 @idRol BIGINT 
 as
 DELETE FROM WEST_WORLD.Rol_Funcionalidad
 WHERE idRol=@idRol
-
-GO
-
-IF OBJECT_ID('WEST_WORLD.AgregarFuncionalidad') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.AgregarFuncionalidad 
 
 GO
 
@@ -547,11 +651,6 @@ END
 
 GO
 
-IF OBJECT_ID('WEST_WORLD.AgregarRolAUsuario') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.AgregarRolAUsuario 
-
-GO
-
 CREATE PROCEDURE [WEST_WORLD].[AgregarRolAUsuario] 
 @idUser BIGINT, 
 @idRol BIGINT
@@ -560,11 +659,6 @@ BEGIN
 	INSERT INTO WEST_WORLD.Rol_Usuario (idRol,idUsuario)
 	VALUES(@idRol,@idUser)
 END
-
-GO
-
-IF OBJECT_ID('WEST_WORLD.BuscarRoles') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.BuscarRoles 
 
 GO
 
@@ -578,11 +672,6 @@ BEGIN
 	FROM WEST_WORLD.Rol
 	WHERE (@Nombre IS NULL OR nombre LIKE CONCAT(@Nombre, '%'))
 END
-
-GO
-
-IF OBJECT_ID('WEST_WORLD.CreateRol') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.CreateRol 
 
 GO
 
@@ -605,11 +694,6 @@ END
 
 GO
 
-IF OBJECT_ID('WEST_WORLD.FuncionalidadesRol') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.FuncionalidadesRol 
-
-GO
-
 CREATE PROCEDURE WEST_WORLD.FuncionalidadesRol 
 @idRol BIGINT
 
@@ -622,11 +706,6 @@ BEGIN
 END
 GO
 
-IF OBJECT_ID('WEST_WORLD.ActualizarRol') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.ActualizarRol
-
-GO 
-
 CREATE PROCEDURE WEST_WORLD.ActualizarRol 
 @idRol BIGINT,
 @nombre VARCHAR(50),
@@ -636,11 +715,6 @@ UPDATE WEST_WORLD.Rol
 SET nombre=@nombre,
 	habilitado=@habilitado
 WHERE idRol=@idRol
-
-GO
-
-IF OBJECT_ID('WEST_WORLD.ClienteCreateOrUpdate') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.ClienteCreateOrUpdate
 
 GO
 
@@ -714,11 +788,6 @@ RETURN 0
 
 GO
 
-IF OBJECT_ID('WEST_WORLD.ClienteViewOrSearch') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.ClienteViewOrSearch
-
-GO
-
 CREATE PROCEDURE WEST_WORLD.ClienteViewOrSearch
 	@nombre nvarchar(255),
 	@apellido nvarchar(255),
@@ -733,11 +802,6 @@ AS
     OPTION (RECOMPILE)
 			
 RETURN 0
-
-GO
-
-IF OBJECT_ID('WEST_WORLD.EmpresaCreateOrUpdate') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.EmpresaCreateOrUpdate
 
 GO
 
@@ -789,11 +853,6 @@ RETURN 0
 
 GO
 
-IF OBJECT_ID('WEST_WORLD.EmpresaViewOrSearch') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.EmpresaViewOrSearch 
-
-GO
-
 CREATE PROCEDURE WEST_WORLD.EmpresaViewOrSearch
 	@nombre nvarchar(255),
 	@cuit nvarchar(50),
@@ -809,11 +868,6 @@ RETURN 0;
 
 GO
 
-IF OBJECT_ID('WEST_WORLD.FacturaAsignarPago') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.FacturaAsignarPago 
-
-GO
-
 CREATE PROCEDURE WEST_WORLD.FacturaAsignarPago
 	@NUMFACTURA bigint,
 	@PAGO bigint
@@ -826,11 +880,6 @@ AS
 
 GO
 
-IF OBJECT_ID('WEST_WORLD.FacturaAsignarRendicion') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.FacturaAsignarRendicion 
-
-GO
-
 CREATE PROCEDURE WEST_WORLD.FacturaAsignarRendicion
 	@NUMFACTURA bigint,
 	@RENDICION bigint
@@ -839,11 +888,6 @@ AS
 	UPDATE WEST_WORLD.Factura
 	SET rendicion = @RENDICION
 	WHERE numeroFactura = @NUMFACTURA
-
-GO
-
-IF OBJECT_ID('WEST_WORLD.FacturaCreateOrUpdate') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.FacturaCreateOrUpdate 
 
 GO
 
@@ -884,11 +928,6 @@ RETURN 0
 
 GO
 
-IF OBJECT_ID('WEST_WORLD.FacturaDelete') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.FacturaDelete 
-
-GO
-
 CREATE PROCEDURE WEST_WORLD.FacturaDelete
 @NUMEROFACTURA bigint
 
@@ -905,11 +944,6 @@ AS
 
 GO
 
-IF OBJECT_ID('WEST_WORLD.FacturaImporteUpdate') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.FacturaImporteUpdate 
-
-GO
-
 CREATE PROCEDURE WEST_WORLD.FacturaImporteUpdate
 	@NUMEROFACTURA bigint,
 	@TOTAL numeric(15,2)
@@ -922,11 +956,6 @@ AS
 			SET total=@TOTAL
 			WHERE numeroFactura = @NUMEROFACTURA
 		END
-
-GO
-
-IF OBJECT_ID('WEST_WORLD.FacturaViewOrSearch') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.FacturaViewOrSearch 
 
 GO
 
@@ -972,11 +1001,6 @@ RETURN 0
 
 GO
 
-IF OBJECT_ID('WEST_WORLD.GetEmpresas') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.GetEmpresas 
-
-GO
-
 CREATE PROCEDURE WEST_WORLD.GetEmpresas
 AS
 	BEGIN 
@@ -987,11 +1011,6 @@ AS
 
 GO 
 
-IF OBJECT_ID('WEST_WORLD.GetFormasDePago') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.GetFormasDePago 
-
-GO
-
 CREATE PROCEDURE WEST_WORLD.GetFormasDePago
 AS
 	BEGIN 
@@ -1001,20 +1020,9 @@ AS
 
 GO
 
-IF OBJECT_ID('WEST_WORLD.GetFuncionalidades') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.GetFuncionalidades 
-
-GO
-
 CREATE PROCEDURE WEST_WORLD.GetFuncionalidades
 as
 SELECT * FROM WEST_WORLD.Funcionalidad 
-
-
-GO
-
-IF OBJECT_ID('WEST_WORLD.GetRubros') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.GetRubros 
 
 GO
 
@@ -1028,10 +1036,6 @@ AS
 
 GO
 
-IF OBJECT_ID('WEST_WORLD.ItemCreateOrUpdate') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.ItemCreateOrUpdate 
-
-GO
 CREATE PROCEDURE WEST_WORLD.ItemCreateOrUpdate
 	@MODE nvarchar(10),
 	@IDITEM bigint,
@@ -1069,11 +1073,6 @@ AS
 
 GO
 
-IF OBJECT_ID('WEST_WORLD.ItemDelete') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.ItemDelete
-
-GO
-
 CREATE PROCEDURE WEST_WORLD.ItemDelete
 @NUMEROFACTURA bigint,
 @IDITEM bigint
@@ -1084,11 +1083,6 @@ AS
 		WHERE numeroFactura = @NUMEROFACTURA and idItem = @IDITEM
 	ELSE
 		RAISERROR('La factura no puede quedar sin items. Puede actualizar el seleccionado', 15, 2)	 
-
-GO
-
-IF OBJECT_ID('WEST_WORLD.ItemView') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.ItemView
 
 GO
 
@@ -1105,11 +1099,6 @@ AS
 		RAISERROR(N'No existe la factura %I64i', 15,2, @NUMEROFACTURA)
 
 RETURN 0
-
-GO
-
-IF OBJECT_ID('WEST_WORLD.PagoCreate') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.PagoCreate
 
 GO
 
@@ -1131,10 +1120,6 @@ RETURN @ID
 
 GO
 
-IF OBJECT_ID('WEST_WORLD.RendicionCreate') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.RendicionCreate
-
-GO
 CREATE PROCEDURE WEST_WORLD.RendicionCreate
 @FECHA_RENDICION datetime,
 @IDEMPRESA bigint,
@@ -1152,11 +1137,6 @@ RETURN SCOPE_IDENTITY()
 
 GO
 
-IF OBJECT_ID('WEST_WORLD.SeleccionarCliente') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.SeleccionarCliente
-
-GO
-
 CREATE PROCEDURE WEST_WORLD.SeleccionarCliente
 	@nombre nvarchar(255),
 	@apellido nvarchar(255),
@@ -1170,11 +1150,6 @@ AS
     OPTION (RECOMPILE)
 			
 RETURN 0
-
-GO
-
-IF OBJECT_ID('WEST_WORLD.SucursalCreateOrUpdate') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.SucursalCreateOrUpdate
 
 GO
 
@@ -1225,11 +1200,6 @@ RETURN 0
 
 GO
 
-IF OBJECT_ID('WEST_WORLD.SucursalViewOrSearch') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.SucursalViewOrSearch
-
-GO
-
 CREATE PROCEDURE WEST_WORLD.SucursalViewOrSearch
 	@nombre nvarchar(50),
 	@direccion nvarchar(50),
@@ -1242,11 +1212,6 @@ AS
 			 AND (@codigoPostal IS NULL OR (codigoPostal = @codigoPostal))
         OPTION (RECOMPILE)
 RETURN 0
-
-GO
-
-IF OBJECT_ID('WEST_WORLD.ClientesConMasPagos') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.ClientesConMasPagos
 
 GO
 
@@ -1275,11 +1240,6 @@ BEGIN
 	ORDER BY 5 DESC
 
 END
-
-GO
-
-IF OBJECT_ID('WEST_WORLD.ClientesCumplidores') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.ClientesCumplidores
 
 GO
 
@@ -1312,11 +1272,6 @@ END
 
 GO
 
-IF OBJECT_ID('WEST_WORLD.EmpresasConMayorMontoRendido') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.EmpresasConMayorMontoRendido
-
-GO
-
 CREATE PROCEDURE WEST_WORLD.EmpresasConMayorMontoRendido
 @trimestre int, @anio int
 AS
@@ -1341,11 +1296,6 @@ BEGIN
 	GROUP BY empresa, e.nombre, e.cuit
 	ORDER BY 4
 END
-
-GO
-
-IF OBJECT_ID('WEST_WORLD.FacturasCobradasPorEmpresa') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.FacturasCobradasPorEmpresa
 
 GO
 
@@ -1374,11 +1324,6 @@ BEGIN
 	ORDER BY 5 DESC
 
 END
-
-GO
-
-IF OBJECT_ID('WEST_WORLD.ValidarCreateOrUpdateRol') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.ValidarCreateOrUpdateRol
 
 GO
 
@@ -1417,11 +1362,6 @@ END
 
 GO
 
-IF OBJECT_ID('WEST_WORLD.DevolucionDeFactura') IS NOT NULL
-DROP PROCEDURE WEST_WORLD.DevolucionDeFactura
-
-GO
-
 CREATE PROCEDURE WEST_WORLD.DevolucionDeFactura
 @numeroFactura int, @motivo VARCHAR(255)
 AS
@@ -1456,6 +1396,4 @@ BEGIN
 		RAISERROR('Esta factura no fue pagada aun', 12, 2)
 	END
 END
-
-
 
