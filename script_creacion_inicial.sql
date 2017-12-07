@@ -159,6 +159,9 @@ DROP PROCEDURE WEST_WORLD.ValidarCreateOrUpdateRol
 GO
 IF OBJECT_ID('WEST_WORLD.DevolucionDeFactura') IS NOT NULL
 DROP PROCEDURE WEST_WORLD.DevolucionDeFactura
+GO
+IF OBJECT_ID('WEST_WORLD.RendicionCreate') IS NOT NULL
+DROP PROCEDURE WEST_WORLD.RendicionCreate
 
 ------------------------------------- DROP & CREATE SCHEMA ------------------------------------------
 GO
@@ -168,6 +171,7 @@ IF EXISTS (SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME
 		
 GO
 CREATE SCHEMA WEST_WORLD AUTHORIZATION gd
+
 
 ----------------------------------------- CREATE TABLES --------------------------------------------------------
 GO
