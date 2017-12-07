@@ -1,4 +1,4 @@
-USE GD2C2017
+﻿USE GD2C2017
 
 --IMPORTANTE: SE DEBE MANTENER EL ORDEN DE LOS DROP PARA QUE NO ROMPA
 --Primero se eliminan las tablas que tengan una fk hacia otra tabla 
@@ -498,8 +498,15 @@ INSERT INTO WEST_WORLD.Rol_Funcionalidad values (8,2);
 GO
 INSERT INTO WEST_WORLD.Usuario([user], pass, failedLogins)
 						VALUES('admin', (SELECT HASHBYTES('SHA2_256', 'w23e')), 0)
+INSERT INTO WEST_WORLD.Usuario([user], pass, failedLogins)
+						VALUES('cobrador', (SELECT HASHBYTES('SHA2_256', 'cobrador')), 0)
 INSERT INTO WEST_WORLD.Rol_Usuario VALUES (1,1);
 INSERT INTO WEST_WORLD.Rol_Usuario VALUES (1,2);
+
+INSERT INTO WEST_WORLD.Rol_Usuario VALUES (
+	(SELECT u.idUser from WEST_WORLD.Usuario u where u.[user] = 'cobrador'),
+	(SELECT r.idRol from WEST_WORLD.Rol r where r.nombre='Cobrador')
+)
 
 INSERT INTO WEST_WORLD.Sucursal_Usuario VALUES (1,1);
 
