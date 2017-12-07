@@ -168,18 +168,27 @@ AS
 		)
 	END
 	ELSE IF @mode ='Edit'
+
 	BEGIN
-		UPDATE WEST_WORLD.Cliente
-		SET nombre=@nombre, 
-			apellido=@apellido, 
-			mail=@mail ,
-			direccion=@direccion, 
-			codigoPostal=@codigoPostal, 
-			dni=@dni, 
-			telefono=@telefono, 
-			fecha_nac=@fec_nac,
-			habilitado=@habilitado
-		WHERE idCliente=@idCliente
+		IF EXISTS ( SELECT 1 FROM WEST_WORLD.Cliente c WHERE mail = @MAIL
+												AND c.idCliente != @idCliente)
+		BEGIN
+			RAISERROR('Mail Repetido en otro usuario', 13, 1)
+		END
+		ELSE
+		BEGIN
+			UPDATE WEST_WORLD.Cliente
+			SET nombre=@nombre, 
+				apellido=@apellido, 
+				mail=@mail ,
+				direccion=@direccion, 
+				codigoPostal=@codigoPostal, 
+				dni=@dni, 
+				telefono=@telefono, 
+				fecha_nac=@fec_nac,
+				habilitado=@habilitado
+			WHERE idCliente=@idCliente
+		END
 	END
 		
 		
@@ -246,7 +255,7 @@ AS
 			BEGIN
 				--Veo si tiene alguna factura no rendida. Si estan todas rendidas se puede dar de baja
 				IF EXISTS (SELECT numeroFactura FROM WEST_WORLD.Factura WHERE empresa = @idEmpresa AND rendicion IS NULL AND pago IS NOT NULL)
-					RAISERROR('No es posible darle de baja a una empresa con 1 o más facturas sin rendir', 16, 1)
+					RAISERROR('No es posible darle de baja a una empresa con 1 o mï¿½s facturas sin rendir', 16, 1)
 				ELSE 
 					UPDATE WEST_WORLD.Empresa
 					SET habilitado=@habilitado
@@ -522,7 +531,7 @@ AS
 							 AND cantidad = @CANTIDAD)				
 				RAISERROR(N'Ya existe el item ingresado para la factura %I64i', 15,2, @NUMEROFACTURA)
 			ELSE IF NOT EXISTS (SELECT * FROM WEST_WORLD.Factura WHERE numeroFactura = @NUMEROFACTURA)
-				RAISERROR(N'No existe la factura %I64i por lo que no se agregó el item', 15, 2, @NUMEROFACTURA)
+				RAISERROR(N'No existe la factura %I64i por lo que no se agregï¿½ el item', 15, 2, @NUMEROFACTURA)
 			ELSE
 				INSERT INTO WEST_WORLD.Item(numeroFactura, cantidad, monto, importe)
 				VALUES(@NUMEROFACTURA, @CANTIDAD, @MONTO, @CANTIDAD*@MONTO)
