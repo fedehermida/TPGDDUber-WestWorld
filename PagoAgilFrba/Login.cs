@@ -98,7 +98,7 @@ namespace PagoAgilFrba
                 MessageBox.Show("Debe asignarle al menos un rol habilitado al usuario");
             } else if (count == 1)
             {
-                query = "SELECT idRol from WEST_WORLD.Rol r " +
+                query = "SELECT r.idRol from WEST_WORLD.Rol r " +
                 "JOIN WEST_WORLD.Rol_Usuario ru ON (ru.idRol=r.idRol) " +
                 "JOIN WEST_WORLD.Usuario u ON (ru.idUsuario=u.idUSer) " +
                 "WHERE u.[user]=@Usuario " +
